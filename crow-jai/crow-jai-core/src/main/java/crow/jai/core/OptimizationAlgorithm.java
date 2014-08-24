@@ -11,13 +11,15 @@ import crow.jai.core.util.Optimize;
 public interface OptimizationAlgorithm extends Algorithm {
 
     /**
-     *Gets the optimize type.
+     * Gets the optimize type.
+     *
      * @return optimize type.
      */
     public Optimize getOptimize();
 
     /**
      * Sets the optimize type.
+     *
      * @param optimize the optimize type.
      */
     public void setOptimize(Optimize optimize);
