@@ -16,7 +16,7 @@ public abstract class AbstractConstraint implements Constraint {
     /**
      * Constructor
      *
-     * @param constraintType condition type.
+     * @param constraintType constrain type.
      */
     public AbstractConstraint(ConstraintType constraintType) {
         this.constraintType = constraintType;

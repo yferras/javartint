@@ -17,7 +17,7 @@ public abstract class AbstractIterationConstraint extends AbstractConstraint {
     /**
      * Constructor
      *
-     * @param constraintType condition type.
+     * @param constraintType constrain type.
      * @param maxIterations max allowed iterations.
      */
     public AbstractIterationConstraint(ConstraintType constraintType,

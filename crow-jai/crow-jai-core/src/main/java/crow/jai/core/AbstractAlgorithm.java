@@ -94,8 +94,8 @@ public abstract class AbstractAlgorithm implements Algorithm {
     }
 
     @Override
-    public void addConstraint(Constraint condition) {
-        constraints.add(condition);
+    public void addConstraint(Constraint constraint) {
+        constraints.add(constraint);
     }
 
     @Override
@@ -119,8 +119,8 @@ public abstract class AbstractAlgorithm implements Algorithm {
     }
 
     @Override
-    public void removeConstraint(Constraint condition) {
-        constraints.remove(condition);
+    public void removeConstraint(Constraint constraint) {
+        constraints.remove(constraint);
     }
 
     @Override
@@ -135,16 +135,16 @@ public abstract class AbstractAlgorithm implements Algorithm {
         int countMandatories = 0;
         int countMandatoriesTrue = 0;
         int countOptionalsTrue = 0;
-        for (Constraint condition : constraints) {
-            switch (condition.getConstraintType()) {
+        for (Constraint constraint : constraints) {
+            switch (constraint.getConstraintType()) {
                 case MANDATORY:
                     countMandatories++;
-                    if (condition.eval(this)) {
+                    if (constraint.eval(this)) {
                         countMandatoriesTrue++;
                     }
                     break;
                 case OPTIONAL:
-                    if (condition.eval(this)) {
+                    if (constraint.eval(this)) {
                         countOptionalsTrue++;
                     }
                     break;

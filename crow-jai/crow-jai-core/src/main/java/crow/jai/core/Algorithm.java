@@ -66,7 +66,7 @@ public interface Algorithm extends Runnable {
      * <li>
      * If and only if all mandatory constraints return <code>true</code>.</li>
      * <li>
-     * Or in the case that will not exist mandatory conditions, with only one
+     * Or in the case that will not exist mandatory constrains, with only one
      * optional constraint that return <code>true</code>.</li>
      * </ul>
      * Otherwise returns <code>false</code>.
