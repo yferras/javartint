@@ -4,20 +4,20 @@ import crow.jai.core.Algorithm;
 import crow.jai.core.IterativeAlgorithm;
 
 /**
- * This class can be used to create conditions to iterative algorithms.
+ * This class can be used to create constrains to iterative algorithms.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class MaxIterationsCondition extends AbstractIterationConstraint {
+public class MaxIterationsConstraint extends AbstractIterationConstraint {
 
     /**
      * Constructor.
      *
-     * @param constraintType condition type.
+     * @param constraintType constrain type.
      * @param maxIterations max allowed iterations.
      */
-    public MaxIterationsCondition(ConstraintType constraintType, 
+    public MaxIterationsConstraint(ConstraintType constraintType, 
             long maxIterations) {
         super(constraintType, maxIterations);
     }

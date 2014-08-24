@@ -1,0 +1,42 @@
+package crow.jai.core.constraint;
+
+import crow.jai.core.Algorithm;
+import crow.jai.core.BasedOnErrorAlgorithm;
+
+/**
+ * This class can be used to create constrains to algorithms based on errors.
+ *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
+ */
+public class MaxErrorConstraint extends AbstractThresholdConstraint {
+
+    /**
+     * Constructor.
+     *
+     * @param constraintType constrain type.
+     * @param threshold error threshold.
+     */
+    public MaxErrorConstraint(ConstraintType constraintType, double threshold) {
+        super(constraintType, threshold);
+    }
+
+    /**
+     * Tests if the actual error of algorithm is greater than the threshold, in
+     * this case returns <code>true</code>, otherwise returns
+     * <code>false</code>.
+     *
+     * @param algorithm instance derived from {@link BasedOnErrorAlgorithm}
+     * @return <code>true</code> if the actual error of algorithm is greater
+     * than the threshold, otherwise returns <code>false</code>.
+     */
+    @Override
+    public boolean eval(Algorithm algorithm) {
+        if (algorithm instanceof BasedOnErrorAlgorithm) {
+            BasedOnErrorAlgorithm basedOnErrorAlgorithm = (BasedOnErrorAlgorithm) algorithm;
+            return basedOnErrorAlgorithm.getCurrentError() > threshold;
+        }
+        throw new IllegalArgumentException();
+    }
+
+}
