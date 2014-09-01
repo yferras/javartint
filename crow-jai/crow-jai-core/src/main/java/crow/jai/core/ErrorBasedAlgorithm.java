@@ -6,7 +6,7 @@ package crow.jai.core;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public interface BasedOnErrorAlgorithm extends Algorithm {
+public interface ErrorBasedAlgorithm extends Algorithm {
 
     /**
      * Gets the actual error.
