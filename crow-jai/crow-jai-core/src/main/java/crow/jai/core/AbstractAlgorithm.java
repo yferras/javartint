@@ -13,14 +13,15 @@ import crow.jai.core.util.SolutionChangeListener;
  * Abstract class that implements a general methods from {@link Algorithm}.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <S> Any class derived from {@link Solution} interface.
  */
-public abstract class AbstractAlgorithm implements Algorithm {
+public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm<S> {
 
     /**
      * List of constraints.
      */
-    protected List<Constraint> constraints = new ArrayList<>();
+    protected List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
     /**
      * Elapsed time.
      */
@@ -37,7 +38,7 @@ public abstract class AbstractAlgorithm implements Algorithm {
     /**
      * Generic solution.
      */
-    protected Solution solution;
+    protected S solution;
 
     private boolean addAlgorithmListener(EventListener listener) {
         boolean contains = eventListeners.contains(listener);
@@ -94,12 +95,12 @@ public abstract class AbstractAlgorithm implements Algorithm {
     }
 
     @Override
-    public void addConstraint(Constraint constraint) {
+    public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
         constraints.add(constraint);
     }
 
     @Override
-    public Constraint[] getConstraints() {
+    public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
         return constraints.toArray(new Constraint[0]);
     }
 
@@ -109,7 +110,7 @@ public abstract class AbstractAlgorithm implements Algorithm {
     }
 
     @Override
-    public Solution getSolution() {
+    public S getSolution() {
         return solution;
     }
 
@@ -119,7 +120,7 @@ public abstract class AbstractAlgorithm implements Algorithm {
     }
 
     @Override
-    public void removeConstraint(Constraint constraint) {
+    public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
         constraints.remove(constraint);
     }
 

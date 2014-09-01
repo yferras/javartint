@@ -1,15 +1,17 @@
 package crow.jai.core.constraint;
 
-import crow.jai.core.Algorithm;
 import crow.jai.core.ErrorBasedAlgorithm;
+import crow.jai.core.Solution;
 
 /**
  * This class can be used to create constrains to algorithms based on errors.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <A> Any derived class from {@link ErrorBasedAlgorithm} interface.
  */
-public class MinErrorConstraint extends AbstractThresholdConstraint {
+public class MinErrorConstraint<A extends ErrorBasedAlgorithm<? extends Solution>>
+        extends AbstractThresholdConstraint<Double, A> {
 
     /**
      * Constructor.
@@ -31,12 +33,8 @@ public class MinErrorConstraint extends AbstractThresholdConstraint {
      * than the threshold, otherwise returns <code>false</code>.
      */
     @Override
-    public boolean eval(Algorithm algorithm) {
-        if (algorithm instanceof ErrorBasedAlgorithm) {
-            ErrorBasedAlgorithm basedOnErrorAlgorithm = (ErrorBasedAlgorithm) algorithm;
-            return basedOnErrorAlgorithm.getCurrentError() < threshold;
-        }
-        throw new IllegalArgumentException();
+    public boolean eval(A algorithm) {
+         return algorithm.getCurrentError().compareTo(getThreshold()) < 0;
     }
 
 }

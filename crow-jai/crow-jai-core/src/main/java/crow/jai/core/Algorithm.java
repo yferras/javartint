@@ -6,30 +6,31 @@ import crow.jai.core.constraint.Constraint;
  * This interface represents in the general way an algorithm.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <S> Any class derived from {@link Solution} interface.
  */
-public interface Algorithm extends Runnable {
+public interface Algorithm<S extends Solution> extends Runnable {
 
     /**
      * Gets the final solution of algorithm.
      *
      * @return the final solution.
      */
-    public Solution getSolution();
+    public S getSolution();
 
     /**
      * Adds a new constraint.
      *
      * @param constraint new constraint.
      */
-    void addConstraint(Constraint constraint);
+    void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint);
 
     /**
      * Returns an array filled with the constraints.
      *
      * @return constraint array.
      */
-    Constraint[] getConstraints();
+    Constraint<? extends Algorithm<? extends Solution>>[] getConstraints();
 
     /**
      * Gets the elapsed time in milliseconds.
@@ -52,7 +53,7 @@ public interface Algorithm extends Runnable {
      *
      * @param constraint constraint to remove.
      */
-    void removeConstraint(Constraint constraint);
+    void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint);
 
     /**
      * Serves to stop the algorithm.

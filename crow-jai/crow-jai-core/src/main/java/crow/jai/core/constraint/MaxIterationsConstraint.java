@@ -1,15 +1,16 @@
 package crow.jai.core.constraint;
 
-import crow.jai.core.Algorithm;
 import crow.jai.core.IterativeAlgorithm;
+import crow.jai.core.Solution;
 
 /**
  * This class can be used to create constrains to iterative algorithms.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <A>
  */
-public class MaxIterationsConstraint extends AbstractIterationConstraint {
+public class MaxIterationsConstraint<A extends IterativeAlgorithm<? extends Solution>> extends AbstractIterationConstraint<A> {
 
     /**
      * Constructor.
@@ -17,7 +18,7 @@ public class MaxIterationsConstraint extends AbstractIterationConstraint {
      * @param constraintType constrain type.
      * @param maxIterations max allowed iterations.
      */
-    public MaxIterationsConstraint(ConstraintType constraintType, 
+    public MaxIterationsConstraint(ConstraintType constraintType,
             long maxIterations) {
         super(constraintType, maxIterations);
     }
@@ -30,16 +31,12 @@ public class MaxIterationsConstraint extends AbstractIterationConstraint {
      * @param algorithm instance derived from {@link IterativeAlgorithm}
      * @return <code>true</code> if the iterations of algorithm is greater than
      * or equals to the max allowed, otherwise returns <code>false</code>.
-     * 
+     *
      * @throws IllegalArgumentException
      */
     @Override
-    public boolean eval(Algorithm algorithm) {
-        if (algorithm instanceof IterativeAlgorithm) {
-            IterativeAlgorithm iterativeAlgorithm = (IterativeAlgorithm) algorithm;
-            return iterativeAlgorithm.getIterations() >= maxIterations;
-        }
-        throw new IllegalArgumentException();
+    public boolean eval(A algorithm) {
+        return algorithm.getIterations() >= maxIterations;
     }
 
 }

@@ -114,12 +114,12 @@ public class AbstractAlgorithmIT {
     public void testGetConstraints() {
         System.out.println("getConstraints");
         AbstractAlgorithm instance = new AlgorithmImpl();
-        Constraint[] expResult = 
-                new Constraint[]{
+        Constraint[] expResult
+                = new Constraint[]{
                     new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
                     new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
                 };
-        instance.addConstraint(expResult[0]);        
+        instance.addConstraint(expResult[0]);
         instance.addConstraint(expResult[1]);
         Constraint[] result = instance.getConstraints();
         assertArrayEquals(expResult, result);
@@ -190,13 +190,13 @@ public class AbstractAlgorithmIT {
     public void testRemoveConstraint() {
         System.out.println("removeConstraint");
         AbstractAlgorithm instance = new AlgorithmImpl();
-        Constraint[] constraints = 
-                new Constraint[]{
+        Constraint[] constraints
+                = new Constraint[]{
                     new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
                     new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
                 };
         Constraint constraint = constraints[0];
-        instance.addConstraint(constraints[0]);        
+        instance.addConstraint(constraints[0]);
         instance.addConstraint(constraints[1]);
         instance.removeConstraint(constraint);
         assertEquals(1, instance.getConstraints().length);
@@ -264,7 +264,9 @@ public class AbstractAlgorithmIT {
         // fail("The test case is a prototype.");
     }
 
-    static public class AlgorithmImpl extends AbstractAlgorithm implements ErrorBasedAlgorithm, IterativeAlgorithm {
+    static public class AlgorithmImpl
+            extends AbstractAlgorithm<SolutionImpl>
+            implements ErrorBasedAlgorithm<SolutionImpl>, IterativeAlgorithm<SolutionImpl> {
 
         private double error;
         private long iterations = 0L;
@@ -292,13 +294,18 @@ public class AbstractAlgorithmIT {
         }
 
         @Override
-        public double getCurrentError() {
+        public Double getCurrentError() {
             return error;
         }
 
         @Override
-        public long getIterations() {
+        public Long getIterations() {
             return iterations;
+        }
+
+        @Override
+        public Double getThreshold() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 

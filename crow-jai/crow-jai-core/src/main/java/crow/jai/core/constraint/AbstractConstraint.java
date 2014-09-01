@@ -1,12 +1,17 @@
 package crow.jai.core.constraint;
 
+import crow.jai.core.Algorithm;
+import crow.jai.core.Solution;
+
 /**
  * Basic abstract implementation of {@link Constraint}
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <A> Any derived class from {@link Algorithm} interface.
  */
-public abstract class AbstractConstraint implements Constraint {
+public abstract class AbstractConstraint<A extends Algorithm<? extends Solution>>
+        implements Constraint<A> {
 
     /**
      * Constraint type.

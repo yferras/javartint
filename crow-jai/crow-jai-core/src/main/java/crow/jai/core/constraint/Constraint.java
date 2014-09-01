@@ -1,14 +1,16 @@
 package crow.jai.core.constraint;
 
 import crow.jai.core.Algorithm;
+import crow.jai.core.Solution;
 
 /**
  * Serves to create constraints to stop the algorithm's execution.
  * 
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <A> Any derived class from {@link Algorithm} interface.
  */
-public interface Constraint {
+public interface Constraint<A extends Algorithm<? extends Solution>> {
 
 	/**
 	 * Test any parameter of the algorithm and if this constraint is 
@@ -20,7 +22,7 @@ public interface Constraint {
 	 * @return if this constraint is satisfied then returns 
          *          <code>true</code>, otherwise returns <code>false</code>.
 	 */
-	boolean eval(Algorithm algorithm);
+	boolean eval(A algorithm);
 
 	/**
 	 * Gets the constraint type.

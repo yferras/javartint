@@ -1,18 +1,21 @@
 package crow.jai.core.constraint;
 
+import crow.jai.core.Solution;
+import crow.jai.core.ThresholdBasedAlgorithm;
+
 /**
  * This abstract class can be used to create constrains to algorithms based on
  * thresholds.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
+ * @param <T> Any derived class from {@link Comparable} interface
+ * @param <A> Any derived class from {@link ThresholdBasedAlgorithm} interface.
  */
-public abstract class AbstractThresholdConstraint extends AbstractConstraint {
-
-    /**
-     * The threshold.
-     */
-    protected double threshold;
+public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A extends ThresholdBasedAlgorithm<? extends Solution, T>> 
+    extends AbstractConstraint<A> implements ThresholdConstraint<T, A> {
+    
+    private T threshold;
 
     /**
      * Constructor.
@@ -21,7 +24,7 @@ public abstract class AbstractThresholdConstraint extends AbstractConstraint {
      * @param threshold threshold
      */
     public AbstractThresholdConstraint(ConstraintType constraintType,
-            double threshold) {
+            T threshold) {
         super(constraintType);
         this.threshold = threshold;
     }
@@ -31,7 +34,7 @@ public abstract class AbstractThresholdConstraint extends AbstractConstraint {
      *
      * @param threshold the value of threshold.
      */
-    public void setThreshold(double threshold) {
+    public void setThreshold(T threshold) {
         this.threshold = threshold;
     }
 
@@ -40,7 +43,8 @@ public abstract class AbstractThresholdConstraint extends AbstractConstraint {
      *
      * @return the value of threshold.
      */
-    double getThreshold() {
+    @Override
+    public T getThreshold() {
         return threshold;
     }
 }
