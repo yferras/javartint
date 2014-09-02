@@ -33,7 +33,7 @@ public abstract class ArrayGene<T> extends DefaultGene<T[]> implements
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public ArrayGene<T> clone() throws CloneNotSupportedException {
         ArrayGene<T> gene = (ArrayGene<T>) super.clone();
         gene.data = data.clone();
         return gene;
