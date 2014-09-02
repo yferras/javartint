@@ -7,7 +7,7 @@ package crow.jai.gea.gene;
  * @version 0.0.1
  * @param <T> Any class
  */
-public class DefaulttGene<T> implements Cloneable, Gene<T> {
+public class DefaultGene<T> implements Cloneable, Gene<T> {
 
     protected T data;
 
@@ -15,7 +15,7 @@ public class DefaulttGene<T> implements Cloneable, Gene<T> {
      * Default constructor.
      * @param data value to initialize this gene.
      */
-    public DefaulttGene(T data) {
+    public DefaultGene(T data) {
         this.data = data;
     }
 
