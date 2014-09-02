@@ -7,7 +7,7 @@
   </parent>
   <artifactId>crow-jai-gea</artifactId>
   <name>Crow JAI GEA</name>
-  <description>Crow Java Artificial Intelligence Genetics and Evolutionary Algorithms LIbrary</description>
+  <description>Crow Java Artificial Intelligence Genetics and Evolutionary Algorithms Library</description>
     <dependencies>
         <dependency>
             <groupId>crow</groupId>
