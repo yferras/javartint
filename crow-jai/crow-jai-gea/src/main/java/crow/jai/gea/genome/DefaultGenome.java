@@ -1,6 +1,7 @@
 package crow.jai.gea.genome;
 
 import crow.jai.gea.gene.Gene;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -32,7 +33,6 @@ public class DefaultGenome<T extends Gene<?>>
         genes = null;
         fitness = 0.0;
     }
-
 
     @Override
     public T[] getChromosome() {
@@ -97,4 +97,35 @@ public class DefaultGenome<T extends Gene<?>>
     public void setGene(int index, T newGene) {
         genes[index] = newGene;
     }
+
+    @Override
+    protected DefaultGenome<T> clone() throws CloneNotSupportedException {
+        DefaultGenome<T> copy = (DefaultGenome<T>) super.clone();
+        copy.genes = this.genes.clone();
+        return copy;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.fitness) ^ (Double.doubleToLongBits(this.fitness) >>> 32));
+        hash = 97 * hash + Arrays.deepHashCode(this.genes);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DefaultGenome<?> other = (DefaultGenome<?>) obj;
+        if (Double.doubleToLongBits(this.fitness) != Double.doubleToLongBits(other.fitness)) {
+            return false;
+        }
+        return Arrays.deepEquals(this.genes, other.genes);
+    }
+
 }
