@@ -7,7 +7,7 @@ package crow.jai.gea.gene;
  * @version 0.0.1
  * @param <T> Any class
  */
-public interface Gene<T> {
+public interface Gene<T> extends Cloneable {
 
     /**
      * Gets the data.
