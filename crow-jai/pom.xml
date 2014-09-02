@@ -24,6 +24,7 @@
                     <configuration>
                         <includes>
                             <include>**/CoreITSuite.java</include>
+                            <include>**/GeaITSuite.java</include>
                         </includes>
                     </configuration>
                 </plugin>
