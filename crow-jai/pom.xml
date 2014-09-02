@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>crow-jai-core</module>
+        <module>crow-jai-gea</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
