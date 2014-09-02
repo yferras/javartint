@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * @version 0.0.1
  * @param <T> Any class
  */
-public class ArrayGene<T> extends DefaulttGene<T[]> implements
+public abstract class ArrayGene<T> extends DefaultGene<T[]> implements
         Cloneable, Iterable<T>, Iterator<T> {
 
     private int iteratorIndex = 0;
