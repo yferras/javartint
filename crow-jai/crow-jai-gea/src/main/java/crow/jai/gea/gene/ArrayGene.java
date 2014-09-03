@@ -28,11 +28,11 @@ public abstract class ArrayGene<T> extends DefaultGene<T[]> implements
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ArrayGene<T> other = (ArrayGene<T>) obj;
+        final ArrayGene<?> other = (ArrayGene<?>) obj;
         return Arrays.deepEquals(this.data, other.data);
     }
 
-    @Override
+	@Override
     public ArrayGene<T> clone() throws CloneNotSupportedException {
         ArrayGene<T> gene = (ArrayGene<T>) super.clone();
         gene.data = data.clone();

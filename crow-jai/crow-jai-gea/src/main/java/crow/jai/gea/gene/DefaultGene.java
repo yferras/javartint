@@ -32,10 +32,10 @@ public class DefaultGene<T> implements Gene<T> {
         this.data = data;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected DefaultGene<T> clone() throws CloneNotSupportedException {
-        DefaultGene<T> copy = (DefaultGene<T>) super.clone();
-        return copy;
+        return (DefaultGene<T>) super.clone();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package crow.jai.gea.genome;
 
 import crow.jai.gea.gene.Gene;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -98,7 +99,8 @@ public class DefaultGenome<T extends Gene<?>>
         genes[index] = newGene;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected DefaultGenome<T> clone() throws CloneNotSupportedException {
         DefaultGenome<T> copy = (DefaultGenome<T>) super.clone();
         copy.genes = this.genes.clone();
