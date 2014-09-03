@@ -7,14 +7,17 @@ import crow.jai.core.constraint.MinErrorConstraint;
 import crow.jai.core.util.AlgorithmEvent;
 import crow.jai.core.util.ExcecutionEndListener;
 import crow.jai.core.util.SolutionChangeListener;
+
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -45,7 +48,8 @@ public class AbstractAlgorithmIT {
     /**
      * Test of addExcecutionEndListener method, of class AbstractAlgorithm.
      */
-    @Test
+    @SuppressWarnings("rawtypes")
+	@Test
     public void testAddExcecutionEndListener() {
         System.out.println("addExcecutionEndListener");
         ExcecutionEndListener listener = new ExcecutionEndListenerImpl();
@@ -60,6 +64,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of addSolutionChangeListener method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testAddSolutionChangeListener() {
         System.out.println("addSolutionChangeListener");
@@ -75,6 +80,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of removeExcecutionEndListener method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testRemoveExcecutionEndListener() {
         System.out.println("removeExcecutionEndListener");
@@ -91,6 +97,7 @@ public class AbstractAlgorithmIT {
      * Test of removeSolutionChangeListener method, of class AbstractAlgorithm.
      */
     @Test
+    @SuppressWarnings("rawtypes")
     public void testRemoveSolutionChangeListener() {
         System.out.println("removeSolutionChangeListener");
         SolutionChangeListener listener = new SolutionChangeListenerImpl();
@@ -105,6 +112,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of getConstraints method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
     public void testGetConstraints() {
         System.out.println("getConstraints");
@@ -125,6 +133,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of getElapsedTime method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testGetElapsedTime() {
         System.out.println("getElapsedTime");
@@ -146,6 +155,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of getSolution method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testGetSolution() {
         System.out.println("getSolution");
@@ -159,6 +169,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of isRunning method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testIsRunning() {
         System.out.println("isRunning");
@@ -181,6 +192,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of removeConstraint method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
     public void testRemoveConstraint() {
         System.out.println("removeConstraint");
@@ -202,6 +214,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of stop method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testStop() {
         System.out.println("stop");
@@ -224,6 +237,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of fireAlgorithmFinishedEvent method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testFireAlgorithmFinishedEvent() {
         System.out.println("fireAlgorithmFinishedEvent");
@@ -243,6 +257,7 @@ public class AbstractAlgorithmIT {
     /**
      * Test of fireBestSolutionUpdatedEvent method, of class AbstractAlgorithm.
      */
+    @SuppressWarnings("rawtypes")
     @Test
     public void testFireBestSolutionUpdatedEvent_0args() {
         System.out.println("fireBestSolutionUpdatedEvent");

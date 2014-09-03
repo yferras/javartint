@@ -24,7 +24,7 @@ public class AlgorithmEvent extends EventObject {
          * @param solution 
          *                  The solution.
          */
-	public AlgorithmEvent(Algorithm source, Solution solution) {
+	public AlgorithmEvent(Algorithm<?> source, Solution solution) {
 		super(source);
 		this.solution = solution;
 	}

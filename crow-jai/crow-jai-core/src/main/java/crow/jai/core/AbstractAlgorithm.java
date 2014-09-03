@@ -99,9 +99,10 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         constraints.add(constraint);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
-        return constraints.toArray(new Constraint[0]);
+        return (Constraint<? extends Algorithm<? extends Solution>>[]) constraints.toArray(new Constraint[0]);
     }
 
     @Override
@@ -131,7 +132,8 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         }
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public boolean testConstraint() {
         int countMandatories = 0;
         int countMandatoriesTrue = 0;
