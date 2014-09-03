@@ -21,10 +21,10 @@ import static org.junit.Assert.*;
  */
 public class DefaultGenomeIT {
 
-    private static final Gene<Integer> GENE1 = new DefaultGene<Integer>(1);
+    private static final Gene<Integer> GENE1 = new DefaultGene<>(1);
     private static final Gene<Double[]> GENE2 = new DoubleArrayGene(new Double[]{1.0, 5.0, 9.0});
     private static final Gene<Integer[]> GENE3 = new IntegerArrayGene(new Integer[]{1, 5, 9});
-    private static final Gene<Integer> GENE4 = new DefaultGene<Integer>(4);
+    private static final Gene<Integer> GENE4 = new DefaultGene<>(4);
     private static final Gene<?>[] GENES = new Gene[]{
         GENE1, GENE2, GENE3, GENE4};
 
@@ -199,7 +199,7 @@ public class DefaultGenomeIT {
     public void testSetGene() {
         System.out.println("setGene");
         int index = 2;
-        Gene<Integer> newGene = new DefaultGene<Integer>(0);
+        Gene<Integer> newGene = new DefaultGene<>(0);
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
         instance.setGene(index, newGene);
