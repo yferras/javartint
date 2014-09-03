@@ -216,6 +216,7 @@ public class DefaultGenomeIT {
         instance.setChromosome(GENES);
         DefaultGenome result = instance.clone();
         assertEquals(result, instance);
+        assertFalse(result.getChromosome() == instance.getChromosome());
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
     }
