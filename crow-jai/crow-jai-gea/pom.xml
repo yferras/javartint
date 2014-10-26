@@ -1,17 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>crow</groupId>
-    <artifactId>crow-jai</artifactId>
+    <groupId>crow.jai</groupId>
+    <artifactId>jai</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>crow-jai-gea</artifactId>
+  <groupId>crow.jai</groupId>
+  <artifactId>jai-gea</artifactId>
   <name>Crow JAI GEA</name>
   <description>Crow Java Artificial Intelligence Genetics and Evolutionary Algorithms Library</description>
     <dependencies>
         <dependency>
-            <groupId>crow</groupId>
-            <artifactId>crow-jai-core</artifactId>
+            <groupId>crow.jai</groupId>
+            <artifactId>jai-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

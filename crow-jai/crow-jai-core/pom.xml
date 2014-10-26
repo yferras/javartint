@@ -5,11 +5,12 @@
 	<description>Crow Java Artificial Intelligence Core Library</description>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>crow</groupId>
-		<artifactId>crow-jai</artifactId>
+		<groupId>crow.jai</groupId>
+		<artifactId>jai</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>crow-jai-core</artifactId>
+        <groupId>crow.jai</groupId>
+	<artifactId>jai-core</artifactId>
 	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
