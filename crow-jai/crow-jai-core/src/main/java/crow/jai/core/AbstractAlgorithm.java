@@ -1,13 +1,12 @@
 package crow.jai.core;
 
+import crow.jai.core.constraint.Constraint;
+import crow.jai.core.util.AlgorithmEvent;
+import crow.jai.core.util.ExcecutionEndListener;
+import crow.jai.core.util.SolutionChangeListener;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
-
-import crow.jai.core.constraint.Constraint;
-import crow.jai.core.util.ExcecutionEndListener;
-import crow.jai.core.util.AlgorithmEvent;
-import crow.jai.core.util.SolutionChangeListener;
 
 /**
  * Abstract class that implements a general methods from {@link Algorithm}.

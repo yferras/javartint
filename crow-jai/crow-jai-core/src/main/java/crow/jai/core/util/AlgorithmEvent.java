@@ -1,9 +1,8 @@
 package crow.jai.core.util;
 
-import java.util.EventObject;
-
 import crow.jai.core.Algorithm;
 import crow.jai.core.Solution;
+import java.util.EventObject;
 
 /**
  * Algorithm event object.
