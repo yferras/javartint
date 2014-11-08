@@ -1,0 +1,16 @@
+/crow-jai/crow-jai-core/target/
+/crow-jai/target/
+/crow-jai/crow-jai-core/nbactions.xml
+/crow-jai/nbactions.xml
+/crow-jai/.settings/
+/crow-jai/crow-jai-core/.settings/
+/crow-jai/.project/
+/crow-jai/crow-jai-core/.project/
+/crow-jai/crow-jai-core/.classpath/
+/crow-jai/crow-jai-gea/target/
+/crow-jai/crow-jai-gea/.project/
+/crow-jai/crow-jai-gea/.classpath/
+/crow-jai/crow-jai-gea/.settings/
+/crow-jai/.idea/
+*.uml
+*.iml
