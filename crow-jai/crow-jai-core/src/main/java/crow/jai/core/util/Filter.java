@@ -9,7 +9,7 @@ package crow.jai.core.util;
 public interface Filter<T> {
 
     /**
-     * Serves to accept custom filters.
+     * Serves to create custom filters.
      *
      * @param element element to filter
      * @return <code>true</code> if this element pass the filter, otherwise
