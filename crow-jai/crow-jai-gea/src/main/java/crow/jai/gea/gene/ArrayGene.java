@@ -8,10 +8,10 @@ import java.util.NoSuchElementException;
  * Default generic gene to represent arrays.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  * @param <T> Any class
  */
-public abstract class ArrayGene<T> extends DefaultGene<T[]> implements
+public class ArrayGene<T> extends DefaultGene<T[]> implements
         Cloneable, Iterable<T>, Iterator<T> {
 
     private int iteratorIndex = 0;
