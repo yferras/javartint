@@ -33,7 +33,7 @@ public class DefaultGene<T> implements Gene<T> {
     }
 
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     protected DefaultGene<T> clone() throws CloneNotSupportedException {
         return (DefaultGene<T>) super.clone();
     }
