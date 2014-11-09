@@ -5,7 +5,7 @@ import crow.jai.core.constraint.ConstraintType;
 import crow.jai.core.constraint.MaxIterationsConstraint;
 import crow.jai.core.constraint.MinErrorConstraint;
 import crow.jai.core.util.AlgorithmEvent;
-import crow.jai.core.util.ExcecutionEndListener;
+import crow.jai.core.util.ExecutionEndListener;
 import crow.jai.core.util.SolutionChangeListener;
 import org.junit.*;
 
@@ -40,15 +40,15 @@ public class AbstractAlgorithmIT {
     }
 
     /**
-     * Test of addExcecutionEndListener method, of class AbstractAlgorithm.
+     * Test of addExecutionEndListener method, of class AbstractAlgorithm.
      */
     @SuppressWarnings("rawtypes")
     @Test
-    public void testAddExcecutionEndListener() {
-        System.out.println("addExcecutionEndListener");
-        ExcecutionEndListener listener = new ExcecutionEndListenerImpl();
+    public void testAddExecutionEndListener() {
+        System.out.println("addExecutionEndListener");
+        ExecutionEndListener listener = new ExecutionEndListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean result = instance.addExcecutionEndListener(listener);
+        boolean result = instance.addExecutionEndListener(listener);
         assertEquals(false, result);
     }
 
@@ -66,15 +66,15 @@ public class AbstractAlgorithmIT {
     }
 
     /**
-     * Test of removeExcecutionEndListener method, of class AbstractAlgorithm.
+     * Test of removeExecutionEndListener method, of class AbstractAlgorithm.
      */
     @SuppressWarnings("rawtypes")
     @Test
-    public void testRemoveExcecutionEndListener() {
-        System.out.println("removeExcecutionEndListener");
-        ExcecutionEndListener listener = new ExcecutionEndListenerImpl();
+    public void testRemoveExecutionEndListener() {
+        System.out.println("removeExecutionEndListener");
+        ExecutionEndListener listener = new ExecutionEndListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean result = instance.removeExcecutionEndListener(listener);
+        boolean result = instance.removeExecutionEndListener(listener);
         assertEquals(false, result);
     }
 
@@ -210,7 +210,7 @@ public class AbstractAlgorithmIT {
     public void testFireAlgorithmFinishedEvent() {
         System.out.println("fireAlgorithmFinishedEvent");
         AbstractAlgorithm instance = new AlgorithmImpl();
-        instance.addExcecutionEndListener(new ExcecutionEndListener() {
+        instance.addExecutionEndListener(new ExecutionEndListener() {
 
             @Override
             public void algorithmFinished(AlgorithmEvent event) {
@@ -301,7 +301,7 @@ public class AbstractAlgorithmIT {
 
     }
 
-    static public class ExcecutionEndListenerImpl implements ExcecutionEndListener {
+    static public class ExecutionEndListenerImpl implements ExecutionEndListener {
 
         @Override
         public void algorithmFinished(AlgorithmEvent event) {

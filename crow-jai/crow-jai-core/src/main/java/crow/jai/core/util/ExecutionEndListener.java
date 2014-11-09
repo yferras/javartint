@@ -8,7 +8,7 @@ import java.util.EventListener;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface ExcecutionEndListener extends EventListener {
+public interface ExecutionEndListener extends EventListener {
 
     /**
      * This method should be fired when the algorithm ends its execution.

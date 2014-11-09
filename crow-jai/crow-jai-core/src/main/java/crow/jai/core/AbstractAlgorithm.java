@@ -2,7 +2,7 @@ package crow.jai.core;
 
 import crow.jai.core.constraint.Constraint;
 import crow.jai.core.util.AlgorithmEvent;
-import crow.jai.core.util.ExcecutionEndListener;
+import crow.jai.core.util.ExecutionEndListener;
 import crow.jai.core.util.SolutionChangeListener;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * @return Returns {@code true} if this instance is already contained,
      * {@code false} otherwise.
      */
-    public boolean addExcecutionEndListener(ExcecutionEndListener listener) {
+    public boolean addExecutionEndListener(ExecutionEndListener listener) {
         return addAlgorithmListener(listener);
     }
 
@@ -78,7 +78,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * @return Returns {@code true} if this instance is already contained,
      * {@code false} otherwise.
      */
-    public boolean removeExcecutionEndListener(ExcecutionEndListener listener) {
+    public boolean removeExecutionEndListener(ExecutionEndListener listener) {
         return eventListeners.remove(listener);
     }
 
@@ -135,15 +135,15 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public boolean testConstraint() {
-        int countMandatories = 0;
-        int countMandatoriesTrue = 0;
+        int countMandatory = 0;
+        int countMandatoryTrue = 0;
         int countOptionalsTrue = 0;
         for (Constraint constraint : constraints) {
             switch (constraint.getConstraintType()) {
                 case MANDATORY:
-                    countMandatories++;
+                    countMandatory++;
                     if (constraint.eval(this)) {
-                        countMandatoriesTrue++;
+                        countMandatoryTrue++;
                     }
                     break;
                 case OPTIONAL:
@@ -153,7 +153,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
                     break;
             }
         }
-        return countMandatories == countMandatoriesTrue && (countMandatories != 0 || countOptionalsTrue != 0);
+        return countMandatory == countMandatoryTrue && (countMandatory != 0 || countOptionalsTrue != 0);
     }
 
     /**
@@ -161,9 +161,9 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      */
     protected void fireAlgorithmFinishedEvent() {
         for (EventListener eventListener : eventListeners) {
-            if (eventListener instanceof ExcecutionEndListener) {
-                ExcecutionEndListener excecutionEndListener = (ExcecutionEndListener) eventListener;
-                excecutionEndListener.algorithmFinished(new AlgorithmEvent(
+            if (eventListener instanceof ExecutionEndListener) {
+                ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
+                executionEndListener.algorithmFinished(new AlgorithmEvent(
                         this, solution));
             }
         }
