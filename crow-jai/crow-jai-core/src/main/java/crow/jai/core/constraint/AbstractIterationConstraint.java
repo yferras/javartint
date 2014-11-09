@@ -7,9 +7,9 @@ import crow.jai.core.Solution;
  * This abstract class can be used to create constraints to iterative
  * algorithms.
  *
+ * @param <A> Any derived class from {@link IterativeAlgorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
- * @param <A> Any derived class from {@link IterativeAlgorithm} interface.
  */
 public abstract class AbstractIterationConstraint<A extends IterativeAlgorithm<? extends Solution>>
         extends AbstractConstraint<A> {
@@ -23,10 +23,10 @@ public abstract class AbstractIterationConstraint<A extends IterativeAlgorithm<?
      * Constructor
      *
      * @param constraintType constrain type.
-     * @param maxIterations max allowed iterations.
+     * @param maxIterations  max allowed iterations.
      */
     public AbstractIterationConstraint(ConstraintType constraintType,
-            long maxIterations) {
+                                       long maxIterations) {
         super(constraintType);
         this.maxIterations = maxIterations;
     }

@@ -4,6 +4,7 @@ import crow.jai.core.constraint.Constraint;
 import crow.jai.core.util.AlgorithmEvent;
 import crow.jai.core.util.ExcecutionEndListener;
 import crow.jai.core.util.SolutionChangeListener;
+
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
@@ -11,9 +12,9 @@ import java.util.List;
 /**
  * Abstract class that implements a general methods from {@link Algorithm}.
  *
+ * @param <S> Any class derived from {@link Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
- * @param <S> Any class derived from {@link Solution} interface.
  */
 public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm<S> {
 
@@ -99,9 +100,9 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
     }
 
     @SuppressWarnings("unchecked")
-	@Override
-    public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
-        return (Constraint<? extends Algorithm<? extends Solution>>[]) constraints.toArray(new Constraint[0]);
+    @Override
+    public Constraint<?>[] getConstraints() {
+        return (Constraint<?>[]) constraints.toArray(new Constraint[constraints.size()]);
     }
 
     @Override
@@ -131,8 +132,8 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
     public boolean testConstraint() {
         int countMandatories = 0;
         int countMandatoriesTrue = 0;
@@ -152,10 +153,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
                     break;
             }
         }
-        if (countMandatories != countMandatoriesTrue) {
-            return false;
-        }
-        return countMandatories != 0 || countOptionalsTrue != 0;
+        return countMandatories == countMandatoriesTrue && (countMandatories != 0 || countOptionalsTrue != 0);
     }
 
     /**

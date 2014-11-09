@@ -5,9 +5,9 @@ import crow.jai.core.constraint.Constraint;
 /**
  * This interface represents in the general way an algorithm.
  *
+ * @param <S> Any class derived from {@link Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
- * @param <S> Any class derived from {@link Solution} interface.
  */
 public interface Algorithm<S extends Solution> extends Runnable {
 

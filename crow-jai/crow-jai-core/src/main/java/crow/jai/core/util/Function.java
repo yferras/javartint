@@ -3,10 +3,10 @@ package crow.jai.core.util;
 /**
  * Interface to create generic functions.
  *
- * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
  * @param <R> Type of result
  * @param <P> Type of parameters
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
  */
 public interface Function<R, P> {
 

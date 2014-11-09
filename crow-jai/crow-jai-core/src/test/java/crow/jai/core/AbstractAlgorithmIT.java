@@ -7,21 +7,15 @@ import crow.jai.core.constraint.MinErrorConstraint;
 import crow.jai.core.util.AlgorithmEvent;
 import crow.jai.core.util.ExcecutionEndListener;
 import crow.jai.core.util.SolutionChangeListener;
+import org.junit.*;
+
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
- *
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class AbstractAlgorithmIT {
@@ -49,16 +43,13 @@ public class AbstractAlgorithmIT {
      * Test of addExcecutionEndListener method, of class AbstractAlgorithm.
      */
     @SuppressWarnings("rawtypes")
-	@Test
+    @Test
     public void testAddExcecutionEndListener() {
         System.out.println("addExcecutionEndListener");
         ExcecutionEndListener listener = new ExcecutionEndListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean expResult = false;
         boolean result = instance.addExcecutionEndListener(listener);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(false, result);
     }
 
     /**
@@ -70,11 +61,8 @@ public class AbstractAlgorithmIT {
         System.out.println("addSolutionChangeListener");
         SolutionChangeListener listener = new SolutionChangeListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean expResult = false;
         boolean result = instance.addSolutionChangeListener(listener);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(false, result);
     }
 
     /**
@@ -86,11 +74,8 @@ public class AbstractAlgorithmIT {
         System.out.println("removeExcecutionEndListener");
         ExcecutionEndListener listener = new ExcecutionEndListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean expResult = false;
         boolean result = instance.removeExcecutionEndListener(listener);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(false, result);
     }
 
     /**
@@ -102,32 +87,27 @@ public class AbstractAlgorithmIT {
         System.out.println("removeSolutionChangeListener");
         SolutionChangeListener listener = new SolutionChangeListenerImpl();
         AbstractAlgorithm instance = new AlgorithmImpl();
-        boolean expResult = false;
         boolean result = instance.removeSolutionChangeListener(listener);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(false, result);
     }
 
     /**
      * Test of getConstraints method, of class AbstractAlgorithm.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Test
     public void testGetConstraints() {
         System.out.println("getConstraints");
         AbstractAlgorithm instance = new AlgorithmImpl();
         Constraint[] expResult
                 = new Constraint[]{
-                    new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
-                    new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
-                };
+                new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
+                new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
+        };
         instance.addConstraint(expResult[0]);
         instance.addConstraint(expResult[1]);
         Constraint[] result = instance.getConstraints();
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -148,8 +128,6 @@ public class AbstractAlgorithmIT {
         instance.stop();
         long result = instance.getElapsedTime();
         assertTrue(result != 0L);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -162,8 +140,6 @@ public class AbstractAlgorithmIT {
         AbstractAlgorithm instance = new AlgorithmImpl();
         Solution result = instance.getSolution();
         assertNotNull(result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -181,34 +157,29 @@ public class AbstractAlgorithmIT {
         } catch (InterruptedException ex) {
             Logger.getLogger(AbstractAlgorithmIT.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean expResult = true;
         boolean result = instance.isRunning();
-        assertEquals(expResult, result);
+        assertEquals(true, result);
         instance.stop();
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
      * Test of removeConstraint method, of class AbstractAlgorithm.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Test
     public void testRemoveConstraint() {
         System.out.println("removeConstraint");
         AbstractAlgorithm instance = new AlgorithmImpl();
         Constraint[] constraints
                 = new Constraint[]{
-                    new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
-                    new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
-                };
+                new MaxIterationsConstraint(ConstraintType.MANDATORY, 100L),
+                new MinErrorConstraint(ConstraintType.MANDATORY, 0.0)
+        };
         Constraint constraint = constraints[0];
         instance.addConstraint(constraints[0]);
         instance.addConstraint(constraints[1]);
         instance.removeConstraint(constraint);
         assertEquals(1, instance.getConstraints().length);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -227,11 +198,8 @@ public class AbstractAlgorithmIT {
             Logger.getLogger(AbstractAlgorithmIT.class.getName()).log(Level.SEVERE, null, ex);
         }
         instance.stop();
-        boolean expResult = false;
         boolean result = instance.isRunning();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(false, result);
     }
 
     /**
@@ -250,8 +218,6 @@ public class AbstractAlgorithmIT {
             }
         });
         instance.fireAlgorithmFinishedEvent();
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -270,8 +236,6 @@ public class AbstractAlgorithmIT {
             }
         });
         instance.fireBestSolutionUpdatedEvent();
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     static public class AlgorithmImpl
@@ -292,11 +256,11 @@ public class AbstractAlgorithmIT {
             while (running && !testConstraint()) {
                 iterations++;
                 int newValue = new Random().nextInt(200);
-                if (newValue > ((SolutionImpl) solution).getData()) {
+                if (newValue > solution.getData()) {
                     solution = new SolutionImpl(newValue);
                     fireBestSolutionUpdatedEvent();
                 }
-                error = Math.abs(100 - ((SolutionImpl) solution).getData());
+                error = Math.abs(100 - solution.getData());
             }
             running = false;
             elapsedTime -= System.currentTimeMillis();

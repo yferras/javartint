@@ -5,9 +5,9 @@ import crow.jai.core.util.Optimize;
 /**
  * This interface allows to create algorithms to optimize.
  *
+ * @param <S> Any class derived from {@link Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
- * @param <S> Any class derived from {@link Solution} interface.
  */
 public interface OptimizationAlgorithm<S extends Solution> extends Algorithm<S> {
 

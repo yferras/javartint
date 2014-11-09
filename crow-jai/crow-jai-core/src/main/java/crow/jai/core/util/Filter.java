@@ -3,8 +3,8 @@ package crow.jai.core.util;
 /**
  * This interfaces is useful to create custom filters.
  *
- * @author Eng. Ferrás Cecilio, Yeinier Jul 18, 2011
  * @param <T> Generic type.
+ * @author Eng. Ferrás Cecilio, Yeinier Jul 18, 2011
  */
 public interface Filter<T> {
 
