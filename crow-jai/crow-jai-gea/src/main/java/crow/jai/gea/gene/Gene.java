@@ -1,5 +1,7 @@
 package crow.jai.gea.gene;
 
+import java.io.Serializable;
+
 /**
  * This interface represents a generic gene.
  *
@@ -7,7 +9,7 @@ package crow.jai.gea.gene;
  * @version 0.0.1
  * @param <T> Any class
  */
-public interface Gene<T> extends Cloneable {
+public interface Gene<T> extends Cloneable, Serializable {
 
     /**
      * Gets the data.

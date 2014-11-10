@@ -3,6 +3,7 @@ package crow.jai.gea.genome;
 import crow.jai.core.Solution;
 import crow.jai.gea.gene.Gene;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Iterator;
  * @version 0.0.1
  */
 public interface Genome<T extends Gene<?>>
-        extends Cloneable, Iterable<T>, Iterator<T>, Solution {
+        extends Cloneable, Iterable<T>, Iterator<T>, Solution, Serializable {
 
     /**
      * Gets the value of genes.
