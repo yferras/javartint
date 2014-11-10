@@ -28,12 +28,23 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
     }
 
     /**
-     * Constructor.
+     * Constructor, initializes instances with probability of crossing
+     * specified by {@code probability} parameter and random generator is an instance of
+     * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
      * @param probability probability of crossing
      */
     protected AbstractCrossingFunction(double probability) {
         this(probability, new RandomGenerator.SystemDefaultRandomGenerator());
+    }
+
+    /**
+     * Default constructor, initializes instances with probability of crossing
+     * equals to {@code .75} and random generator is an instance of
+     * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     */
+    protected AbstractCrossingFunction() {
+        this(.75);
     }
 
     @Override
