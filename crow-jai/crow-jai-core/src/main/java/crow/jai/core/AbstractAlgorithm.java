@@ -21,15 +21,15 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
     /**
      * List of constraints.
      */
-    protected List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
+    protected final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
+    /**
+     * List of listeners.
+     */
+    protected final List<EventListener> eventListeners = new ArrayList<>();
     /**
      * Elapsed time.
      */
     protected long elapsedTime = 0;
-    /**
-     * List of listeners.
-     */
-    protected List<EventListener> eventListeners = new ArrayList<>();
     /**
      * To know if the algorithm is currently running.
      */
@@ -101,8 +101,8 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 
     @SuppressWarnings("unchecked")
     @Override
-    public Constraint<?>[] getConstraints() {
-        return (Constraint<?>[]) constraints.toArray(new Constraint[constraints.size()]);
+    public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
+        return constraints.toArray(new Constraint[constraints.size()]);
     }
 
     @Override
