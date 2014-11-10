@@ -4,14 +4,9 @@ import crow.jai.gea.gene.DefaultGene;
 import crow.jai.gea.gene.DoubleArrayGene;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.gene.IntegerArrayGene;
+import org.junit.*;
 
 import java.util.Iterator;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -55,11 +50,9 @@ public class DefaultGenomeIT {
         System.out.println("getChromosome");
 		DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        Gene<?>[] expResult = GENES.clone();
-        Gene<?>[] result = instance.getChromosome();
+        Object[] expResult = GENES.clone();
+        Object[] result = instance.getChromosome();
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -72,8 +65,6 @@ public class DefaultGenomeIT {
         double expResult = 0.0;
         double result = instance.getFitness();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -88,8 +79,6 @@ public class DefaultGenomeIT {
         Object expResult = GENE2;
         Object result = instance.getGene(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -103,8 +92,6 @@ public class DefaultGenomeIT {
         int expResult = 4;
         int result = instance.getNumberOfGenes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -115,11 +102,8 @@ public class DefaultGenomeIT {
         System.out.println("hasNext");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        boolean expResult = true;
         boolean result = instance.hasNext();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(true, result);
     }
 
     /**
@@ -131,8 +115,6 @@ public class DefaultGenomeIT {
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         Iterator<?> result = instance.iterator();
         assertTrue(result != null);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -145,8 +127,6 @@ public class DefaultGenomeIT {
         instance.setChromosome(GENES);
         Object result = instance.next();
         assertTrue(result != null);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -161,8 +141,6 @@ public class DefaultGenomeIT {
         } catch (UnsupportedOperationException e) {
             assertTrue(true);
         }
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -174,8 +152,6 @@ public class DefaultGenomeIT {
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
         assertTrue(instance.getChromosome() != null);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -188,8 +164,6 @@ public class DefaultGenomeIT {
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setFitness(fitness);
         assertTrue(fitness == instance.getFitness());
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -204,8 +178,6 @@ public class DefaultGenomeIT {
         instance.setChromosome(GENES);
         instance.setGene(index, newGene);
         assertEquals(newGene, instance.getGene(index));
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
     /**
@@ -217,11 +189,9 @@ public class DefaultGenomeIT {
         System.out.println("clone");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        DefaultGenome<?> result = instance.clone();
+        Genome<?> result = instance.clone();
         assertEquals(result, instance);
         assertFalse(result.getChromosome() == instance.getChromosome());
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
 
 }
