@@ -17,7 +17,8 @@ import org.junit.runners.Suite;
         {
                 crow.jai.gea.gene.DefaultGeneIT.class,
                 crow.jai.gea.genome.DefaultGenomeIT.class,
-                crow.jai.gea.function.crossing.CrossingFunctionIT.class
+                crow.jai.gea.function.crossing.CrossingFunctionIT.class,
+                crow.jai.gea.function.crossing.SinglePointCrossingFunctionIT.class
         }
 )
 public class GeaITSuite {
