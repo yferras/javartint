@@ -33,7 +33,7 @@ public class MaxErrorConstraint<A extends ErrorBasedAlgorithm<? extends Solution
      * than the threshold, otherwise returns <code>false</code>.
      */
     @Override
-    public boolean eval(A algorithm) {
+    public boolean evaluate(A algorithm) {
         return algorithm.getCurrentError().compareTo(getThreshold()) > 0;
     }
 

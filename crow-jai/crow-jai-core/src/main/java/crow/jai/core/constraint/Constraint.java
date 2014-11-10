@@ -21,7 +21,7 @@ public interface Constraint<A extends Algorithm<? extends Solution>> {
      * @return if this constraint is satisfied then returns
      * <code>true</code>, otherwise returns <code>false</code>.
      */
-    boolean eval(A algorithm);
+    boolean evaluate(A algorithm);
 
     /**
      * Gets the constraint type.

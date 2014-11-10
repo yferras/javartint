@@ -142,12 +142,12 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
             switch (constraint.getConstraintType()) {
                 case MANDATORY:
                     countMandatory++;
-                    if (constraint.eval(this)) {
+                    if (constraint.evaluate(this)) {
                         countMandatoryTrue++;
                     }
                     break;
                 case OPTIONAL:
-                    if (constraint.eval(this)) {
+                    if (constraint.evaluate(this)) {
                         countOptionalsTrue++;
                     }
                     break;

@@ -35,7 +35,7 @@ public class MaxIterationsConstraint<A extends IterativeAlgorithm<? extends Solu
      * @throws IllegalArgumentException
      */
     @Override
-    public boolean eval(A algorithm) {
+    public boolean evaluate(A algorithm) {
         return algorithm.getIterations() >= maxIterations;
     }
 
