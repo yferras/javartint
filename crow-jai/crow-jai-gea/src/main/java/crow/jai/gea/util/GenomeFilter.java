@@ -1,8 +1,8 @@
 package crow.jai.gea.util;
 
+import crow.jai.core.util.Filter;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.genome.Genome;
-import crow.jai.core.util.Filter;
 
 /**
  * This interface serves to implements many filters to ensure that the genomes

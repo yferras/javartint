@@ -1,12 +1,9 @@
 package crow.jai.gea.gene;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  *
@@ -43,8 +40,6 @@ public class DefaultGeneIT {
         Object expResult = 1.0;
         Object result = instance.getData();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -58,8 +53,6 @@ public class DefaultGeneIT {
         instance.setData(data);
         Object result = instance.getData();
         assertEquals(data, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -73,8 +66,6 @@ public class DefaultGeneIT {
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
         DefaultGene<Double> result = instance.clone();
         assertFalse(instance == result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -88,8 +79,6 @@ public class DefaultGeneIT {
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
         DefaultGene<Double> result = instance.clone();
         assertEquals(instance, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
 
@@ -103,8 +92,6 @@ public class DefaultGeneIT {
         int expResult = new DefaultGene<>(5.0).hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -115,11 +102,8 @@ public class DefaultGeneIT {
         System.out.println("equals");
         Object obj = new DefaultGene<>(2.0);
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
-        boolean expResult = true;
         boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertEquals(true, result);
     }
 
 }
