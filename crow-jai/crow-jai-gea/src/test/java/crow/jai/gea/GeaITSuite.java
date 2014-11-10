@@ -13,7 +13,13 @@ import org.junit.runners.Suite;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({crow.jai.gea.gene.DefaultGeneIT.class, crow.jai.gea.genome.DefaultGenomeIT.class})
+@Suite.SuiteClasses(
+        {
+                crow.jai.gea.gene.DefaultGeneIT.class,
+                crow.jai.gea.genome.DefaultGenomeIT.class,
+                crow.jai.gea.function.crossing.CrossingFunctionIT.class
+        }
+)
 public class GeaITSuite {
 
     @BeforeClass
