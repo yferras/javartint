@@ -3,6 +3,7 @@ package crow.jai.gea.function.crossing;
 import crow.jai.core.util.RandomGenerator;
 import crow.jai.gea.gene.DefaultGene;
 import crow.jai.gea.genome.DefaultGenome;
+import crow.jai.gea.genome.Genome;
 import org.junit.*;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -12,22 +13,27 @@ import static org.junit.Assert.assertArrayEquals;
  */
 public class SinglePointCrossingFunctionIT {
 
-    private static final RandomGenerator RANDOM_GENERATOR = new RandomGenerator() {
-        @Override
-        public int nextInt(int n) {
-            return n / 2 - 1;
-        }
+    public static final RandomGenerator RANDOM_GENERATOR = new
+            RandomGenerator() {
+                @Override
+                public int nextInt(int n) {
+                    return n / 2 - 1;
+                }
 
-        @Override
-        public double nextDouble() {
-            return .5;
-        }
-    };
+                @Override
+                public double nextDouble() {
+                    return .5;
+                }
+            };
 
-    private static final DefaultGenome<DefaultGene<Integer>> GENOME_1 = new DefaultGenome<>();
-    private static final DefaultGenome<DefaultGene<Integer>> GENOME_2 = new DefaultGenome<>();
-    private static final DefaultGenome<DefaultGene<Integer>>[] GENOMES = new DefaultGenome[2];
-    private static final int CHROMOSOME_SIZE = 11;
+    public static final DefaultGenome<DefaultGene<Integer>> GENOME_1 =
+            new DefaultGenome<>();
+    public static final DefaultGenome<DefaultGene<Integer>> GENOME_2 =
+            new DefaultGenome<>();
+    public static final DefaultGenome<DefaultGene<Integer>>[] GENOMES =
+            new DefaultGenome[2];
+    public static final int CHROMOSOME_SIZE = 11;
+
     static {
 
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
@@ -51,6 +57,8 @@ public class SinglePointCrossingFunctionIT {
 
     @Before
     public void setUp() {
+        System.out.print(
+                SinglePointCrossingFunction.class.getName().concat("."));
     }
 
     @After
@@ -58,23 +66,12 @@ public class SinglePointCrossingFunctionIT {
     }
 
     @Test
-    public void testEvaluate1() {
-        System.out.println("evaluate1");
-        SinglePointCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new SinglePointCrossingFunction<>(0.0, RANDOM_GENERATOR);
-        @SuppressWarnings("unchecked")
-        DefaultGenome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
-        assertArrayEquals(result, GENOMES);
-    }
-
-
-    @Test
     public void testEvaluate2() {
-        System.out.println("evaluate2");
+        System.out.println("evaluate (performed algorithm)");
         SinglePointCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
                 new SinglePointCrossingFunction<>(0.75, RANDOM_GENERATOR);
         @SuppressWarnings("unchecked")
-        DefaultGenome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
+        Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         @SuppressWarnings("unchecked")
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();

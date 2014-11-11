@@ -24,6 +24,7 @@ public class DefaultGeneIT {
 
     @Before
     public void setUp() {
+        System.out.print(DefaultGene.class.getName().concat("."));
     }
 
     @After
@@ -62,7 +63,7 @@ public class DefaultGeneIT {
      */
     @Test
     public void testClone1() throws Exception {
-        System.out.println("clone check references");
+        System.out.println("clone (check references)");
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
         DefaultGene<Double> result = instance.clone();
         assertFalse(instance == result);
@@ -75,7 +76,7 @@ public class DefaultGeneIT {
      */
     @Test
     public void testClone2() throws Exception {
-        System.out.println("clone check identity");
+        System.out.println("clone (check identity)");
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
         DefaultGene<Double> result = instance.clone();
         assertEquals(instance, result);

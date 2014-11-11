@@ -19,17 +19,19 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
     /**
      * Constructor.
      *
-     * @param probability probability of crossing
+     * @param probability     probability of crossing
      * @param randomGenerator random generator
      */
-    protected AbstractCrossingFunction(double probability, RandomGenerator randomGenerator) {
+    protected AbstractCrossingFunction(double probability,
+                                       RandomGenerator randomGenerator) {
         this.probability = probability;
         this.randomGenerator = randomGenerator;
     }
 
     /**
      * Constructor, initializes instances with probability of crossing
-     * specified by {@code probability} parameter and random generator is an instance of
+     * specified by {@code probability} parameter and random generator is an
+     * instance of
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
      * @param probability probability of crossing
@@ -45,6 +47,49 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
      */
     protected AbstractCrossingFunction() {
         this(.75);
+    }
+
+    /**
+     * Performs the specific crossing process. This method is called inside
+     * the method {@link #evaluate(crow.jai.gea.genome.Genome[])}
+     * @param parent1 first parent
+     * @param parent2 second parent
+     * @return the offspring.
+     */
+    protected abstract T[] crossingProcess(T  parent1, T parent2)
+            throws CloneNotSupportedException;
+
+    /**
+     * Ensures that parameters are valid.
+     *
+     * @param params parameters to validate.
+     * @throws IllegalArgumentException if {@code params} is null
+     *                                  or {@code params.length} is less than 2.
+     */
+    protected void validate(T... params) throws IllegalArgumentException {
+        if (params == null) {
+            throw new IllegalArgumentException("'params' can't be null.");
+        }
+        if (params.length < 2) {
+            throw new IllegalArgumentException(
+                    "'params' must contain at less two elements");
+        }
+    }
+
+    @Override
+    public T[] evaluate(T... params) {
+        validate(params);
+        double randomProbability = getRandomGenerator().nextDouble();
+        if (randomProbability > getCrossingProbability() ||
+                params[0].equals(params[1])) {
+            return params.clone();
+        }
+        try {
+            return crossingProcess(params[0], params[1]);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

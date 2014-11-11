@@ -36,6 +36,7 @@ public class DefaultGenomeIT {
 
     @Before
     public void setUp() {
+        System.out.print(DefaultGenome.class.getName().concat("."));
     }
 
     @After
