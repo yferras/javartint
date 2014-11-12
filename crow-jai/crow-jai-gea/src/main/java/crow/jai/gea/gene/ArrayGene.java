@@ -7,11 +7,11 @@ import java.util.NoSuchElementException;
 /**
  * Default generic gene to represent arrays.
  *
+ * @param <T> Any class
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
- * @param <T> Any class
  */
-public class ArrayGene<T> extends DefaultGene<T[]> implements
+public class ArrayGene<T> extends AbstractGene<T[]> implements
         Cloneable, Iterable<T>, Iterator<T> {
 
     private int iteratorIndex = 0;
@@ -29,14 +29,7 @@ public class ArrayGene<T> extends DefaultGene<T[]> implements
             return false;
         }
         final ArrayGene<?> other = (ArrayGene<?>) obj;
-        return Arrays.deepEquals(this.data, other.data);
-    }
-
-	@Override
-    public ArrayGene<T> clone() throws CloneNotSupportedException {
-        ArrayGene<T> gene = (ArrayGene<T>) super.clone();
-        gene.data = data.clone();
-        return gene;
+        return Arrays.deepEquals(this.getData(), other.getData());
     }
 
     /**
@@ -46,23 +39,23 @@ public class ArrayGene<T> extends DefaultGene<T[]> implements
      * @return the value of data at specified index
      */
     public T getAllele(int index) {
-        return this.data[index];
+        return this.getData()[index];
     }
 
     public int getLength() {
-        return data.length;
+        return getData().length;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Arrays.deepHashCode(this.data);
+        hash = 23 * hash + Arrays.deepHashCode(this.getData());
         return hash;
     }
 
     @Override
     public boolean hasNext() {
-        return iteratorIndex < data.length;
+        return iteratorIndex < getData().length;
     }
 
     @Override
@@ -74,11 +67,11 @@ public class ArrayGene<T> extends DefaultGene<T[]> implements
     @Override
     public T next() {
         int index = iteratorIndex;
-        if (index >= data.length) {
+        if (index >= getData().length) {
             throw new NoSuchElementException();
         }
         iteratorIndex = index + 1;
-        return data[index];
+        return getData()[index];
     }
 
     @Override
@@ -89,7 +82,7 @@ public class ArrayGene<T> extends DefaultGene<T[]> implements
     /**
      * Set the value of data at specified index.
      *
-     * @param index index to set de value
+     * @param index   index to set de value
      * @param newData new value of data at specified index
      */
     public void setAllele(int index, T newData) {
