@@ -45,8 +45,8 @@ public class AbstractGene<T> implements Gene<T> {
                     (outputStream.toByteArray());
             ObjectInputStream objectInputStream =
                     new ObjectInputStream(inputStream);
-            DefaultGene<T> cloned =
-                    (DefaultGene<T>) objectInputStream.readObject();
+            Gene<T> cloned =
+                    (Gene<T>) objectInputStream.readObject();
             objectInputStream.close();
             return cloned;
         } catch (IOException | ClassNotFoundException e) {
