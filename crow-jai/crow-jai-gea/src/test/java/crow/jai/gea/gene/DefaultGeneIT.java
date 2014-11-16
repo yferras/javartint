@@ -65,7 +65,7 @@ public class DefaultGeneIT {
     public void testClone1() throws Exception {
         System.out.println("clone (check references)");
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
-        DefaultGene<Double> result = instance.clone();
+        DefaultGene<Double> result = (DefaultGene<Double>) instance.clone();
         assertFalse(instance == result);
     }
 
@@ -78,7 +78,7 @@ public class DefaultGeneIT {
     public void testClone2() throws Exception {
         System.out.println("clone (check identity)");
         DefaultGene<Double> instance = new DefaultGene<>(2.0);
-        DefaultGene<Double> result = instance.clone();
+        DefaultGene<Double> result = (DefaultGene<Double>) instance.clone();
         assertEquals(instance, result);
     }
 

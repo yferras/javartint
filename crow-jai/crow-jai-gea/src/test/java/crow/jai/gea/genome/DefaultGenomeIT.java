@@ -190,9 +190,9 @@ public class DefaultGenomeIT {
         System.out.println("clone");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        Genome<?> result = instance.clone();
-        assertEquals(result, instance);
-        assertFalse(result.getChromosome() == instance.getChromosome());
+        DefaultGenome<Gene<?>> result = (DefaultGenome<Gene<?>>) instance.clone();
+        assertTrue(instance.equals(result));
+        assertFalse(instance.genes == result.genes);
     }
 
 }
