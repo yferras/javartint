@@ -8,11 +8,32 @@ import crow.jai.gea.genome.DefaultGenome;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class GenomeConstants {
-    public static final RandomGenerator RANDOM_GENERATOR = new
+    public static final RandomGenerator RANDOM_GENERATOR_1 = new
             RandomGenerator() {
                 @Override
                 public int nextInt(int n) {
                     return n / 2 - 1;
+                }
+
+                @Override
+                public double nextDouble() {
+                    return .5;
+                }
+            };
+
+    public static final RandomGenerator RANDOM_GENERATOR_2 = new
+            RandomGenerator() {
+                private int aux = 0;
+                @Override
+                public int nextInt(int n) {
+                    if (aux == 0) {
+                        aux = 1;
+                        return n / 3;
+                    }
+                    else {
+                        aux = 0;
+                        return 2 * n / 3;
+                    }
                 }
 
                 @Override
