@@ -42,7 +42,12 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         return this.getData()[index];
     }
 
-    public int getLength() {
+    /**
+     * Returns the total elements in this gene.
+     *
+     * @return the length of this gene
+     */
+    public int length() {
         return getData().length;
     }
 
