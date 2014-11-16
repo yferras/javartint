@@ -34,14 +34,13 @@ public class SinglePointCrossingFunctionIT {
     public void tearDown() {
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testEvaluate2() {
         System.out.println("evaluate (performed algorithm)");
         SinglePointCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new SinglePointCrossingFunction<>(0.75, RANDOM_GENERATOR);
-        @SuppressWarnings("unchecked")
+                new SinglePointCrossingFunction<>(0.75, RANDOM_GENERATOR_1);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
-        @SuppressWarnings("unchecked")
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();
         expResult[1] = new DefaultGenome<>();
@@ -54,7 +53,10 @@ public class SinglePointCrossingFunctionIT {
                 expResult[0].addGene(new DefaultGene<>(i));
             }
         }
-        assertArrayEquals(result, expResult);
+        assertArrayEquals(result[0].getChromosome(),
+                expResult[0].getChromosome());
+        assertArrayEquals(result[1].getChromosome(),
+                expResult[1].getChromosome());
     }
 
 }
