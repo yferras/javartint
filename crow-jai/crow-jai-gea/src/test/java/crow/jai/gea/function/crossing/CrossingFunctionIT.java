@@ -1,6 +1,7 @@
 package crow.jai.gea.function.crossing;
 
 import crow.jai.core.util.RandomGenerator;
+import crow.jai.gea.GenomeConstants;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.gene.IntegerArrayGene;
 import crow.jai.gea.genome.DefaultGenome;
@@ -35,8 +36,30 @@ public class CrossingFunctionIT {
     }
 
     @Test
-    public void testSetCrossingProbability() {
-        System.out.println("setCrossingProbability");
+    public void testGetCrossingProbability() {
+        System.out.println("getCrossingProbability");
+        final DefaultCrossingFunction function = new DefaultCrossingFunction();
+        function.setCrossingProbability(.5);
+        assertEquals(new Double(.5),
+                new Double(function.getCrossingProbability()));
+    }
+
+    @Test
+    public void testSetCrossingProbability1() {
+        System.out.println("setCrossingProbability (invalid argument)");
+        final DefaultCrossingFunction function = new DefaultCrossingFunction();
+        try {
+            function.setCrossingProbability(-.5);
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+            return;
+        }
+        fail("IllegalArgumentException, not raised.");
+    }
+
+    @Test
+    public void testSetCrossingProbability2() {
+        System.out.println("setCrossingProbability (valid argument)");
         final DefaultCrossingFunction function = new DefaultCrossingFunction();
         function.setCrossingProbability(.1);
         final Object result = function.getCrossingProbability();
@@ -153,6 +176,16 @@ public class CrossingFunctionIT {
         assertArrayEquals(new Genome[]{
                 genome1, genome2
         }, result);
+    }
+
+    @Test
+    public void testSetRandomGenerator() {
+        final DefaultCrossingFunction function = new DefaultCrossingFunction();
+        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_1);
+        assertEquals(
+                GenomeConstants.RANDOM_GENERATOR_1,
+                function.getRandomGenerator()
+        );
     }
 
     private static class DefaultCrossingFunction

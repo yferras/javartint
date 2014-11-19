@@ -9,6 +9,7 @@ import static crow.jai.gea.GenomeConstants.CHROMOSOME_SIZE;
 import static crow.jai.gea.GenomeConstants.GENOMES;
 import static crow.jai.gea.GenomeConstants.RANDOM_GENERATOR_2;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
@@ -35,6 +36,22 @@ public class TowPointsCrossingFunctionIT {
 
     @After
     public void tearDown() {
+    }
+
+    @Test
+    public void testTowPointsCrossingFunction1() {
+        System.out.println("SinglePointCrossingFunction(probability)");
+        final Double probability = new TowPointsCrossingFunction<>(1.0)
+                .getCrossingProbability();
+        assertEquals(new Double(1.0), probability);
+    }
+
+    @Test
+    public void testTowPointsCrossingFunction2() {
+        System.out.println("SinglePointCrossingFunction()");
+        final Double probability = new TowPointsCrossingFunction<>()
+                .getCrossingProbability();
+        assertEquals(new Double(.75), probability);
     }
 
     @SuppressWarnings("unchecked")

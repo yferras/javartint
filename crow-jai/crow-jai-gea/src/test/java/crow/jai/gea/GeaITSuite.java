@@ -15,6 +15,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         {
                 crow.jai.gea.gene.DefaultGeneIT.class,
+                crow.jai.gea.util.GenomeFilterIT.class,
                 crow.jai.gea.gene.ArrayGeneIT.class,
                 crow.jai.gea.genome.DefaultGenomeIT.class,
                 crow.jai.gea.function.crossing.CrossingFunctionIT.class,
