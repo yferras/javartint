@@ -2,6 +2,7 @@ package crow.jai.gea.genome;
 
 import crow.jai.gea.gene.Gene;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -103,9 +104,25 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     @SuppressWarnings("unchecked")
     @Override
     public Genome<T> clone() throws CloneNotSupportedException {
-        AbstractGenome<T> copy = (AbstractGenome<T>) super.clone();
-        Collections.copy(copy.genes, this.genes);
-        return copy;
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream =
+                    new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(this);
+            objectOutputStream.close();
+
+            ByteArrayInputStream inputStream = new ByteArrayInputStream
+                    (outputStream.toByteArray());
+            ObjectInputStream objectInputStream =
+                    new ObjectInputStream(inputStream);
+            DefaultGenome<T> cloned =
+                    (DefaultGenome<T>) objectInputStream.readObject();
+            objectInputStream.close();
+            return cloned;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new CloneNotSupportedException();
+        }
     }
 
     @Override
