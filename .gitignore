@@ -11,6 +11,6 @@
 /crow-jai/crow-jai-gea/.project/
 /crow-jai/crow-jai-gea/.classpath/
 /crow-jai/crow-jai-gea/.settings/
-/crow-jai/.idea/
+.idea/
 *.uml
 *.iml
