@@ -99,6 +99,10 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
 
     @Override
     public void setCrossingProbability(final double probability) {
+        if (probability < 0 || probability > 1.0) {
+            throw new IllegalArgumentException(
+                    "'probability' must between 0.0 and 1.0");
+        }
         this.probability = probability;
     }
 
