@@ -39,7 +39,7 @@ public class SinglePointCrossingFunctionIT {
     public void testSinglePointCrossingFunction1() {
         System.out.println("SinglePointCrossingFunction(probability)");
         final Double probability = new SinglePointCrossingFunction<>(1.0)
-                .getCrossingProbability();
+                .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
@@ -47,7 +47,7 @@ public class SinglePointCrossingFunctionIT {
     public void testSinglePointCrossingFunction2() {
         System.out.println("SinglePointCrossingFunction()");
         final Double probability = new SinglePointCrossingFunction<>()
-                .getCrossingProbability();
+                .getProbability();
         assertEquals(new Double(.75), probability);
     }
 

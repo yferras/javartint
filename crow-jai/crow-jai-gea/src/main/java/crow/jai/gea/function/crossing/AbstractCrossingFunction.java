@@ -80,7 +80,7 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
     public T[] evaluate(T... params) {
         validate(params);
         double randomProbability = getRandomGenerator().nextDouble();
-        if (randomProbability > getCrossingProbability() ||
+        if (randomProbability > getProbability() ||
                 params[0].equals(params[1])) {
             return params.clone();
         }
@@ -93,12 +93,12 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
     }
 
     @Override
-    public double getCrossingProbability() {
+    public double getProbability() {
         return probability;
     }
 
     @Override
-    public void setCrossingProbability(final double probability) {
+    public void setProbability(final double probability) {
         if (probability < 0 || probability > 1.0) {
             throw new IllegalArgumentException(
                     "'probability' must between 0.0 and 1.0");

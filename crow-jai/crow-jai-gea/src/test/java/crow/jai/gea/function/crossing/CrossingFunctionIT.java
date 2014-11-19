@@ -36,20 +36,20 @@ public class CrossingFunctionIT {
     }
 
     @Test
-    public void testGetCrossingProbability() {
-        System.out.println("getCrossingProbability");
+    public void testGetProbability() {
+        System.out.println("getProbability");
         final DefaultCrossingFunction function = new DefaultCrossingFunction();
-        function.setCrossingProbability(.5);
+        function.setProbability(.5);
         assertEquals(new Double(.5),
-                new Double(function.getCrossingProbability()));
+                new Double(function.getProbability()));
     }
 
     @Test
-    public void testSetCrossingProbability1() {
-        System.out.println("setCrossingProbability (invalid argument)");
+    public void testSetProbability1() {
+        System.out.println("setProbability (invalid argument)");
         final DefaultCrossingFunction function = new DefaultCrossingFunction();
         try {
-            function.setCrossingProbability(-.5);
+            function.setProbability(-.5);
         } catch (IllegalArgumentException e) {
             assertTrue(true);
             return;
@@ -58,11 +58,11 @@ public class CrossingFunctionIT {
     }
 
     @Test
-    public void testSetCrossingProbability2() {
-        System.out.println("setCrossingProbability (valid argument)");
+    public void testSetProbability2() {
+        System.out.println("setProbability (valid argument)");
         final DefaultCrossingFunction function = new DefaultCrossingFunction();
-        function.setCrossingProbability(.1);
-        final Object result = function.getCrossingProbability();
+        function.setProbability(.1);
+        final Object result = function.getProbability();
         assertEquals(0.1, result);
     }
 
@@ -70,7 +70,7 @@ public class CrossingFunctionIT {
     public void testDefaultCrossingProbability() {
         System.out.println("DefaultCrossingFunction");
         final DefaultCrossingFunction function = new DefaultCrossingFunction();
-        final Object result = function.getCrossingProbability();
+        final Object result = function.getProbability();
         assertEquals(0.75, result);
     }
 
@@ -155,7 +155,7 @@ public class CrossingFunctionIT {
         System.out.println("evaluate (probability constrain not meet)");
         final DefaultCrossingFunction function = new
                 DefaultCrossingFunction();
-        function.setCrossingProbability(0.0);
+        function.setProbability(0.0);
         DefaultGenome<IntegerArrayGene> genome1 =
                 new DefaultGenome<>();
         DefaultGenome<IntegerArrayGene> genome2 =

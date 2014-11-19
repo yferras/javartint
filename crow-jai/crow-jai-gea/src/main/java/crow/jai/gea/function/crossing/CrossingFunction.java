@@ -20,14 +20,14 @@ public interface CrossingFunction<T extends Genome<? extends Gene<?>>>
      * Gets the probability of crossing, a number between {@code 0.0} and {@code 0.0}.
      * @return the probability of crossing
      */
-    double getCrossingProbability();
+    double getProbability();
 
     /**
      * Sets the probability of crossing, a number that must between {@code 0.0} and {@code 0.0}.
      *
      * @param probability the probability of crossing
      */
-    void setCrossingProbability(final double probability);
+    void setProbability(final double probability);
 
     /**
      * Gets the random generator.
