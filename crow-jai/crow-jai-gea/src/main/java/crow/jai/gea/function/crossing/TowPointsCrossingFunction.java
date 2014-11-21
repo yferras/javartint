@@ -53,7 +53,7 @@ public class TowPointsCrossingFunction<T extends Genome<? extends Gene<?>>>
         while (position2 <= position1) {
             position2 = getRandomGenerator().nextInt(numberOfGenes - 1);
         }
-        for (int i = position1; i < position2; i++) {
+        for (int i = position1; i <= position2; i++) {
             Gene aux = offspring[0].getGene(i);
             offspring[0].setGene(i, offspring[1].getGene(i));
             offspring[1].setGene(i, aux);
