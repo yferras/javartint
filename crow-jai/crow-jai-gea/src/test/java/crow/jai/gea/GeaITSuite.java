@@ -1,5 +1,10 @@
 package crow.jai.gea;
 
+import crow.jai.gea.function.crossing.*;
+import crow.jai.gea.gene.ArrayGeneIT;
+import crow.jai.gea.gene.DefaultGeneIT;
+import crow.jai.gea.genome.DefaultGenomeIT;
+import crow.jai.gea.util.GenomeFilterIT;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,15 +19,14 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
-                crow.jai.gea.gene.DefaultGeneIT.class,
-                crow.jai.gea.util.GenomeFilterIT.class,
-                crow.jai.gea.gene.ArrayGeneIT.class,
-                crow.jai.gea.genome.DefaultGenomeIT.class,
-                crow.jai.gea.function.crossing.CrossingFunctionIT.class,
-                crow.jai.gea.function.crossing.SinglePointCrossingFunctionIT
-                        .class,
-                crow.jai.gea.function.crossing.TowPointsCrossingFunctionIT.class
-
+                DefaultGeneIT.class,
+                GenomeFilterIT.class,
+                ArrayGeneIT.class,
+                DefaultGenomeIT.class,
+                CrossingFunctionIT.class,
+                MultiPointsCrossingFunctionIT.class,
+                SinglePointCrossingFunctionIT.class,
+                TowPointsCrossingFunctionIT.class
         }
 )
 public class GeaITSuite {

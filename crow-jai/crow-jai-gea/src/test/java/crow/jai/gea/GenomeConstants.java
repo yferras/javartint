@@ -42,11 +42,52 @@ public class GenomeConstants {
                 }
             };
 
+    /**
+     * Generates alternates constant probabilities
+     */
+    public static final RandomGenerator RANDOM_GENERATOR_3 = new
+            RandomGenerator() {
+                private int aux = -1;
+                private Integer n;
+
+                /**
+                 * In this case the method is tricked to set a
+                 * different behaviour from the original one
+                 * @param n the bound on the random number to be returned.
+                 *          Must be positive.
+                 * @return 0
+                 */
+                @Override
+                public int nextInt(int n) {
+                    if (this.n == null) {
+                        this.n = n;
+                    }
+                    return 0;
+                }
+
+                /**
+                 * Generates alternates constant probabilities alternates
+                 * between 0.5 and 0.95 values, begins by 0.5
+                 * @return the probability
+                 */
+                @Override
+                public double nextDouble() {
+                    if (aux > n) {
+                        aux = -1;
+                        n = null;
+                    } else {
+                        aux++;
+                    }
+                    return (aux % 2 == 0) ? .5 : .95;
+                }
+
+            };
+
     public static final DefaultGenome<DefaultGene<Integer>> GENOME_1 =
             new DefaultGenome<>();
     public static final DefaultGenome<DefaultGene<Integer>> GENOME_2 =
             new DefaultGenome<>();
-    public static final DefaultGenome<DefaultGene<Integer>>[] GENOMES =
+    public static final DefaultGenome[] GENOMES =
             new DefaultGenome[2];
     public static final int CHROMOSOME_SIZE = 11;
 
