@@ -20,7 +20,7 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
 
     /**
      * Sets the probability, a number that must between {@code 0.0} and
-     * {@code 0.0}.
+     * {@code 1.0}.
      *
      * @param probability the probability
      *
