@@ -52,8 +52,7 @@ public class MultiPointsCrossingFunction<T extends Genome<? extends Gene<?>>>
         Genome[] offspring = new Genome[2];
         offspring[0] = ((AbstractGenome)parent1).clone();
         offspring[1] = ((AbstractGenome)parent2).clone();
-        int position = getRandomGenerator().nextInt(numberOfGenes);
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < numberOfGenes; i++) {
             if (getRandomGenerator().nextDouble() <= getProbability()) {
                 Gene aux = offspring[0].getGene(i);
                 offspring[0].setGene(i, offspring[1].getGene(i));
