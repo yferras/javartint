@@ -7,6 +7,7 @@ import crow.jai.gea.genome.Genome;
 /**
  * Abstract class that implements interface {@link CrossoverFunction}
  *
+ * @param <T> Any derived class from {@link crow.jai.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
