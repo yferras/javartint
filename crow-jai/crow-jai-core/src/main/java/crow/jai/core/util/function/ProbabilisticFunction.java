@@ -37,10 +37,18 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
     RandomGenerator getRandomGenerator();
 
     /**
-     * Sets the random generator.
+     * Sets the random generator. Is used to generate random probabilities.
      *
      * @param randomGenerator the random generator
      */
     void setRandomGenerator(final RandomGenerator randomGenerator);
 
+    /**
+     * Evaluates the params and the result is constrained by the returned
+     * value of {@link #getProbability()}.
+     * @param params parameters to evaluate.
+     * @return {@inheritDoc}
+     */
+    @Override
+    R evaluate(P... params);
 }
