@@ -27,8 +27,9 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
     }
 
     /**
-     * Constructor, initializes instances with probability specified by
-     * {@code probability} parameter and random generator is an instance of
+     * Constructor, initializes instances with probability of crossover
+     * specified by {@code probability} parameter and random generator is an
+     * instance of
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
      * @param probability probability of crossover
