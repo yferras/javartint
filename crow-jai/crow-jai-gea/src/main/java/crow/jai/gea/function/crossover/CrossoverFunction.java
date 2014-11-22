@@ -1,7 +1,7 @@
 package crow.jai.gea.function.crossover;
 
 
-import crow.jai.core.util.Function;
+import crow.jai.core.util.function.Function;
 import crow.jai.core.util.RandomGenerator;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.genome.Genome;

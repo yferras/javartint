@@ -1,4 +1,4 @@
-package crow.jai.core.util;
+package crow.jai.core.util.function;
 
 /**
  * Interface to create generic functions.
