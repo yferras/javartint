@@ -1,44 +1,38 @@
 package crow.jai.gea.function.crossover;
 
 import crow.jai.core.util.RandomGenerator;
+import crow.jai.core.util.function.AbstractProbabilisticFunction;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.genome.Genome;
 
 /**
- * Abstract class that implements interface {@link CrossoverFunction}
+ * Abstract class that represents crossover function.
  *
  * @param <T> Any derived class from {@link crow.jai.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.2
+ * @version 0.0.3
  */
 abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<?>>>
-        implements CrossoverFunction<T> {
-
-    private double probability;
-    private RandomGenerator randomGenerator;
+        extends AbstractProbabilisticFunction<T[], T> {
 
     /**
-     * Constructor.
+     * {@inheritDoc}
      *
      * @param probability     probability of crossover
      * @param randomGenerator random generator
      */
     protected AbstractCrossoverFunction(double probability,
                                         RandomGenerator randomGenerator) {
-        this.probability = probability;
-        this.randomGenerator = randomGenerator;
+        super(probability, randomGenerator);
     }
 
     /**
-     * Constructor, initializes instances with probability of crossover
-     * specified by {@code probability} parameter and random generator is an
-     * instance of
-     * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * {@inheritDoc}
      *
      * @param probability probability of crossover
      */
     protected AbstractCrossoverFunction(double probability) {
-        this(probability, new RandomGenerator.SystemDefaultRandomGenerator());
+        super(probability);
     }
 
     /**
@@ -47,12 +41,13 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      */
     protected AbstractCrossoverFunction() {
-        this(.75);
+        super(.75);
     }
 
     /**
      * Performs the specific crossover process. This method is called inside
      * the method {@link #evaluate(crow.jai.gea.genome.Genome[])}
+     *
      * @param parent1 first parent
      * @param parent2 second parent
      * @return the offspring.
@@ -77,6 +72,13 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
         }
     }
 
+    /**
+     * Accepts two genomes (parents) to perform the crossover process,
+     * and retrieves an array containing the offspring.
+     *
+     * @param params parents.
+     * @return the offspring.
+     */
     @Override
     public T[] evaluate(T... params) {
         validate(params);
@@ -91,29 +93,5 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
             e.printStackTrace();
             return null;
         }
-    }
-
-    @Override
-    public double getProbability() {
-        return probability;
-    }
-
-    @Override
-    public void setProbability(final double probability) {
-        if (probability < 0 || probability > 1.0) {
-            throw new IllegalArgumentException(
-                    "'probability' must between 0.0 and 1.0");
-        }
-        this.probability = probability;
-    }
-
-    @Override
-    public RandomGenerator getRandomGenerator() {
-        return randomGenerator;
-    }
-
-    @Override
-    public void setRandomGenerator(final RandomGenerator randomGenerator) {
-        this.randomGenerator = randomGenerator;
     }
 }
