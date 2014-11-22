@@ -53,7 +53,7 @@ public class SinglePointCrossingFunctionIT {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate2() {
+    public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
         SinglePointCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
                 new SinglePointCrossingFunction<>(0.75, RANDOM_GENERATOR_1);
