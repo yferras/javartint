@@ -22,11 +22,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
      *
      * @param probability     probability of crossover
      * @param randomGenerator random generator
+     * @throws java.lang.IllegalArgumentException see {@see #setProbability}
      */
     protected AbstractProbabilisticFunction(double probability,
-                                            RandomGenerator randomGenerator) {
-        this.probability = probability;
-        this.randomGenerator = randomGenerator;
+                                            RandomGenerator randomGenerator)
+            throws IllegalArgumentException {
+        setProbability(probability);
+        setRandomGenerator(randomGenerator);
     }
 
     /**
@@ -35,8 +37,10 @@ abstract public class AbstractProbabilisticFunction<R, P>
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
      * @param probability probability of crossover
+     * @throws java.lang.IllegalArgumentException see {@see #setProbability}
      */
-    protected AbstractProbabilisticFunction(double probability) {
+    protected AbstractProbabilisticFunction(double probability)
+            throws IllegalArgumentException {
         this(probability, new RandomGenerator.SystemDefaultRandomGenerator());
     }
 
@@ -46,7 +50,8 @@ abstract public class AbstractProbabilisticFunction<R, P>
     }
 
     @Override
-    public void setProbability(final double probability) {
+    public void setProbability(final double probability)
+            throws IllegalArgumentException {
         if (probability < 0 || probability > 1.0) {
             throw new IllegalArgumentException(
                     "'probability' must between 0.0 and 1.0");
