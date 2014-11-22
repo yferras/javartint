@@ -29,18 +29,18 @@ import crow.jai.gea.genome.Genome;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public class MultiPointCrossingFunction <T extends Genome<? extends Gene<?>>>
+public class MultiPointsCrossingFunction<T extends Genome<? extends Gene<?>>>
         extends AbstractCrossingFunction<T> {
 
-    public MultiPointCrossingFunction(double probability, RandomGenerator randomGenerator) {
+    public MultiPointsCrossingFunction(double probability, RandomGenerator randomGenerator) {
         super(probability, randomGenerator);
     }
 
-    public MultiPointCrossingFunction(double probability) {
+    public MultiPointsCrossingFunction(double probability) {
         super(probability);
     }
 
-    public MultiPointCrossingFunction() {
+    public MultiPointsCrossingFunction() {
         super();
     }
 
