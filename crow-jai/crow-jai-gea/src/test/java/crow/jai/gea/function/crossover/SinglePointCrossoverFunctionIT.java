@@ -1,4 +1,4 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 import crow.jai.gea.gene.DefaultGene;
 import crow.jai.gea.genome.DefaultGenome;
@@ -12,9 +12,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class SinglePointCrossingFunctionIT {
+public class SinglePointCrossoverFunctionIT {
 
-    public SinglePointCrossingFunctionIT() {
+    public SinglePointCrossoverFunctionIT() {
     }
 
     @BeforeClass
@@ -28,7 +28,7 @@ public class SinglePointCrossingFunctionIT {
     @Before
     public void setUp() {
         System.out.print(
-                SinglePointCrossingFunction.class.getName().concat("."));
+                SinglePointCrossoverFunction.class.getName().concat("."));
     }
 
     @After
@@ -36,17 +36,17 @@ public class SinglePointCrossingFunctionIT {
     }
 
     @Test
-    public void testSinglePointCrossingFunction1() {
-        System.out.println("SinglePointCrossingFunction(probability)");
-        final Double probability = new SinglePointCrossingFunction<>(1.0)
+    public void testSinglePointCrossoverFunction1() {
+        System.out.println("SinglePointCrossoverFunction(probability)");
+        final Double probability = new SinglePointCrossoverFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
     @Test
-    public void testSinglePointCrossingFunction2() {
-        System.out.println("SinglePointCrossingFunction()");
-        final Double probability = new SinglePointCrossingFunction<>()
+    public void testSinglePointCrossoverFunction2() {
+        System.out.println("SinglePointCrossoverFunction()");
+        final Double probability = new SinglePointCrossoverFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -55,8 +55,8 @@ public class SinglePointCrossingFunctionIT {
     @Test
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
-        SinglePointCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new SinglePointCrossingFunction<>(0.75, RANDOM_GENERATOR_1);
+        SinglePointCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new SinglePointCrossoverFunction<>(0.75, RANDOM_GENERATOR_1);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();

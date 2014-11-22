@@ -1,4 +1,4 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 import crow.jai.core.util.RandomGenerator;
 import crow.jai.gea.gene.Gene;
@@ -6,7 +6,7 @@ import crow.jai.gea.genome.AbstractGenome;
 import crow.jai.gea.genome.Genome;
 
 /**
- * Specific crossing function, that performs the crossing process on two
+ * Specific crossover function, that performs the crossover process on two
  * random points.
  * <p>
  * Example shows two genomes, each one has six genes, and the raised random
@@ -15,33 +15,33 @@ import crow.jai.gea.genome.Genome;
  * [GA0,GA1,GA2,GA3,GA4,GA5] //Parent A<br />
  * [GB0,GB1,GB2,GB3,GB4,GB5] //Parent B<br />
  * [---,---,___,___,---,---] //Underline represents the position that will be exchanged<br />
- * [GA0,GA1,GB2,GB3,GA4,GA5] //Child A after crossing<br />
- * [GB0,GB1,GA2,GA3,GB4,GB5] //Child B after crossing<br />
+ * [GA0,GA1,GB2,GB3,GA4,GA5] //Child A after crossover<br />
+ * [GB0,GB1,GA2,GA3,GB4,GB5] //Child B after crossover<br />
  * </code>
  * </p>
  *
  * @param <T> any derived type from {@link crow.jai.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class TowPointsCrossingFunction<T extends Genome<? extends Gene<?>>>
-        extends AbstractCrossingFunction<T> {
+public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractCrossoverFunction<T> {
 
-    public TowPointsCrossingFunction(double probability, RandomGenerator randomGenerator) {
+    public TowPointsCrossoverFunction(double probability, RandomGenerator randomGenerator) {
         super(probability, randomGenerator);
     }
 
-    public TowPointsCrossingFunction(double probability) {
+    public TowPointsCrossoverFunction(double probability) {
         super(probability);
     }
 
-    public TowPointsCrossingFunction() {
+    public TowPointsCrossoverFunction() {
         super();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    protected T[] crossingProcess(T parent1, T parent2)
+    protected T[] recombine(T parent1, T parent2)
             throws CloneNotSupportedException {
         Genome[] offspring = new Genome[2];
         offspring[0] = ((AbstractGenome) parent1).clone();

@@ -1,4 +1,4 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 import crow.jai.gea.gene.DefaultGene;
 import crow.jai.gea.genome.DefaultGenome;
@@ -13,9 +13,9 @@ import static org.junit.Assert.assertEquals;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 
-public class TowPointsCrossingFunctionIT {
+public class TowPointsCrossoverFunctionIT {
 
-    public TowPointsCrossingFunctionIT() {
+    public TowPointsCrossoverFunctionIT() {
     }
 
     @BeforeClass
@@ -29,7 +29,7 @@ public class TowPointsCrossingFunctionIT {
     @Before
     public void setUp() {
         System.out.print(
-                TowPointsCrossingFunction.class.getName().concat("."));
+                TowPointsCrossoverFunction.class.getName().concat("."));
     }
 
     @After
@@ -37,17 +37,17 @@ public class TowPointsCrossingFunctionIT {
     }
 
     @Test
-    public void testTowPointsCrossingFunction1() {
-        System.out.println("SinglePointCrossingFunction(probability)");
-        final Double probability = new TowPointsCrossingFunction<>(1.0)
+    public void testTowPointsCrossoverFunction1() {
+        System.out.println("SinglePointCrossoverFunction(probability)");
+        final Double probability = new TowPointsCrossoverFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
     @Test
-    public void testTowPointsCrossingFunction2() {
-        System.out.println("SinglePointCrossingFunction()");
-        final Double probability = new TowPointsCrossingFunction<>()
+    public void testTowPointsCrossoverFunction2() {
+        System.out.println("SinglePointCrossoverFunction()");
+        final Double probability = new TowPointsCrossoverFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -56,8 +56,8 @@ public class TowPointsCrossingFunctionIT {
     @Test
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
-        TowPointsCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new TowPointsCrossingFunction<>(.75, RANDOM_GENERATOR_2);
+        TowPointsCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new TowPointsCrossoverFunction<>(.75, RANDOM_GENERATOR_2);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();

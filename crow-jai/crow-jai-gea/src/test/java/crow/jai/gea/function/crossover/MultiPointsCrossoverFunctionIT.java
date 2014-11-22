@@ -1,4 +1,4 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 import crow.jai.gea.gene.DefaultGene;
 import crow.jai.gea.genome.DefaultGenome;
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class MultiPointsCrossingFunctionIT {
+public class MultiPointsCrossoverFunctionIT {
 
     @BeforeClass
     public static void setUpClass() {
@@ -25,7 +25,7 @@ public class MultiPointsCrossingFunctionIT {
     @Before
     public void setUp() {
         System.out.print(
-                MultiPointsCrossingFunction.class.getName().concat("."));
+                MultiPointsCrossoverFunction.class.getName().concat("."));
     }
 
     @After
@@ -33,17 +33,17 @@ public class MultiPointsCrossingFunctionIT {
     }
 
     @Test
-    public void testMultiPointsCrossingFunction1() {
-        System.out.println("MultiPointsCrossingFunction(probability)");
-        final Double probability = new MultiPointsCrossingFunction<>(1.0)
+    public void testMultiPointsCrossoverFunction1() {
+        System.out.println("MultiPointsCrossoverFunction(probability)");
+        final Double probability = new MultiPointsCrossoverFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
     @Test
-    public void testMultiPointsCrossingFunction2() {
-        System.out.println("MultiPointsCrossingFunction()");
-        final Double probability = new MultiPointsCrossingFunction<>()
+    public void testMultiPointsCrossoverFunction2() {
+        System.out.println("MultiPointsCrossoverFunction()");
+        final Double probability = new MultiPointsCrossoverFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -53,8 +53,8 @@ public class MultiPointsCrossingFunctionIT {
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
         RANDOM_GENERATOR_3.nextInt(CHROMOSOME_SIZE);
-        MultiPointsCrossingFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new MultiPointsCrossingFunction<>(0.75, RANDOM_GENERATOR_3);
+        MultiPointsCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new MultiPointsCrossoverFunction<>(0.75, RANDOM_GENERATOR_3);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();

@@ -1,17 +1,17 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 import crow.jai.core.util.RandomGenerator;
 import crow.jai.gea.gene.Gene;
 import crow.jai.gea.genome.Genome;
 
 /**
- * Abstract class that implements interface {@link crow.jai.gea.function.crossing.CrossingFunction}
+ * Abstract class that implements interface {@link CrossoverFunction}
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?>>>
-        implements CrossingFunction<T> {
+abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<?>>>
+        implements CrossoverFunction<T> {
 
     private double probability;
     private RandomGenerator randomGenerator;
@@ -19,44 +19,44 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
     /**
      * Constructor.
      *
-     * @param probability     probability of crossing
+     * @param probability     probability of crossover
      * @param randomGenerator random generator
      */
-    protected AbstractCrossingFunction(double probability,
-                                       RandomGenerator randomGenerator) {
+    protected AbstractCrossoverFunction(double probability,
+                                        RandomGenerator randomGenerator) {
         this.probability = probability;
         this.randomGenerator = randomGenerator;
     }
 
     /**
-     * Constructor, initializes instances with probability of crossing
+     * Constructor, initializes instances with probability of crossover
      * specified by {@code probability} parameter and random generator is an
      * instance of
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
-     * @param probability probability of crossing
+     * @param probability probability of crossover
      */
-    protected AbstractCrossingFunction(double probability) {
+    protected AbstractCrossoverFunction(double probability) {
         this(probability, new RandomGenerator.SystemDefaultRandomGenerator());
     }
 
     /**
-     * Default constructor, initializes instances with probability of crossing
+     * Default constructor, initializes instances with probability of crossover
      * equals to {@code .75} and random generator is an instance of
      * {@link crow.jai.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      */
-    protected AbstractCrossingFunction() {
+    protected AbstractCrossoverFunction() {
         this(.75);
     }
 
     /**
-     * Performs the specific crossing process. This method is called inside
+     * Performs the specific crossover process. This method is called inside
      * the method {@link #evaluate(crow.jai.gea.genome.Genome[])}
      * @param parent1 first parent
      * @param parent2 second parent
      * @return the offspring.
      */
-    protected abstract T[] crossingProcess(T  parent1, T parent2)
+    protected abstract T[] recombine(T parent1, T parent2)
             throws CloneNotSupportedException;
 
     /**
@@ -85,7 +85,7 @@ abstract public class AbstractCrossingFunction<T extends Genome<? extends Gene<?
             return params.clone();
         }
         try {
-            return crossingProcess(params[0], params[1]);
+            return recombine(params[0], params[1]);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;

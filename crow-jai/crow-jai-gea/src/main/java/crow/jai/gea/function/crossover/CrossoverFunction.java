@@ -1,4 +1,4 @@
-package crow.jai.gea.function.crossing;
+package crow.jai.gea.function.crossover;
 
 
 import crow.jai.core.util.Function;
@@ -7,25 +7,25 @@ import crow.jai.gea.gene.Gene;
 import crow.jai.gea.genome.Genome;
 
 /**
- * Interface to represent the crossing process.
+ * Interface to represent the crossover process.
  *
  * @param <T> Any derived class from {@link crow.jai.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public interface CrossingFunction<T extends Genome<? extends Gene<?>>>
+public interface CrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends Function<T[], T> {
 
     /**
-     * Gets the probability of crossing, a number between {@code 0.0} and {@code 0.0}.
-     * @return the probability of crossing
+     * Gets the probability of crossover, a number between {@code 0.0} and {@code 0.0}.
+     * @return the probability of crossover
      */
     double getProbability();
 
     /**
-     * Sets the probability of crossing, a number that must between {@code 0.0} and {@code 0.0}.
+     * Sets the probability of crossover, a number that must between {@code 0.0} and {@code 0.0}.
      *
-     * @param probability the probability of crossing
+     * @param probability the probability of crossover
      */
     void setProbability(final double probability);
 
@@ -43,7 +43,7 @@ public interface CrossingFunction<T extends Genome<? extends Gene<?>>>
     void setRandomGenerator(final RandomGenerator randomGenerator);
 
     /**
-     * Accepts two genomes (parents) to perform the crossing process,
+     * Accepts two genomes (parents) to perform the crossover process,
      * and retrieves an array containing the offspring.
      *
      * @param params parents.

@@ -1,6 +1,6 @@
 package crow.jai.gea;
 
-import crow.jai.gea.function.crossing.*;
+import crow.jai.gea.function.crossover.*;
 import crow.jai.gea.gene.ArrayGeneIT;
 import crow.jai.gea.gene.DefaultGeneIT;
 import crow.jai.gea.genome.DefaultGenomeIT;
@@ -23,10 +23,10 @@ import org.junit.runners.Suite;
                 GenomeFilterIT.class,
                 ArrayGeneIT.class,
                 DefaultGenomeIT.class,
-                CrossingFunctionIT.class,
-                MultiPointsCrossingFunctionIT.class,
-                SinglePointCrossingFunctionIT.class,
-                TowPointsCrossingFunctionIT.class
+                CrossoverFunctionIT.class,
+                MultiPointsCrossoverFunctionIT.class,
+                SinglePointCrossoverFunctionIT.class,
+                TowPointsCrossoverFunctionIT.class
         }
 )
 public class GeaITSuite {
