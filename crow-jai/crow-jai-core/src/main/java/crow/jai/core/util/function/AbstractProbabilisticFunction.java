@@ -19,10 +19,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
 
     /**
      * Constructor, initializes instances with the given parameters.
+     * Internally calls {@link #setProbability(double)} and
+     * {@link #setRandomGenerator(crow.jai.core.util.RandomGenerator)}
      *
      * @param probability     probability of crossover
      * @param randomGenerator random generator
      * @throws java.lang.IllegalArgumentException see {@see #setProbability}
+     * and see {@see #setRandomGenerator}
      */
     protected AbstractProbabilisticFunction(double probability,
                                             RandomGenerator randomGenerator)
@@ -38,6 +41,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
      *
      * @param probability probability of crossover
      * @throws java.lang.IllegalArgumentException see {@see #setProbability}
+     * and see {@see #setRandomGenerator}
      */
     protected AbstractProbabilisticFunction(double probability)
             throws IllegalArgumentException {
@@ -65,7 +69,12 @@ abstract public class AbstractProbabilisticFunction<R, P>
     }
 
     @Override
-    public void setRandomGenerator(final RandomGenerator randomGenerator) {
+    public void setRandomGenerator(final RandomGenerator randomGenerator)
+            throws IllegalArgumentException {
+        if (randomGenerator == null) {
+            throw new IllegalArgumentException("'randomGenerator' can't be " +
+                    "null");
+        }
         this.randomGenerator = randomGenerator;
     }
 

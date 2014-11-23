@@ -40,8 +40,11 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * Sets the random generator. Is used to generate random probabilities.
      *
      * @param randomGenerator the random generator
+     * @throws java.lang.IllegalArgumentException if {@code randomGenerator}
+     * is {@code null}
      */
-    void setRandomGenerator(final RandomGenerator randomGenerator);
+    void setRandomGenerator(final RandomGenerator randomGenerator)
+            throws IllegalArgumentException;
 
     /**
      * Evaluates the params and the result is constrained by the returned
