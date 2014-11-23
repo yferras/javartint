@@ -1,5 +1,6 @@
 package crow.jai.core;
 
+import crow.jai.core.util.function.ProbabilisticFunctionIT;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,7 +12,12 @@ import org.junit.runners.Suite;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({crow.jai.core.AbstractAlgorithmIT.class})
+@Suite.SuiteClasses(
+        {
+                AbstractAlgorithmIT.class,
+                ProbabilisticFunctionIT.class
+        }
+)
 public class CoreITSuite {
 
     @BeforeClass
