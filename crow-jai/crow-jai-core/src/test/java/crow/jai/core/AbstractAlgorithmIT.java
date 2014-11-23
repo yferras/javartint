@@ -33,6 +33,8 @@ public class AbstractAlgorithmIT {
 
     @Before
     public void setUp() {
+        System.out.print(
+                AbstractAlgorithm.class.getName().concat("."));
     }
 
     @After
