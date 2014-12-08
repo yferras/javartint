@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>crow-jai-core</module>
-        <module>crow-jai-gea</module>
+        <module>crow-javartint-core</module>
+        <module>crow-javartint-gea</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
