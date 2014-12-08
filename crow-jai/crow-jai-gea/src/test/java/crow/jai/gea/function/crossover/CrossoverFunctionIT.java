@@ -74,6 +74,7 @@ public class CrossoverFunctionIT {
         assertEquals(0.75, result);
     }
 
+    @SuppressWarnings("NullArgumentToVariableArgMethod")
     @Test
     public void testValidate1() {
         System.out.println("validate (params is null)");
@@ -83,7 +84,9 @@ public class CrossoverFunctionIT {
             function.evaluate(null);
         } catch (IllegalArgumentException e) {
             assertTrue(true);
+            return;
         }
+        fail("'IllegalArgumentException' not raised");
     }
 
     @Test
@@ -98,9 +101,10 @@ public class CrossoverFunctionIT {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testEvaluate1() {
-        System.out.println("evaluate (to invoke CrossoverProcess)");
+        System.out.println("evaluate (to invoke crossover process)");
         final DefaultCrossoverFunction function = new
                 DefaultCrossoverFunction();
         DefaultGenome<IntegerArrayGene> genome1 =
@@ -123,6 +127,7 @@ public class CrossoverFunctionIT {
         assertNull(result);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testEvaluate2() {
         System.out.println("evaluate (two params are equals)");
@@ -150,6 +155,7 @@ public class CrossoverFunctionIT {
         }, result);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testEvaluate3() {
         System.out.println("evaluate (probability constrain not meet)");
