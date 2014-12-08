@@ -9,9 +9,10 @@ import static org.junit.Assert.*;
  */
 public class ArrayGeneIT {
 
-    public static final ArrayGene<Double> INSTANCE = new ArrayGene<>(new Double[]{
-            1.0, 2.0, 3.0, 4.0, 5.0
-    });
+    public static final ArrayGene<Double> INSTANCE = new ArrayGene<>(
+            new Double[]{
+                    1.0, 2.0, 3.0, 4.0, 5.0
+            });
 
     public ArrayGeneIT() {
     }
