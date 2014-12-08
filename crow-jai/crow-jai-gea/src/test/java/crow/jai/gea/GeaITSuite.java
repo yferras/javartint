@@ -1,6 +1,8 @@
 package crow.jai.gea;
 
 import crow.jai.gea.function.crossover.*;
+import crow.jai.gea.function.mutattion.BinaryMutationFunctionIT;
+import crow.jai.gea.function.mutattion.MutationFunctionIT;
 import crow.jai.gea.gene.ArrayGeneIT;
 import crow.jai.gea.gene.DefaultGeneIT;
 import crow.jai.gea.genome.DefaultGenomeIT;
@@ -26,7 +28,9 @@ import org.junit.runners.Suite;
                 CrossoverFunctionIT.class,
                 MultiPointsCrossoverFunctionIT.class,
                 SinglePointCrossoverFunctionIT.class,
-                TowPointsCrossoverFunctionIT.class
+                TowPointsCrossoverFunctionIT.class,
+                MutationFunctionIT.class,
+                BinaryMutationFunctionIT.class,
         }
 )
 public class GeaITSuite {

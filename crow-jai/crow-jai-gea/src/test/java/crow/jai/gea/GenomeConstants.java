@@ -24,13 +24,13 @@ public class GenomeConstants {
     public static final RandomGenerator RANDOM_GENERATOR_2 = new
             RandomGenerator() {
                 private int aux = 0;
+
                 @Override
                 public int nextInt(int n) {
                     if (aux == 0) {
                         aux = 1;
                         return n / 3;
-                    }
-                    else {
+                    } else {
                         aux = 0;
                         return 2 * n / 3;
                     }
@@ -81,6 +81,28 @@ public class GenomeConstants {
                     return (aux % 2 == 0) ? .5 : .95;
                 }
 
+            };
+
+    /**
+     * Used in BinaryMutationFunctionIT
+     */
+    public static final RandomGenerator RANDOM_GENERATOR_4 = new
+            RandomGenerator() {
+
+                private int index = 0;
+                private int[] pos = { 0, 4, 1, 1, 3, 4, 9 };
+
+                @Override
+                public int nextInt(int n) {
+                    if (index >= pos.length)
+                        index = 0;
+                    return pos[index++];
+                }
+
+                @Override
+                public double nextDouble() {
+                    return 0.025;
+                }
             };
 
     public static final DefaultGenome<DefaultGene<Integer>> GENOME_1 =
