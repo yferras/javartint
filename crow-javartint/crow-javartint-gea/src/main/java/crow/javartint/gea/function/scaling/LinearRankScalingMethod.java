@@ -46,7 +46,7 @@ public final class LinearRankScalingMethod<T extends Genome<? extends Gene<?>>>
     protected void scale(List<T> genomes) {
         Collections.sort(genomes, Helper.getComparator(getOptimize()));
         for (int i = 0, n = genomes.size(); i < n; i++) {
-            double newValue = 2.0 - selectivePressure + 2.0 * (selectivePressure - 1) * i / (n - 1);
+            double newValue = 2.0 - getSelectivePressure() + 2.0 * (getSelectivePressure() - 1) * i / (n - 1);
             genomes.get(i).setFitness(newValue);
         }
     }
