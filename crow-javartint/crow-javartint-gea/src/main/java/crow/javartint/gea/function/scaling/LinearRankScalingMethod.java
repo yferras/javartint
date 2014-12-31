@@ -23,7 +23,9 @@ public final class LinearRankScalingMethod<T extends Genome<? extends Gene<?>>>
     /**
      * Constructor that initializes this instance.
      *
-     * @param optimize optimization way
+     * @param selectivePressure this value must be between 1.0 and 2.0
+     * @param optimize          optimization way
+     * @throws java.lang.IllegalArgumentException if {@code selectivePressure} value is out of 1.0 and 2.0
      */
     public LinearRankScalingMethod(double selectivePressure, Optimize optimize) {
         super(optimize);
