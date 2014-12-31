@@ -53,5 +53,5 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * @return {@inheritDoc}
      */
     @Override
-    R evaluate(P... params);
+    R evaluate(P params);
 }

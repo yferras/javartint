@@ -17,6 +17,6 @@ public interface Function<R, P> {
      * @return the result.
      */
     @SuppressWarnings("unchecked")
-    R evaluate(P... params);
+    R evaluate(P params);
 
 }

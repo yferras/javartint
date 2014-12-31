@@ -7,7 +7,6 @@ import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
 import org.junit.*;
-import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

@@ -49,7 +49,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
 
     /**
      * Performs the specific mutation process. This method is called inside
-     * the method {@link #evaluate(crow.javartint.gea.genome.Genome[])}
+     * the method {@see #evaluate(crow.javartint.gea.genome.Genome[])}
      *
      * @param subject individual which will be mutate
      */
@@ -62,24 +62,20 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
      * @throws IllegalArgumentException if {@code params} is null
      *                                  or {@code params.length} is 0.
      */
-    protected void validate(T... params) throws IllegalArgumentException {
+    protected void validate(T params) throws IllegalArgumentException {
         if (params == null) {
             throw new IllegalArgumentException("'params' can't be null.");
-        }
-        if (params.length == 0) {
-            throw new IllegalArgumentException(
-                    "'params' must contain at less one element");
         }
     }
 
     @Override
-    public T evaluate(T... params) {
+    public T evaluate(T params) {
         validate(params);
         double randomProbability = getRandomGenerator().nextDouble();
         if (randomProbability > getProbability()) {
-            return params[0];
+            return params;
         }
-        mutate(params[0]);
-        return params[0];
+        mutate(params);
+        return params;
     }
 }

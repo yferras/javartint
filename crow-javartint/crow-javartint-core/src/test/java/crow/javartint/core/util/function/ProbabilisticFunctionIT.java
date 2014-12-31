@@ -133,7 +133,7 @@ public class ProbabilisticFunctionIT {
     }
 
     private static class DefaultProbabilisticFunction<T extends Number>
-            extends AbstractProbabilisticFunction<Double, T> {
+            extends AbstractProbabilisticFunction<Double, T[]> {
 
         private DefaultProbabilisticFunction(double probability,
                                              RandomGenerator randomGenerator) {

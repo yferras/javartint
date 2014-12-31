@@ -90,7 +90,7 @@ public class GenomeConstants {
             RandomGenerator() {
 
                 private int index = 0;
-                private int[] pos = { 0, 4, 1, 1, 3, 4, 9 };
+                private final int[] pos = { 0, 4, 1, 1, 3, 4, 9 };
 
                 @Override
                 public int nextInt(int n) {

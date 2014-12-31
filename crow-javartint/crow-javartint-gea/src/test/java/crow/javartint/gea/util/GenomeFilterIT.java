@@ -12,8 +12,6 @@ public class GenomeFilterIT {
     public static void setUpClass() {
     }
 
-    ;
-
     @AfterClass
     public static void tearDownClass() {
     }

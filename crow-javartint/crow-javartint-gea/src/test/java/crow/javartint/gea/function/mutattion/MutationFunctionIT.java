@@ -93,7 +93,7 @@ public class MutationFunctionIT {
         try {
             final DefaultMutationFunction function = new
                     DefaultMutationFunction();
-            function.evaluate();
+            function.evaluate(null);
         } catch (IllegalArgumentException e) {
             assertTrue(true);
             return;
