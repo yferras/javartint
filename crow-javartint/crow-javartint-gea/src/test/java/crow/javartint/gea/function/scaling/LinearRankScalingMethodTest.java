@@ -57,6 +57,7 @@ public class LinearRankScalingMethodTest {
     @Test
     @SuppressWarnings("unchecked")
     public void testEvaluate() throws Exception {
+        System.out.println("evaluate (performed algorithm)");
         double p = 1.5;
         LinearRankScalingMethod<DefaultGenome<Gene<?>>> scalingMethod =
                 new LinearRankScalingMethod(p, Optimize.MAX);
