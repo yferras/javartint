@@ -3,7 +3,6 @@ package crow.javartint.gea.function.scaling;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,17 +26,15 @@ public final class SigmaScalingMethod<T extends Genome<? extends Gene<?>>>
         final Double mean;
         final double sigma = Math.sqrt(variance(genomes, mean = mean(genomes)));
         for (T genome : genomes) {
-            double oldFitness = genome.getFitness();
-            double newFitness = (oldFitness - mean) / sigma;
-            genome.setFitness(newFitness);
+            genome.setFitness((genome.getFitness() - mean) / sigma);
         }
     }
 
-    private double variance(List<T> genomes, Double meanValue) {
+    double variance(List<T> genomes, Double meanValue) {
         double sum = 0.0;
         for (T genome : genomes) {
-            double fitness = genome.getFitness();
-            sum += Math.pow(fitness - meanValue, 2);
+            double diff = genome.getFitness() - meanValue;
+            sum += diff * diff;
         }
         return sum / genomes.size();
     }
