@@ -24,8 +24,8 @@ abstract public class AbstractProbabilisticFunction<R, P>
      *
      * @param probability     probability of crossover
      * @param randomGenerator random generator
-     * @throws java.lang.IllegalArgumentException see {@see #setProbability}
-     * and see {@see #setRandomGenerator}
+     * @throws java.lang.IllegalArgumentException see {@link #setProbability}
+     * and see {@link #setRandomGenerator}
      */
     protected AbstractProbabilisticFunction(double probability,
                                             RandomGenerator randomGenerator)
@@ -40,8 +40,8 @@ abstract public class AbstractProbabilisticFunction<R, P>
      * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
      *
      * @param probability probability of crossover
-     * @throws java.lang.IllegalArgumentException see {@see #setProbability}
-     * and see {@see #setRandomGenerator}
+     * @throws java.lang.IllegalArgumentException see {@link #setProbability}
+     * and see {@link #setRandomGenerator}
      */
     protected AbstractProbabilisticFunction(double probability)
             throws IllegalArgumentException {
