@@ -3,10 +3,7 @@ package crow.javartint.gea;
 import crow.javartint.gea.function.crossover.*;
 import crow.javartint.gea.function.mutattion.BinaryMutationFunctionIT;
 import crow.javartint.gea.function.mutattion.MutationFunctionIT;
-import crow.javartint.gea.function.scaling.AbstractScalingMethodTest;
-import crow.javartint.gea.function.scaling.LinearRankScalingMethodTest;
-import crow.javartint.gea.function.scaling.RankScalingMethodTest;
-import crow.javartint.gea.function.scaling.SigmaScalingMethodTest;
+import crow.javartint.gea.function.scaling.*;
 import crow.javartint.gea.gene.ArrayGeneIT;
 import crow.javartint.gea.gene.DefaultGeneIT;
 import crow.javartint.gea.genome.DefaultGenomeIT;
@@ -39,6 +36,7 @@ import org.junit.runners.Suite;
                 LinearRankScalingMethodTest.class,
                 RankScalingMethodTest.class,
                 SigmaScalingMethodTest.class,
+                BoltzmannScalingMethodTest.class,
         }
 )
 public class GeaITSuite {

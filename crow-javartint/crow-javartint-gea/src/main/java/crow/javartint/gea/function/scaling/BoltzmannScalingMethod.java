@@ -46,9 +46,7 @@ public final class BoltzmannScalingMethod<T extends Genome<? extends Gene<?>>>
         }
         final double divider = mean(genomes) / boltzmannTemp;
         for (T genome : genomes) {
-            double oldFitness = genome.getFitness();
-            double newFitness = (oldFitness / boltzmannTemp) / divider;
-            genome.setFitness(newFitness);
+            genome.setFitness(genome.getFitness() / divider);
         }
     }
 }
