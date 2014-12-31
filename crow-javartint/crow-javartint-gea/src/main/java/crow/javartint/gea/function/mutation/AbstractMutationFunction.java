@@ -49,7 +49,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
 
     /**
      * Performs the specific mutation process. This method is called inside
-     * the method {@see #evaluate(crow.javartint.gea.genome.Genome[])}
+     * the method {@link #evaluate}
      *
      * @param subject individual which will be mutate
      */

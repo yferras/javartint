@@ -88,7 +88,7 @@ public abstract class AbstractSelectionOperator<T extends Genome<? extends Gene<
     protected abstract List<T> select(List<T> genomes);
 
     /**
-     * Performs the selection process after validating the input params ({@see #validate})
+     * Performs the selection process after validating the input params ({@link #validate})
      * @param params parameters to evaluate.
      * @return an array with selected elements
      */
