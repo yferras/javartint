@@ -58,12 +58,11 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
     /**
      * Ensures that parameter are valid.
      *
-     * @param params parameters to validate.
-     * @throws IllegalArgumentException if {@code params} is null
-     *                                  or {@code params.length} is 0.
+     * @param param parameter to validate.
+     * @throws IllegalArgumentException if {@code param} is {@code null}.
      */
-    protected void validate(T params) throws IllegalArgumentException {
-        if (params == null) {
+    protected void validate(T param) throws IllegalArgumentException {
+        if (param == null) {
             throw new IllegalArgumentException("'params' can't be null.");
         }
     }
