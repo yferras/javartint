@@ -18,27 +18,15 @@ import java.util.List;
  */
 public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm<S> {
 
-    /**
-     * List of constraints.
-     */
-    protected final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
-    /**
-     * List of listeners.
-     */
-    protected final List<EventListener> eventListeners = new ArrayList<>();
-    /**
-     * Elapsed time.
-     */
-    protected long elapsedTime = 0;
-    /**
-     * To know if the algorithm is currently running.
-     */
-    protected boolean running = false;
+    private final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
 
-    /**
-     * Generic solution.
-     */
-    protected S solution;
+    private final List<EventListener> eventListeners = new ArrayList<>();
+
+    private long elapsedTime = 0;
+
+    private boolean running = false;
+
+    private S solution;
 
     private boolean addAlgorithmListener(EventListener listener) {
         boolean contains = eventListeners.contains(listener);
@@ -110,9 +98,30 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         return elapsedTime;
     }
 
+    /**
+     * This method sets the current time and sets true to running attribute.
+     * Should be invoked at the beginning of run method implementation
+     */
+    protected void beginAlgorithm() {
+        elapsedTime = System.currentTimeMillis();
+        running = true;
+    }
+
     @Override
     public S getSolution() {
         return solution;
+    }
+
+    /**
+     * Sets the solution.
+     *
+     * @param solution new solution.
+     */
+    protected void setSolution(S solution) {
+        if (this.solution != null && !this.solution.equals(solution)) {
+            fireBestSolutionUpdatedEvent();
+        }
+        this.solution = solution;
     }
 
     @Override
@@ -157,14 +166,16 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
     }
 
     /**
-     * Used to fire algorithm end execution event.
+     * Used to fire algorithm end execution event. This method should be invoked an the
+     * end of {@link #run()} implementation
      */
     protected void fireAlgorithmFinishedEvent() {
+        elapsedTime -= System.currentTimeMillis();
         for (EventListener eventListener : eventListeners) {
             if (eventListener instanceof ExecutionEndListener) {
                 ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
                 executionEndListener.algorithmFinished(new AlgorithmEvent(
-                        this, solution));
+                        this, getSolution()));
             }
         }
     }
@@ -173,7 +184,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * Used to fire solution changed event.
      */
     protected void fireBestSolutionUpdatedEvent() {
-        fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, solution));
+        fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
     }
 
     protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {

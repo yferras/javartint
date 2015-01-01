@@ -248,24 +248,21 @@ public class AbstractAlgorithmIT {
         private long iterations = 0L;
 
         public AlgorithmImpl() {
-            solution = new SolutionImpl(0);
+            setSolution(new SolutionImpl(0));
         }
 
         @Override
         public void run() {
-            elapsedTime = System.currentTimeMillis();
-            running = true;
-            while (running && !testConstraint()) {
+            beginAlgorithm();
+            while (isRunning() && !testConstraint()) {
                 iterations++;
                 int newValue = new Random().nextInt(200);
-                if (newValue > solution.getData()) {
-                    solution = new SolutionImpl(newValue);
-                    fireBestSolutionUpdatedEvent();
+                if (newValue > getSolution().getData()) {
+                    setSolution(new SolutionImpl(newValue));
                 }
-                error = Math.abs(100 - solution.getData());
+                error = Math.abs(100 - getSolution().getData());
             }
-            running = false;
-            elapsedTime -= System.currentTimeMillis();
+            stop();
             fireAlgorithmFinishedEvent();
         }
 
