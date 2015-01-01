@@ -13,7 +13,7 @@ import crow.javartint.gea.genome.Genome;
  * @version 0.0.1
  */
 abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?>>>
-        extends AbstractProbabilisticFunction<T, T> {
+        extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
     /**
      * Constructor, initializes instances with the given parameters.
