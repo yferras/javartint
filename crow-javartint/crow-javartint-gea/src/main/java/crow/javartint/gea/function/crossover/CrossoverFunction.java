@@ -13,4 +13,7 @@ import crow.javartint.gea.genome.Genome;
  */
 public interface CrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends ProbabilisticFunction<T[], T[]> {
+
+        @Override
+        T[] evaluate(T... params);
 }
