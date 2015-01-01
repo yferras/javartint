@@ -13,18 +13,18 @@ import java.util.*;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class SusSelectionOperator<T extends Genome<? extends Gene<?>>>
-        extends AbstractSelectionOperator<T> {
+public class SusSelectionFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractSelectionFunction<T> {
 
-    public SusSelectionOperator(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+    public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
         super(numToSelect, scalingMethod);
     }
 
-    public SusSelectionOperator(int numToSelect) {
+    public SusSelectionFunction(int numToSelect) {
         this(numToSelect, null);
     }
 
-    public SusSelectionOperator() {
+    public SusSelectionFunction() {
         this(2);
     }
 

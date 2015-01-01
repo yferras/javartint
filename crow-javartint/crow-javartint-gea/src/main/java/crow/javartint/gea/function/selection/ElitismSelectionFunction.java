@@ -16,8 +16,8 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ElitismSelectionOperator<T extends Genome<? extends Gene<?>>>
-        extends AbstractSelectionOperator<T> {
+public class ElitismSelectionFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractSelectionFunction<T> {
 
     private final Optimize optimize;
 
@@ -27,7 +27,7 @@ public class ElitismSelectionOperator<T extends Genome<? extends Gene<?>>>
      * @param numToSelect number of elements to select
      * @param optimize    the optimization way
      */
-    public ElitismSelectionOperator(int numToSelect, Optimize optimize) {
+    public ElitismSelectionFunction(int numToSelect, Optimize optimize) {
         super(numToSelect);
         this.optimize = optimize;
     }

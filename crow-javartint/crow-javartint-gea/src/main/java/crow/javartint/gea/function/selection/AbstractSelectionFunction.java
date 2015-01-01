@@ -14,7 +14,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public abstract class AbstractSelectionOperator<T extends Genome<? extends Gene<?>>>
+public abstract class AbstractSelectionFunction<T extends Genome<? extends Gene<?>>>
         implements Function<List<T>, List<T>> {
 
     private int numToSelect = 1;
@@ -27,7 +27,7 @@ public abstract class AbstractSelectionOperator<T extends Genome<? extends Gene<
      * @param numToSelect   number of elements to select
      * @param scalingMethod scaling method
      */
-    public AbstractSelectionOperator(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
         if (numToSelect < 1) {
             throw new IllegalArgumentException("'numToSelect' can't be less than 1.");
         }
@@ -40,7 +40,7 @@ public abstract class AbstractSelectionOperator<T extends Genome<? extends Gene<
      *
      * @param numToSelect number of elements to select
      */
-    public AbstractSelectionOperator(int numToSelect) {
+    public AbstractSelectionFunction(int numToSelect) {
         this(numToSelect, null);
     }
 

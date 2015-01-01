@@ -15,18 +15,18 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class TournamentSelectionOperator<T extends Genome<? extends Gene<?>>>
-        extends AbstractSelectionOperator<T>  {
+public class TournamentSelectionFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractSelectionFunction<T> {
 
-    public TournamentSelectionOperator() {
+    public TournamentSelectionFunction() {
         this(2);
     }
 
-    public TournamentSelectionOperator(int selectedGenomes) {
+    public TournamentSelectionFunction(int selectedGenomes) {
         this(selectedGenomes, null);
     }
 
-    public TournamentSelectionOperator(int selectedGenomes,
+    public TournamentSelectionFunction(int selectedGenomes,
                                        AbstractScalingMethod<T> scalingMethod)
             throws IllegalArgumentException {
         super(selectedGenomes, scalingMethod);

@@ -15,15 +15,15 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class RouletteWheelSelectionOperator<T extends Genome<? extends Gene<?>>>
-        extends AbstractSelectionOperator<T>  {
+public class RouletteWheelSelectionFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractSelectionFunction<T> {
 
 
-    public RouletteWheelSelectionOperator(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+    public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
         super(numToSelect, scalingMethod);
     }
 
-    public RouletteWheelSelectionOperator(int numToSelect) {
+    public RouletteWheelSelectionFunction(int numToSelect) {
         this(numToSelect, null);
     }
 
