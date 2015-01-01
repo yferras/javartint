@@ -15,7 +15,7 @@ import java.util.List;
  * @version 0.0.1
  */
 public abstract class AbstractSelectionFunction<T extends Genome<? extends Gene<?>>>
-        implements Function<List<T>, List<T>> {
+        implements SelectionFunction<T> {
 
     private int numToSelect = 1;
 
