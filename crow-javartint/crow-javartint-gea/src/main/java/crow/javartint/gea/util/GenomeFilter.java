@@ -10,7 +10,7 @@ import crow.javartint.gea.genome.Genome;
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
- * @param <T>
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  */
 public interface GenomeFilter<T extends Genome<? extends Gene<?>>>
         extends Filter<T> {
