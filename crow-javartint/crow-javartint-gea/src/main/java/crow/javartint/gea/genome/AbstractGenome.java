@@ -115,13 +115,11 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
                     (outputStream.toByteArray());
             ObjectInputStream objectInputStream =
                     new ObjectInputStream(inputStream);
-            DefaultGenome<T> cloned =
-                    (DefaultGenome<T>) objectInputStream.readObject();
+            Genome<T> cloned = (Genome<T>) objectInputStream.readObject();
             objectInputStream.close();
             return cloned;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new CloneNotSupportedException();
+            throw new CloneNotSupportedException(e.getMessage());
         }
     }
 

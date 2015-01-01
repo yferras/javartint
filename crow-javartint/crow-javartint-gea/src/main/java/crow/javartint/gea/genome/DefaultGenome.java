@@ -5,7 +5,7 @@ import crow.javartint.gea.gene.Gene;
 /**
  * This class represents a default genome.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */

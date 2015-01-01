@@ -9,7 +9,7 @@ import java.util.Iterator;
 /**
  * This interface represents a generic genome.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
@@ -77,4 +77,6 @@ public interface Genome<T extends Gene<?>>
      * @param gene gene to add
      */
     void addGene(T gene);
+
+    Genome<T> clone() throws CloneNotSupportedException;
 }
