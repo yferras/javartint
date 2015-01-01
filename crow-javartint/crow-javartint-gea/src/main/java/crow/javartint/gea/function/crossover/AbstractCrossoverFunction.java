@@ -13,7 +13,8 @@ import crow.javartint.gea.genome.Genome;
  * @version 0.0.3
  */
 abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<?>>>
-        extends AbstractProbabilisticFunction<T[], T[]> {
+        extends AbstractProbabilisticFunction<T[], T[]>
+        implements CrossoverFunction<T> {
 
     /**
      * Constructor, initializes instances with the given parameters.
