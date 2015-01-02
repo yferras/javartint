@@ -2,6 +2,8 @@ package crow.javartint.gea;
 
 import crow.javartint.gea.function.crossover.*;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
+import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
+import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
 import crow.javartint.gea.function.mutattion.BinaryMutationFunctionIT;
 import crow.javartint.gea.function.mutattion.MutationFunctionIT;
 import crow.javartint.gea.function.scaling.*;
@@ -39,6 +41,8 @@ import org.junit.runners.Suite;
                 SigmaScalingMethodTest.class,
                 BoltzmannScalingMethodTest.class,
                 BinaryGenomeGenFunctionTest.class,
+                TspGenomeGenFunctionTest.class,
+                RangeGenomeGenFunctionTest.class,
         }
 )
 public class GeaITSuite {
