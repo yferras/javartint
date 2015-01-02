@@ -1,5 +1,7 @@
 package crow.javartint.core.util;
 
+import java.util.Random;
+
 /**
  * This class is useful to define ranges.
  *
@@ -49,6 +51,16 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
         this.min = min;
         this.max = max;
         this.use = use;
+    }
+
+    /**
+     * Initializes this instance.
+     *
+     * @param min lower bound
+     * @param max upper bound
+     */
+    public Range(T min, T max) {
+        this(min, max, Use.BOTH);
     }
 
     /**

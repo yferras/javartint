@@ -17,9 +17,9 @@ public class RangeGenomeGenFunctionTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        Range<Double> range1 = new Range<>(-1.0, 1.0, Range.Use.BOTH);
-        Range<Double> range2 = new Range<>(400.0, 500.0, Range.Use.BOTH);
-        Range<Double> range3 =  new Range<>(-1000.0, -500.0, Range.Use.BOTH);
+        Range<Double> range1 = new Range<>(-1.0, 1.0);
+        Range<Double> range2 = new Range<>(400.0, 500.0);
+        Range<Double> range3 =  new Range<>(-1000.0, -500.0);
         RangeGenomeGenFunction genFunction = new RangeGenomeGenFunction(3,
                 range1, range2, range3);
         DefaultGenome<DefaultGene<Double>> genome = genFunction.evaluate();
