@@ -1,6 +1,7 @@
 package crow.javartint.core;
 
-//import crow.javartint.core.util.function.ProbabilisticFunctionIT;
+import crow.javartint.core.util.RangeTest;
+import crow.javartint.core.util.function.ProbabilisticFunctionIT;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,7 +16,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         {
                 AbstractAlgorithmIT.class,
-                //ProbabilisticFunctionIT.class
+                ProbabilisticFunctionIT.class,
+                RangeTest.class,
         }
 )
 public class CoreITSuite {
