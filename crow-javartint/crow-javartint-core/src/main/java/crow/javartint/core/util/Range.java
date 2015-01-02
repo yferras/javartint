@@ -6,7 +6,7 @@ package crow.javartint.core.util;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class Range<T extends Comparable<T>> implements Filter<T> {
+public final class Range<T extends Comparable<T>> implements Filter<T> {
 
     /**
      * To define the use the limits in the range
