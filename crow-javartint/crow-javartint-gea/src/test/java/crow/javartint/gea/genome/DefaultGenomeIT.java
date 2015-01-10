@@ -83,15 +83,15 @@ public class DefaultGenomeIT {
     }
 
     /**
-     * Test of getNumberOfGenes method, of class DefaultGenome.
+     * Test of size method, of class DefaultGenome.
      */
 	@Test
     public void testGetNumberOfGenes() {
-        System.out.println("getNumberOfGenes");
+        System.out.println("size");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
         int expResult = 4;
-        int result = instance.getNumberOfGenes();
+        int result = instance.size();
         assertEquals(expResult, result);
     }
 

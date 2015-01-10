@@ -20,6 +20,6 @@ public class TspGenomeGenFunctionTest {
         System.out.println("evaluate (performed algorithm)");
         TspGenomeGenFunction genFunction = new TspGenomeGenFunction(5);
         DefaultGenome<DefaultGene<Integer>> genome = genFunction.evaluate();
-        assertEquals(5, genome.getNumberOfGenes());
+        assertEquals(5, genome.size());
     }
 }

@@ -23,7 +23,7 @@ public class RangeGenomeGenFunctionTest {
         RangeGenomeGenFunction genFunction = new RangeGenomeGenFunction(3,
                 range1, range2, range3);
         DefaultGenome<DefaultGene<Double>> genome = genFunction.evaluate();
-        assertEquals(3, genome.getNumberOfGenes());
+        assertEquals(3, genome.size());
         assertTrue(range1.accept(genome.getGene(0).getData()));
         assertTrue(range2.accept(genome.getGene(1).getData()));
         assertTrue(range3.accept(genome.getGene(2).getData()));

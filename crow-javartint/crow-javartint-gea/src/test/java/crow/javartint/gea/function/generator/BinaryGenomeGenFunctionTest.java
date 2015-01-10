@@ -24,7 +24,7 @@ public class BinaryGenomeGenFunctionTest {
         System.out.println("evaluate (performed algorithm)");
         BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
         DefaultGenome<IntegerArrayGene> genome = genFunction.evaluate();
-        assertEquals(3, genome.getNumberOfGenes());
+        assertEquals(3, genome.size());
         assertEquals(1, genome.getGene(0).length());
         assertEquals(7, genome.getGene(1).length());
         assertEquals(4, genome.getGene(2).length());
