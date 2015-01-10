@@ -49,11 +49,13 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
 
     /**
      * Performs the specific mutation process. This method is called inside
-     * the method {@link #evaluate}
+     * the method {@link #evaluate(crow.javartint.gea.genome.Genome)}
      *
      * @param subject individual which will be mutate
+     * @return mutated genome
+     * @throws java.lang.CloneNotSupportedException if 
      */
-    protected abstract void mutate(T subject);
+    protected abstract T mutate(T subject) throws CloneNotSupportedException;
 
     /**
      * Ensures that parameter are valid.
@@ -67,14 +69,30 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
         }
     }
 
+    /**
+     * If validation process is ok and generated random probability
+     * is in bounds, performs the mutation process with a copy of
+     * genome and returns a mutated genome.
+     *
+     * @param params genome to mutate.
+     * @return if the mutation process is done, a copy of mutated
+     * genome is returned, otherwise if a CloneNotSupportedException
+     * is raised  a null value is returned.
+     *
+     * @throws java.lang.IllegalArgumentException see {@link #validate(crow.javartint.gea.genome.Genome)}
+     */
+    @SuppressWarnings("unchecked")
     @Override
     public T evaluate(T params) {
         validate(params);
-        double randomProbability = getRandomGenerator().nextDouble();
-        if (randomProbability > getProbability()) {
-            return params;
+        try {
+            if (getRandomGenerator().nextDouble() > getProbability()) {
+                return (T) params.clone();
+            }
+            return mutate((T) params.clone());
+        } catch (CloneNotSupportedException e){
+            e.printStackTrace();
+            return null;
         }
-        mutate(params);
-        return params;
     }
 }
