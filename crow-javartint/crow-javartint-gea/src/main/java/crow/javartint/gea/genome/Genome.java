@@ -61,7 +61,7 @@ public interface Genome<T extends Gene<?>>
      *
      * @return The number of genes of the genome.
      */
-    int getNumberOfGenes();
+    int size();
 
     /**
      * Sets the value of <code>newGene</code> at specified <code>index</code>.

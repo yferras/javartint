@@ -43,7 +43,7 @@ public class SinglePointCrossoverFunction<T extends Genome<? extends Gene<?>>>
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
-        int numberOfGenes = parent1.getNumberOfGenes();
+        int numberOfGenes = parent1.size();
         Genome[] offspring = new Genome[2];
         offspring[0] = ((AbstractGenome)parent1).clone();
         offspring[1] = ((AbstractGenome)parent2).clone();

@@ -66,7 +66,7 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     }
 
     @Override
-    public int getNumberOfGenes() {
+    public int size() {
         return genes.size();
     }
 

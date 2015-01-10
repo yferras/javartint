@@ -47,7 +47,7 @@ public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
         offspring[0] = ((AbstractGenome) parent1).clone();
         offspring[1] = ((AbstractGenome) parent2).clone();
 
-        int numberOfGenes = parent1.getNumberOfGenes();
+        int numberOfGenes = parent1.size();
         int position1 = getRandomGenerator().nextInt(numberOfGenes - 2);
         int position2 = position1;
         while (position2 <= position1) {
