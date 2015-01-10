@@ -4,6 +4,7 @@ import crow.javartint.gea.GenomeConstants;
 import crow.javartint.gea.function.mutation.BinaryMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.gene.Gene;
+import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
 import org.junit.*;
@@ -37,32 +38,23 @@ public class BinaryMutationFunctionIT {
     @Test
     public void testEvaluate() throws CloneNotSupportedException {
         System.out.println("evaluate (performed algorithm)");
-        DefaultGenome<Gene<Integer>> genome = new DefaultGenome<>();
-        Gene<Integer>[] genes = new Gene[]{
-                new DefaultGene(1),
-                new DefaultGene(0),
-                new DefaultGene(1),
-                new DefaultGene(0),
-                new DefaultGene(0),
-                new DefaultGene(1),
-                new DefaultGene(1),
-                new DefaultGene(0),
-                new DefaultGene(0),
-                new DefaultGene(1),
+        DefaultGenome<IntegerArrayGene> genome = new DefaultGenome<>();
+        IntegerArrayGene[] genes = new IntegerArrayGene []{
+                new IntegerArrayGene(new Integer[]{0}),
+                new IntegerArrayGene(new Integer[]{1, 1, 0, 1, 0, 0}),
+                new IntegerArrayGene(new Integer[]{1, 0, 0, 1}),
         };
         genome.setChromosome(genes);
 
-        final Genome<Gene<Integer>> clone = genome.clone();
-        clone.getGene(1).setData(1);
-        clone.getGene(3).setData(1);
-        clone.getGene(4).setData(1);
-        clone.getGene(9).setData(0);
+        final Genome<IntegerArrayGene> clone = genome.clone();
+        clone.getGene(0).setAllele(0, 1);
+        clone.getGene(2).setAllele(1, 1);
+        clone.getGene(2).setAllele(3, 0);
 
-        BinaryMutationFunction<DefaultGenome<Gene<Integer>>> function = new
+        BinaryMutationFunction<DefaultGenome<IntegerArrayGene>> function = new
                 BinaryMutationFunction<>();
-        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_4);
-        function.evaluate(genome);
-        assertEquals(clone, genome);
+        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_5);
+        genome = function.evaluate(genome);
         assertArrayEquals(clone.getChromosome(), genome.getChromosome());
     }
 

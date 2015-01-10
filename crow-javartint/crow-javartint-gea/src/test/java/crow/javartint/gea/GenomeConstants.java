@@ -89,19 +89,37 @@ public class GenomeConstants {
     public static final RandomGenerator RANDOM_GENERATOR_4 = new
             RandomGenerator() {
 
-                private int index = 0;
-                private final int[] pos = { 0, 4, 1, 1, 3, 4, 9 };
 
                 @Override
                 public int nextInt(int n) {
-                    if (index >= pos.length)
-                        index = 0;
-                    return pos[index++];
+                    return 0;
                 }
 
                 @Override
                 public double nextDouble() {
-                    return 0.025;
+                    return .025;
+                }
+            };
+
+    /**
+     * Used in BinaryMutationFunctionIT
+     */
+    public static final RandomGenerator RANDOM_GENERATOR_5 = new
+            RandomGenerator() {
+
+                private int index = 0;
+                private final double[] pos = { .025, .1, .1, .2, .3, .4, .5, .6, .1, .2, .3, .4, .01, .1, .2, .3, .4, .5, .6, .1, .02, .3, .04 };
+
+                @Override
+                public int nextInt(int n) {
+                    return 0;
+                }
+
+                @Override
+                public double nextDouble() {
+                    if (index >= pos.length)
+                        index = 0;
+                    return pos[index++];
                 }
             };
 

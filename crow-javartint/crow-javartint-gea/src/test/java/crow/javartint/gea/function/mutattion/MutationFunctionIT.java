@@ -111,14 +111,11 @@ public class MutationFunctionIT {
                         new DefaultGene(1),
                 }
         );
-        final Genome<DefaultGene<Integer>> clone = genome.clone();
         final DefaultMutationFunction function = new
                 DefaultMutationFunction();
         function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_4);
-        final Genome<? extends Gene<?>> result = function.evaluate(genome);
-        assertTrue(genome == result);
-        assertEquals(genome, result);
-        assertNotEquals(clone, result);
+        final Genome<? extends Gene<?>> result = function.evaluate(genome.clone());
+        assertFalse(genome == result);
         assertNull(result.getGene(0).getData());
     }
 
@@ -135,11 +132,9 @@ public class MutationFunctionIT {
                         new DefaultGene(1),
                 }
         );
-        final Genome<DefaultGene<Integer>> clone = genome.clone();
-        final Genome<? extends Gene<?>> result = function.evaluate(genome);
-        assertTrue(genome == result);
+        final Genome<? extends Gene<?>> result = function.evaluate(genome.clone());
+        assertFalse(genome == result);
         assertEquals(genome, result);
-        assertEquals(clone, result);
         assertNotNull(result.getGene(0).getData());
     }
 
@@ -147,8 +142,9 @@ public class MutationFunctionIT {
             AbstractMutationFunction<Genome<? extends Gene<?>>> {
 
         @Override
-        protected void mutate(Genome<? extends Gene<?>> subject) {
+        protected Genome<? extends Gene<?>> mutate(Genome<? extends Gene<?>> subject) {
             subject.getGene(0).setData(null);
+            return subject;
         }
     }
 }
