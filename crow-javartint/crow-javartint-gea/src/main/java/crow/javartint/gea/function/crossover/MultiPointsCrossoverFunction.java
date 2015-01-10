@@ -2,7 +2,6 @@ package crow.javartint.gea.function.crossover;
 
 import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.AbstractGenome;
 import crow.javartint.gea.genome.Genome;
 
 /**
@@ -48,10 +47,11 @@ public class MultiPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
     @Override
     protected T[] recombine(T parent1, T parent2)
             throws CloneNotSupportedException {
-        int numberOfGenes = parent1.getNumberOfGenes();
-        Genome[] offspring = new Genome[2];
-        offspring[0] = ((AbstractGenome)parent1).clone();
-        offspring[1] = ((AbstractGenome)parent2).clone();
+        int numberOfGenes = parent1.size();
+        Genome[] offspring = new Genome[]{
+                ((Genome) parent1).clone(),
+                ((Genome) parent2).clone()
+        };
         for (int i = 0; i < numberOfGenes; i++) {
             if (getRandomGenerator().nextDouble() <= getProbability()) {
                 Gene aux = offspring[0].getGene(i);
