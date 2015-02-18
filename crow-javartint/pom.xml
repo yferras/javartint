@@ -34,6 +34,32 @@
                         </includes>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>1.8</version>
+                    <configuration>
+                        <licenseName>gpl_v3</licenseName>
+                        <organizationName>Eng. Ferrás Cecilio, Yeinier</organizationName>
+                        <verbose>true</verbose>
+                        <copyrightOwners>Eng. Ferrás Cecilio, Yeinier</copyrightOwners>
+                        <inceptionYear>2014</inceptionYear>
+                        <encoding>UTF-8</encoding>
+                        <excludes>
+                            <exclude>**/*.properties</exclude>
+                        </excludes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>first</id>
+                            <goals>
+                                <goal>update-file-header</goal>
+                                <goal>update-project-license</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
