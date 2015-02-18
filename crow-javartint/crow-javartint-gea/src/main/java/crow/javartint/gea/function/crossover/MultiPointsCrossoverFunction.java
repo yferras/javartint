@@ -39,8 +39,7 @@ import crow.javartint.gea.genome.Genome;
  * <code>
  * [GA0,GA1,GA2,GA3,GA4,GA5] // Parent A<br />
  * [GB0,GB1,GB2,GB3,GB4,GB5] // Parent B<br />
- * [___,---,___,---,---,___] // Underline represents the position that will be
- *                           // exchanged<br />
+ * [___,''',___,''',''',___] // Underline represents the position that will be exchanged<br />
  * [GB0,GA1,GB2,GA3,GA4,GA5] // Child A after crossover process<br />
  * [GA0,GB1,GA2,GB3,GB4,GB5] // Child B after crossover process<br />
  * </code>
