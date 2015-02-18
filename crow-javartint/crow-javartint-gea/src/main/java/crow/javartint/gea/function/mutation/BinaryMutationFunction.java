@@ -38,17 +38,17 @@ public class BinaryMutationFunction<T extends Genome<IntegerArrayGene>>
     @Override
     protected T mutate(T subject) {
         boolean muted = false;
-        while (!muted) {
+        do {
             for (IntegerArrayGene gene : subject) {
                 for (int i = 0; i < gene.length(); i++) {
-                    if (getRandomGenerator().nextDouble() < getProbability()){
+                    if (getRandomGenerator().nextDouble() < getProbability()) {
                         int val = gene.getAllele(i);
                         gene.setAllele(i, val == 0 ? 1 : 0);
                         muted = true;
                     }
                 }
             }
-        }
+        } while (!muted);
         return subject;
     }
 }
