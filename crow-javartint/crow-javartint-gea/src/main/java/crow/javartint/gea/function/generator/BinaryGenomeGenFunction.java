@@ -28,19 +28,41 @@ import crow.javartint.gea.genome.DefaultGenome;
 import java.util.Random;
 
 /**
+ * This class is a binary genome generator function.
  *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
  */
 public class BinaryGenomeGenFunction
         extends AbstractGenomeGeneratorFunction<DefaultGenome<IntegerArrayGene>> {
 
+    /**
+     * Initializes the number of genes and the length of each gene.
+     *
+     * @param numberOfGenes the number of genes.
+     * @param lengthOfGene  the length of each gene.
+     */
     public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
         super(numberOfGenes, lengthOfGene);
     }
 
+    /**
+     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
+     * if the number of genes and the value in each position is the size of each gene.
+     *
+     * @param lengthsOfGenes array that contains the length of genes.
+     */
     public BinaryGenomeGenFunction(int[] lengthsOfGenes) {
         super(lengthsOfGenes);
     }
 
+    /**
+     * Generates binary genomes.
+     *
+     * @param lengthsOfGenes the array that contains the length of each gene.
+     * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
+     * with {@link crow.javartint.gea.gene.IntegerArrayGene}
+     */
     @Override
     protected DefaultGenome<IntegerArrayGene> generate(int[] lengthsOfGenes) {
         Random random = new Random();

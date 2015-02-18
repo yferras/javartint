@@ -28,15 +28,29 @@ import crow.javartint.gea.genome.DefaultGenome;
 import java.util.*;
 
 /**
+ * This class is a genome generator function for create genomes for TSP (Traveller Sales Problem).
  *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
  */
 public class TspGenomeGenFunction
         extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultGene<Integer>>> {
 
+    /**
+     * Initializes this instance.
+     *
+     * @param numberOfGenes the number of genes.
+     */
     public TspGenomeGenFunction(int numberOfGenes) {
         super(numberOfGenes, 1);
     }
 
+    /**
+     * Generates genomes for TSPS
+     *
+     * @param lengthsOfGenes the array that contains the length of each gene.
+     * @return generate genome
+     */
     @SuppressWarnings("unchecked")
     @Override
     protected DefaultGenome<DefaultGene<Integer>> generate(int[] lengthsOfGenes) {

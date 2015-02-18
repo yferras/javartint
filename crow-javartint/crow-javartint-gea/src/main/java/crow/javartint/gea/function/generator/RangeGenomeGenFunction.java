@@ -28,8 +28,12 @@ import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Random;
 
+
 /**
+ * This class is a genome generator function for create genomes with genes in defined ranges.
  *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
  */
 public class RangeGenomeGenFunction
         extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultGene<Double>>> {
@@ -37,12 +41,25 @@ public class RangeGenomeGenFunction
     private final int precision;
     private Range<Double>[] ranges;
 
+    /**
+     * Initializes this instance.
+     *
+     * @param precision decimal precision.
+     * @param ranges Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+     *               is used to generate a random value inside range.
+     */
     public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
         super(ranges.length, 1);
         this.precision = precision;
         this.ranges = ranges;
     }
 
+    /**
+     * Generates a genome with default set of genes, each of these genes have a double value.
+     *
+     * @param lengthsOfGenes the array that contains the length of each gene.
+     * @return generated genome.
+     */
     @SuppressWarnings("unchecked")
     @Override
     protected DefaultGenome<DefaultGene<Double>> generate(int[] lengthsOfGenes) {
