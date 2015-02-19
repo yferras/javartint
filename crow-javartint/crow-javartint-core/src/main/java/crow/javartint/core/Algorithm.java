@@ -94,7 +94,7 @@ public interface Algorithm<S extends Solution> extends Runnable {
      * </ul>
      * Otherwise returns <code>false</code>.
      *
-     * @return see the method description.
+     * @return the result of evaluates all constraints.
      */
     boolean testConstraint();
 }
