@@ -56,24 +56,33 @@ public class AbstractGene<T> implements Gene<T> {
     @SuppressWarnings("unchecked")
     @Override
     public Gene<T> clone() throws CloneNotSupportedException {
+        ObjectInputStream objectInputStream = null;
+        ObjectOutputStream objectOutputStream = null;
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream =
-                    new ObjectOutputStream(outputStream);
+            objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(this);
-            objectOutputStream.close();
 
-            ByteArrayInputStream inputStream = new ByteArrayInputStream
-                    (outputStream.toByteArray());
-            ObjectInputStream objectInputStream =
-                    new ObjectInputStream(inputStream);
-            Gene<T> cloned =
-                    (Gene<T>) objectInputStream.readObject();
-            objectInputStream.close();
-            return cloned;
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+            objectInputStream = new ObjectInputStream(inputStream);
+            return (Gene<T>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new CloneNotSupportedException();
+            throw new CloneNotSupportedException(e.getMessage());
+        } finally {
+            try {
+                if (objectInputStream != null) {
+                    objectInputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (objectOutputStream != null) {
+                    objectOutputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
