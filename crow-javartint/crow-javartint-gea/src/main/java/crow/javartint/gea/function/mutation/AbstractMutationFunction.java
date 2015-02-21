@@ -107,10 +107,10 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
     @Override
     public T evaluate(T params) {
         validate(params);
+        if (getRandomGenerator().nextDouble() > getProbability()) {
+            return params;
+        }
         try {
-            if (getRandomGenerator().nextDouble() > getProbability()) {
-                return (T) params.clone();
-            }
             return mutate((T) params.clone());
         } catch (CloneNotSupportedException e){
             e.printStackTrace();
