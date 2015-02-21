@@ -33,6 +33,7 @@ import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 import crow.javartint.gea.util.GenomeFilter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,6 +78,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
         this.populationSize = populationSize;
         this.decoder = decoder;
         this.generator = generator;
+        setPopulation(new ArrayList<T>(populationSize));
         setOptimize(optimize);
     }
 
@@ -114,7 +116,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
      * Used to create the start population.
      */
     protected void createStartPopulation() {
-        while (getPopulationSize() < getPopulation().size()) {
+        while (getPopulationSize() > getPopulation().size()) {
             T genome = getGenerator().evaluate();
             if (getGenomeFilter() != null && getGenomeFilter().accept(genome)) {
                 getPopulation().add(genome);
@@ -145,7 +147,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
     final public void setOptimize(Optimize optimize) {
         switch (optimize) {
             case MAX:
-                setBestFitnessScore(Double.MIN_VALUE);
+                setBestFitnessScore(-Double.MAX_VALUE);
                 break;
             case MIN:
                 setBestFitnessScore(Double.MAX_VALUE);
