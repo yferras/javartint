@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation;
  * #L%
  */
 
+import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.Genome;
 
@@ -34,6 +35,18 @@ import crow.javartint.gea.genome.Genome;
  */
 public class BinaryMutationFunction<T extends Genome<IntegerArrayGene>>
         extends AbstractMutationFunction<T> {
+
+    public BinaryMutationFunction(double probability, RandomGenerator randomGenerator) {
+        super(probability, randomGenerator);
+    }
+
+    public BinaryMutationFunction(double probability) {
+        super(probability);
+    }
+
+    public BinaryMutationFunction() {
+        super();
+    }
 
     @Override
     protected T mutate(T subject) {
