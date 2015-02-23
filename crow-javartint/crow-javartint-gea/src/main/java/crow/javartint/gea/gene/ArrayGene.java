@@ -115,4 +115,15 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
     public void setAllele(int index, T newData) {
         this.data[index] = newData;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("[")
+                .append(length() != 0 ? getAllele(0) : "");
+        for (int i = 1; i < getData().length; i++) {
+            stringBuilder.append(", ").append(getAllele(i));
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
 }

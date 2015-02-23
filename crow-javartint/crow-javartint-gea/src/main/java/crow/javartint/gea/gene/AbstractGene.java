@@ -104,4 +104,9 @@ public class AbstractGene<T> implements Gene<T> {
         final DefaultGene<?> other = (DefaultGene<?>) obj;
         return Objects.equals(other.getData(), this.data);
     }
+
+    @Override
+    public String toString() {
+        return getData() == null ? "" : getData().toString();
+    }
 }

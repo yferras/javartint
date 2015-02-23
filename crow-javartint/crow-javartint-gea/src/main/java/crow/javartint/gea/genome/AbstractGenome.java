@@ -179,4 +179,15 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     public int compareTo(Genome<? extends Gene<?>> o) {
         return Double.compare(getFitness(), o.getFitness());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        stringBuilder.append("Fitness: ").append(getFitness()).append(';');
+        stringBuilder.append(" Genes: (").append(size() != 0 ? getGene(0) : "");
+        for (int i = 1; i < size(); i++) {
+            stringBuilder.append("; ").append(getGene(i));
+        }
+        return stringBuilder.append(")").append("}").toString();
+    }
 }
