@@ -25,7 +25,6 @@ package crow.javartint.gea.function.scaling;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
-import crow.javartint.gea.util.Helper;
 
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +50,7 @@ public final class RankScalingMethod<T extends Genome<? extends Gene<?>>>
 
     @Override
     protected void scale(List<T> genomes) {
-        Collections.sort(genomes, Helper.getComparator(getOptimize()));
+        Collections.sort(genomes); // Sorts ascending
         for (int i = 0; i < genomes.size(); i++) {
             genomes.get(i).setFitness(i + 1);
         }
