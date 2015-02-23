@@ -174,4 +174,9 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
         return Double.compare(that.fitness, fitness) == 0 && genes.equals(that.genes);
 
     }
+
+    @Override
+    public int compareTo(Genome<? extends Gene<?>> o) {
+        return Double.compare(getFitness(), o.getFitness());
+    }
 }

@@ -36,7 +36,8 @@ import java.util.Iterator;
  * @version 0.0.1
  */
 public interface Genome<T extends Gene<?>>
-        extends Cloneable, Iterable<T>, Iterator<T>, Solution, Serializable {
+        extends Cloneable, Iterable<T>, Iterator<T>, Solution, Serializable,
+        Comparable<Genome<? extends Gene<?>>> {
 
     /**
      * Gets the value of genes.
