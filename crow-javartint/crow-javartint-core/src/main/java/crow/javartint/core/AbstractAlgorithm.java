@@ -140,10 +140,8 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * @param solution new solution.
      */
     protected void setSolution(S solution) {
-        if (this.solution != null && !this.solution.equals(solution)) {
-            fireBestSolutionUpdatedEvent();
-        }
         this.solution = solution;
+        fireBestSolutionUpdatedEvent();
     }
 
     @Override
