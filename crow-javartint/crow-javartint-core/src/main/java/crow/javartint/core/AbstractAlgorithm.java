@@ -44,6 +44,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 
     private final List<EventListener> eventListeners = new ArrayList<>();
 
+    private long startTime = 0;
     private long elapsedTime = 0;
 
     private boolean running = false;
@@ -117,6 +118,9 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 
     @Override
     public long getElapsedTime() {
+        if (isRunning()) {
+            elapsedTime = System.currentTimeMillis() - startTime;
+        }
         return elapsedTime;
     }
 
@@ -125,7 +129,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * Should be invoked at the beginning of run method implementation
      */
     protected void beginAlgorithm() {
-        elapsedTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         running = true;
     }
 
@@ -190,7 +194,6 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * end of {@link #run()} implementation
      */
     protected void fireAlgorithmFinishedEvent() {
-        elapsedTime -= System.currentTimeMillis();
         for (EventListener eventListener : eventListeners) {
             if (eventListener instanceof ExecutionEndListener) {
                 ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
