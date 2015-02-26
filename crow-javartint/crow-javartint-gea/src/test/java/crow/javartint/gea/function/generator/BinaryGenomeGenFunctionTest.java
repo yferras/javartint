@@ -24,9 +24,11 @@ package crow.javartint.gea.function.generator;
 
 import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BinaryGenomeGenFunctionTest {
 

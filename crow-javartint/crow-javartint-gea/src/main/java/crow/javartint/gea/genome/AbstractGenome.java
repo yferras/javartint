@@ -25,7 +25,10 @@ package crow.javartint.gea.genome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class is an abstract implementation of {@link crow.javartint.gea.genome.Genome}.

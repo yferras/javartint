@@ -25,7 +25,9 @@ package crow.javartint.gea.function.generator;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This class is a genome generator function for create genomes for TSP (Traveller Sales Problem).

@@ -26,8 +26,8 @@ import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
 import org.junit.*;
-import static crow.javartint.gea.GenomeConstants.*;
 
+import static crow.javartint.gea.GenomeConstants.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 

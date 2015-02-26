@@ -22,7 +22,10 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.gea.function.crossover.*;
+import crow.javartint.gea.function.crossover.CrossoverFunctionIT;
+import crow.javartint.gea.function.crossover.MultiPointsCrossoverFunctionIT;
+import crow.javartint.gea.function.crossover.SinglePointCrossoverFunctionIT;
+import crow.javartint.gea.function.crossover.TowPointsCrossoverFunctionIT;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
