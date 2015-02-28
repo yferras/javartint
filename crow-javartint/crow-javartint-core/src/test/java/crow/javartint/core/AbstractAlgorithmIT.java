@@ -135,26 +135,6 @@ public class AbstractAlgorithmIT {
     }
 
     /**
-     * Test of getElapsedTime method, of class AbstractAlgorithm.
-     */
-    @SuppressWarnings("rawtypes")
-    @Test
-    public void testGetElapsedTime() {
-        System.out.println("getElapsedTime");
-        AbstractAlgorithm instance = new AlgorithmImpl();
-        Thread thread = new Thread(instance);
-        thread.start();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AbstractAlgorithmIT.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        instance.stop();
-        long result = instance.getElapsedTime();
-        assertTrue(result != 0L);
-    }
-
-    /**
      * Test of getSolution method, of class AbstractAlgorithm.
      */
     @SuppressWarnings("rawtypes")
