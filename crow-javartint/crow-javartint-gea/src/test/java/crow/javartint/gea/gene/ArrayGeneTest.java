@@ -29,14 +29,14 @@ import static org.junit.Assert.*;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class ArrayGeneIT {
+public class ArrayGeneTest {
 
     public static final ArrayGene<Double> INSTANCE = new ArrayGene<>(
             new Double[]{
                     1.0, 2.0, 3.0, 4.0, 5.0
             });
 
-    public ArrayGeneIT() {
+    public ArrayGeneTest() {
     }
 
     @BeforeClass

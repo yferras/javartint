@@ -34,11 +34,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-
-public class TowPointsCrossoverFunctionIT {
-
-    public TowPointsCrossoverFunctionIT() {
-    }
+public class MultiPointsCrossoverFunctionTest {
 
     @BeforeClass
     public static void setUpClass() {
@@ -51,7 +47,7 @@ public class TowPointsCrossoverFunctionIT {
     @Before
     public void setUp() {
         System.out.print(
-                TowPointsCrossoverFunction.class.getName().concat("."));
+                MultiPointsCrossoverFunction.class.getName().concat("."));
     }
 
     @After
@@ -59,17 +55,17 @@ public class TowPointsCrossoverFunctionIT {
     }
 
     @Test
-    public void testTowPointsCrossoverFunction1() {
-        System.out.println("SinglePointCrossoverFunction(probability)");
-        final Double probability = new TowPointsCrossoverFunction<>(1.0)
+    public void testMultiPointsCrossoverFunction1() {
+        System.out.println("MultiPointsCrossoverFunction(probability)");
+        final Double probability = new MultiPointsCrossoverFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
     @Test
-    public void testTowPointsCrossoverFunction2() {
-        System.out.println("SinglePointCrossoverFunction()");
-        final Double probability = new TowPointsCrossoverFunction<>()
+    public void testMultiPointsCrossoverFunction2() {
+        System.out.println("MultiPointsCrossoverFunction()");
+        final Double probability = new MultiPointsCrossoverFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -78,16 +74,15 @@ public class TowPointsCrossoverFunctionIT {
     @Test
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
-        TowPointsCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new TowPointsCrossoverFunction<>(.75, RANDOM_GENERATOR_2);
+        RANDOM_GENERATOR_3.nextInt(CHROMOSOME_SIZE);
+        MultiPointsCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new MultiPointsCrossoverFunction<>(0.75, RANDOM_GENERATOR_3);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();
         expResult[1] = new DefaultGenome<>();
-        int position1 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 2);
-        int position2 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 1);
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
-            if (i >= position1 && i < position2) {
+            if (i % 2 != 0) {
                 expResult[0].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
                 expResult[1].addGene(new DefaultGene<>(i));
             } else {
@@ -95,12 +90,9 @@ public class TowPointsCrossoverFunctionIT {
                 expResult[0].addGene(new DefaultGene<>(i));
             }
         }
-        assertArrayEquals(expResult[0].getChromosome(),
-                result[0].getChromosome());
-        assertArrayEquals(expResult[1].getChromosome(),
-                result[1].getChromosome());
-
+        assertArrayEquals(result[0].getChromosome(),
+                expResult[0].getChromosome());
+        assertArrayEquals(result[1].getChromosome(),
+                expResult[1].getChromosome());
     }
-
-
 }

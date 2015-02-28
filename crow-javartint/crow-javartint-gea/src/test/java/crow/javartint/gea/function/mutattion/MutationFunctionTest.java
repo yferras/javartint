@@ -35,7 +35,7 @@ import static org.junit.Assert.*;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class MutationFunctionIT {
+public class MutationFunctionTest {
 
     @BeforeClass
     public static void setUpClass() {

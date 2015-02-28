@@ -22,20 +22,20 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.gea.function.crossover.CrossoverFunctionIT;
-import crow.javartint.gea.function.crossover.MultiPointsCrossoverFunctionIT;
-import crow.javartint.gea.function.crossover.SinglePointCrossoverFunctionIT;
-import crow.javartint.gea.function.crossover.TowPointsCrossoverFunctionIT;
+import crow.javartint.gea.function.crossover.CrossoverFunctionTest;
+import crow.javartint.gea.function.crossover.MultiPointsCrossoverFunctionTest;
+import crow.javartint.gea.function.crossover.SinglePointCrossoverFunctionTest;
+import crow.javartint.gea.function.crossover.TowPointsCrossoverFunctionTest;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
-import crow.javartint.gea.function.mutattion.BinaryMutationFunctionIT;
-import crow.javartint.gea.function.mutattion.MutationFunctionIT;
+import crow.javartint.gea.function.mutattion.BinaryMutationFunctionTest;
+import crow.javartint.gea.function.mutattion.MutationFunctionTest;
 import crow.javartint.gea.function.scaling.*;
-import crow.javartint.gea.gene.ArrayGeneIT;
-import crow.javartint.gea.gene.DefaultGeneIT;
-import crow.javartint.gea.genome.DefaultGenomeIT;
-import crow.javartint.gea.util.GenomeFilterIT;
+import crow.javartint.gea.gene.ArrayGeneTest;
+import crow.javartint.gea.gene.DefaultGeneTest;
+import crow.javartint.gea.genome.DefaultGenomeTest;
+import crow.javartint.gea.util.GenomeFilterTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,16 +50,16 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         {
-                DefaultGeneIT.class,
-                GenomeFilterIT.class,
-                ArrayGeneIT.class,
-                DefaultGenomeIT.class,
-                CrossoverFunctionIT.class,
-                MultiPointsCrossoverFunctionIT.class,
-                SinglePointCrossoverFunctionIT.class,
-                TowPointsCrossoverFunctionIT.class,
-                MutationFunctionIT.class,
-                BinaryMutationFunctionIT.class,
+                DefaultGeneTest.class,
+                GenomeFilterTest.class,
+                ArrayGeneTest.class,
+                DefaultGenomeTest.class,
+                CrossoverFunctionTest.class,
+                MultiPointsCrossoverFunctionTest.class,
+                SinglePointCrossoverFunctionTest.class,
+                TowPointsCrossoverFunctionTest.class,
+                MutationFunctionTest.class,
+                BinaryMutationFunctionTest.class,
                 AbstractScalingMethodTest.class,
                 LinearRankScalingMethodTest.class,
                 RankScalingMethodTest.class,

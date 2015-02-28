@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class DefaultGenomeIT {
+public class DefaultGenomeTest {
 
     private static final Gene<Integer> GENE1 = new DefaultGene<>(1);
     private static final Gene<Double[]> GENE2 = new DoubleArrayGene(new Double[]{1.0, 5.0, 9.0});
@@ -45,7 +45,7 @@ public class DefaultGenomeIT {
     private static final Gene<?>[] GENES = new Gene[]{
         GENE1, GENE2, GENE3, GENE4};
 
-    public DefaultGenomeIT() {
+    public DefaultGenomeTest() {
     }
 
     @BeforeClass
