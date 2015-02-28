@@ -34,9 +34,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class SinglePointCrossoverFunctionIT {
+public class SinglePointCrossoverFunctionTest {
 
-    public SinglePointCrossoverFunctionIT() {
+    public SinglePointCrossoverFunctionTest() {
     }
 
     @BeforeClass

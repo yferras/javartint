@@ -35,9 +35,9 @@ import static org.junit.Assert.*;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class CrossoverFunctionIT {
+public class CrossoverFunctionTest {
 
-    public CrossoverFunctionIT() {
+    public CrossoverFunctionTest() {
     }
 
     @BeforeClass

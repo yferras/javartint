@@ -32,7 +32,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class ProbabilisticFunctionIT {
+public class ProbabilisticFunctionTest {
 
     @BeforeClass
     public static void setUpClass() {

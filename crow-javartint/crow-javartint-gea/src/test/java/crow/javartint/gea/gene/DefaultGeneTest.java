@@ -31,9 +31,9 @@ import static org.junit.Assert.assertFalse;
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class DefaultGeneIT {
+public class DefaultGeneTest {
 
-    public DefaultGeneIT() {
+    public DefaultGeneTest() {
     }
 
     @BeforeClass

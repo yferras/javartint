@@ -34,7 +34,7 @@ import static org.junit.Assert.assertArrayEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class BinaryMutationFunctionIT {
+public class BinaryMutationFunctionTest {
 
     @BeforeClass
     public static void setUpClass() {
