@@ -68,7 +68,7 @@ import org.junit.runners.Suite;
                 BinaryGenomeGenFunctionTest.class,
                 TspGenomeGenFunctionTest.class,
                 RangeGenomeGenFunctionTest.class,
-                AbstractGeneticAlgorithmTest.class,
+                AbstractGeneticAlgorithmIT.class
         }
 )
 public class GeaITSuite {
