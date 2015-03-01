@@ -84,8 +84,8 @@ public class TowPointsCrossoverFunctionTest {
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();
         expResult[1] = new DefaultGenome<>();
-        int position1 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 2);
-        int position2 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 1);
+        int position1 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 1);
+        int position2 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE);
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
             if (i >= position1 && i < position2) {
                 expResult[0].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
