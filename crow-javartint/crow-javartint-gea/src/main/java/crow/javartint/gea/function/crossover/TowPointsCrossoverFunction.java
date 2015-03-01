@@ -66,8 +66,8 @@ public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
     protected T[] recombine(T parent1, T parent2)
             throws CloneNotSupportedException {
         Genome[] offspring = new Genome[2];
-        offspring[0] = ((AbstractGenome) parent1).clone();
-        offspring[1] = ((AbstractGenome) parent2).clone();
+        offspring[0] = ((Genome) parent1).clone();
+        offspring[1] = ((Genome) parent2).clone();
 
         int numberOfGenes = parent1.size();
         int position1 = getRandomGenerator().nextInt(numberOfGenes - 1);
@@ -76,7 +76,7 @@ public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
             position2 = getRandomGenerator().nextInt(numberOfGenes);
         }
         for (int i = position1; i < position2; i++) {
-            Gene aux = offspring[0].getGene(i);
+            Gene<?> aux = offspring[0].getGene(i);
             offspring[0].setGene(i, offspring[1].getGene(i));
             offspring[1].setGene(i, aux);
         }

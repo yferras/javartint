@@ -67,11 +67,11 @@ public class SinglePointCrossoverFunction<T extends Genome<? extends Gene<?>>>
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
         int numberOfGenes = parent1.size();
         Genome[] offspring = new Genome[2];
-        offspring[0] = ((AbstractGenome)parent1).clone();
-        offspring[1] = ((AbstractGenome)parent2).clone();
+        offspring[0] = ((Genome)parent1).clone();
+        offspring[1] = ((Genome)parent2).clone();
         int position = getRandomGenerator().nextInt(numberOfGenes);
         for (int i = 0; i < position; i++) {
-            Gene aux = offspring[0].getGene(i);
+            Gene<?> aux = offspring[0].getGene(i);
             offspring[0].setGene(i, offspring[1].getGene(i));
             offspring[1].setGene(i, aux);
         }
