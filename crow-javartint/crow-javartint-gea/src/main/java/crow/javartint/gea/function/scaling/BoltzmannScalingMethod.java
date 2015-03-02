@@ -24,6 +24,7 @@ package crow.javartint.gea.function.scaling;
 
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.util.MathUtil;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ import java.util.List;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
 public final class BoltzmannScalingMethod<T extends Genome<? extends Gene<?>>>
         extends AbstractScalingMethod<T> {
@@ -66,7 +67,7 @@ public final class BoltzmannScalingMethod<T extends Genome<? extends Gene<?>>>
         if (boltzmannTemp < BOLTZMANN_MIN_TEMP) {
             boltzmannTemp = BOLTZMANN_MIN_TEMP;
         }
-        final double divider = mean(genomes) / boltzmannTemp;
+        final double divider = MathUtil.mean(genomes) / boltzmannTemp;
         for (T genome : genomes) {
             genome.setFitness(genome.getFitness() / divider);
         }

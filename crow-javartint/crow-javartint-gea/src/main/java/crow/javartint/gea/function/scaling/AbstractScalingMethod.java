@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
 public abstract class AbstractScalingMethod<T extends Genome<? extends Gene<?>>>
         implements Function<List<T>, List<T>> {
@@ -98,11 +98,4 @@ public abstract class AbstractScalingMethod<T extends Genome<? extends Gene<?>>>
         return list;
     }
 
-    protected double mean(List<T> genomes) {
-        double sum = 0.0;
-        for (T genome : genomes) {
-            sum += genome.getFitness();
-        }
-        return sum / genomes.size();
-    }
 }

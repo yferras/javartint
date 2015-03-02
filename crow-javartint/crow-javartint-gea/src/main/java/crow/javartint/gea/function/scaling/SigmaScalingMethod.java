@@ -24,6 +24,7 @@ package crow.javartint.gea.function.scaling;
 
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.util.MathUtil;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ import java.util.List;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
 public final class SigmaScalingMethod<T extends Genome<? extends Gene<?>>>
         extends AbstractScalingMethod<T> {
@@ -45,19 +46,10 @@ public final class SigmaScalingMethod<T extends Genome<? extends Gene<?>>>
 
     @Override
     protected void scale(List<T> genomes) {
-        final Double mean;
-        final double sigma = Math.sqrt(variance(genomes, mean = mean(genomes)));
+        final Double mean = MathUtil.mean(genomes);
+        final double sigma = Math.sqrt(MathUtil.variance(genomes, mean));
         for (T genome : genomes) {
             genome.setFitness((genome.getFitness() - mean) / sigma);
         }
-    }
-
-    double variance(List<T> genomes, Double meanValue) {
-        double sum = 0.0;
-        for (T genome : genomes) {
-            double diff = genome.getFitness() - meanValue;
-            sum += diff * diff;
-        }
-        return sum / genomes.size();
     }
 }
