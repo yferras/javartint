@@ -23,13 +23,16 @@ package crow.javartint.gea;
  */
 
 import crow.javartint.core.ErrorBasedAlgorithm;
+import crow.javartint.core.ThresholdBasedAlgorithm;
 import crow.javartint.core.constraint.ConstraintType;
+import crow.javartint.core.constraint.MaxErrorConstraint;
 import crow.javartint.core.constraint.MaxIterationsConstraint;
 import crow.javartint.core.constraint.MinErrorConstraint;
 import crow.javartint.core.util.AlgorithmEvent;
 import crow.javartint.core.util.ExecutionEndListener;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.SolutionChangeListener;
+import crow.javartint.core.util.function.Function;
 import crow.javartint.gea.function.crossover.SinglePointCrossoverFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunction;
@@ -53,8 +56,8 @@ public class AbstractGeneticAlgorithmIT {
 
     @Test
     public void testAccept2() {
-        final DecoderFunction<DefaultGenome<IntegerArrayGene>> genomeDecoderFunction =
-                new DecoderFunction<DefaultGenome<IntegerArrayGene>>() {
+        final DecoderFunction<Double, DefaultGenome<IntegerArrayGene>> genomeDecoderFunction =
+                new DecoderFunction<Double, DefaultGenome<IntegerArrayGene>>() {
                     /**
                      * Function to decode the binary genome to decimal number.
                      * y(x) = x
@@ -76,23 +79,38 @@ public class AbstractGeneticAlgorithmIT {
                             stringBuilder.append(integer);
                         }
                         int b = Integer.valueOf(stringBuilder.toString(), 2);
-                        return sign * (a % 100 + b % 100 / 100.0);
+                        return sign * (a % 100 + b % 1000 / 1000.0);
                     }
                 };
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(genomeDecoderFunction);
 
-        geneticAlgorithm.addConstraint(new MaxIterationsConstraint<>(ConstraintType.OPTIONAL, 1000L));
-        geneticAlgorithm.addConstraint(new MinErrorConstraint<GeneticAlgorithm>(ConstraintType.OPTIONAL, .1));
+        final Function<Double, Double> targetFunction = new Function<Double, Double>() {
+            @Override
+            public Double evaluate(Double x) {
+                return - x * x / 100.0 + x / 10.0 + 5.0;
+            }
+        };
+
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(genomeDecoderFunction, targetFunction);
+
+        geneticAlgorithm.addConstraint(new MaxIterationsConstraint<>(ConstraintType.OPTIONAL, 5000L));
+        geneticAlgorithm.addConstraint(new MinErrorConstraint<GeneticAlgorithm>(ConstraintType.OPTIONAL, .0005));
 
         geneticAlgorithm.addSolutionChangeListener(new SolutionChangeListener() {
             @SuppressWarnings("unchecked")
             @Override
             public void solutionUpdated(AlgorithmEvent event) {
                 GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
-                String r = MessageFormat.format("{2,number,integer} ms\tGeneration:\t{0}\tSolution:\t{1}",
+                DefaultGenome<IntegerArrayGene> genome = ga.getSolution();
+                Double decodedValue = genomeDecoderFunction.evaluate(genome);
+                Double result = targetFunction.evaluate(decodedValue);
+                String r = MessageFormat.format(
+                        "{0,number,0000}\t\t{1}\t\t\t\t{2,number,#.000}\t\t{3,number,#.0000}\t\t{4,number,#.0000}",
+                        ga.getElapsedTime(),
                         ga.getIterations(),
-                        genomeDecoderFunction.evaluate((DefaultGenome<IntegerArrayGene>) event.getSolution()),
-                        ga.getElapsedTime());
+                        decodedValue,
+                        result,
+                        ga.getCurrentError()
+                );
                 System.out.println(r);
             }
         });
@@ -111,28 +129,30 @@ public class AbstractGeneticAlgorithmIT {
             }
         });
         Thread thread = new Thread(geneticAlgorithm);
+        System.out.println("Time (ms)\tGeneration\t\tX\t\t\tf(x)\t\tE");
         thread.run();
     }
 
 
-    private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<DefaultGenome<IntegerArrayGene>>
+    private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<DefaultGenome<IntegerArrayGene>, Double>
             implements ErrorBasedAlgorithm<DefaultGenome<IntegerArrayGene>> {
         /**
          * Initializes this class.
          *
          * @param decoder function to decode the genome
          */
-        public GeneticAlgorithm(DecoderFunction<DefaultGenome<IntegerArrayGene>> decoder) {
-            super(500, Optimize.MAX, decoder,
-                    new BinaryGenomeGenFunction(new int[]{1, 7, 7}),
+        public GeneticAlgorithm(DecoderFunction<Double, DefaultGenome<IntegerArrayGene>> decoder,
+                                Function<Double, Double> targetFunction) {
+            super(100, Optimize.MAX, decoder, targetFunction,
+                    new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
                     new SinglePointCrossoverFunction<DefaultGenome<IntegerArrayGene>>(),
                     new BinaryMutationFunction<DefaultGenome<IntegerArrayGene>>(),
-                    new ElitismSelectionFunction<DefaultGenome<IntegerArrayGene>>(10, Optimize.MAX));
+                    new ElitismSelectionFunction<DefaultGenome<IntegerArrayGene>>(5, Optimize.MAX));
         }
 
         @Override
         public Double getCurrentError() {
-            return 100.0 - getBestFitnessScore();
+            return Math.abs(getBestFitnessScore() - 5.25);
         }
 
         @Override

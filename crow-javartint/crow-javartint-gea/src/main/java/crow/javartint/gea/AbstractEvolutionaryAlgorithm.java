@@ -40,10 +40,12 @@ import java.util.List;
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <D> Type of decoded value.
+ *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Gene<?>>>
+public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Gene<?>>, D>
         extends AbstractAlgorithm<T>
         implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
@@ -59,9 +61,11 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
 
     private double bestFitnessScore;
 
-    private DecoderFunction<T> decoder;
+    final private DecoderFunction<D, T> decoder;
 
-    private GeneratorFunction<T> generator;
+    final private Function<Double, D> targetFunction;
+
+    final private GeneratorFunction<T> generator;
 
     /**
      * Initializes this class.
@@ -73,10 +77,12 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
      */
     public AbstractEvolutionaryAlgorithm(int populationSize,
                                          Optimize optimize,
-                                         DecoderFunction<T> decoder,
+                                         DecoderFunction<D, T> decoder,
+                                         Function<Double, D> targetFunction,
                                          GeneratorFunction<T> generator) {
         this.populationSize = populationSize;
         this.decoder = decoder;
+        this.targetFunction = targetFunction;
         this.generator = generator;
         setPopulation(new ArrayList<T>(populationSize));
         setOptimize(optimize);
@@ -95,7 +101,8 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
     @SuppressWarnings("unchecked")
     protected void updateFitnessScores() {
         for (T genome : getPopulation()) {
-            Double currentFitnessScore = getDecoder().evaluate(genome);
+            D decodedValue = getDecoder().evaluate(genome);
+            Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);
             genome.setFitness(currentFitnessScore);
 
             if ((getOptimize() == Optimize.MAX
@@ -161,7 +168,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
      *
      * @return an instance of {@link crow.javartint.core.util.function.Function}
      */
-    public Function<Double, T> getDecoder() {
+    public Function<D, T> getDecoder() {
         return decoder;
     }
 
@@ -239,9 +246,19 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
 
     /**
      * Gets the function that generates genome
+     *
      * @return the instance of {@link crow.javartint.gea.function.generator.GeneratorFunction}
      */
     public GeneratorFunction<T> getGenerator() {
         return generator;
+    }
+
+    /**
+     * Gets the target function to optimize.
+     *
+     * @return function to optimize
+     */
+    public Function<Double, D> getTargetFunction() {
+        return targetFunction;
     }
 }

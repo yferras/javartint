@@ -23,6 +23,7 @@ package crow.javartint.gea;
  */
 
 import crow.javartint.core.util.Optimize;
+import crow.javartint.core.util.function.Function;
 import crow.javartint.gea.function.crossover.CrossoverFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
@@ -38,11 +39,13 @@ import java.util.*;
  * Abstract class that provides a sets of functionalities to subclassing genetic algorithms
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <D> Type of decoded value.
+ *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?>>>
-        extends AbstractEvolutionaryAlgorithm<T> {
+public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
+        extends AbstractEvolutionaryAlgorithm<T, D> {
 
     private final CrossoverFunction<T> crossoverFunction;
 
@@ -64,12 +67,13 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
      */
     public AbstractGeneticAlgorithm(int populationSize,
                                     Optimize optimize,
-                                    DecoderFunction<T> decoder,
+                                    DecoderFunction<D, T> decoder,
+                                    Function<Double, D> targetFunction,
                                     GeneratorFunction<T> generator,
                                     CrossoverFunction<T> crossoverFunction,
                                     MutationFunction<T> mutationFunction,
                                     SelectionFunction<T> selectionFunction) {
-        super(populationSize, optimize, decoder, generator);
+        super(populationSize, optimize, decoder, targetFunction, generator);
         this.crossoverFunction = crossoverFunction;
         this.mutationFunction = mutationFunction;
         this.selectionFunction = selectionFunction;

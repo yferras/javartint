@@ -29,9 +29,11 @@ import crow.javartint.gea.genome.Genome;
 /**
  * This interface is used to create a functions to decode genomes.
  *
+ * @param <D> Type of decoded result.
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public interface DecoderFunction<T extends Genome<? extends Gene<?>>> extends Function<Double, T> {
+public interface DecoderFunction<D ,T extends Genome<? extends Gene<?>>> extends Function<D, T> {
 }
