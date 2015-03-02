@@ -56,14 +56,7 @@ public class SusSelectionFunction<T extends Genome<? extends Gene<?>>>
         if (getScalingMethod() != null) {
             getScalingMethod().evaluate(genomes);
         }
-        Collections.sort(genomes, new Comparator<T>() {
-
-            @Override
-            public int compare(T o1, T o2) {
-                double diff = o1.getFitness() - o2.getFitness();
-                return (diff == 0) ? 0 : (diff > 0) ? -1 : 1;
-            }
-        });
+        Collections.sort(genomes);
         double worstFitness = genomes.get(genomes.size() - 1).getFitness();
         if (worstFitness < 0) {
             double absValue = Math.abs(worstFitness);
