@@ -36,6 +36,13 @@ import crow.javartint.gea.genome.Genome;
 public interface CrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends ProbabilisticFunction<T[], T[]> {
 
+        /**
+         * Accepts an array of genomes (parents) to perform the crossover process,
+         * and retrieves an array containing the offspring.
+         *
+         * @param params array of parents.
+         * @return offspring.
+         */
         @Override
         T[] evaluate(T... params);
 }
