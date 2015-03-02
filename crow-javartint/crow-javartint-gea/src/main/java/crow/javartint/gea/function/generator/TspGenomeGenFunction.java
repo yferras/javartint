@@ -48,7 +48,7 @@ public class TspGenomeGenFunction
     }
 
     /**
-     * Generates genomes for TSPS
+     * Generates genomes for TSP
      *
      * @param lengthsOfGenes the array that contains the length of each gene.
      * @return generate genome
