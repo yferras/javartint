@@ -23,17 +23,17 @@ package crow.javartint.core.constraint;
  */
 
 import crow.javartint.core.Solution;
-import crow.javartint.core.ThresholdBasedAlgorithm;
+import crow.javartint.core.Algorithm;
 
 /**
  * This interface allows to create algorithms based on numeric threshold.
  *
  * @param <N> Any derived class from {@link Number} abstract class.
- * @param <A> Any derived class from {@link ThresholdBasedAlgorithm} interface.
+ * @param <A> Any derived class from {@link Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public interface NumericThresholdConstraint<N extends Number & Comparable<N>, A extends ThresholdBasedAlgorithm<? extends Solution, N>>
+public interface NumericThresholdConstraint<N extends Number & Comparable<N>, A extends Algorithm<? extends Solution>>
         extends ThresholdConstraint<N, A> {
 
 }

@@ -23,9 +23,7 @@ package crow.javartint.gea;
  */
 
 import crow.javartint.core.ErrorBasedAlgorithm;
-import crow.javartint.core.ThresholdBasedAlgorithm;
 import crow.javartint.core.constraint.ConstraintType;
-import crow.javartint.core.constraint.MaxErrorConstraint;
 import crow.javartint.core.constraint.MaxIterationsConstraint;
 import crow.javartint.core.constraint.MinErrorConstraint;
 import crow.javartint.core.util.AlgorithmEvent;
@@ -155,9 +153,5 @@ public class AbstractGeneticAlgorithmIT {
             return Math.abs(getBestFitnessScore() - 5.25);
         }
 
-        @Override
-        public Double getThreshold() {
-            return null;
-        }
     }
 }

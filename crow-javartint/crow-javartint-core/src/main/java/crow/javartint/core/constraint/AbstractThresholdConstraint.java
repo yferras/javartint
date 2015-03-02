@@ -23,18 +23,18 @@ package crow.javartint.core.constraint;
  */
 
 import crow.javartint.core.Solution;
-import crow.javartint.core.ThresholdBasedAlgorithm;
+import crow.javartint.core.Algorithm;
 
 /**
  * This abstract class can be used to create constrains to algorithms based on
  * thresholds.
  *
  * @param <T> Any derived class from {@link Comparable} interface
- * @param <A> Any derived class from {@link ThresholdBasedAlgorithm} interface.
+ * @param <A> Any derived class from {@link Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.2
+ * @version 0.0.3
  */
-public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A extends ThresholdBasedAlgorithm<? extends Solution, T>>
+public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A extends Algorithm<? extends Solution>>
         extends AbstractConstraint<A> implements ThresholdConstraint<T, A> {
 
     private T threshold;

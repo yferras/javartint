@@ -27,10 +27,10 @@ package crow.javartint.core;
  *
  * @param <S> Any class derived from {@link Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.2
+ * @version 0.0.3
  */
 public interface ErrorBasedAlgorithm<S extends Solution>
-        extends ThresholdBasedAlgorithm<S, Double> {
+        extends Algorithm<S> {
 
     /**
      * Gets the actual error.
