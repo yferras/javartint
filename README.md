@@ -11,24 +11,46 @@ This is a personal project, which pursues as a goal the creation of various clas
 
 ## Core
 
-### Main concepts
-
-*Algorithm*: is an abstraction of the concept and the basis of all the algorithms implemented in derived libraries.
-
-*Solution*: this is the result that should return an algorithm at the end of its execution.
-
-*Constraint*: is a condition that is imposed upon the algorithm to stop or continue its execution.
-
-## Genetic and Evotulionary Algorithms
+At the core are the classes and interfaces of high level. There are also utility classes. 
 
 ### Main concepts
 
-*Gen*: is the basic unit that stores information.
+#### Algorithm
 
-*Genome*: is a biological specialization of the solution; the information represented by this solution is somehow encoded in a set of genes.
+*Algorithm*, is an abstraction of the concept and the basis of all the algorithms implemented in derived libraries.
 
-*Crossing*: is the process in which two or more genomes provide your information to be combined and get new individuals (offspring) with new features.
+#### Solution
 
-*Mutation*: is the process by which the information of an individual (genome) is altered to modify its features.
+This is the result that should return an algorithm at the end of its execution.
 
-*Selection*: is the process by which certain individuals (genomes) are selected to fulfill any role.
+#### Constraint
+
+A condition that is imposed upon the algorithm to stop or continue its execution. For example, an algorithm's execution can be restricted by the execution time, number of iterations or any other parameter.
+
+#### Function
+
+*Function (Math)*: a relationship or expression involving one or more variables.  
+
+## Genetic and Evotulionary Algorithms (GEA)
+
+### Main concepts
+
+#### Gen
+
+Is the basic unit that stores information.
+
+#### Genome
+
+Biological specialization of the solution; the information represented by this solution is somehow encoded in a set of genes.
+
+#### Crossing
+
+The process in which two or more genomes provide your information to be combined and get new individuals (offspring) with new features.
+
+#### Mutation
+
+The process by which the information of an individual (genome) is altered to modify its features.
+
+#### Selection
+
+The process by which certain individuals (genomes) are selected to fulfill any role.
