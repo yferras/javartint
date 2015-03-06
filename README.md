@@ -31,7 +31,7 @@ A condition that is imposed upon the algorithm to stop or continue its execution
 
 *Function (Math)*: a relationship or expression involving one or more variables.  
 
-## Genetic and Evotulionary Algorithms (GEA)
+## Genetic and Evolutionary Algorithms (GEA)
 
 ### Main concepts
 
