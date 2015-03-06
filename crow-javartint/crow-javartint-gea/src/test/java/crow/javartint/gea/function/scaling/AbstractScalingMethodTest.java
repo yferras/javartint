@@ -26,6 +26,7 @@ import crow.javartint.core.util.Optimize;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.util.MathUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -103,7 +104,6 @@ public class AbstractScalingMethodTest {
     @Test
     public void testMean() throws Exception {
         System.out.println("mean");
-        DefaultScalingMethod scalingMethod = new DefaultScalingMethod(Optimize.MAX);
         List<Genome<Gene<?>>> list = new ArrayList<>();
         double exp = 0.0;
         for (int i = 0; i < 10; i++) {
@@ -112,8 +112,7 @@ public class AbstractScalingMethodTest {
             exp += i + 1;
         }
         exp /= 10;
-        @SuppressWarnings("unchecked")
-        double r = scalingMethod.mean(list);
+        double r = MathUtil.mean(list);
         assertEquals(exp, r, 0.0);
     }
 
