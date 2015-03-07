@@ -60,6 +60,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
      * @param populationSize    the population limit
      * @param optimize          the optimization way
      * @param decoder           function to decode the genome
+     * @param targetFunction    function to optimize
      * @param generator         function to generate genomes
      * @param crossoverFunction function to crossing process
      * @param mutationFunction  function to mutation process

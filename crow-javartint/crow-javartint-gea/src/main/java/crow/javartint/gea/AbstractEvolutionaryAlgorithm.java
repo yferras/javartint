@@ -73,6 +73,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends G
      * @param populationSize the population limit
      * @param optimize       the optimization way
      * @param decoder        function to decode the genome
+     * @param targetFunction function to optimize
      * @param generator      function to generate genomes
      */
     public AbstractEvolutionaryAlgorithm(int populationSize,
