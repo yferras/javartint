@@ -40,7 +40,6 @@ import java.util.*;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
- *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
@@ -57,6 +56,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
 
     /**
      * Initializes this class.
+     *
      * @param populationSize    the population limit
      * @param optimize          the optimization way
      * @param decoder           function to decode the genome
@@ -79,6 +79,28 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
         this.mutationFunction = mutationFunction;
         this.selectionFunction = selectionFunction;
         selectionFunctionToParents = new RandomSelectionFunction<>();
+    }
+
+    /**
+     * Initializes this class.
+     *
+     * @param populationSize    the population limit
+     * @param optimize          the optimization way
+     * @param decoder           function to decode the genome
+     * @param targetFunction    function to optimize
+     * @param generator         function to generate genomes
+     * @param crossoverFunction function to crossing process
+     * @param mutationFunction  function to mutation process
+     */
+    public AbstractGeneticAlgorithm(int populationSize,
+                                    Optimize optimize,
+                                    DecoderFunction<D, T> decoder,
+                                    Function<Double, D> targetFunction,
+                                    GeneratorFunction<T> generator,
+                                    CrossoverFunction<T> crossoverFunction,
+                                    MutationFunction<T> mutationFunction) {
+        this(populationSize, optimize, decoder, targetFunction, generator,
+                crossoverFunction, mutationFunction, null);
     }
 
     /**
