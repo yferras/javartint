@@ -55,8 +55,8 @@ import crow.javartint.gea.genome.DefaultGenome;
  */
 public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultGene<Integer>>> {
 
-    public ExchangeMutationOperator(double mutationRate) {
-        super(mutationRate);
+    public ExchangeMutationOperator(double probability) {
+        super(probability);
     }
 
     public ExchangeMutationOperator() {

@@ -67,13 +67,13 @@ public class DisplacementMutationFunction extends AbstractMutationFunction<Defau
 
     private int minSpanSize;
 
-    public DisplacementMutationFunction(double mutationRate) {
-        this(mutationRate, 2);
+    public DisplacementMutationFunction(double probability) {
+        this(probability, 2);
     }
 
-    public DisplacementMutationFunction(double mutationRate,
+    public DisplacementMutationFunction(double probability,
                                         int minSpanSize) {
-        super(mutationRate);
+        super(probability);
         this.minSpanSize = minSpanSize;
     }
 

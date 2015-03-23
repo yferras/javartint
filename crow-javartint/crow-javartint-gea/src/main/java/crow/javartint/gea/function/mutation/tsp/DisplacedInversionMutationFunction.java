@@ -70,13 +70,13 @@ public class DisplacedInversionMutationFunction extends AbstractMutationFunction
 
     private int minSpanSize;
 
-    public DisplacedInversionMutationFunction(double mutationRate) {
-        this(mutationRate, 2);
+    public DisplacedInversionMutationFunction(double probability) {
+        this(probability, 2);
     }
 
-    public DisplacedInversionMutationFunction(double mutationRate,
+    public DisplacedInversionMutationFunction(double probability,
                                               int minSpanSize) {
-        super(mutationRate);
+        super(probability);
         this.minSpanSize = minSpanSize;
     }
 

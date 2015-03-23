@@ -68,13 +68,13 @@ public class InversionMutationFunction extends AbstractMutationFunction<DefaultG
 
     private int minSpanSize;
 
-    public InversionMutationFunction(double mutationRate) {
-        this(mutationRate, 2);
+    public InversionMutationFunction(double probability) {
+        this(probability, 2);
     }
 
-    public InversionMutationFunction(double mutationRate,
+    public InversionMutationFunction(double probability,
                                      int minSpanSize) {
-        super(mutationRate);
+        super(probability);
         this.minSpanSize = minSpanSize;
     }
 

@@ -68,13 +68,13 @@ public class ScrambleMutationFunction extends AbstractMutationFunction<DefaultGe
 
     private int minSpanSize;
 
-    public ScrambleMutationFunction(double mutationRate) {
-        this(mutationRate, 2);
+    public ScrambleMutationFunction(double probability) {
+        this(probability, 2);
     }
 
-    public ScrambleMutationFunction(double mutationRate,
+    public ScrambleMutationFunction(double probability,
                                     int minSpanSize) {
-        super(mutationRate);
+        super(probability);
         this.minSpanSize = minSpanSize;
     }
 
