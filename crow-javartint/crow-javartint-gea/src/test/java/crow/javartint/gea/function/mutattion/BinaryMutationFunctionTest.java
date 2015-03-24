@@ -72,7 +72,7 @@ public class BinaryMutationFunctionTest {
 
         BinaryMutationFunction<DefaultGenome<IntegerArrayGene>> function = new
                 BinaryMutationFunction<>();
-        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_5);
+        function.setRandom(GenomeConstants.RANDOM_GENERATOR_5);
         genome = function.evaluate(genome);
         assertArrayEquals(clone.getChromosome(), genome.getChromosome());
     }

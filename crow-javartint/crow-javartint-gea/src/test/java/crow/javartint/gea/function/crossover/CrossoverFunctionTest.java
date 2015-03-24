@@ -22,13 +22,14 @@ package crow.javartint.gea.function.crossover;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.GenomeConstants;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
 import org.junit.*;
+
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -209,10 +210,10 @@ public class CrossoverFunctionTest {
     @Test
     public void testSetRandomGenerator() {
         final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
-        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_1);
+        function.setRandom(GenomeConstants.RANDOM_GENERATOR_1);
         assertEquals(
                 GenomeConstants.RANDOM_GENERATOR_1,
-                function.getRandomGenerator()
+                function.getRandom()
         );
     }
 
@@ -220,7 +221,7 @@ public class CrossoverFunctionTest {
             extends AbstractCrossoverFunction<Genome<? extends Gene<?>>> {
 
         private DefaultCrossoverFunction() {
-            super(0.75, new RandomGenerator() {
+            super(0.75, new Random() {
                 @Override
                 public int nextInt(int n) {
                     return 0;

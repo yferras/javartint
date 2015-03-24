@@ -22,10 +22,10 @@ package crow.javartint.gea.function.crossover;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.AbstractGenome;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process on two
@@ -49,8 +49,8 @@ import crow.javartint.gea.genome.Genome;
 public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends AbstractCrossoverFunction<T> {
 
-    public TowPointsCrossoverFunction(double probability, RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+    public TowPointsCrossoverFunction(double probability, Random random) {
+        super(probability, random);
     }
 
     public TowPointsCrossoverFunction(double probability) {
@@ -70,10 +70,10 @@ public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
         offspring[1] = ((Genome) parent2).clone();
 
         int numberOfGenes = parent1.size();
-        int position1 = getRandomGenerator().nextInt(numberOfGenes - 1);
+        int position1 = getRandom().nextInt(numberOfGenes - 1);
         int position2 = position1;
         while (position2 <= position1) {
-            position2 = getRandomGenerator().nextInt(numberOfGenes);
+            position2 = getRandom().nextInt(numberOfGenes);
         }
         for (int i = position1; i < position2; i++) {
             Gene<?> aux = offspring[0].getGene(i);

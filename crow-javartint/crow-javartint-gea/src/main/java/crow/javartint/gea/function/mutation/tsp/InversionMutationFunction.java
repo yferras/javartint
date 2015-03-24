@@ -22,7 +22,6 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
@@ -91,8 +90,7 @@ public class InversionMutationFunction extends AbstractMutationFunction<DefaultG
     @Override
     protected DefaultGenome<DefaultGene<Integer>> mutate(DefaultGenome<DefaultGene<Integer>> subject)
             throws CloneNotSupportedException {
-        RandomGenerator randomGenerator = new RandomGenerator.SystemDefaultRandomGenerator();
-        int start = randomGenerator.nextInt(subject.size() - getMinSpanSize());
+        int start = getRandom().nextInt(subject.size() - getMinSpanSize());
         int end = start + getMinSpanSize();
         List genes = Arrays.asList(subject.getChromosome());
         List section = genes.subList(start, end);

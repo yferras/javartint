@@ -84,7 +84,7 @@ public class SinglePointCrossoverFunctionTest {
         expResult[0] = new DefaultGenome<>();
         expResult[1] = new DefaultGenome<>();
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
-            if (i < function.getRandomGenerator().nextInt(CHROMOSOME_SIZE)) {
+            if (i < function.getRandom().nextInt(CHROMOSOME_SIZE)) {
                 expResult[0].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
                 expResult[1].addGene(new DefaultGene<>(i));
             } else {

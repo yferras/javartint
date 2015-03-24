@@ -66,10 +66,10 @@ public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGe
     @Override
     protected DefaultGenome<DefaultGene<Integer>> mutate(DefaultGenome<DefaultGene<Integer>> subject)
             throws CloneNotSupportedException {
-        int pos1 = getRandomGenerator().nextInt(subject.size() - 1);
-        int pos2 = getRandomGenerator().nextInt(subject.size());
+        int pos1 = getRandom().nextInt(subject.size() - 1);
+        int pos2 = getRandom().nextInt(subject.size());
         while (pos2 == pos1) {
-            pos2 = getRandomGenerator().nextInt(subject.size());
+            pos2 = getRandom().nextInt(subject.size());
         }
         DefaultGene<Integer> gene1 = subject.getGene(pos1);
         subject.setGene(pos1, subject.getGene(pos2));

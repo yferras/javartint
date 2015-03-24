@@ -135,7 +135,7 @@ public class MutationFunctionTest {
         );
         final DefaultMutationFunction function = new
                 DefaultMutationFunction();
-        function.setRandomGenerator(GenomeConstants.RANDOM_GENERATOR_4);
+        function.setRandom(GenomeConstants.RANDOM_GENERATOR_4);
         final Genome<? extends Gene<?>> result = function.evaluate(genome.clone());
         assertFalse(genome == result);
         assertNull(result.getGene(0).getData());

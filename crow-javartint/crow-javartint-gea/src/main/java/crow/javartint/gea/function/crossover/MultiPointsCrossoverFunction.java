@@ -22,9 +22,10 @@ package crow.javartint.gea.function.crossover;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process if in each
@@ -52,8 +53,8 @@ import crow.javartint.gea.genome.Genome;
 public class MultiPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends AbstractCrossoverFunction<T> {
 
-    public MultiPointsCrossoverFunction(double probability, RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+    public MultiPointsCrossoverFunction(double probability, Random random) {
+        super(probability, random);
     }
 
     public MultiPointsCrossoverFunction(double probability) {
@@ -74,7 +75,7 @@ public class MultiPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
                 ((Genome) parent2).clone()
         };
         for (int i = 0; i < numberOfGenes; i++) {
-            if (getRandomGenerator().nextDouble() <= getProbability()) {
+            if (getRandom().nextDouble() <= getProbability()) {
                 Gene aux = offspring[0].getGene(i);
                 offspring[0].setGene(i, offspring[1].getGene(i));
                 offspring[1].setGene(i, aux);

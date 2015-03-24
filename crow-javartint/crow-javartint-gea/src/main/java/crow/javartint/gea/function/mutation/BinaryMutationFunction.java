@@ -22,9 +22,10 @@ package crow.javartint.gea.function.mutation;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Class that represents an binary mutation function.
@@ -36,8 +37,8 @@ import crow.javartint.gea.genome.Genome;
 public class BinaryMutationFunction<T extends Genome<IntegerArrayGene>>
         extends AbstractMutationFunction<T> {
 
-    public BinaryMutationFunction(double probability, RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+    public BinaryMutationFunction(double probability, Random random) {
+        super(probability, random);
     }
 
     public BinaryMutationFunction(double probability) {
@@ -54,7 +55,7 @@ public class BinaryMutationFunction<T extends Genome<IntegerArrayGene>>
         do {
             for (IntegerArrayGene gene : subject) {
                 for (int i = 0; i < gene.length(); i++) {
-                    if (getRandomGenerator().nextDouble() < getProbability()) {
+                    if (getRandom().nextDouble() < getProbability()) {
                         int val = gene.getAllele(i);
                         gene.setAllele(i, val == 0 ? 1 : 0);
                         muted = true;

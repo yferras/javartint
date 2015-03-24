@@ -22,15 +22,15 @@ package crow.javartint.gea.function.crossover;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.AbstractGenome;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process in a single
  * random point.
- *
+ * <p/>
  * <p>
  * The example shows two genomes, each one has six genes, and the raised random
  * position is 2.<br />
@@ -50,8 +50,8 @@ import crow.javartint.gea.genome.Genome;
 public class SinglePointCrossoverFunction<T extends Genome<? extends Gene<?>>>
         extends AbstractCrossoverFunction<T> {
 
-    public SinglePointCrossoverFunction(double probability, RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+    public SinglePointCrossoverFunction(double probability, Random random) {
+        super(probability, random);
     }
 
     public SinglePointCrossoverFunction(double probability) {
@@ -67,9 +67,9 @@ public class SinglePointCrossoverFunction<T extends Genome<? extends Gene<?>>>
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
         int numberOfGenes = parent1.size();
         Genome[] offspring = new Genome[2];
-        offspring[0] = ((Genome)parent1).clone();
-        offspring[1] = ((Genome)parent2).clone();
-        int position = getRandomGenerator().nextInt(numberOfGenes);
+        offspring[0] = ((Genome) parent1).clone();
+        offspring[1] = ((Genome) parent2).clone();
+        int position = getRandom().nextInt(numberOfGenes);
         for (int i = 0; i < position; i++) {
             Gene<?> aux = offspring[0].getGene(i);
             offspring[0].setGene(i, offspring[1].getGene(i));

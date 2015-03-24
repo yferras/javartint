@@ -22,10 +22,11 @@ package crow.javartint.gea.function.mutation;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.core.util.function.AbstractProbabilisticFunction;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Abstract class that represents mutation function.
@@ -40,19 +41,19 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
     /**
      * Constructor, initializes instances with the given parameters.
      *
-     * @param probability     probability of mutation
-     * @param randomGenerator random generator
+     * @param probability probability of mutation
+     * @param random      random instance
      */
     protected AbstractMutationFunction(double probability,
-                                       RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+                                       Random random) {
+        super(probability, random);
     }
 
     /**
      * Constructor, initializes instances with probability of mutation
-     * specified by {@code probability} parameter and random generator is an
+     * specified by {@code probability} parameter and random  is an
      * instance of
-     * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * {@link java.util.Random}.
      *
      * @param probability probability of mutation
      */
@@ -63,7 +64,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
     /**
      * Default constructor, initializes instances with probability of mutation
      * equals to {@code .05} and random generator is an instance of
-     * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * {@link java.util.Random}.
      */
     protected AbstractMutationFunction() {
         super(.05);
@@ -75,7 +76,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
      *
      * @param subject individual which will be mutate
      * @return mutated genome
-     * @throws java.lang.CloneNotSupportedException if 
+     * @throws java.lang.CloneNotSupportedException if
      */
     protected abstract T mutate(T subject) throws CloneNotSupportedException;
 
@@ -100,19 +101,18 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?
      * @return if the mutation process is done, a copy of mutated
      * genome is returned, otherwise if a CloneNotSupportedException
      * is raised  a null value is returned.
-     *
      * @throws java.lang.IllegalArgumentException see {@link #validate(crow.javartint.gea.genome.Genome)}
      */
     @SuppressWarnings("unchecked")
     @Override
     public T evaluate(T params) {
         validate(params);
-        if (getRandomGenerator().nextDouble() > getProbability()) {
+        if (getRandom().nextDouble() > getProbability()) {
             return params;
         }
         try {
             return mutate((T) params.clone());
-        } catch (CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;
         }

@@ -22,8 +22,9 @@ package crow.javartint.core.util.function;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import org.junit.*;
+
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -138,28 +139,26 @@ public class ProbabilisticFunctionTest {
 
     @Test
     public void testGetRandomGenerator1() {
-        System.out.println("getRandomGenerator (not null)");
+        System.out.println("getRandom (not null)");
         final DefaultProbabilisticFunction<Double> function =
                 new DefaultProbabilisticFunction<>(0.5);
-        assertNotNull(function.getRandomGenerator());
+        assertNotNull(function.getRandom());
     }
 
     @Test
     public void testGetRandomGenerator2() {
-        System.out.println("getRandomGenerator (instance of " +
-                "SystemDefaultRandomGenerator)");
+        System.out.println("getRandom (instance of Random)");
         final DefaultProbabilisticFunction<Double> function =
                 new DefaultProbabilisticFunction<>(0.5);
-        assertTrue(function.getRandomGenerator()
-                instanceof RandomGenerator.SystemDefaultRandomGenerator);
+        assertTrue(function.getRandom() instanceof Random);
     }
 
     private static class DefaultProbabilisticFunction<T extends Number>
             extends AbstractProbabilisticFunction<Double, T[]> {
 
         private DefaultProbabilisticFunction(double probability,
-                                             RandomGenerator randomGenerator) {
-            super(probability, randomGenerator);
+                                             Random random) {
+            super(probability, random);
         }
 
         private DefaultProbabilisticFunction(double probability) {
@@ -168,7 +167,7 @@ public class ProbabilisticFunctionTest {
 
         @Override
         public Double evaluate(T... params) {
-            if (getRandomGenerator().nextDouble() > getProbability()) {
+            if (getRandom().nextDouble() > getProbability()) {
                 return params[0].doubleValue() + params[1].doubleValue();
             }
             return params[0].doubleValue() - params[1].doubleValue();

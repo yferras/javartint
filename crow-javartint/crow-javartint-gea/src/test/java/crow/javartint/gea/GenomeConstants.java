@@ -22,16 +22,17 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
+
+import java.util.Random;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class GenomeConstants {
-    public static final RandomGenerator RANDOM_GENERATOR_1 = new
-            RandomGenerator() {
+    public static final Random RANDOM_GENERATOR_1 = new
+            Random() {
                 @Override
                 public int nextInt(int n) {
                     return n / 2 - 1;
@@ -43,8 +44,8 @@ public class GenomeConstants {
                 }
             };
 
-    public static final RandomGenerator RANDOM_GENERATOR_2 = new
-            RandomGenerator() {
+    public static final Random RANDOM_GENERATOR_2 = new
+            Random() {
                 private int aux = 0;
 
                 @Override
@@ -67,8 +68,8 @@ public class GenomeConstants {
     /**
      * Generates alternates constant probabilities
      */
-    public static final RandomGenerator RANDOM_GENERATOR_3 = new
-            RandomGenerator() {
+    public static final Random RANDOM_GENERATOR_3 = new
+            Random() {
                 private int aux = -1;
                 private Integer n;
 
@@ -108,8 +109,8 @@ public class GenomeConstants {
     /**
      * Used in BinaryMutationFunctionIT
      */
-    public static final RandomGenerator RANDOM_GENERATOR_4 = new
-            RandomGenerator() {
+    public static final Random RANDOM_GENERATOR_4 = new
+            Random() {
 
 
                 @Override
@@ -126,8 +127,8 @@ public class GenomeConstants {
     /**
      * Used in BinaryMutationFunctionIT
      */
-    public static final RandomGenerator RANDOM_GENERATOR_5 = new
-            RandomGenerator() {
+    public static final Random RANDOM_GENERATOR_5 = new
+            Random() {
 
                 private int index = 0;
                 private final double[] pos = { .025, .1, .1, .2, .3, .4, .5, .6, .1, .2, .3, .4, .01, .1, .2, .3, .4, .5, .6, .1, .02, .3, .04 };

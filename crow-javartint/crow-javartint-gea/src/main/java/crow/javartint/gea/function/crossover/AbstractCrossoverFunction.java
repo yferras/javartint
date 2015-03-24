@@ -22,10 +22,11 @@ package crow.javartint.gea.function.crossover;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
 import crow.javartint.core.util.function.AbstractProbabilisticFunction;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
+
+import java.util.Random;
 
 /**
  * Abstract class that represents crossover function.
@@ -41,19 +42,18 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
     /**
      * Constructor, initializes instances with the given parameters.
      *
-     * @param probability     probability of crossover
-     * @param randomGenerator random generator
+     * @param probability probability of crossover
+     * @param random      random instance
      */
     protected AbstractCrossoverFunction(double probability,
-                                        RandomGenerator randomGenerator) {
-        super(probability, randomGenerator);
+                                        Random random) {
+        super(probability, random);
     }
 
     /**
      * Constructor, initializes instances with probability of crossover
-     * specified by {@code probability} parameter and random generator is an
-     * instance of
-     * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * specified by {@code probability} parameter and random is an
+     * instance of {@link java.util.Random}.
      *
      * @param probability probability of crossover
      */
@@ -63,8 +63,7 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
 
     /**
      * Default constructor, initializes instances with probability of crossover
-     * equals to {@code .75} and random generator is an instance of
-     * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     protected AbstractCrossoverFunction() {
         super(.75);
@@ -108,7 +107,7 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
     @Override
     public T[] evaluate(T... params) {
         validate(params);
-        double randomProbability = getRandomGenerator().nextDouble();
+        double randomProbability = getRandom().nextDouble();
         if (randomProbability > getProbability() ||
                 params[0].equals(params[1])) {
             return params.clone();

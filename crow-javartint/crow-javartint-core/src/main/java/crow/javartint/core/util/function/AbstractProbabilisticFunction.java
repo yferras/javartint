@@ -22,7 +22,8 @@ package crow.javartint.core.util.function;
  * #L%
  */
 
-import crow.javartint.core.util.RandomGenerator;
+
+import java.util.Random;
 
 /**
  * Class that implements partially {@link ProbabilisticFunction} to create
@@ -37,37 +38,37 @@ abstract public class AbstractProbabilisticFunction<R, P>
         implements ProbabilisticFunction<R, P> {
 
     private double probability;
-    private RandomGenerator randomGenerator;
+    private Random random;
 
     /**
      * Constructor, initializes instances with the given parameters.
      * Internally calls {@link #setProbability(double)} and
-     * {@link #setRandomGenerator(crow.javartint.core.util.RandomGenerator)}
+     * {@link #setRandom(java.util.Random)}
      *
      * @param probability     probability of crossover
-     * @param randomGenerator random generator
-     * @throws java.lang.IllegalArgumentException see {@link #setProbability}
-     * and see {@link #setRandomGenerator}
+     * @param random          random instance
+     * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
+     * and see {@link #setRandom(java.util.Random)}
      */
     protected AbstractProbabilisticFunction(double probability,
-                                            RandomGenerator randomGenerator)
+                                            Random random)
             throws IllegalArgumentException {
         setProbability(probability);
-        setRandomGenerator(randomGenerator);
+        setRandom(random);
     }
 
     /**
      * Constructor, initializes instances with probability specified by
-     * {@code probability} parameter and random generator is an instance of
-     * {@link crow.javartint.core.util.RandomGenerator.SystemDefaultRandomGenerator}.
+     * {@code probability} parameter and random is an instance of
+     * {@link java.util.Random}.
      *
      * @param probability probability of crossover
      * @throws java.lang.IllegalArgumentException see {@link #setProbability}
-     * and see {@link #setRandomGenerator}
+     * and see {@link #setRandom}
      */
     protected AbstractProbabilisticFunction(double probability)
             throws IllegalArgumentException {
-        this(probability, new RandomGenerator.SystemDefaultRandomGenerator());
+        this(probability, new Random());
     }
 
     @Override
@@ -86,18 +87,17 @@ abstract public class AbstractProbabilisticFunction<R, P>
     }
 
     @Override
-    public RandomGenerator getRandomGenerator() {
-        return randomGenerator;
+    public Random getRandom() {
+        return random;
     }
 
     @Override
-    public void setRandomGenerator(final RandomGenerator randomGenerator)
+    public void setRandom(final Random random)
             throws IllegalArgumentException {
-        if (randomGenerator == null) {
-            throw new IllegalArgumentException("'randomGenerator' can't be " +
-                    "null");
+        if (random == null) {
+            throw new IllegalArgumentException("'random' can't be null");
         }
-        this.randomGenerator = randomGenerator;
+        this.random = random;
     }
 
 }
