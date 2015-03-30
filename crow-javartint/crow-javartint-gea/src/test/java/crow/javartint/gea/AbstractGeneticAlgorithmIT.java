@@ -66,7 +66,7 @@ public class AbstractGeneticAlgorithmIT {
                     @Override
                     public Double evaluate(DefaultGenome<IntegerArrayGene> params) {
 
-                        int sign = params.getGene(1).getAllele(0) == 0 ? -1 : 1;
+                        int sign = params.getGene(0).getAllele(0) == 0 ? -1 : 1;
                         StringBuilder stringBuilder = new StringBuilder();
                         for (Integer integer : params.getGene(1)) {
                             stringBuilder.append(integer);
