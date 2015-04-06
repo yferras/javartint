@@ -125,7 +125,7 @@ public class DefaultGenomeTest {
         System.out.println("hasNext");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        boolean result = instance.hasNext();
+        boolean result = instance.iterator().hasNext();
         assertEquals(true, result);
     }
 
@@ -148,7 +148,7 @@ public class DefaultGenomeTest {
         System.out.println("next");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         instance.setChromosome(GENES);
-        Object result = instance.next();
+        Object result = instance.iterator().next();
         assertTrue(result != null);
     }
 
@@ -160,7 +160,7 @@ public class DefaultGenomeTest {
         System.out.println("remove");
         DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
         try {
-            instance.remove();
+            instance.iterator().remove();
         } catch (UnsupportedOperationException e) {
             assertTrue(true);
         }

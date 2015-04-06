@@ -25,10 +25,7 @@ package crow.javartint.gea.genome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class is an abstract implementation of {@link crow.javartint.gea.genome.Genome}.
@@ -46,22 +43,10 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
      * Genome fitness.
      */
     protected double fitness;
-    private Iterator<T> iterator;
 
     protected AbstractGenome() {
         fitness = 0.0;
         genes = new LinkedList<>();
-    }
-
-    private Iterator<T> getIterator() {
-        if (iterator == null) {
-            setIterator(this.genes.iterator());
-        }
-        return iterator;
-    }
-
-    private void setIterator(Iterator<T> iterator) {
-        this.iterator = iterator;
     }
 
     @Override
@@ -96,24 +81,8 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     }
 
     @Override
-    public boolean hasNext() {
-        return getIterator().hasNext();
-    }
-
-    @Override
     public Iterator<T> iterator() {
-        setIterator(null);
-        return getIterator();
-    }
-
-    @Override
-    public T next() {
-        return getIterator().next();
-    }
-
-    @Override
-    public void remove() {
-        //getIterator().remove();
+        return new GenomeIterator();
     }
 
     @Override
@@ -192,5 +161,32 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
             stringBuilder.append("; ").append(getGene(i));
         }
         return stringBuilder.append(")").append("}").toString();
+    }
+
+    private class GenomeIterator implements Iterator<T> {
+
+        private int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size();
+        }
+
+        @Override
+        public T next() {
+            try {
+                int i = cursor;
+                T next = getGene(i);
+                cursor = i + 1;
+                return next;
+            } catch (IndexOutOfBoundsException e) {
+                throw new NoSuchElementException();
+            }
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+        }
     }
 }

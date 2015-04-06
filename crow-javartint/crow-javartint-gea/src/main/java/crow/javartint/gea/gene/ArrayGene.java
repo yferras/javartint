@@ -34,9 +34,7 @@ import java.util.NoSuchElementException;
  * @version 0.0.2
  */
 public class ArrayGene<T> extends AbstractGene<T[]> implements
-        Cloneable, Iterable<T>, Iterator<T> {
-
-    private int iteratorIndex = 0;
+        Cloneable, Iterable<T> {
 
     public ArrayGene(T[] data) {
         super(data);
@@ -81,29 +79,8 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
     }
 
     @Override
-    public boolean hasNext() {
-        return iteratorIndex < getData().length;
-    }
-
-    @Override
     public Iterator<T> iterator() {
-        iteratorIndex = 0;
-        return this;
-    }
-
-    @Override
-    public T next() {
-        int index = iteratorIndex;
-        if (index >= getData().length) {
-            throw new NoSuchElementException();
-        }
-        iteratorIndex = index + 1;
-        return getData()[index];
-    }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+        return new ArrayGeneIterator();
     }
 
     /**
@@ -125,5 +102,32 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
+    }
+
+    private class ArrayGeneIterator implements Iterator<T> {
+
+        private int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < length();
+        }
+
+        @Override
+        public T next() {
+            try {
+                int i = cursor;
+                T next = getAllele(i);
+                cursor = i + 1;
+                return next;
+            } catch (IndexOutOfBoundsException e) {
+                throw new NoSuchElementException();
+            }
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+        }
     }
 }

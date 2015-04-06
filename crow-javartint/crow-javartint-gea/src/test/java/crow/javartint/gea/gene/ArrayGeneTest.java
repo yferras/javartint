@@ -24,6 +24,9 @@ package crow.javartint.gea.gene;
 
 import org.junit.*;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -165,5 +168,49 @@ public class ArrayGeneTest {
             fail("clone raised an exception");
         }
     }
+
+    /**
+     * Test of Iterable
+     */
+    @Test
+    public void testIterable() {
+        int i = 0;
+        for (Double value : INSTANCE) {
+            assertEquals(INSTANCE.getAllele(i++), value);
+        }
+    }
+
+    /**
+     * Test of Iterable throw exception
+     */
+    @Test
+    public void testIterableThrowException() {
+        Iterator<Double> iterator = INSTANCE.iterator();
+        try {
+            while (iterator.hasNext()) {
+                iterator.next();
+            }
+            iterator.next();
+        } catch (NoSuchElementException e) {
+            assertTrue(true);
+        }
+    }
+
+    /**
+     * Test of Iterable throw exception
+     */
+    @Test
+    public void testIterableThrowException1() {
+        Iterator<Double> iterator = INSTANCE.iterator();
+        try {
+            if (iterator.hasNext()) {
+                iterator.remove();
+            }
+        } catch (UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+
 
 }
