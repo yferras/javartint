@@ -31,7 +31,8 @@ import java.util.Random;
 /**
  * Specific mutation function to real valued genomes.
  *
- * @param <T> Any derived class from Genome<? extends Gene<Double>>
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}<code>&lt;? extends </code>
+ * {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
