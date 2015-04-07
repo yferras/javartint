@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.mutattion;
+package crow.javartint.gea.function.mutation;
 
 /*
  * #%L
