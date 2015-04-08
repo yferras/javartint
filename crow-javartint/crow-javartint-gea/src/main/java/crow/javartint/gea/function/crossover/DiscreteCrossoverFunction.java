@@ -29,6 +29,7 @@ import crow.javartint.gea.genome.Genome;
  * <p>
  * Specific crossover function, that performs an exchange of variable values between the individuals.
  * For each position the parent who contributes its variable to the offspring is chosen randomly with equal probability.
+ * This function can be applied to any type of genome.
  * </p>
  * <p>
  * Example shows two genomes, each one has six genes.<br />

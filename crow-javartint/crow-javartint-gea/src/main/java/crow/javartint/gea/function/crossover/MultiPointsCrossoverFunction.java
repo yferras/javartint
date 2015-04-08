@@ -29,7 +29,8 @@ import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process if in each
- * iteration the random probability is in the threshold.
+ * iteration the random probability is in the threshold. This function can be
+ * applied to any type of genome.
  * <p>
  * While iterates through the genes of the genomes, if the generated random
  * number is less than or equal to the probability of crossover then the

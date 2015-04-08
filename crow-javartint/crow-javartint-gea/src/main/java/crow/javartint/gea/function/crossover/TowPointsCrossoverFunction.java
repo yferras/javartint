@@ -29,7 +29,7 @@ import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process on two
- * random points.
+ * random points. This function can be applied to any type of genome.
  * <p>
  * Example shows two genomes, each one has six genes, and the raised random
  * numbers are 2 (inclusive) and 4 (exclusive).<br />
