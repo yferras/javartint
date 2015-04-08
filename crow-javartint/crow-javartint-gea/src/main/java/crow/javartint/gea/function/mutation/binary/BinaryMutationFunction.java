@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.mutation;
+package crow.javartint.gea.function.mutation.binary;
 
 /*
  * #%L
@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation;
  * #L%
  */
 
+import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.IntegerArrayGene;
 import crow.javartint.gea.genome.Genome;
 

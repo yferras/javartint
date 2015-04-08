@@ -26,7 +26,7 @@ import crow.javartint.gea.function.crossover.*;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
-import crow.javartint.gea.function.mutation.BinaryMutationFunctionTest;
+import crow.javartint.gea.function.mutation.binary.BinaryMutationFunctionTest;
 import crow.javartint.gea.function.mutation.MutationFunctionTest;
 import crow.javartint.gea.function.mutation.numeric.RealValuedMutationFunctionTest;
 import crow.javartint.gea.function.scaling.*;
