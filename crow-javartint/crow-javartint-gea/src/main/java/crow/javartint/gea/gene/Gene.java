@@ -45,4 +45,6 @@ public interface Gene<T> extends Cloneable, Serializable {
      */
     void setData(T data);
 
+    Gene<T> clone() throws CloneNotSupportedException;
+
 }
