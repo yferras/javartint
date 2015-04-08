@@ -1,4 +1,9 @@
-package crow.javartint.gea.gene;
+/**
+ * This package contains the a set of mutation functions specialized in binary coded genomes.
+ *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ */
+package crow.javartint.gea.function.mutation.binary;
 
 /*
  * #%L
@@ -21,30 +26,3 @@ package crow.javartint.gea.gene;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import java.io.Serializable;
-
-/**
- * This interface represents a generic gene.
- *
- * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
- * @param <T> Any class
- */
-public interface Gene<T> extends Cloneable, Serializable {
-
-    /**
-     * Gets the data.
-     * @return the data
-     */
-    T getData();
-
-    /**
-     * Sets the data.
-     * @param data data argument to set.
-     */
-    void setData(T data);
-
-    Gene<T> clone() throws CloneNotSupportedException;
-
-}

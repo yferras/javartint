@@ -34,7 +34,7 @@ import crow.javartint.core.util.function.Function;
 import crow.javartint.gea.function.crossover.SinglePointCrossoverFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunction;
-import crow.javartint.gea.function.mutation.BinaryMutationFunction;
+import crow.javartint.gea.function.mutation.binary.BinaryMutationFunction;
 import crow.javartint.gea.function.selection.ElitismSelectionFunction;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;

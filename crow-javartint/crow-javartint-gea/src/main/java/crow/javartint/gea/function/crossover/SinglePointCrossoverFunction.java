@@ -25,11 +25,12 @@ package crow.javartint.gea.function.crossover;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
+import java.text.MessageFormat;
 import java.util.Random;
 
 /**
  * Specific crossover function, that performs the crossover process in a single
- * random point.
+ * random point. This function can be applied to any type of genome.
  * <p/>
  * <p>
  * The example shows two genomes, each one has six genes, and the raised random
