@@ -22,10 +22,7 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.gea.function.crossover.CrossoverFunctionTest;
-import crow.javartint.gea.function.crossover.MultiPointsCrossoverFunctionTest;
-import crow.javartint.gea.function.crossover.SinglePointCrossoverFunctionTest;
-import crow.javartint.gea.function.crossover.TowPointsCrossoverFunctionTest;
+import crow.javartint.gea.function.crossover.*;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
@@ -50,28 +47,29 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-        {
-                DefaultGeneTest.class,
-                GenomeFilterTest.class,
-                ArrayGeneTest.class,
-                DefaultGenomeTest.class,
-                CrossoverFunctionTest.class,
-                MultiPointsCrossoverFunctionTest.class,
-                SinglePointCrossoverFunctionTest.class,
-                TowPointsCrossoverFunctionTest.class,
-                MutationFunctionTest.class,
-                BinaryMutationFunctionTest.class,
-                AbstractScalingMethodTest.class,
-                LinearRankScalingMethodTest.class,
-                RankScalingMethodTest.class,
-                SigmaScalingMethodTest.class,
-                BoltzmannScalingMethodTest.class,
-                BinaryGenomeGenFunctionTest.class,
-                TspGenomeGenFunctionTest.class,
-                RangeGenomeGenFunctionTest.class,
-                AbstractGeneticAlgorithmIT.class,
-                RealValuedMutationFunctionTest.class
-        }
+    {
+        DefaultGeneTest.class,
+        GenomeFilterTest.class,
+        ArrayGeneTest.class,
+        DefaultGenomeTest.class,
+        CrossoverFunctionTest.class,
+        MultiPointsCrossoverFunctionTest.class,
+        SinglePointCrossoverFunctionTest.class,
+        TowPointsCrossoverFunctionTest.class,
+        MutationFunctionTest.class,
+        BinaryMutationFunctionTest.class,
+        AbstractScalingMethodTest.class,
+        LinearRankScalingMethodTest.class,
+        RankScalingMethodTest.class,
+        SigmaScalingMethodTest.class,
+        BoltzmannScalingMethodTest.class,
+        BinaryGenomeGenFunctionTest.class,
+        TspGenomeGenFunctionTest.class,
+        RangeGenomeGenFunctionTest.class,
+        AbstractGeneticAlgorithmIT.class,
+        RealValuedMutationFunctionTest.class,
+        DiscreteCrossoverFunctionTest.class
+    }
 )
 public class GeaITSuite {
 
