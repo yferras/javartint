@@ -22,7 +22,7 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
-import crow.javartint.gea.gene.IntegerArrayGene;
+import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Random;
@@ -34,7 +34,7 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class BinaryGenomeGenFunction
-        extends AbstractGenomeGeneratorFunction<DefaultGenome<IntegerArrayGene>> {
+        extends AbstractGenomeGeneratorFunction<DefaultGenome<ByteArrayGene>> {
 
     /**
      * Initializes the number of genes and the length of each gene.
@@ -61,20 +61,20 @@ public class BinaryGenomeGenFunction
      *
      * @param lengthsOfGenes the array that contains the length of each gene.
      * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
-     * with {@link crow.javartint.gea.gene.IntegerArrayGene}
+     * with {@link crow.javartint.gea.gene.ByteArrayGene}
      */
     @Override
-    protected DefaultGenome<IntegerArrayGene> generate(int[] lengthsOfGenes) {
+    protected DefaultGenome<ByteArrayGene> generate(int[] lengthsOfGenes) {
         Random random = new Random();
-        IntegerArrayGene[] genes = new IntegerArrayGene[lengthsOfGenes.length];
+        ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
         for (int i = 0; i < lengthsOfGenes.length; i++) {
-            Integer[] data = new Integer[lengthsOfGenes[i]];
+            Byte[] data = new Byte[lengthsOfGenes[i]];
             for (int j = 0; j < data.length; j++) {
-                data[j] = random.nextInt(2);
+                data[j] = (byte)random.nextInt(2);
             }
-            genes[i] = new IntegerArrayGene(data);
+            genes[i] = new ByteArrayGene(data);
         }
-        DefaultGenome<IntegerArrayGene> genome = new DefaultGenome<>();
+        DefaultGenome<ByteArrayGene> genome = new DefaultGenome<>();
         genome.setChromosome(genes);
         return genome;
     }
