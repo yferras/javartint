@@ -40,7 +40,7 @@ import crow.javartint.gea.genome.Genome;
  * @param <D> Type of decoded value.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 0.0.1
  */
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
         extends AbstractGeneticAlgorithm<T, D> {
