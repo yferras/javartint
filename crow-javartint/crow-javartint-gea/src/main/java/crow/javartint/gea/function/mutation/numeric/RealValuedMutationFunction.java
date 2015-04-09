@@ -32,146 +32,146 @@ import java.util.Random;
  * Specific mutation function to real valued genomes.
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}<code>&lt;? extends </code>
- * {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
+ *            {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class RealValuedMutationFunction<T extends Genome<? extends Gene<Double>>>
-        extends AbstractMutationFunction<T> {
+	extends AbstractMutationFunction<T> {
 
-    private double[] mutationRanges;
-    private double[] mutationPrecisions;
+	private double[] ranges;
+	private double[] precisions;
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     *
-     * @param probability        probability of mutation
-     * @param random             random instance
-     * @param mutationRanges     array with the mutation ranges, one per dimension.
-     * @param mutationPrecisions array with mutation precisions, one per dimension.
-     * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
-     */
-    public RealValuedMutationFunction(double probability, Random random, double[] mutationRanges,
-                                      double[] mutationPrecisions) {
-        super(probability, random);
-        if (mutationPrecisions.length != mutationRanges.length) {
-            throw new IllegalArgumentException("the length of 'mutationPrecisions' and 'mutationRanges' mismatch.");
-        }
-        this.mutationRanges = mutationRanges;
-        this.mutationPrecisions = mutationPrecisions;
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability probability of mutation
+	 * @param random      random instance
+	 * @param ranges      array with the mutation ranges, one per dimension. (Typical values from 0.1 to 10E-6)
+	 * @param precisions  array with mutation precisions, one per dimension. (Typical values from 4 to 20)
+	 * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
+	 */
+	public RealValuedMutationFunction(double probability, Random random, double[] ranges,
+	                                  double[] precisions) {
+		super(probability, random);
+		if (precisions.length != ranges.length) {
+			throw new IllegalArgumentException("the length of 'precisions' and 'ranges' mismatch.");
+		}
+		this.ranges = ranges;
+		this.precisions = precisions;
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * By default it uses as random generator an instance of {@link java.util.Random}.
-     *
-     * @param probability        probability of mutation
-     * @param mutationRanges     array with the mutation ranges, one per dimension.
-     * @param mutationPrecisions array with mutation precisions, one per dimension.
-     * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
-     */
-    public RealValuedMutationFunction(double probability, double[] mutationRanges, double[] mutationPrecisions) {
-        this(probability, new Random(), mutationRanges, mutationPrecisions);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * By default it uses as random generator an instance of {@link java.util.Random}.
+	 *
+	 * @param probability probability of mutation
+	 * @param ranges      array with the mutation ranges, one per dimension.
+	 * @param precisions  array with mutation precisions, one per dimension.
+	 * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
+	 */
+	public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) {
+		this(probability, new Random(), ranges, precisions);
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * By default it uses as random generator an instance of {@link java.util.Random},
-     * and <code>probability = 0.05</code>.
-     *
-     * @param mutationRanges     array with the mutation ranges, one per dimension.
-     * @param mutationPrecisions array with mutation precisions, one per dimension.
-     * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
-     */
-    public RealValuedMutationFunction(double[] mutationRanges, double[] mutationPrecisions) {
-        this(.05, mutationRanges, mutationPrecisions);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * By default it uses as random generator an instance of {@link java.util.Random},
+	 * and <code>probability = 0.05</code>.
+	 *
+	 * @param ranges     array with the mutation ranges, one per dimension.
+	 * @param precisions array with mutation precisions, one per dimension.
+	 * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
+	 */
+	public RealValuedMutationFunction(double[] ranges, double[] precisions) {
+		this(.05, ranges, precisions);
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * By default it uses as random generator an instance of {@link java.util.Random},
-     * and <code>probability = 0.05</code>. This is useful when all dimensions have the
-     * same values.
-     *
-     * @param mutationRange     mutation range.
-     * @param mutationPrecision mutation precisions.
-     * @param length            the number of dimensions.
-     */
-    public RealValuedMutationFunction(double mutationRange, double mutationPrecision, int length) {
-        super();
-        mutationRanges = new double[length];
-        mutationPrecisions = new double[length];
-        for (int i = 0; i < length; i++) {
-            mutationRanges[i] = mutationRange;
-            mutationPrecisions[i] = mutationPrecision;
-        }
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * By default it uses as random generator an instance of {@link java.util.Random},
+	 * and <code>probability = 0.05</code>. This is useful when all dimensions have the
+	 * same values.
+	 *
+	 * @param mutationRange     mutation range.
+	 * @param mutationPrecision mutation precisions.
+	 * @param length            the number of dimensions.
+	 */
+	public RealValuedMutationFunction(double mutationRange, double mutationPrecision, int length) {
+		super();
+		ranges = new double[length];
+		precisions = new double[length];
+		for (int i = 0; i < length; i++) {
+			ranges[i] = mutationRange;
+			precisions[i] = mutationPrecision;
+		}
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameter.
-     * By default it uses as random generator an instance of {@link java.util.Random},
-     * <code>probability = 0.05</code>, <code>mutationRange = 0.1</code> and <code>mutationPrecision = 6</code>.
-     *
-     * @param length the number of dimensions.
-     */
-    public RealValuedMutationFunction(int length) {
-        this(.1, 6, length);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameter.
+	 * By default it uses as random generator an instance of {@link java.util.Random},
+	 * <code>probability = 0.05</code>, <code>mutationRange = 0.1</code> and <code>mutationPrecision = 6</code>.
+	 *
+	 * @param length the number of dimensions.
+	 */
+	public RealValuedMutationFunction(int length) {
+		this(.1, 6, length);
+	}
 
-    /**
-     * Ensures that parameters are valid.
-     *
-     * @param param parameter to validate.
-     * @throws IllegalArgumentException if <code>param</code> is <code>null</code>,
-     *                                  or the size of genome differs to the length of <code>mutationRanges</code>
-     */
-    @Override
-    protected void validate(T param) throws IllegalArgumentException {
-        super.validate(param);
-        if (param.size() != mutationRanges.length) {
-            throw new IllegalArgumentException("the size of genome and the length of 'mutationPrecisions' and 'mutationRanges' mismatch.");
-        }
-    }
+	/**
+	 * Ensures that parameters are valid.
+	 *
+	 * @param param parameter to validate.
+	 * @throws IllegalArgumentException if <code>param</code> is <code>null</code>,
+	 *                                  or the size of genome differs to the length of <code>ranges</code>
+	 */
+	@Override
+	protected void validate(T param) throws IllegalArgumentException {
+		super.validate(param);
+		if (param.size() != ranges.length) {
+			throw new IllegalArgumentException("the size of genome and the length of 'precisions' and 'ranges' mismatch.");
+		}
+	}
 
-    @Override
-    protected T mutate(T subject) throws CloneNotSupportedException {
-        boolean muted = false;
-        do {
-            int i = 0;
-            for (Gene<Double> gene : subject) {
-                if (getRandom().nextDouble() < getProbability()) {
-                    double r = mutationRanges[i];
-                    double k = mutationPrecisions[i];
-                    double u = getRandom().nextDouble();
-                    int s = getRandom().nextInt(2) == 0 ? -1 : 1;
-                    double a = Math.pow(2.0, -u * k);
-                    gene.setData(gene.getData() + s * r * a);
-                    muted = true;
-                }
-            }
-        } while (!muted);
-        return subject;
-    }
+	@Override
+	protected T mutate(T subject) throws CloneNotSupportedException {
+		boolean muted = false;
+		do {
+			int i = 0;
+			for (Gene<Double> gene : subject) {
+				if (getRandom().nextDouble() < getProbability()) {
+					double r = ranges[i];
+					double k = precisions[i];
+					double u = getRandom().nextDouble();
+					int s = getRandom().nextInt(2) == 0 ? -1 : 1;
+					double a = Math.pow(2.0, -u * k);
+					gene.setData(gene.getData() + s * r * a);
+					muted = true;
+				}
+			}
+		} while (!muted);
+		return subject;
+	}
 
-    /**
-     * Gets the mutation range from index.
-     *
-     * @param index index
-     * @return mutation range.
-     */
-    public double getMutationRange(int index) {
-        return mutationRanges[index];
-    }
+	/**
+	 * Gets the mutation range from index.
+	 *
+	 * @param index index
+	 * @return mutation range.
+	 */
+	public double getMutationRange(int index) {
+		return ranges[index];
+	}
 
-    /**
-     * Gets the mutation precision from index.
-     *
-     * @param index index
-     * @return mutation precision
-     */
-    public double getMutationPrecision(int index) {
-        return mutationPrecisions[index];
-    }
+	/**
+	 * Gets the mutation precision from index.
+	 *
+	 * @param index index
+	 * @return mutation precision
+	 */
+	public double getMutationPrecision(int index) {
+		return precisions[index];
+	}
 
 
 }
