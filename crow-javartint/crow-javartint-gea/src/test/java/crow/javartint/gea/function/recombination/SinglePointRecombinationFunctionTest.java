@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -34,9 +34,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class SinglePointCrossoverFunctionTest {
+public class SinglePointRecombinationFunctionTest {
 
-    public SinglePointCrossoverFunctionTest() {
+    public SinglePointRecombinationFunctionTest() {
     }
 
     @BeforeClass
@@ -50,7 +50,7 @@ public class SinglePointCrossoverFunctionTest {
     @Before
     public void setUp() {
         System.out.print(
-                SinglePointCrossoverFunction.class.getName().concat("."));
+                SinglePointRecombinationFunction.class.getName().concat("."));
     }
 
     @After
@@ -60,7 +60,7 @@ public class SinglePointCrossoverFunctionTest {
     @Test
     public void testSinglePointCrossoverFunction1() {
         System.out.println("SinglePointCrossoverFunction(probability)");
-        final Double probability = new SinglePointCrossoverFunction<>(1.0)
+        final Double probability = new SinglePointRecombinationFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
@@ -68,7 +68,7 @@ public class SinglePointCrossoverFunctionTest {
     @Test
     public void testSinglePointCrossoverFunction2() {
         System.out.println("SinglePointCrossoverFunction()");
-        final Double probability = new SinglePointCrossoverFunction<>()
+        final Double probability = new SinglePointRecombinationFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -77,8 +77,8 @@ public class SinglePointCrossoverFunctionTest {
     @Test
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
-        SinglePointCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new SinglePointCrossoverFunction<>(0.75, RANDOM_GENERATOR_1);
+        SinglePointRecombinationFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new SinglePointRecombinationFunction<>(0.75, RANDOM_GENERATOR_1);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();

@@ -24,7 +24,7 @@ package crow.javartint.gea;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.function.crossover.CrossoverFunction;
+import crow.javartint.gea.function.recombination.RecombinationFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.function.mutation.MutationFunction;
@@ -46,7 +46,7 @@ import java.util.*;
 public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
         extends AbstractEvolutionaryAlgorithm<T, D> {
 
-    private final CrossoverFunction<T> crossoverFunction;
+    private final RecombinationFunction<T> recombinationFunction;
 
     private final MutationFunction<T> mutationFunction;
 
@@ -64,7 +64,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
      * @param decoder           function to decode the genome
      * @param targetFunction    function to optimize
      * @param generator         function to generate genomes
-     * @param crossoverFunction function to crossing process
+     * @param recombinationFunction function to crossing process
      * @param mutationFunction  function to mutation process
      * @param selectionFunction function to selection process
      */
@@ -73,11 +73,11 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
                                     DecoderFunction<D, T> decoder,
                                     Function<Double, D> targetFunction,
                                     GeneratorFunction<T> generator,
-                                    CrossoverFunction<T> crossoverFunction,
+                                    RecombinationFunction<T> recombinationFunction,
                                     MutationFunction<T> mutationFunction,
                                     SelectionFunction<T> selectionFunction) {
         super(populationSize, optimize, decoder, targetFunction, generator);
-        this.crossoverFunction = crossoverFunction;
+        this.recombinationFunction = recombinationFunction;
         this.mutationFunction = mutationFunction;
         this.selectionFunction = selectionFunction;
         selectionFunctionToParents = new RandomSelectionFunction<>();
@@ -94,7 +94,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
      * @param decoder           function to decode the genome
      * @param targetFunction    function to optimize
      * @param generator         function to generate genomes
-     * @param crossoverFunction function to crossing process
+     * @param recombinationFunction function to crossing process
      * @param mutationFunction  function to mutation process
      */
     public AbstractGeneticAlgorithm(int populationSize,
@@ -102,10 +102,10 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
                                     DecoderFunction<D, T> decoder,
                                     Function<Double, D> targetFunction,
                                     GeneratorFunction<T> generator,
-                                    CrossoverFunction<T> crossoverFunction,
+                                    RecombinationFunction<T> recombinationFunction,
                                     MutationFunction<T> mutationFunction) {
         this(populationSize, optimize, decoder, targetFunction, generator,
-                crossoverFunction, mutationFunction, null);
+            recombinationFunction, mutationFunction, null);
     }
 
     /**
@@ -170,7 +170,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
         while (newGeneration.size() < getPopulationSize()) {
             List<T> parents = getSelectionFunctionToParents().evaluate(getPopulation());
             @SuppressWarnings("unchecked")
-            T[] offspring = getCrossoverFunction().evaluate(parents.get(0), parents.get(1));
+            T[] offspring = getRecombinationFunction().evaluate(parents.get(0), parents.get(1));
             for (T genome : offspring) {
                 getMutationFunction().evaluate(genome);
             }
@@ -188,12 +188,12 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
     }
 
     /**
-     * Gets the instance of crossover function.
+     * Gets the instance of recombination function.
      *
-     * @return the crossover function.
+     * @return the recombination function.
      */
-    public CrossoverFunction<T> getCrossoverFunction() {
-        return crossoverFunction;
+    public RecombinationFunction<T> getRecombinationFunction() {
+        return recombinationFunction;
     }
 
     /**

@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -27,7 +27,7 @@ import crow.javartint.gea.genome.Genome;
 
 /**
  * <p>
- * Specific crossover function, that performs an exchange of variable values between the individuals.
+ * Specific recombination function, that performs an exchange of variable values between the individuals.
  * For each position the parent who contributes its variable to the offspring is chosen randomly with equal probability.
  * This function can be applied to any type of genome.
  * </p>
@@ -38,16 +38,16 @@ import crow.javartint.gea.genome.Genome;
  * [GB0,GB1,GB2,GB3,GB4,GB5] // Parent B<br />
  * [ A , B , B , B , A , A ] // first random contribution<br />
  * [ A , A , A , B , B , A ] // second random contribution<br />
- * [GA0,GB1,GB2,GB3,GA4,GA5] // Child A after crossover process<br />
- * [GA0,GB1,GA2,GB3,GB4,GA5] // Child B after crossover process<br />
+ * [GA0,GB1,GB2,GB3,GA4,GA5] // Child A after recombination process<br />
+ * [GA0,GB1,GA2,GB3,GB4,GA5] // Child B after recombination process<br />
  * </code>
  * </p>
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class DiscreteCrossoverFunction<T extends Genome<? extends Gene<?>>>
-	extends AbstractCrossoverFunction<T> {
+public class DiscreteRecombinationFunction<T extends Genome<? extends Gene<?>>>
+	extends AbstractRecombinationFunction<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override

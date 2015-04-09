@@ -1,9 +1,9 @@
 /**
- * This package contains the a set of crossover functions specialized in real-valued coded genomes.
+ * This package contains the sub-API to create functions to recombination process.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-package crow.javartint.gea.function.crossover.numeric;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L

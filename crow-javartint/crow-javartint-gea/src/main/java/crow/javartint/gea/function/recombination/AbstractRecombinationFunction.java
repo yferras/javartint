@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -29,48 +29,48 @@ import crow.javartint.gea.genome.Genome;
 import java.util.Random;
 
 /**
- * Abstract class that represents crossover function.
+ * Abstract class that represents recombination function.
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
-abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<?>>>
+abstract public class AbstractRecombinationFunction<T extends Genome<? extends Gene<?>>>
         extends AbstractProbabilisticFunction<T[], T[]>
-        implements CrossoverFunction<T> {
+        implements RecombinationFunction<T> {
 
     /**
      * Constructor, initializes instances with the given parameters.
      *
-     * @param probability probability of crossover
+     * @param probability probability of recombination
      * @param random      random instance
      */
-    protected AbstractCrossoverFunction(double probability,
-                                        Random random) {
+    protected AbstractRecombinationFunction(double probability,
+                                            Random random) {
         super(probability, random);
     }
 
     /**
-     * Constructor, initializes instances with probability of crossover
+     * Constructor, initializes instances with probability of recombination
      * specified by {@code probability} parameter and random is an
      * instance of {@link java.util.Random}.
      *
-     * @param probability probability of crossover
+     * @param probability probability of recombination
      */
-    protected AbstractCrossoverFunction(double probability) {
+    protected AbstractRecombinationFunction(double probability) {
         super(probability);
     }
 
     /**
-     * Default constructor, initializes instances with probability of crossover
+     * Default constructor, initializes instances with probability of recombination
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
-    protected AbstractCrossoverFunction() {
+    protected AbstractRecombinationFunction() {
         super(.75);
     }
 
     /**
-     * Performs the specific crossover process. This method is called inside
+     * Performs the specific recombination process. This method is called inside
      * the method {@link #evaluate(crow.javartint.gea.genome.Genome[])}
      *
      * @param parent1 first parent
@@ -98,7 +98,7 @@ abstract public class AbstractCrossoverFunction<T extends Genome<? extends Gene<
     }
 
     /**
-     * Accepts two genomes (parents) to perform the crossover process,
+     * Accepts two genomes (parents) to perform the recombination process,
      * and retrieves an array containing the offspring.
      *
      * @param params parents.

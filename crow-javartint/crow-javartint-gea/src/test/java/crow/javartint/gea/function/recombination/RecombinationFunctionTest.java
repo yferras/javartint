@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -36,9 +36,9 @@ import static org.junit.Assert.*;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class CrossoverFunctionTest {
+public class RecombinationFunctionTest {
 
-    public CrossoverFunctionTest() {
+    public RecombinationFunctionTest() {
     }
 
     @BeforeClass
@@ -51,7 +51,7 @@ public class CrossoverFunctionTest {
 
     @Before
     public void setUp() {
-        System.out.print(AbstractCrossoverFunction.class.getName().concat("."));
+        System.out.print(AbstractRecombinationFunction.class.getName().concat("."));
     }
 
     @After
@@ -61,7 +61,7 @@ public class CrossoverFunctionTest {
     @Test
     public void testGetProbability() {
         System.out.println("getProbability");
-        final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setProbability(.5);
         assertEquals(new Double(.5),
                 new Double(function.getProbability()));
@@ -70,7 +70,7 @@ public class CrossoverFunctionTest {
     @Test
     public void testSetProbability1() {
         System.out.println("setProbability (invalid argument)");
-        final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         try {
             function.setProbability(-.5);
         } catch (IllegalArgumentException e) {
@@ -83,7 +83,7 @@ public class CrossoverFunctionTest {
     @Test
     public void testSetProbability2() {
         System.out.println("setProbability (valid argument)");
-        final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setProbability(.1);
         final Object result = function.getProbability();
         assertEquals(0.1, result);
@@ -92,7 +92,7 @@ public class CrossoverFunctionTest {
     @Test
     public void testDefaultCrossoverProbability() {
         System.out.println("DefaultCrossoverFunction");
-        final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         final Object result = function.getProbability();
         assertEquals(0.75, result);
     }
@@ -102,8 +102,8 @@ public class CrossoverFunctionTest {
     public void testValidate1() {
         System.out.println("validate (params is null)");
         try {
-            final DefaultCrossoverFunction function = new
-                    DefaultCrossoverFunction();
+            final DefaultRecombinationFunction function = new
+                DefaultRecombinationFunction();
             function.evaluate(null);
         } catch (IllegalArgumentException e) {
             assertTrue(true);
@@ -116,8 +116,8 @@ public class CrossoverFunctionTest {
     public void testValidate2() {
         System.out.println("validate (params length is less than two)");
         try {
-            final DefaultCrossoverFunction function = new
-                    DefaultCrossoverFunction();
+            final DefaultRecombinationFunction function = new
+                DefaultRecombinationFunction();
             function.evaluate(new DefaultGenome());
         } catch (IllegalArgumentException e) {
             assertTrue(true);
@@ -127,9 +127,9 @@ public class CrossoverFunctionTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testEvaluate1() {
-        System.out.println("evaluate (to invoke crossover process)");
-        final DefaultCrossoverFunction function = new
-                DefaultCrossoverFunction();
+        System.out.println("evaluate (to invoke recombination process)");
+        final DefaultRecombinationFunction function = new
+            DefaultRecombinationFunction();
         DefaultGenome<IntegerArrayGene> genome1 =
                 new DefaultGenome<>();
         DefaultGenome<IntegerArrayGene> genome2 =
@@ -154,8 +154,8 @@ public class CrossoverFunctionTest {
     @Test
     public void testEvaluate2() {
         System.out.println("evaluate (two params are equals)");
-        final DefaultCrossoverFunction function = new
-                DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new
+            DefaultRecombinationFunction();
         DefaultGenome<IntegerArrayGene> genome1 =
                 new DefaultGenome<>();
         DefaultGenome<IntegerArrayGene> genome2 =
@@ -182,8 +182,8 @@ public class CrossoverFunctionTest {
     @Test
     public void testEvaluate3() {
         System.out.println("evaluate (probability constrain not meet)");
-        final DefaultCrossoverFunction function = new
-                DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new
+            DefaultRecombinationFunction();
         function.setProbability(0.0);
         DefaultGenome<IntegerArrayGene> genome1 =
                 new DefaultGenome<>();
@@ -209,7 +209,7 @@ public class CrossoverFunctionTest {
 
     @Test
     public void testSetRandomGenerator() {
-        final DefaultCrossoverFunction function = new DefaultCrossoverFunction();
+        final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setRandom(GenomeConstants.RANDOM_GENERATOR_1);
         assertEquals(
                 GenomeConstants.RANDOM_GENERATOR_1,
@@ -217,10 +217,10 @@ public class CrossoverFunctionTest {
         );
     }
 
-    private static class DefaultCrossoverFunction
-            extends AbstractCrossoverFunction<Genome<? extends Gene<?>>> {
+    private static class DefaultRecombinationFunction
+            extends AbstractRecombinationFunction<Genome<? extends Gene<?>>> {
 
-        private DefaultCrossoverFunction() {
+        private DefaultRecombinationFunction() {
             super(0.75, new Random() {
                 @Override
                 public int nextInt(int n) {

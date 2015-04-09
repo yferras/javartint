@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -34,7 +34,11 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-public class MultiPointsCrossoverFunctionTest {
+
+public class TowPointsRecombinationFunctionTest {
+
+    public TowPointsRecombinationFunctionTest() {
+    }
 
     @BeforeClass
     public static void setUpClass() {
@@ -47,7 +51,7 @@ public class MultiPointsCrossoverFunctionTest {
     @Before
     public void setUp() {
         System.out.print(
-                MultiPointsCrossoverFunction.class.getName().concat("."));
+                TowPointsRecombinationFunction.class.getName().concat("."));
     }
 
     @After
@@ -55,17 +59,17 @@ public class MultiPointsCrossoverFunctionTest {
     }
 
     @Test
-    public void testMultiPointsCrossoverFunction1() {
-        System.out.println("MultiPointsCrossoverFunction(probability)");
-        final Double probability = new MultiPointsCrossoverFunction<>(1.0)
+    public void testTowPointsCrossoverFunction1() {
+        System.out.println("SinglePointCrossoverFunction(probability)");
+        final Double probability = new TowPointsRecombinationFunction<>(1.0)
                 .getProbability();
         assertEquals(new Double(1.0), probability);
     }
 
     @Test
-    public void testMultiPointsCrossoverFunction2() {
-        System.out.println("MultiPointsCrossoverFunction()");
-        final Double probability = new MultiPointsCrossoverFunction<>()
+    public void testTowPointsCrossoverFunction2() {
+        System.out.println("SinglePointCrossoverFunction()");
+        final Double probability = new TowPointsRecombinationFunction<>()
                 .getProbability();
         assertEquals(new Double(.75), probability);
     }
@@ -74,15 +78,16 @@ public class MultiPointsCrossoverFunctionTest {
     @Test
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
-        RANDOM_GENERATOR_3.nextInt(CHROMOSOME_SIZE);
-        MultiPointsCrossoverFunction<DefaultGenome<DefaultGene<Integer>>> function =
-                new MultiPointsCrossoverFunction<>(0.75, RANDOM_GENERATOR_3);
+        TowPointsRecombinationFunction<DefaultGenome<DefaultGene<Integer>>> function =
+                new TowPointsRecombinationFunction<>(.75, RANDOM_GENERATOR_2);
         Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
         DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();
         expResult[1] = new DefaultGenome<>();
+        int position1 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 1);
+        int position2 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE);
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
-            if (i % 2 != 0) {
+            if (i >= position1 && i < position2) {
                 expResult[0].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
                 expResult[1].addGene(new DefaultGene<>(i));
             } else {
@@ -90,9 +95,12 @@ public class MultiPointsCrossoverFunctionTest {
                 expResult[0].addGene(new DefaultGene<>(i));
             }
         }
-        assertArrayEquals(result[0].getChromosome(),
-                expResult[0].getChromosome());
-        assertArrayEquals(result[1].getChromosome(),
-                expResult[1].getChromosome());
+        assertArrayEquals(expResult[0].getChromosome(),
+                result[0].getChromosome());
+        assertArrayEquals(expResult[1].getChromosome(),
+                result[1].getChromosome());
+
     }
+
+
 }

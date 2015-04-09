@@ -31,7 +31,7 @@ import crow.javartint.core.util.ExecutionEndListener;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.SolutionChangeListener;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.function.crossover.SinglePointCrossoverFunction;
+import crow.javartint.gea.function.recombination.SinglePointRecombinationFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunction;
 import crow.javartint.gea.function.mutation.binary.BinaryMutationFunction;
@@ -143,7 +143,7 @@ public class AbstractGeneticAlgorithmIT {
                                 Function<Double, Double> targetFunction) {
             super(100, Optimize.MAX, decoder, targetFunction,
                     new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
-                    new SinglePointCrossoverFunction<DefaultGenome<ByteArrayGene>>(),
+                    new SinglePointRecombinationFunction<DefaultGenome<ByteArrayGene>>(),
                     new BinaryMutationFunction<DefaultGenome<ByteArrayGene>>(),
                     new ElitismSelectionFunction<DefaultGenome<ByteArrayGene>>(5, Optimize.MAX));
         }

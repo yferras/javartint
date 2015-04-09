@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -28,12 +28,12 @@ import crow.javartint.gea.genome.Genome;
 import java.util.Random;
 
 /**
- * Specific crossover function, that performs the crossover process if in each
+ * Specific recombination function, that performs the recombination process if in each
  * iteration the random probability is in the threshold. This function can be
  * applied to any type of genome.
  * <p>
  * While iterates through the genes of the genomes, if the generated random
- * number is less than or equal to the probability of crossover then the
+ * number is less than or equal to the probability of recombination then the
  * genes of this position are exchanged.
  * </p>
  * <p>
@@ -42,8 +42,8 @@ import java.util.Random;
  * [GA0,GA1,GA2,GA3,GA4,GA5] // Parent A<br />
  * [GB0,GB1,GB2,GB3,GB4,GB5] // Parent B<br />
  * [___,''',___,''',''',___] // Underline represents the position that will be exchanged<br />
- * [GB0,GA1,GB2,GA3,GA4,GA5] // Child A after crossover process<br />
- * [GA0,GB1,GA2,GB3,GB4,GB5] // Child B after crossover process<br />
+ * [GB0,GA1,GB2,GA3,GA4,GA5] // Child A after recombination process<br />
+ * [GA0,GB1,GA2,GB3,GB4,GB5] // Child B after recombination process<br />
  * </code>
  * </p>
  *
@@ -51,18 +51,18 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class MultiPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
-        extends AbstractCrossoverFunction<T> {
+public class MultiPointsRecombinationFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractRecombinationFunction<T> {
 
-    public MultiPointsCrossoverFunction(double probability, Random random) {
+    public MultiPointsRecombinationFunction(double probability, Random random) {
         super(probability, random);
     }
 
-    public MultiPointsCrossoverFunction(double probability) {
+    public MultiPointsRecombinationFunction(double probability) {
         super(probability);
     }
 
-    public MultiPointsCrossoverFunction() {
+    public MultiPointsRecombinationFunction() {
         super();
     }
 

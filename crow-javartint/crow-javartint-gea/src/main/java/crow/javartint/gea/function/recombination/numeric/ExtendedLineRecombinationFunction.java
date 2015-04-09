@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover.numeric;
+package crow.javartint.gea.function.recombination.numeric;
 
 /*
  * #%L
@@ -22,7 +22,7 @@ package crow.javartint.gea.function.crossover.numeric;
  * #L%
  */
 
-import crow.javartint.gea.function.crossover.AbstractCrossoverFunction;
+import crow.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -30,15 +30,15 @@ import java.util.Random;
 
 
 /**
- * Specific crossover function to real valued genomes.
+ * Specific recombination function to real valued genomes.
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}<code>&lt;? extends </code>
  *            {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Double>>>
-	extends AbstractCrossoverFunction<T> {
+public class ExtendedLineRecombinationFunction<T extends Genome<? extends Gene<Double>>>
+	extends AbstractRecombinationFunction<T> {
 
 	private double[] ranges;
 	private double precision;
@@ -46,13 +46,13 @@ public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Doubl
 	/**
 	 * Constructor, initializes instances with the given parameters.
 	 *
-	 * @param probability probability of crossover
+	 * @param probability probability of recombination
 	 * @param random      random instance
-	 * @param ranges      array with the crossover ranges, one per dimension. (Typical values from 0.1 to 10E-6)
-	 * @param precision   crossover precisions. (Typical values from 4 to 20)
+	 * @param ranges      array with the recombination ranges, one per dimension. (Typical values from 0.1 to 10E-6)
+	 * @param precision   recombination precisions. (Typical values from 4 to 20)
 	 */
-	public ExtendedLineCrossoverFunction(double probability, Random random, double[] ranges,
-	                                     double precision) {
+	public ExtendedLineRecombinationFunction(double probability, Random random, double[] ranges,
+	                                         double precision) {
 		super(probability, random);
 		this.ranges = ranges;
 		this.precision = precision;
@@ -62,11 +62,11 @@ public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Doubl
 	 * Constructor, initializes instances with the given parameters.
 	 * By default it uses as random generator an instance of {@link java.util.Random}.
 	 *
-	 * @param probability probability of crossover
-	 * @param ranges      array with the crossover ranges, one per dimension.
-	 * @param precision   crossover precisions.
+	 * @param probability probability of recombination
+	 * @param ranges      array with the recombination ranges, one per dimension.
+	 * @param precision   recombination precisions.
 	 */
-	public ExtendedLineCrossoverFunction(double probability, double[] ranges, double precision) {
+	public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) {
 		this(probability, new Random(), ranges, precision);
 	}
 
@@ -75,10 +75,10 @@ public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Doubl
 	 * By default it uses as random generator an instance of {@link java.util.Random},
 	 * and <code>probability = 0.75</code>.
 	 *
-	 * @param ranges    array with the crossover ranges, one per dimension.
-	 * @param precision crossover precisions.
+	 * @param ranges    array with the recombination ranges, one per dimension.
+	 * @param precision recombination precisions.
 	 */
-	public ExtendedLineCrossoverFunction(double[] ranges, double precision) {
+	public ExtendedLineRecombinationFunction(double[] ranges, double precision) {
 		this(.75, ranges, precision);
 	}
 
@@ -88,11 +88,11 @@ public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Doubl
 	 * and <code>probability = 0.75</code>. This is useful when all dimensions have the
 	 * same values.
 	 *
-	 * @param range     crossover range.
+	 * @param range     recombination range.
 	 * @param length    the number of dimensions.
-	 * @param precision crossover precisions.
+	 * @param precision recombination precisions.
 	 */
-	public ExtendedLineCrossoverFunction(double range, int length, double precision) {
+	public ExtendedLineRecombinationFunction(double range, int length, double precision) {
 		super();
 		ranges = new double[length];
 		this.precision = precision;
@@ -108,7 +108,7 @@ public class ExtendedLineCrossoverFunction<T extends Genome<? extends Gene<Doubl
 	 *
 	 * @param length the number of dimensions.
 	 */
-	public ExtendedLineCrossoverFunction(int length) {
+	public ExtendedLineRecombinationFunction(int length) {
 		this(.1, length, 6);
 	}
 

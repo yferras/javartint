@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -28,17 +28,18 @@ import crow.javartint.gea.genome.Genome;
 import java.util.Random;
 
 /**
- * Specific crossover function, that performs the crossover process on two
- * random points. This function can be applied to any type of genome.
+ * Specific recombination function, that performs the recombination process in a single
+ * random point. This function can be applied to any type of genome.
+ * <p/>
  * <p>
- * Example shows two genomes, each one has six genes, and the raised random
- * numbers are 2 (inclusive) and 4 (exclusive).<br />
+ * The example shows two genomes, each one has six genes, and the raised random
+ * position is 2.<br />
  * <code>
  * [GA0,GA1,GA2,GA3,GA4,GA5] //Parent A<br />
  * [GB0,GB1,GB2,GB3,GB4,GB5] //Parent B<br />
- * [''',''',___,___,''','''] //Underline represents the position that will be exchanged<br />
- * [GA0,GA1,GB2,GB3,GA4,GA5] //Child A after crossover<br />
- * [GB0,GB1,GA2,GA3,GB4,GB5] //Child B after crossover<br />
+ * [''',''',___,___,___,___] //Underline represents the position that will be exchanged<br />
+ * [GA0,GA1,GB2,GB3,GB4,GB5] //Child A after recombination<br />
+ * [GB0,GB1,GA2,GA3,GA4,GA5] //Child B after recombination<br />
  * </code>
  * </p>
  *
@@ -46,42 +47,34 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class TowPointsCrossoverFunction<T extends Genome<? extends Gene<?>>>
-        extends AbstractCrossoverFunction<T> {
+public class SinglePointRecombinationFunction<T extends Genome<? extends Gene<?>>>
+        extends AbstractRecombinationFunction<T> {
 
-    public TowPointsCrossoverFunction(double probability, Random random) {
+    public SinglePointRecombinationFunction(double probability, Random random) {
         super(probability, random);
     }
 
-    public TowPointsCrossoverFunction(double probability) {
+    public SinglePointRecombinationFunction(double probability) {
         super(probability);
     }
 
-    public TowPointsCrossoverFunction() {
+    public SinglePointRecombinationFunction() {
         super();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    protected T[] recombine(T parent1, T parent2)
-            throws CloneNotSupportedException {
+    protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
+        int numberOfGenes = parent1.size();
         Genome[] offspring = new Genome[2];
         offspring[0] = ((Genome) parent1).clone();
         offspring[1] = ((Genome) parent2).clone();
-
-        int numberOfGenes = parent1.size();
-        int position1 = getRandom().nextInt(numberOfGenes - 1);
-        int position2 = position1;
-        while (position2 <= position1) {
-            position2 = getRandom().nextInt(numberOfGenes);
-        }
-        for (int i = position1; i < position2; i++) {
+        int position = getRandom().nextInt(numberOfGenes);
+        for (int i = 0; i < position; i++) {
             Gene<?> aux = offspring[0].getGene(i);
             offspring[0].setGene(i, offspring[1].getGene(i));
             offspring[1].setGene(i, aux);
         }
         return (T[]) offspring;
     }
-
-
 }

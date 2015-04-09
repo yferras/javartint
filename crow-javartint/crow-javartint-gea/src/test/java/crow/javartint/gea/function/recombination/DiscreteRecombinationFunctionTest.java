@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -34,12 +34,12 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-public class DiscreteCrossoverFunctionTest {
+public class DiscreteRecombinationFunctionTest {
 
 	@Before
 	public void setUp() {
 		System.out.print(
-			DiscreteCrossoverFunction.class.getName().concat("."));
+			DiscreteRecombinationFunction.class.getName().concat("."));
 	}
 
 	@After
@@ -50,7 +50,7 @@ public class DiscreteCrossoverFunctionTest {
 	@Test
 	public void testRecombine() throws Exception {
 		System.out.println("recombine");
-		DiscreteCrossoverFunction crossoverFunction = new DiscreteCrossoverFunction();
+		DiscreteRecombinationFunction crossoverFunction = new DiscreteRecombinationFunction();
 
 		Genome<Gene<Integer>> parent1 = new DefaultGenome<>();
 		Genome<Gene<Integer>> parent2 = new DefaultGenome<>();

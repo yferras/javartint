@@ -22,7 +22,7 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.gea.function.crossover.*;
+import crow.javartint.gea.function.recombination.*;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import crow.javartint.gea.function.generator.TspGenomeGenFunctionTest;
@@ -52,10 +52,10 @@ import org.junit.runners.Suite;
         GenomeFilterTest.class,
         ArrayGeneTest.class,
         DefaultGenomeTest.class,
-        CrossoverFunctionTest.class,
-        MultiPointsCrossoverFunctionTest.class,
-        SinglePointCrossoverFunctionTest.class,
-        TowPointsCrossoverFunctionTest.class,
+        RecombinationFunctionTest.class,
+        MultiPointsRecombinationFunctionTest.class,
+        SinglePointRecombinationFunctionTest.class,
+        TowPointsRecombinationFunctionTest.class,
         MutationFunctionTest.class,
         BinaryMutationFunctionTest.class,
         AbstractScalingMethodTest.class,
@@ -68,7 +68,7 @@ import org.junit.runners.Suite;
         RangeGenomeGenFunctionTest.class,
         AbstractGeneticAlgorithmIT.class,
         RealValuedMutationFunctionTest.class,
-        DiscreteCrossoverFunctionTest.class
+        DiscreteRecombinationFunctionTest.class
     }
 )
 public class GeaITSuite {

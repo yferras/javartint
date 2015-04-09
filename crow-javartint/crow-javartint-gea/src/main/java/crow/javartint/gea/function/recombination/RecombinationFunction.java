@@ -1,4 +1,4 @@
-package crow.javartint.gea.function.crossover;
+package crow.javartint.gea.function.recombination;
 
 /*
  * #%L
@@ -27,17 +27,17 @@ import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
 /**
- * Interface that represents crossover function.
+ * Interface that represents recombination function.
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public interface CrossoverFunction<T extends Genome<? extends Gene<?>>>
+public interface RecombinationFunction<T extends Genome<? extends Gene<?>>>
         extends ProbabilisticFunction<T[], T[]> {
 
         /**
-         * Accepts an array of genomes (parents) to perform the crossover process,
+         * Accepts an array of genomes (parents) to perform the recombination process,
          * and retrieves an array containing the offspring.
          *
          * @param params array of parents.

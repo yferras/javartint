@@ -1,9 +1,9 @@
 /**
- * This package contains the a set of crossover functions specialized in TSP.
+ * This package contains the a set of recombination functions specialized in TSP.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  */
-package crow.javartint.gea.function.crossover.tsp;
+package crow.javartint.gea.function.recombination.tsp;
 
 /*
  * #%L

@@ -25,7 +25,7 @@ package crow.javartint.gea;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.function.crossover.CrossoverFunction;
+import crow.javartint.gea.function.recombination.RecombinationFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.function.mutation.MutationFunction;
@@ -54,7 +54,7 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
      * @param decoder           function to decode the genome
      * @param targetFunction    function to optimize
      * @param generator         function to generate initial population of genomes
-     * @param crossoverFunction function to crossing process
+     * @param recombinationFunction function to crossing process
      * @param mutationFunction  function to mutation process
      * @param selectionFunction function to selection process
      */
@@ -62,11 +62,11 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
                                    DecoderFunction<D, T> decoder,
                                    Function<Double, D> targetFunction,
                                    GeneratorFunction<T> generator,
-                                   CrossoverFunction<T> crossoverFunction,
+                                   RecombinationFunction<T> recombinationFunction,
                                    MutationFunction<T> mutationFunction,
                                    SelectionFunction<T> selectionFunction) {
         super(populationSize, optimize, decoder, targetFunction, generator,
-                crossoverFunction, mutationFunction, selectionFunction);
+            recombinationFunction, mutationFunction, selectionFunction);
     }
 
     /**
@@ -80,16 +80,16 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
      * @param decoder           function to decode the genome
      * @param targetFunction    function to optimize
      * @param generator         function to generate initial population of genomes
-     * @param crossoverFunction function to crossing process
+     * @param recombinationFunction function to crossing process
      * @param mutationFunction  function to mutation process
      */
     public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
                                    DecoderFunction<D, T> decoder,
                                    Function<Double, D> targetFunction,
                                    GeneratorFunction<T> generator,
-                                   CrossoverFunction<T> crossoverFunction,
+                                   RecombinationFunction<T> recombinationFunction,
                                    MutationFunction<T> mutationFunction) {
         super(populationSize, optimize, decoder, targetFunction, generator,
-                crossoverFunction, mutationFunction);
+            recombinationFunction, mutationFunction);
     }
 }
