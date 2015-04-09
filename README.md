@@ -1,5 +1,5 @@
 # javartint
-Java library for Artificial Intelligence
+**Java** library for **Art**ificial **Int**elligence
 
 [ES]
 
