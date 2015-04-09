@@ -43,7 +43,7 @@ Is the basic unit that stores information.
 
 Biological specialization of the solution; the information represented by this solution is somehow encoded in a set of genes.
 
-#### Crossing
+#### Recombination
 
 The process in which two or more genomes provide your information to be combined and get new individuals (offspring) with new features.
 
