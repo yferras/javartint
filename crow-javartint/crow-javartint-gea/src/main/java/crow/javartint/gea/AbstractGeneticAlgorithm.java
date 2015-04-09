@@ -56,6 +56,8 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
 
     /**
      * Initializes this class.
+     * By default selection function for parents is an instance of
+     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
      *
      * @param populationSize    the population limit
      * @param optimize          the optimization way
@@ -83,6 +85,9 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?
 
     /**
      * Initializes this class.
+     * * By default selection function for parents is an instance of
+     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}, and
+     * selection function for new generation is <code>null</code>.
      *
      * @param populationSize    the population limit
      * @param optimize          the optimization way
