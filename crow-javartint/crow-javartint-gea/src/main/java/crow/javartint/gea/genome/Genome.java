@@ -33,7 +33,7 @@ import java.util.Iterator;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
 public interface Genome<T extends Gene<?>>
         extends Cloneable, Iterable<T>, Solution, Serializable,
@@ -69,15 +69,14 @@ public interface Genome<T extends Gene<?>>
     void setFitness(double fitness);
 
     /**
-     * Gets the value of gene at specific <code>index</code>. A gene is a
-     * sub-array of the genes array.
+     * Gets the gene at specific <code>locus</code>.
      *
-     * @param index Specific <code>index</code>.
+     * @param locus particular position on the chromosome.
      * @return This method returns a gene
      * @throws IndexOutOfBoundsException if the <code>index</code> is out of
      *                                   range.
      */
-    T getGene(int index) throws IndexOutOfBoundsException;
+    T getGene(int locus) throws IndexOutOfBoundsException;
 
     /**
      * Gets the number of genes of the genome.
@@ -87,12 +86,12 @@ public interface Genome<T extends Gene<?>>
     int size();
 
     /**
-     * Sets the value of <code>newGene</code> at specified <code>index</code>.
+     * Sets the <code>newGene</code> at specific <code>locus</code>.
      *
-     * @param index   Specific <code>index</code> where will be replaced the gene.
+     * @param locus   particular position on the chromosome.
      * @param newGene new value of gene.
      */
-    void setGene(int index, T newGene);
+    void setGene(int locus, T newGene);
 
     /**
      * Adds a new gene to the genome.
