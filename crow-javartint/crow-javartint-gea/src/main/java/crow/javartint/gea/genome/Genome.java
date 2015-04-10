@@ -26,7 +26,6 @@ import crow.javartint.core.Solution;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.Serializable;
-import java.util.Iterator;
 
 /**
  * This interface represents a generic genome.

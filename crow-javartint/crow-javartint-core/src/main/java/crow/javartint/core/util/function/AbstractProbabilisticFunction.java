@@ -45,7 +45,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
      * Internally calls {@link #setProbability(double)} and
      * {@link #setRandom(java.util.Random)}
      *
-     * @param probability     probability of crossover
+     * @param probability     probability of recombination
      * @param random          random instance
      * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
      * and see {@link #setRandom(java.util.Random)}
@@ -62,7 +62,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
      * {@code probability} parameter and random is an instance of
      * {@link java.util.Random}.
      *
-     * @param probability probability of crossover
+     * @param probability probability of recombination
      * @throws java.lang.IllegalArgumentException see {@link #setProbability}
      * and see {@link #setRandom}
      */

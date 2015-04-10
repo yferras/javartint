@@ -22,8 +22,8 @@ package crow.javartint.core.constraint;
  * #L%
  */
 
-import crow.javartint.core.Solution;
 import crow.javartint.core.Algorithm;
+import crow.javartint.core.Solution;
 
 /**
  * This abstract class can be used to create constrains to algorithms based on

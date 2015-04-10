@@ -26,7 +26,10 @@ import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Stochastic universal sampling selection function.

@@ -23,7 +23,6 @@ package crow.javartint.gea.function.mutation;
  */
 
 import crow.javartint.gea.GenomeConstants;
-import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;

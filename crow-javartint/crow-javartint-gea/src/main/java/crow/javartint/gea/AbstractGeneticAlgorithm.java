@@ -24,10 +24,10 @@ package crow.javartint.gea;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.function.recombination.RecombinationFunction;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.function.mutation.MutationFunction;
+import crow.javartint.gea.function.recombination.RecombinationFunction;
 import crow.javartint.gea.function.selection.RandomSelectionFunction;
 import crow.javartint.gea.function.selection.SelectionFunction;
 import crow.javartint.gea.gene.Gene;

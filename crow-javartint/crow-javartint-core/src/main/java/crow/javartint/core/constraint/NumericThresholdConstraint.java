@@ -22,8 +22,8 @@ package crow.javartint.core.constraint;
  * #L%
  */
 
-import crow.javartint.core.Solution;
 import crow.javartint.core.Algorithm;
+import crow.javartint.core.Solution;
 
 /**
  * This interface allows to create algorithms based on numeric threshold.
