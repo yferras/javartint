@@ -22,6 +22,7 @@ package crow.javartint.gea.genome;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
 /**
@@ -31,7 +32,7 @@ import crow.javartint.gea.gene.Gene;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class DefaultGenome<T extends Gene<?>> extends AbstractGenome<T> {
+public class DefaultGenome<T extends Chromosome<? extends Gene<?>>> extends AbstractGenome<T> {
 
     /**
      * Default constructor.

@@ -22,9 +22,12 @@ package crow.javartint.gea.genome;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
@@ -34,30 +37,35 @@ import java.util.*;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
+public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> implements Genome<T> {
     /**
-     * Array of genes that contains the genome information.
+     * Array of chromosomes that contains the genome information.
      */
-    final protected List<T> genes;
+    final protected List<T> chromosomes;
     /**
      * Genome fitness.
      */
     protected double fitness;
 
+    private final Class clazz;
+
     protected AbstractGenome() {
         fitness = 0.0;
-        genes = new LinkedList<>();
+        chromosomes = new LinkedList<>();
+        clazz = ((Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+            .getActualTypeArguments()[0]).getClass();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T[] getChromosomes() {
+        return chromosomes.toArray((T[]) Array.newInstance(clazz, chromosomes.size()));
     }
 
     @Override
-    public Object[] getChromosome() {
-        return genes.toArray();
-    }
-
-    @Override
-    public void setChromosome(T[] genes) throws IllegalArgumentException {
-        this.genes.clear();
-        this.genes.addAll(Arrays.asList(genes));
+    public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
+        this.chromosomes.clear();
+        this.chromosomes.addAll(Arrays.asList(chromosomes));
     }
 
     @Override
@@ -70,29 +78,25 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
         this.fitness = fitness;
     }
 
+
     @Override
-    public T getGene(int index) throws IndexOutOfBoundsException {
-        return genes.get(index);
+    public T getChromosome(int index) {
+        return this.chromosomes.get(index);
+    }
+
+    @Override
+    public void setChromosome(int index, T newChromosome) {
+        this.chromosomes.set(index, newChromosome);
     }
 
     @Override
     public int size() {
-        return genes.size();
+        return chromosomes.size();
     }
 
     @Override
     public Iterator<T> iterator() {
         return new GenomeIterator();
-    }
-
-    @Override
-    public void setGene(int index, T newGene) {
-        genes.set(index, newGene);
-    }
-
-    @Override
-    public void addGene(T gene) {
-        genes.add(gene);
     }
 
     @SuppressWarnings("unchecked")
@@ -129,26 +133,28 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.fitness) ^ (Double.doubleToLongBits(this.fitness) >>> 32));
-        hash = 97 * hash + Arrays.deepHashCode(getChromosome());
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AbstractGenome)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         AbstractGenome that = (AbstractGenome) o;
 
-        return Double.compare(that.fitness, fitness) == 0 && genes.equals(that.genes);
+        return Double.compare(that.fitness, fitness) == 0 && chromosomes.equals(that.chromosomes);
 
     }
 
     @Override
-    public int compareTo(Genome<? extends Gene<?>> o) {
+    public int hashCode() {
+        int result;
+        long temp;
+        result = chromosomes.hashCode();
+        temp = Double.doubleToLongBits(fitness);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public int compareTo(Genome<? extends Chromosome<? extends Gene<?>>> o) {
         return Double.compare(getFitness(), o.getFitness());
     }
 
@@ -156,9 +162,9 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");
         stringBuilder.append("Fitness: ").append(getFitness()).append(';');
-        stringBuilder.append(" Genes: (").append(size() != 0 ? getGene(0) : "");
+        stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
         for (int i = 1; i < size(); i++) {
-            stringBuilder.append("; ").append(getGene(i));
+            stringBuilder.append("; ").append(getChromosome(i));
         }
         return stringBuilder.append(")").append("}").toString();
     }
@@ -176,7 +182,7 @@ public abstract class AbstractGenome<T extends Gene<?>> implements Genome<T> {
         public T next() {
             try {
                 int i = cursor;
-                T next = getGene(i);
+                T next = getChromosome(i);
                 cursor = i + 1;
                 return next;
             } catch (IndexOutOfBoundsException e) {

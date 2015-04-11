@@ -23,6 +23,7 @@ package crow.javartint.gea.genome;
  */
 
 import crow.javartint.core.Solution;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.Serializable;
@@ -32,26 +33,26 @@ import java.io.Serializable;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 0.0.3
  */
-public interface Genome<T extends Gene<?>>
+public interface Genome<T extends Chromosome<? extends Gene<?>>>
         extends Cloneable, Iterable<T>, Solution, Serializable,
-        Comparable<Genome<? extends Gene<?>>> {
+        Comparable<Genome<? extends Chromosome<? extends Gene<?>>>> {
 
     /**
-     * Gets the value of genes.
+     * Gets the array of chromosomes.
      *
-     * @return The value of genes.
+     * @return The value of chromosomes.
      */
-    Object[] getChromosome();
+    T[] getChromosomes();
 
     /**
-     * Sets the value of genes.
+     * Sets the array of chromosomes.
      *
-     * @throws IllegalArgumentException if {@code genes} argument is
+     * @throws IllegalArgumentException if {@code chromosomes} argument is
      *                                  {@code null}.
      */
-    void setChromosome(T[] genes) throws IllegalArgumentException;
+    void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
 
     /**
      * Gets the value of fitness.
@@ -68,36 +69,26 @@ public interface Genome<T extends Gene<?>>
     void setFitness(double fitness);
 
     /**
-     * Gets the gene at specific <code>locus</code>.
+     * Gets the chromosome at specific index.
      *
-     * @param locus particular position on the chromosome.
-     * @return This method returns a gene
-     * @throws IndexOutOfBoundsException if the <code>index</code> is out of
-     *                                   range.
+     * @param index index
+     * @return chromosome
      */
-    T getGene(int locus) throws IndexOutOfBoundsException;
+    T getChromosome(int index);
 
     /**
-     * Gets the number of genes of the genome.
+     * Sets the chromosome at specific index.
+     * @param index index to place new chromosome
+     * @param newChromosome chromosome
+     */
+    void setChromosome(int index, T newChromosome);
+
+    /**
+     * Gets the number of chromosomes of the genome.
      *
-     * @return The number of genes of the genome.
+     * @return The number of chromosomes of the genome.
      */
     int size();
-
-    /**
-     * Sets the <code>newGene</code> at specific <code>locus</code>.
-     *
-     * @param locus   particular position on the chromosome.
-     * @param newGene new value of gene.
-     */
-    void setGene(int locus, T newGene);
-
-    /**
-     * Adds a new gene to the genome.
-     *
-     * @param gene gene to add
-     */
-    void addGene(T gene);
 
     Genome<T> clone() throws CloneNotSupportedException;
 }
