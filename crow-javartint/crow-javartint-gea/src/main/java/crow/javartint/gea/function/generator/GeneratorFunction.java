@@ -22,7 +22,7 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
-import crow.javartint.core.util.function.Function;
+import crow.javartint.core.function.Function;
 import crow.javartint.gea.Individual;
 
 /**

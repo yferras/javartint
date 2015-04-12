@@ -22,7 +22,7 @@ package crow.javartint.gea.function.mutation;
  * #L%
  */
 
-import crow.javartint.core.util.function.ProbabilisticFunction;
+import crow.javartint.core.function.ProbabilisticFunction;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;

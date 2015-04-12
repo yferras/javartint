@@ -1,4 +1,4 @@
-package crow.javartint.core.util.function;
+package crow.javartint.core.function;
 
 /*
  * #%L

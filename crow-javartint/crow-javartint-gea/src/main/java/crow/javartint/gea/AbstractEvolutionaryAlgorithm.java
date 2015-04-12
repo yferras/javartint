@@ -26,7 +26,7 @@ import crow.javartint.core.AbstractAlgorithm;
 import crow.javartint.core.IterativeAlgorithm;
 import crow.javartint.core.OptimizationAlgorithm;
 import crow.javartint.core.util.Optimize;
-import crow.javartint.core.util.function.Function;
+import crow.javartint.core.function.Function;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.util.IndividualFilter;
@@ -154,9 +154,9 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	}
 
 	/**
-	 * Gets an instance of {@link crow.javartint.core.util.function.Function} that decodes the the genome.
+	 * Gets an instance of {@link crow.javartint.core.function.Function} that decodes the the genome.
 	 *
-	 * @return an instance of {@link crow.javartint.core.util.function.Function}
+	 * @return an instance of {@link crow.javartint.core.function.Function}
 	 */
 	public Function<D, T> getDecoder() {
 		return decoder;

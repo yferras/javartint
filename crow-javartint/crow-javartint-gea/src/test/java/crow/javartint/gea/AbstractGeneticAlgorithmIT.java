@@ -30,7 +30,7 @@ import crow.javartint.core.util.AlgorithmEvent;
 import crow.javartint.core.util.ExecutionEndListener;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.SolutionChangeListener;
-import crow.javartint.core.util.function.Function;
+import crow.javartint.core.function.Function;
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.BinaryGenomeGenFunction;

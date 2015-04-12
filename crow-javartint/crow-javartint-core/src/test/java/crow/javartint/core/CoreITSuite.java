@@ -23,7 +23,7 @@ package crow.javartint.core;
  */
 
 import crow.javartint.core.util.RangeTest;
-import crow.javartint.core.util.function.ProbabilisticFunctionTest;
+import crow.javartint.core.function.ProbabilisticFunctionTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

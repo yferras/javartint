@@ -23,7 +23,7 @@ package crow.javartint.gea.function.scaling;
  */
 
 import crow.javartint.core.util.Optimize;
-import crow.javartint.core.util.function.Function;
+import crow.javartint.core.function.Function;
 import crow.javartint.gea.Individual;
 
 import java.util.ArrayList;

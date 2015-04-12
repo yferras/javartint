@@ -1,4 +1,9 @@
-package crow.javartint.core.util.function;
+/**
+ * This package contains a set of utilities to create functions.
+ *
+ * @author Eng. Ferrás Cecilio, Yeinier
+ */
+package crow.javartint.core.function;
 
 /*
  * #%L
@@ -21,23 +26,3 @@ package crow.javartint.core.util.function;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-/**
- * Interface to create generic functions.
- *
- * @param <R> Type of result
- * @param <P> Type of parameters
- * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
- */
-public interface Function<R, P> {
-
-	/**
-	 * Evaluates the params and returns a result.
-	 *
-	 * @param params parameters to evaluate.
-	 * @return the result.
-	 */
-	R evaluate(P params);
-
-}

@@ -22,7 +22,7 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
-import crow.javartint.core.util.function.AbstractProbabilisticFunction;
+import crow.javartint.core.function.AbstractProbabilisticFunction;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;

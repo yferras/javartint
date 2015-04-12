@@ -130,10 +130,10 @@ public class AbstractScalingMethodTest {
 
 		@Override
 		@SuppressWarnings("unchecked")
-		protected void scale(List genomes) {
-			for (int i = 0; i < genomes.size(); i++) {
-				Double val = (Double) genomes.get(i);
-				genomes.set(i, val * 2.0);
+		protected void scale(List individuals) {
+			for (int i = 0; i < individuals.size(); i++) {
+				Double val = (Double) individuals.get(i);
+				individuals.set(i, val * 2.0);
 			}
 		}
 	}
