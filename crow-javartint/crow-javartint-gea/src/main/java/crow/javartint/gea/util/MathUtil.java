@@ -23,6 +23,7 @@ package crow.javartint.gea.util;
  */
 
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -46,7 +47,7 @@ public final class MathUtil {
      * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
      * @return the mean of fitness
      */
-    static public <T extends Genome<? extends Gene<?>>> double mean(List<T> genomes) {
+    static public <T extends Genome> double mean(List<T> genomes) {
         double sum = 0.0;
         for (T genome : genomes) {
             sum += genome.getFitness();
@@ -62,7 +63,7 @@ public final class MathUtil {
      * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
      * @return the variance of fitness
      */
-    static public <T extends Genome<? extends Gene<?>>> double variance(List<T> genomes, Double mean) {
+    static public <T extends Genome> double variance(List<T> genomes, Double mean) {
         double sum = 0.0;
         for (T genome : genomes) {
             double diff = genome.getFitness() - mean;
@@ -78,7 +79,7 @@ public final class MathUtil {
      * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
      * @return the variance of fitness
      */
-    static public <T extends Genome<? extends Gene<?>>> double variance(List<T> genomes) {
+    static public <T extends Genome> double variance(List<T> genomes) {
         return variance(genomes, mean(genomes));
     }
 
