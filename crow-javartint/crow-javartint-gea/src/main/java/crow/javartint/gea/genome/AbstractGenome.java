@@ -95,6 +95,11 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
     }
 
     @Override
+    public void add(T chromosome) {
+        chromosomes.add(chromosome);
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new GenomeIterator();
     }

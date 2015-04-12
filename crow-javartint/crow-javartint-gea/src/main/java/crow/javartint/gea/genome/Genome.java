@@ -90,5 +90,12 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
      */
     int size();
 
+    /**
+     * Adds new chromosome to genome.
+     *
+     * @param chromosome new chromosome.
+     */
+    void add(T chromosome);
+
     Genome<T> clone() throws CloneNotSupportedException;
 }
