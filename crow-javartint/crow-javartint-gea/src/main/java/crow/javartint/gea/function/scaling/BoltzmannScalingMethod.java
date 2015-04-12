@@ -34,7 +34,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public final class BoltzmannScalingMethod<T extends Genome<?>>
+public final class BoltzmannScalingMethod<T extends Genome>
 	extends AbstractScalingMethod<T> {
 
 	private final static double BOLTZMANN_DELTA_TEMP = 0.05;

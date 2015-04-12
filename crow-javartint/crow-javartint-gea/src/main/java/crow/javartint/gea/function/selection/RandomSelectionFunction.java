@@ -35,7 +35,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class RandomSelectionFunction<T extends Genome<?>>
+public class RandomSelectionFunction<T extends Genome>
 	extends AbstractSelectionFunction<T> {
 
 	private Random random = new Random();

@@ -34,6 +34,6 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public interface SelectionFunction<T extends Genome<?>>
+public interface SelectionFunction<T extends Genome>
 	extends Function<List<T>, List<T>> {
 }

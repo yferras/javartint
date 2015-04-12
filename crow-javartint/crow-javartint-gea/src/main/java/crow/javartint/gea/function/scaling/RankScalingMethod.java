@@ -35,7 +35,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public final class RankScalingMethod<T extends Genome<?>>
+public final class RankScalingMethod<T extends Genome>
 	extends AbstractScalingMethod<T> {
 
 	/**

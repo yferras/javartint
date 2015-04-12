@@ -37,7 +37,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class SusSelectionFunction<T extends Genome<?>>
+public class SusSelectionFunction<T extends Genome>
 	extends AbstractSelectionFunction<T> {
 
 	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {

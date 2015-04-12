@@ -34,7 +34,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public final class SigmaScalingMethod<T extends Genome<?>>
+public final class SigmaScalingMethod<T extends Genome>
 	extends AbstractScalingMethod<T> {
 	/**
 	 * Constructor that initializes this instance.
