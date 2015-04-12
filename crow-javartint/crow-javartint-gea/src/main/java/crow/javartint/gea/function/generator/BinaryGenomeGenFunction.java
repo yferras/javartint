@@ -22,6 +22,8 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
@@ -34,49 +36,77 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class BinaryGenomeGenFunction
-        extends AbstractGenomeGeneratorFunction<DefaultGenome<ByteArrayGene>> {
+	extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>> {
 
-    /**
-     * Initializes the number of genes and the length of each gene.
-     *
-     * @param numberOfGenes the number of genes.
-     * @param lengthOfGene  the length of each gene.
-     */
-    public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
-        super(numberOfGenes, lengthOfGene);
-    }
+	/**
+	 * Initializes the number of genes and the length of each gene.
+	 *
+	 * @param genomeSize    the number of chromosomes.
+	 * @param numberOfGenes the number of genes.
+	 * @param lengthOfGene  the length of each gene.
+	 */
+	public BinaryGenomeGenFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
+		super(genomeSize, numberOfGenes, lengthOfGene);
+	}
 
-    /**
-     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
-     * if the number of genes and the value in each position is the size of each gene.
-     *
-     * @param lengthsOfGenes array that contains the length of genes.
-     */
-    public BinaryGenomeGenFunction(int[] lengthsOfGenes) {
-        super(lengthsOfGenes);
-    }
+	/**
+	 * Initializes the number of genes and the length of each gene. By default {@code genomeSize} is 1.
+	 *
+	 * @param numberOfGenes the number of genes.
+	 * @param lengthOfGene  the length of each gene.
+	 */
+	public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
+		super(numberOfGenes, lengthOfGene);
+	}
 
-    /**
-     * Generates binary genomes.
-     *
-     * @param lengthsOfGenes the array that contains the length of each gene.
-     * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
-     * with {@link crow.javartint.gea.gene.ByteArrayGene}
-     */
-    @Override
-    protected DefaultGenome<ByteArrayGene> generate(int[] lengthsOfGenes) {
-        Random random = new Random();
-        ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
-        for (int i = 0; i < lengthsOfGenes.length; i++) {
-            Byte[] data = new Byte[lengthsOfGenes[i]];
-            for (int j = 0; j < data.length; j++) {
-                data[j] = (byte)random.nextInt(2);
-            }
-            genes[i] = new ByteArrayGene(data);
-        }
-        DefaultGenome<ByteArrayGene> genome = new DefaultGenome<>();
-        genome.setChromosome(genes);
-        return genome;
-    }
+	/**
+	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
+	 * if the number of genes and the value in each position is the size of each gene.
+	 *
+	 * @param genomeSize     the number of chromosomes.
+	 * @param lengthsOfGenes array that contains the length of genes.
+	 */
+	public BinaryGenomeGenFunction(int genomeSize, int[] lengthsOfGenes) {
+		super(genomeSize, lengthsOfGenes);
+	}
+
+	/**
+	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
+	 * if the number of genes and the value in each position is the size of each gene.
+	 * By default {@code genomeSize} is 1.
+	 *
+	 * @param lengthsOfGenes array that contains the length of genes.
+	 */
+	public BinaryGenomeGenFunction(int[] lengthsOfGenes) {
+		super(lengthsOfGenes);
+	}
+
+	/**
+	 * Generates binary genomes.
+	 *
+	 * @param genomeSize     the number of chromosomes.
+	 * @param lengthsOfGenes the array that contains the length of each gene.
+	 * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected DefaultGenome<DefaultChromosome<ByteArrayGene>> generate(int genomeSize, int[] lengthsOfGenes) {
+		Random random = new Random();
+		DefaultChromosome<ByteArrayGene>[] chromosomes = new DefaultChromosome[genomeSize];
+		for (DefaultChromosome<ByteArrayGene> chromosome : chromosomes) {
+			ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
+			for (int i = 0; i < lengthsOfGenes.length; i++) {
+				Byte[] data = new Byte[lengthsOfGenes[i]];
+				for (int j = 0; j < data.length; j++) {
+					data[j] = (byte) random.nextInt(2);
+				}
+				genes[i] = new ByteArrayGene(data);
+			}
+			chromosome.setGenes(genes);
+		}
+		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = new DefaultGenome<>();
+		genome.setChromosomes(chromosomes);
+		return genome;
+	}
 
 }

@@ -23,6 +23,7 @@ package crow.javartint.gea.function.generator;
  */
 
 import crow.javartint.core.util.Range;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
@@ -36,7 +37,7 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class RangeGenomeGenFunction
-        extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultGene<Double>>> {
+        extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
     private final int precision;
     private Range<Double>[] ranges;
@@ -44,12 +45,26 @@ public class RangeGenomeGenFunction
     /**
      * Initializes this instance.
      *
+     * @param genomeSize the number of chromosomes.
+     * @param precision decimal precision.
+     * @param ranges Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+     *               is used to generate a random value inside range.
+     */
+    public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
+        super(genomeSize, ranges.length, 1);
+        this.precision = precision;
+        this.ranges = ranges;
+    }
+
+    /**
+     * Initializes this instance. By default {@code genomeSize} is 1.
+     *
      * @param precision decimal precision.
      * @param ranges Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
      *               is used to generate a random value inside range.
      */
     public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
-        super(ranges.length, 1);
+        super(1, ranges.length, 1);
         this.precision = precision;
         this.ranges = ranges;
     }
@@ -57,21 +72,26 @@ public class RangeGenomeGenFunction
     /**
      * Generates a genome with default set of genes, each of these genes have a double value.
      *
+     * @param genomeSize the number of chromosomes.
      * @param lengthsOfGenes the array that contains the length of each gene.
-     * @return generated genome.
+     * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
      */
     @SuppressWarnings("unchecked")
     @Override
-    protected DefaultGenome<DefaultGene<Double>> generate(int[] lengthsOfGenes) {
-        DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
+    protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
+        DefaultChromosome<DefaultGene<Double>>[] chromosomes = new DefaultChromosome[genomeSize];
         Random random = new Random();
-        for (int i = 0; i < lengthsOfGenes.length; i++) {
-            Range<Double> range = ranges[i];
-            double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
-            genes[i] = new DefaultGene<>(v);
+        for (DefaultChromosome<DefaultGene<Double>> chromosome : chromosomes) {
+            DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
+            for (int i = 0; i < lengthsOfGenes.length; i++) {
+                Range<Double> range = ranges[i];
+                double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
+                genes[i] = new DefaultGene<>(v);
+            }
+            chromosome.setGenes(genes);
         }
-        DefaultGenome<DefaultGene<Double>> genome = new DefaultGenome<>();
-        genome.setChromosome(genes);
+        DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
+        genome.setChromosomes(chromosomes);
         return genome;
     }
 
