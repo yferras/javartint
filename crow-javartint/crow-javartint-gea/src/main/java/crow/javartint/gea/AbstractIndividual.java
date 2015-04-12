@@ -30,8 +30,7 @@ package crow.javartint.gea;
  */
 public abstract class AbstractIndividual implements Individual {
 
-	private Double fitness = null;
-
+	private Double fitness = 0.0;
 
 	@Override
 	public Double getFitness() {
@@ -46,5 +45,10 @@ public abstract class AbstractIndividual implements Individual {
 	@Override
 	public int compareTo(Individual o) {
 		return Double.compare(this.getFitness(), o.getFitness());
+	}
+
+	@Override
+	public Individual clone() throws CloneNotSupportedException {
+		return (Individual)super.clone();
 	}
 }
