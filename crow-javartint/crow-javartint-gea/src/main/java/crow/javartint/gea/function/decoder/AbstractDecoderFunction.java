@@ -22,6 +22,7 @@ package crow.javartint.gea.function.decoder;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -35,7 +36,8 @@ import crow.javartint.gea.genome.Genome;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Gene<?>>> implements DecoderFunction<D, T> {
+public abstract class AbstractDecoderFunction<D ,T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+    implements DecoderFunction<D, T> {
 
     /**
      * Validates the input params.
