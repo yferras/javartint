@@ -79,19 +79,18 @@ public class RangeGenomeGenFunction
     @SuppressWarnings("unchecked")
     @Override
     protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
-        DefaultChromosome<DefaultGene<Double>>[] chromosomes = new DefaultChromosome[genomeSize];
         Random random = new Random();
-        for (DefaultChromosome<DefaultGene<Double>> chromosome : chromosomes) {
-            DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
-            for (int i = 0; i < lengthsOfGenes.length; i++) {
-                Range<Double> range = ranges[i];
-                double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
-                genes[i] = new DefaultGene<>(v);
-            }
-            chromosome.setGenes(genes);
-        }
         DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
-        genome.setChromosomes(chromosomes);
+        for (int i = 0; i < genomeSize; i ++) {
+            DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
+            for (int j = 0; j < lengthsOfGenes.length; j++) {
+                Range<Double> range = ranges[j];
+                double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
+                genes[j] = new DefaultGene<>(v);
+            }
+            genome.add(new DefaultChromosome<DefaultGene<Double>>());
+            genome.getChromosome(i).setGenes(genes);
+        }
         return genome;
     }
 

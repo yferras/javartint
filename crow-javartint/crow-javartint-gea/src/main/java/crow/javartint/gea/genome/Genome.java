@@ -44,7 +44,7 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
      *
      * @return The value of chromosomes.
      */
-    T[] getChromosomes();
+    Chromosome<? extends Gene<?>>[] getChromosomes();
 
     /**
      * Sets the array of chromosomes.

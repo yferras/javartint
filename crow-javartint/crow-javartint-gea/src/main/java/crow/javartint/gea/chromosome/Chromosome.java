@@ -42,7 +42,7 @@ public interface Chromosome<T extends Gene<?>>
 	 *
 	 * @return the array of genes.
 	 */
-	T[] getGenes();
+	Gene<?>[] getGenes();
 
 	/**
 	 * Sets the array of genes.

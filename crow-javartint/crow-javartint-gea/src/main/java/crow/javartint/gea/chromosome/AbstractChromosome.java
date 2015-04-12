@@ -41,18 +41,15 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 	 * List of genes that contains the chromosome information.
 	 */
 	final protected List<T> genes;
-	final private Class<?> clazz;
 
 	protected AbstractChromosome() {
 		genes = new LinkedList<>();
-		clazz = ((Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
-			.getActualTypeArguments()[0]).getClass();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T[] getGenes() {
-		return genes.toArray((T[]) Array.newInstance(clazz, genes.size()));
+	public Gene<?>[] getGenes() {
+		return genes.toArray(new Gene<?>[size()]);
 	}
 
 	@Override

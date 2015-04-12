@@ -47,19 +47,16 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
      */
     protected double fitness;
 
-    private final Class clazz;
 
     protected AbstractGenome() {
         fitness = 0.0;
         chromosomes = new LinkedList<>();
-        clazz = ((Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
-            .getActualTypeArguments()[0]).getClass();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public T[] getChromosomes() {
-        return chromosomes.toArray((T[]) Array.newInstance(clazz, chromosomes.size()));
+    public Chromosome<? extends Gene<?>>[] getChromosomes() {
+        return chromosomes.toArray(new Chromosome<?>[size()]);
     }
 
     @Override

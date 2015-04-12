@@ -60,17 +60,16 @@ public class TspGenomeGenFunction
 	@SuppressWarnings("unchecked")
 	@Override
 	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> generate(int genomeSize, int[] lengthsOfGenes) {
-		DefaultChromosome<DefaultGene<Integer>>[] chromosomes = new DefaultChromosome[genomeSize];
-		for (DefaultChromosome<DefaultGene<Integer>> chromosome : chromosomes) {
+		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
+		for (int i = 0; i < genomeSize; i++) {
 			List<DefaultGene<Integer>> cities = new ArrayList<>(lengthsOfGenes.length);
-			for (int i = 0; i < lengthsOfGenes.length; i++) {
-				cities.add(new DefaultGene<>(i));
+			for (int j = 0; j < lengthsOfGenes.length; j++) {
+				cities.add(new DefaultGene<>(j));
 			}
 			Collections.shuffle(cities);
-			chromosome.setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
+			genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+			genome.getChromosome(i).setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
 		}
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		genome.setChromosomes(chromosomes);
 		return genome;
 	}
 
