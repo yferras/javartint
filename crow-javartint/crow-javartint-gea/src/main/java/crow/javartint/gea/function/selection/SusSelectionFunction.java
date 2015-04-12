@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.genome.Genome;
 
@@ -33,11 +34,11 @@ import java.util.Random;
 /**
  * Stochastic universal sampling selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class SusSelectionFunction<T extends Genome>
+public class SusSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
@@ -54,23 +55,23 @@ public class SusSelectionFunction<T extends Genome>
 
 
 	@Override
-	protected List<T> select(List<T> genomes) {
+	protected List<T> select(List<T> individuals) {
 		if (getScalingMethod() != null) {
-			getScalingMethod().evaluate(genomes);
+			getScalingMethod().evaluate(individuals);
 		}
-		Collections.sort(genomes);
-		double worstFitness = genomes.get(genomes.size() - 1).getFitness();
+		Collections.sort(individuals);
+		double worstFitness = individuals.get(individuals.size() - 1).getFitness();
 		if (worstFitness < 0) {
 			double absValue = Math.abs(worstFitness);
-			for (Genome genome : genomes) {
-				genome.setFitness(genome.getFitness() + absValue);
+			for (Individual individual : individuals) {
+				individual.setFitness(individual.getFitness() + absValue);
 			}
 		}
 		double sum = 0.0;
-		for (T genome : genomes) {
+		for (T genome : individuals) {
 			sum += genome.getFitness();
 		}
-		for (T genome : genomes) {
+		for (T genome : individuals) {
 			genome.setFitness(genome.getFitness() / sum);
 		}
 		double inc = 1.0 / (double) getNumToSelect();
@@ -78,8 +79,8 @@ public class SusSelectionFunction<T extends Genome>
 		double mark = rand.nextDouble() * inc;
 		sum = 0.0;
 		List<T> selected = new ArrayList<>(getNumToSelect());
-		Collections.shuffle(genomes);
-		for (T genome : genomes) {
+		Collections.shuffle(individuals);
+		for (T genome : individuals) {
 			sum += genome.getFitness();
 			if (sum > mark) {
 				selected.add(genome);

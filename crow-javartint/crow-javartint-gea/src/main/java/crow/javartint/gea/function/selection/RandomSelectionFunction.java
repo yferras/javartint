@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ import java.util.Random;
 /**
  * Random selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class RandomSelectionFunction<T extends Genome>
+public class RandomSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 	private Random random = new Random();
@@ -59,15 +60,15 @@ public class RandomSelectionFunction<T extends Genome>
 	/**
 	 * Selects genomes randomly.
 	 *
-	 * @param genomes Source to select the number of desired genomes.
+	 * @param individuals Source to select the number of desired genomes.
 	 * @return selected genomes
 	 */
 	@Override
-	protected List<T> select(List<T> genomes) {
+	protected List<T> select(List<T> individuals) {
 		List<T> list = new ArrayList<>(getNumToSelect());
-		int n = genomes.size();
+		int n = individuals.size();
 		while (list.size() < getNumToSelect()) {
-			list.add(genomes.get(random.nextInt(n)));
+			list.add(individuals.get(random.nextInt(n)));
 		}
 		return list;
 	}

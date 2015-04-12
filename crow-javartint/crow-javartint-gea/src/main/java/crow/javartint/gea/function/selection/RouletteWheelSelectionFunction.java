@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.genome.Genome;
 
@@ -32,11 +33,11 @@ import java.util.Random;
 /**
  * Roulette wheel selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class RouletteWheelSelectionFunction<T extends Genome>
+public class RouletteWheelSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 
@@ -49,12 +50,12 @@ public class RouletteWheelSelectionFunction<T extends Genome>
 	}
 
 	@Override
-	protected List<T> select(List<T> genomes) {
+	protected List<T> select(List<T> individuals) {
 		double totalFitnessScore = 0.0;
 		if (getScalingMethod() != null) {
-			getScalingMethod().evaluate(genomes);
+			getScalingMethod().evaluate(individuals);
 		}
-		for (T genome : genomes) {
+		for (T genome : individuals) {
 			totalFitnessScore += Math.abs(genome.getFitness());
 		}
 		Random rand = new Random();
@@ -63,7 +64,7 @@ public class RouletteWheelSelectionFunction<T extends Genome>
 		for (int i = 0; i < getNumToSelect(); i++) {
 			double sumAux = 0.0;
 			double randNumb = rand.nextDouble() * totalFitnessScore;
-			for (T genome : genomes) {
+			for (T genome : individuals) {
 				if ((sumAux += Math.abs(genome.getFitness())) >= randNumb) {
 					selected.add(i, genome);
 					break;

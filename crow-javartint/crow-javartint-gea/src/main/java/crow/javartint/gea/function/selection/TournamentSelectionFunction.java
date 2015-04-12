@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.genome.Genome;
 
@@ -32,11 +33,11 @@ import java.util.Random;
 /**
  * Tournament selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class TournamentSelectionFunction<T extends Genome>
+public class TournamentSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 	public TournamentSelectionFunction() {
@@ -54,13 +55,13 @@ public class TournamentSelectionFunction<T extends Genome>
 	}
 
 	@Override
-	protected List<T> select(List<T> genomes) {
+	protected List<T> select(List<T> individuals) {
 		if (getScalingMethod() != null) {
-			getScalingMethod().evaluate(genomes);
+			getScalingMethod().evaluate(individuals);
 		}
 		List<T> selected = new ArrayList<>(getNumToSelect());
 		while (selected.size() < getNumToSelect()) {
-			selected.add(tournamentSelection(genomes));
+			selected.add(tournamentSelection(individuals));
 		}
 		return selected;
 	}

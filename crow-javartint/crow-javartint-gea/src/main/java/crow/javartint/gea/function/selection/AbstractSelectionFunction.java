@@ -22,19 +22,19 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
-import crow.javartint.gea.genome.Genome;
 
 import java.util.List;
 
 /**
  * Abstract class that represents selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public abstract class AbstractSelectionFunction<T extends Genome>
+public abstract class AbstractSelectionFunction<T extends Individual>
 	implements SelectionFunction<T> {
 
 	private int numToSelect = 1;
@@ -99,13 +99,13 @@ public abstract class AbstractSelectionFunction<T extends Genome>
 	}
 
 	/**
-	 * Selects from a list the desired number of genomes and retrieves then into
+	 * Selects from a list the desired number of individuals and retrieves then into
 	 * list.
 	 *
-	 * @param genomes Source to select the number of desired genomes.
-	 * @return a list with the selected genomes.
+	 * @param individuals Source to select the number of desired individuals.
+	 * @return a list with the selected individuals.
 	 */
-	protected abstract List<T> select(List<T> genomes);
+	protected abstract List<T> select(List<T> individuals);
 
 	/**
 	 * Performs the selection process after validating the input params ({@link #validate})

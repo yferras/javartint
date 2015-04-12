@@ -23,6 +23,7 @@ package crow.javartint.gea.function.selection;
  */
 
 import crow.javartint.core.util.Optimize;
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.ArrayList;
@@ -32,11 +33,11 @@ import java.util.List;
 /**
  * Elitism selection function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class ElitismSelectionFunction<T extends Genome>
+public class ElitismSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 	private final Optimize optimize;
@@ -64,8 +65,8 @@ public class ElitismSelectionFunction<T extends Genome>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected List<T> select(List<T> genomes) {
-		List<T> list = new ArrayList<>(genomes);
+	protected List<T> select(List<T> individuals) {
+		List<T> list = new ArrayList<>(individuals);
 		Collections.sort(list);
 		if (optimize == Optimize.MIN) return list.subList(0, getNumToSelect());
 		else return list.subList(list.size() - getNumToSelect(), list.size());
