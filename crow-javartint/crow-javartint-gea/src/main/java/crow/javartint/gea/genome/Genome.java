@@ -33,7 +33,7 @@ import java.io.Serializable;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.3
+ * @version 0.0.4
  */
 public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	extends Cloneable, Iterable<T>, Solution, Serializable,
@@ -99,4 +99,11 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	void add(T chromosome);
 
 	Genome<T> clone() throws CloneNotSupportedException;
+
+	/**
+	 * Gets the genome type by the chromosomes parity.
+	 *
+	 * @return genome type.
+	 */
+	GenomeType getGenomeType();
 }

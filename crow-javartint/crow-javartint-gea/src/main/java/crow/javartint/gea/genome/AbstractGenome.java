@@ -95,6 +95,13 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
 	}
 
 	@Override
+	public GenomeType getGenomeType() {
+		if (size() == 0)
+			return null;
+		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
+	}
+
+	@Override
 	public Iterator<T> iterator() {
 		return new GenomeIterator();
 	}
