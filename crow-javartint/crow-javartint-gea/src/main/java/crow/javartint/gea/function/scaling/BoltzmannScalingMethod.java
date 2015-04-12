@@ -22,6 +22,7 @@ package crow.javartint.gea.function.scaling;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 import crow.javartint.gea.util.MathUtil;
@@ -35,7 +36,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public final class BoltzmannScalingMethod<T extends Genome<? extends Gene<?>>>
+public final class BoltzmannScalingMethod<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractScalingMethod<T> {
 
     private final static double BOLTZMANN_DELTA_TEMP = 0.05;
