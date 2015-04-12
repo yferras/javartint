@@ -22,28 +22,17 @@ package crow.javartint.gea.util;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.Chromosome;
-import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.core.util.Filter;
+import crow.javartint.gea.Individual;
 
 /**
- * This interface serves to implements many filters to ensure that the genomes
+ * This interface serves to implements many filters to ensure that the individuals
  * are valid.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 0.0.1
  */
-public interface GenomeFilter<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-	extends IndividualFilter<T> {
+public interface IndividualFilter<T extends Individual> extends Filter<T> {
 
-	/**
-	 * Allows filter the genomes.
-	 *
-	 * @param genome genome to filter.
-	 * @return {@code true} if this genome is valid, otherwise returns
-	 * {@code false}
-	 */
-	@Override
-	boolean accept(T genome);
 }
