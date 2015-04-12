@@ -38,7 +38,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ElitismSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public class ElitismSelectionFunction<T extends Genome<?>>
         extends AbstractSelectionFunction<T> {
 
     private final Optimize optimize;

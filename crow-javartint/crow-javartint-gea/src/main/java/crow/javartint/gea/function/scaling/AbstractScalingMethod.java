@@ -38,7 +38,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public abstract class AbstractScalingMethod<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public abstract class AbstractScalingMethod<T extends Genome<?>>
         implements Function<List<T>, List<T>> {
 
     private final Optimize optimize;

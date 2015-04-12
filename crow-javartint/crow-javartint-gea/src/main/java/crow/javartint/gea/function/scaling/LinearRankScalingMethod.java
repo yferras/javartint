@@ -37,7 +37,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public final class LinearRankScalingMethod<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public final class LinearRankScalingMethod<T extends Genome<?>>
         extends AbstractScalingMethod<T> {
 
     private double selectivePressure;

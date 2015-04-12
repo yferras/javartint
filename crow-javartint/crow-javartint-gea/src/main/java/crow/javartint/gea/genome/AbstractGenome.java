@@ -159,7 +159,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
     }
 
     @Override
-    public int compareTo(Genome<? extends Chromosome<? extends Gene<?>>> o) {
+    public int compareTo(Genome<?> o) {
         return Double.compare(getFitness(), o.getFitness());
     }
 

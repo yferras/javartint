@@ -37,7 +37,7 @@ import java.io.Serializable;
  */
 public interface Genome<T extends Chromosome<? extends Gene<?>>>
         extends Cloneable, Iterable<T>, Solution, Serializable,
-        Comparable<Genome<? extends Chromosome<? extends Gene<?>>>> {
+        Comparable<Genome<?>> {
 
     /**
      * Gets the array of chromosomes.

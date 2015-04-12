@@ -36,7 +36,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public abstract class AbstractSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public abstract class AbstractSelectionFunction<T extends Genome<?>>
         implements SelectionFunction<T> {
 
     private int numToSelect = 1;

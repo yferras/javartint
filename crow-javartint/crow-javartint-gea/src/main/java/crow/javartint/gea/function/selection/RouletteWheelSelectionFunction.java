@@ -38,7 +38,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class RouletteWheelSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public class RouletteWheelSelectionFunction<T extends Genome<?>>
         extends AbstractSelectionFunction<T> {
 
 
