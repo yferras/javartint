@@ -33,22 +33,13 @@ import java.util.List;
 
 /**
  * This class is a genome generator function for create genomes for TSP (Traveller Sales Problem).
+ * The genomes generates by this, has only one chromosome.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class TspGenomeGenFunction
 	extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
-
-	/**
-	 * Initializes this instance.
-	 *
-	 * @param genomeSize    the number of chromosomes.
-	 * @param numberOfGenes the number of genes.
-	 */
-	public TspGenomeGenFunction(int genomeSize, int numberOfGenes) {
-		super(genomeSize, numberOfGenes, 1);
-	}
 
 	/**
 	 * Initializes this instance. By default {@code genomeSize} is 1.
