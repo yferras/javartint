@@ -31,7 +31,8 @@ import crow.javartint.core.Solution;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface Individual<T extends Comparable<T>> extends Solution {
+public interface Individual<T extends Comparable<T>>
+	extends Solution, Comparable<Individual<T>> {
 
 	/**
 	 * Gets the value of fitness.
