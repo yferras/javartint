@@ -24,7 +24,6 @@ package crow.javartint.gea.util;
 
 
 import crow.javartint.gea.Individual;
-import crow.javartint.gea.genome.Genome;
 
 import java.util.List;
 

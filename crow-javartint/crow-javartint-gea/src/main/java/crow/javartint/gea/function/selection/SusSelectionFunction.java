@@ -24,7 +24,6 @@ package crow.javartint.gea.function.selection;
 
 import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
-import crow.javartint.gea.genome.Genome;
 
 import java.util.ArrayList;
 import java.util.Collections;
