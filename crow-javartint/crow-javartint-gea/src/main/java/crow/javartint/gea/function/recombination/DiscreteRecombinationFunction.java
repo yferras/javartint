@@ -22,6 +22,7 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -46,22 +47,25 @@ import crow.javartint.gea.genome.Genome;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class DiscreteRecombinationFunction<T extends Genome<? extends Gene<?>>>
+public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
 	extends AbstractRecombinationFunction<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
-		int numberOfGenes = parent1.size();
 		Genome[] offspring = new Genome[]{
 			((Genome) parent1).clone(),
 			((Genome) parent2).clone()
 		};
-		for (int i = 0; i < numberOfGenes; i++) {
-			Gene<?> aux0 = offspring[getRandom().nextInt(2)].getGene(i);
-			Gene<?> aux1 = offspring[getRandom().nextInt(2)].getGene(i);
-			offspring[0].setGene(i, aux0.clone());
-			offspring[1].setGene(i, aux1.clone());
+		int numberOfChromosomes = parent1.size();
+		for (int i = 0; i < numberOfChromosomes; i++) {
+			int numberOfGenes = offspring[0].getChromosome(i).size();
+			for (int j = 0; j < numberOfGenes; j++) {
+				Gene<?> aux0 = offspring[getRandom().nextInt(2)].getChromosome(i).getGene(j);
+				Gene<?> aux1 = offspring[getRandom().nextInt(2)].getChromosome(i).getGene(j);
+				offspring[0].getChromosome(i).setGene(j, aux0.clone());
+				offspring[1].getChromosome(i).setGene(j, aux1.clone());
+			}
 		}
 		return (T[]) offspring;
 	}

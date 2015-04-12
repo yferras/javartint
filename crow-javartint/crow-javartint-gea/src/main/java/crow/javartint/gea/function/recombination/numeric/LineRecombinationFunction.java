@@ -22,6 +22,7 @@ package crow.javartint.gea.function.recombination.numeric;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -36,7 +37,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class LineRecombinationFunction<T extends Genome<? extends Gene<Double>>>
+public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
 	extends IntermediateRecombinationFunction<T> {
 
 	/**
@@ -86,18 +87,20 @@ public class LineRecombinationFunction<T extends Genome<? extends Gene<Double>>>
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
 		int numberOfGenes = parent1.size();
-		Genome<? extends Gene<Double>>[] offspring = new Genome[]{
+		Genome<? extends Chromosome<? extends Gene<Double>>>[] offspring = new Genome[]{
 			((Genome) parent1).clone(),
 			((Genome) parent2).clone()
 		};
 		double a = getRandom().nextDouble() * (1.0 + 2.0 * getDistance()) - getDistance();
+		Chromosome<? extends Gene<Double>> chromosome0 = offspring[0].getChromosome(0);
+		Chromosome<? extends Gene<Double>> chromosome1 = offspring[1].getChromosome(0);
 		for (int i = 0; i < numberOfGenes; i++) {
-			double value0 = offspring[0].getGene(i).getData();
-			double value1 = offspring[1].getGene(i).getData();
+			double value0 = chromosome0.getGene(i).getData();
+			double value1 = chromosome1.getGene(i).getData();
 			double newValue0 = value0 * a + value1 * (1.0 - a);
 			double newValue1 = value1 * a + value0 * (1.0 - a);
-			offspring[0].getGene(i).setData(newValue0);
-			offspring[1].getGene(i).setData(newValue1);
+			chromosome0.getGene(i).setData(newValue0);
+			chromosome1.getGene(i).setData(newValue1);
 		}
 		return (T[]) offspring;
 	}

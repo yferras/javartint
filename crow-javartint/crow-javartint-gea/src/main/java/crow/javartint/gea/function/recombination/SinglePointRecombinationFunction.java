@@ -65,15 +65,18 @@ public class SinglePointRecombinationFunction<T extends Genome<? extends Gene<?>
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
-        int numberOfGenes = parent1.size();
         Genome[] offspring = new Genome[2];
         offspring[0] = ((Genome) parent1).clone();
         offspring[1] = ((Genome) parent2).clone();
-        int position = getRandom().nextInt(numberOfGenes);
-        for (int i = 0; i < position; i++) {
-            Gene<?> aux = offspring[0].getGene(i);
-            offspring[0].setGene(i, offspring[1].getGene(i));
-            offspring[1].setGene(i, aux);
+        int numberOfChromosomes = parent1.size();
+        for (int i = 0; i < numberOfChromosomes; i++) {
+            int numberOfGenes = offspring[0].getChromosome(i).size();
+            int position = getRandom().nextInt(numberOfGenes);
+            for (int j = 0; j < position; j++) {
+                Gene<?> aux = offspring[0].getChromosome(i).getGene(j);
+                offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
+                offspring[1].getChromosome(i).setGene(j, aux);
+            }
         }
         return (T[]) offspring;
     }

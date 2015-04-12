@@ -22,6 +22,7 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -46,7 +47,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class TowPointsRecombinationFunction<T extends Genome<? extends Gene<?>>>
+public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractRecombinationFunction<T> {
 
     public TowPointsRecombinationFunction(double probability, Random random) {
@@ -69,16 +70,19 @@ public class TowPointsRecombinationFunction<T extends Genome<? extends Gene<?>>>
         offspring[0] = ((Genome) parent1).clone();
         offspring[1] = ((Genome) parent2).clone();
 
-        int numberOfGenes = parent1.size();
-        int position1 = getRandom().nextInt(numberOfGenes - 1);
-        int position2 = position1;
-        while (position2 <= position1) {
-            position2 = getRandom().nextInt(numberOfGenes);
-        }
-        for (int i = position1; i < position2; i++) {
-            Gene<?> aux = offspring[0].getGene(i);
-            offspring[0].setGene(i, offspring[1].getGene(i));
-            offspring[1].setGene(i, aux);
+        int numberOfChromosomes = parent1.size();
+        for (int i = 0; i < numberOfChromosomes; i++) {
+            int numberOfGenes = offspring[0].getChromosome(i).size();
+            int position1 = getRandom().nextInt(numberOfGenes - 1);
+            int position2 = position1;
+            while (position2 <= position1) {
+                position2 = getRandom().nextInt(numberOfGenes);
+            }
+            for (int j = position1; j < position2; j++) {
+                Gene<?> aux = offspring[0].getChromosome(i).getGene(j);
+                offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
+                offspring[1].getChromosome(i).setGene(j, aux);
+            }
         }
         return (T[]) offspring;
     }
