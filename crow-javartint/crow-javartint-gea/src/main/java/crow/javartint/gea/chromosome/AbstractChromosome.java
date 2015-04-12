@@ -27,10 +27,7 @@ import crow.javartint.gea.gene.Gene;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class is an abstract implementation of {@link crow.javartint.gea.chromosome.Chromosome}.
@@ -76,7 +73,7 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
 	@Override
 	public Iterator<T> iterator() {
-		return genes.iterator();
+		return new ChromosomeIterator();
 	}
 
 	@Override
@@ -145,6 +142,33 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 			stringBuilder.append("; ").append(getGene(i));
 		}
 		return stringBuilder.append(")").append("}").toString();
+	}
+
+	private class ChromosomeIterator implements Iterator<T> {
+
+		private int cursor = 0;
+
+		@Override
+		public boolean hasNext() {
+			return cursor < size();
+		}
+
+		@Override
+		public T next() {
+			try {
+				int i = cursor;
+				T next = getGene(i);
+				cursor = i + 1;
+				return next;
+			} catch (IndexOutOfBoundsException e) {
+				throw new NoSuchElementException();
+			}
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+		}
 	}
 
 }
