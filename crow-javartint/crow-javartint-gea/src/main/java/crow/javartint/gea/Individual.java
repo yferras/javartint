@@ -31,7 +31,7 @@ import crow.javartint.core.Solution;
  * @version 0.0.1
  */
 public interface Individual
-	extends Solution, Comparable<Individual> {
+	extends Solution, Comparable<Individual>, Cloneable {
 
 	/**
 	 * Gets the value of fitness.
@@ -47,4 +47,5 @@ public interface Individual
 	 */
 	void setFitness(Double fitness);
 
+	Individual clone() throws CloneNotSupportedException;
 }
