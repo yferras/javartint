@@ -23,6 +23,7 @@ package crow.javartint.gea.function.mutation;
  */
 
 import crow.javartint.core.util.function.AbstractProbabilisticFunction;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -35,7 +36,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-abstract public class AbstractMutationFunction<T extends Genome<? extends Gene<?>>>
+abstract public class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
     /**
