@@ -24,6 +24,7 @@ package crow.javartint.gea;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.function.mutation.MutationFunction;
@@ -43,7 +44,7 @@ import java.util.*;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
+public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
         extends AbstractEvolutionaryAlgorithm<T, D> {
 
     private final RecombinationFunction<T> recombinationFunction;

@@ -27,6 +27,7 @@ import crow.javartint.core.IterativeAlgorithm;
 import crow.javartint.core.OptimizationAlgorithm;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.gene.Gene;
@@ -45,7 +46,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Gene<?>>, D>
+public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
         extends AbstractAlgorithm<T>
         implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 

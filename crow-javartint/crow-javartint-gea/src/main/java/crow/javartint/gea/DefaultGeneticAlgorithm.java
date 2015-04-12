@@ -25,6 +25,7 @@ package crow.javartint.gea;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.function.mutation.MutationFunction;
@@ -42,7 +43,7 @@ import crow.javartint.gea.genome.Genome;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public class DefaultGeneticAlgorithm<T extends Genome<? extends Gene<?>>, D>
+public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
         extends AbstractGeneticAlgorithm<T, D> {
     /**
      * Initializes this class.
