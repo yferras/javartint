@@ -112,7 +112,7 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 	protected abstract T generate(final int genomeSize, final int[] lengthsOfGenes);
 
 	@Override
-	public T evaluate(Void params) {
+	public T evaluate(Void... params) {
 		return generate(genomeSize, lengthsOfGenes);
 	}
 

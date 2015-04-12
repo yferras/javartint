@@ -35,15 +35,15 @@ import crow.javartint.gea.genome.Genome;
  * @version 0.0.1
  */
 public interface GeneratorFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    extends Function<T, Void> {
+	extends Function<T, Void[]> {
 
-    /**
-     * This method must be implemented to generate dynamically instances
-     * of {@link crow.javartint.gea.genome.Genome}
-     *
-     * @param params must be empty.
-     * @return a generated instance of {@link crow.javartint.gea.genome.Genome}
-     */
-    @Override
-    T evaluate(Void params);
+	/**
+	 * This method must be implemented to generate dynamically instances
+	 * of {@link crow.javartint.gea.genome.Genome}
+	 *
+	 * @param params must be empty.
+	 * @return a generated instance of {@link crow.javartint.gea.genome.Genome}
+	 */
+	@Override
+	T evaluate(Void... params);
 }

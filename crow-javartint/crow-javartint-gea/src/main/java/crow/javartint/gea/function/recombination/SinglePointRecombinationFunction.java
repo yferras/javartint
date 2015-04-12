@@ -22,6 +22,7 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -47,7 +48,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class SinglePointRecombinationFunction<T extends Genome<? extends Gene<?>>>
+public class SinglePointRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractRecombinationFunction<T> {
 
     public SinglePointRecombinationFunction(double probability, Random random) {
