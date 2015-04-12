@@ -23,7 +23,7 @@ package crow.javartint.gea.function.scaling;
  */
 
 import crow.javartint.core.util.Optimize;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.Individual;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,11 +31,11 @@ import java.util.List;
 /**
  * Linear rank scaling method function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public final class LinearRankScalingMethod<T extends Genome>
+public final class LinearRankScalingMethod<T extends Individual<Double>>
 	extends AbstractScalingMethod<T> {
 
 	private double selectivePressure;
@@ -65,11 +65,11 @@ public final class LinearRankScalingMethod<T extends Genome>
 	}
 
 	@Override
-	protected void scale(List<T> genomes) {
-		Collections.sort(genomes); // Sorts ascending
-		for (int i = 0, n = genomes.size(); i < n; i++) {
+	protected void scale(List<T> individuals) {
+		Collections.sort(individuals); // Sorts ascending
+		for (int i = 0, n = individuals.size(); i < n; i++) {
 			double newValue = 2.0 - getSelectivePressure() + 2.0 * (getSelectivePressure() - 1) * i / (n - 1);
-			genomes.get(i).setFitness(newValue);
+			individuals.get(i).setFitness(newValue);
 		}
 	}
 }

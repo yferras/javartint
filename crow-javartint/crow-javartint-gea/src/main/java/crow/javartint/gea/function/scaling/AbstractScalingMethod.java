@@ -24,7 +24,7 @@ package crow.javartint.gea.function.scaling;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.Individual;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +32,11 @@ import java.util.List;
 /**
  * Abstract class that represents scaling method function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public abstract class AbstractScalingMethod<T extends Genome>
+public abstract class AbstractScalingMethod<T extends Individual<Double>>
 	implements Function<List<T>, List<T>> {
 
 	private final Optimize optimize;
@@ -62,9 +62,9 @@ public abstract class AbstractScalingMethod<T extends Genome>
 	/**
 	 * Method to perform scaling process
 	 *
-	 * @param genomes list to scale.
+	 * @param individuals list to scale.
 	 */
-	protected abstract void scale(List<T> genomes);
+	protected abstract void scale(List<T> individuals);
 
 	/**
 	 * Ensures that parameters are valid.
