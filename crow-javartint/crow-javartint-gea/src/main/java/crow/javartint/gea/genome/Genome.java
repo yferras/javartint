@@ -36,66 +36,67 @@ import java.io.Serializable;
  * @version 0.0.3
  */
 public interface Genome<T extends Chromosome<? extends Gene<?>>>
-        extends Cloneable, Iterable<T>, Solution, Serializable,
-        Comparable<Genome<?>> {
+	extends Cloneable, Iterable<T>, Solution, Serializable,
+	Comparable<Genome<?>> {
 
-    /**
-     * Gets the array of chromosomes.
-     *
-     * @return The value of chromosomes.
-     */
-    Chromosome<? extends Gene<?>>[] getChromosomes();
+	/**
+	 * Gets the array of chromosomes.
+	 *
+	 * @return The value of chromosomes.
+	 */
+	Chromosome<? extends Gene<?>>[] getChromosomes();
 
-    /**
-     * Sets the array of chromosomes.
-     *
-     * @throws IllegalArgumentException if {@code chromosomes} argument is
-     *                                  {@code null}.
-     */
-    void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
+	/**
+	 * Sets the array of chromosomes.
+	 *
+	 * @throws IllegalArgumentException if {@code chromosomes} argument is
+	 *                                  {@code null}.
+	 */
+	void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
 
-    /**
-     * Gets the value of fitness.
-     *
-     * @return The value of fitness.
-     */
-    double getFitness();
+	/**
+	 * Gets the value of fitness.
+	 *
+	 * @return The value of fitness.
+	 */
+	double getFitness();
 
-    /**
-     * Sets the value of fitness.
-     *
-     * @param fitness New value of fitness.
-     */
-    void setFitness(double fitness);
+	/**
+	 * Sets the value of fitness.
+	 *
+	 * @param fitness New value of fitness.
+	 */
+	void setFitness(double fitness);
 
-    /**
-     * Gets the chromosome at specific index.
-     *
-     * @param index index
-     * @return chromosome
-     */
-    T getChromosome(int index);
+	/**
+	 * Gets the chromosome at specific index.
+	 *
+	 * @param index index
+	 * @return chromosome
+	 */
+	T getChromosome(int index);
 
-    /**
-     * Sets the chromosome at specific index.
-     * @param index index to place new chromosome
-     * @param newChromosome chromosome
-     */
-    void setChromosome(int index, T newChromosome);
+	/**
+	 * Sets the chromosome at specific index.
+	 *
+	 * @param index         index to place new chromosome
+	 * @param newChromosome chromosome
+	 */
+	void setChromosome(int index, T newChromosome);
 
-    /**
-     * Gets the number of chromosomes of the genome.
-     *
-     * @return The number of chromosomes of the genome.
-     */
-    int size();
+	/**
+	 * Gets the number of chromosomes of the genome.
+	 *
+	 * @return The number of chromosomes of the genome.
+	 */
+	int size();
 
-    /**
-     * Adds new chromosome to genome.
-     *
-     * @param chromosome new chromosome.
-     */
-    void add(T chromosome);
+	/**
+	 * Adds new chromosome to genome.
+	 *
+	 * @param chromosome new chromosome.
+	 */
+	void add(T chromosome);
 
-    Genome<T> clone() throws CloneNotSupportedException;
+	Genome<T> clone() throws CloneNotSupportedException;
 }

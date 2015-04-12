@@ -43,6 +43,7 @@ import crow.javartint.gea.genome.Genome;
  * [GA0,GB1,GA2,GB3,GB4,GA5] // Child B after recombination process<br />
  * </code>
  * </p>
+ *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1

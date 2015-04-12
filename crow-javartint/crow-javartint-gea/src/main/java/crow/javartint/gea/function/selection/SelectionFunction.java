@@ -23,8 +23,6 @@ package crow.javartint.gea.function.selection;
  */
 
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.chromosome.Chromosome;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.List;
@@ -37,5 +35,5 @@ import java.util.List;
  * @version 0.0.1
  */
 public interface SelectionFunction<T extends Genome<?>>
-        extends Function<List<T>, List<T>> {
+	extends Function<List<T>, List<T>> {
 }

@@ -31,20 +31,20 @@ import crow.javartint.gea.genome.Genome;
  * This interface serves to implements many filters to ensure that the genomes
  * are valid.
  *
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  */
 public interface GenomeFilter<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-        extends Filter<T> {
+	extends Filter<T> {
 
-    /**
-     * Allows filter the genomes.
-     *
-     * @param genome genome to filter.
-     * @return {@code true} if this genome is valid, otherwise returns 
-     * {@code false}
-     */
-    @Override
-    boolean accept(T genome);
+	/**
+	 * Allows filter the genomes.
+	 *
+	 * @param genome genome to filter.
+	 * @return {@code true} if this genome is valid, otherwise returns
+	 * {@code false}
+	 */
+	@Override
+	boolean accept(T genome);
 }

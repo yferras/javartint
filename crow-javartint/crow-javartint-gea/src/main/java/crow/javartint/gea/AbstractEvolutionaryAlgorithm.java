@@ -42,225 +42,224 @@ import java.util.List;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
- *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-        extends AbstractAlgorithm<T>
-        implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
+	extends AbstractAlgorithm<T>
+	implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
-    private GenomeFilter<T> genomeFilter;
+	private GenomeFilter<T> genomeFilter;
 
-    private List<T> population;
+	private List<T> population;
 
-    private int populationSize;
+	private int populationSize;
 
-    private long generations;
+	private long generations;
 
-    private Optimize optimize;
+	private Optimize optimize;
 
-    private double bestFitnessScore;
+	private double bestFitnessScore;
 
-    final private DecoderFunction<D, T> decoder;
+	final private DecoderFunction<D, T> decoder;
 
-    final private Function<Double, D> targetFunction;
+	final private Function<Double, D> targetFunction;
 
-    final private GeneratorFunction<T> generator;
+	final private GeneratorFunction<T> generator;
 
-    /**
-     * Initializes this class.
-     *
-     * @param populationSize the population limit
-     * @param optimize       the optimization way
-     * @param decoder        function to decode the genome
-     * @param targetFunction function to optimize
-     * @param generator      function to generate genomes
-     */
-    public AbstractEvolutionaryAlgorithm(int populationSize,
-                                         Optimize optimize,
-                                         DecoderFunction<D, T> decoder,
-                                         Function<Double, D> targetFunction,
-                                         GeneratorFunction<T> generator) {
-        this.populationSize = populationSize;
-        this.decoder = decoder;
-        this.targetFunction = targetFunction;
-        this.generator = generator;
-        setPopulation(new ArrayList<T>(populationSize));
-        setOptimize(optimize);
-    }
+	/**
+	 * Initializes this class.
+	 *
+	 * @param populationSize the population limit
+	 * @param optimize       the optimization way
+	 * @param decoder        function to decode the genome
+	 * @param targetFunction function to optimize
+	 * @param generator      function to generate genomes
+	 */
+	public AbstractEvolutionaryAlgorithm(int populationSize,
+	                                     Optimize optimize,
+	                                     DecoderFunction<D, T> decoder,
+	                                     Function<Double, D> targetFunction,
+	                                     GeneratorFunction<T> generator) {
+		this.populationSize = populationSize;
+		this.decoder = decoder;
+		this.targetFunction = targetFunction;
+		this.generator = generator;
+		setPopulation(new ArrayList<T>(populationSize));
+		setOptimize(optimize);
+	}
 
-    /**
-     * This method must be implemented by subclasses to simulate the evolution process.
-     */
-    public abstract void evolve() throws Exception;
+	/**
+	 * This method must be implemented by subclasses to simulate the evolution process.
+	 */
+	public abstract void evolve() throws Exception;
 
-    /**
-     * This method must be implemented to evolve one generation
-     */
-    protected abstract void epoch();
+	/**
+	 * This method must be implemented to evolve one generation
+	 */
+	protected abstract void epoch();
 
-    @SuppressWarnings("unchecked")
-    protected void updateFitnessScores() {
-        for (T genome : getPopulation()) {
-            D decodedValue = getDecoder().evaluate(genome);
-            Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);
-            genome.setFitness(currentFitnessScore);
+	@SuppressWarnings("unchecked")
+	protected void updateFitnessScores() {
+		for (T genome : getPopulation()) {
+			D decodedValue = getDecoder().evaluate(genome);
+			Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);
+			genome.setFitness(currentFitnessScore);
 
-            if ((getOptimize() == Optimize.MAX
-                    && currentFitnessScore > getBestFitnessScore())
-                    ^ (getOptimize() == Optimize.MIN
-                    && currentFitnessScore < getBestFitnessScore())) {
-                setBestFitnessScore(currentFitnessScore);
-                try {
-                    setSolution((T) genome.clone());
-                } catch (CloneNotSupportedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+			if ((getOptimize() == Optimize.MAX
+				&& currentFitnessScore > getBestFitnessScore())
+				^ (getOptimize() == Optimize.MIN
+				&& currentFitnessScore < getBestFitnessScore())) {
+				setBestFitnessScore(currentFitnessScore);
+				try {
+					setSolution((T) genome.clone());
+				} catch (CloneNotSupportedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-    /**
-     * Used to create the start population.
-     */
-    protected void createStartPopulation() {
-        while (getPopulationSize() > getPopulation().size()) {
-            T genome = getGenerator().evaluate();
-            if (getGenomeFilter() != null && getGenomeFilter().accept(genome)) {
-                getPopulation().add(genome);
-            } else {
-                getPopulation().add(genome);
-            }
-        }
-    }
+	/**
+	 * Used to create the start population.
+	 */
+	protected void createStartPopulation() {
+		while (getPopulationSize() > getPopulation().size()) {
+			T genome = getGenerator().evaluate();
+			if (getGenomeFilter() != null && getGenomeFilter().accept(genome)) {
+				getPopulation().add(genome);
+			} else {
+				getPopulation().add(genome);
+			}
+		}
+	}
 
-    /**
-     * Each time that's method is invoked the {@code generations} attribute increases its value in one.
-     */
-    protected void increaseGenerations() {
-        generations++;
-    }
+	/**
+	 * Each time that's method is invoked the {@code generations} attribute increases its value in one.
+	 */
+	protected void increaseGenerations() {
+		generations++;
+	}
 
-    @Override
-    public Long getIterations() {
-        return getGenerations();
-    }
+	@Override
+	public Long getIterations() {
+		return getGenerations();
+	}
 
-    @Override
-    public Optimize getOptimize() {
-        return optimize;
-    }
+	@Override
+	public Optimize getOptimize() {
+		return optimize;
+	}
 
-    @Override
-    final public void setOptimize(Optimize optimize) {
-        switch (optimize) {
-            case MAX:
-                setBestFitnessScore(-Double.MAX_VALUE);
-                break;
-            case MIN:
-                setBestFitnessScore(Double.MAX_VALUE);
-                break;
-        }
-        this.optimize = optimize;
-    }
+	@Override
+	final public void setOptimize(Optimize optimize) {
+		switch (optimize) {
+			case MAX:
+				setBestFitnessScore(-Double.MAX_VALUE);
+				break;
+			case MIN:
+				setBestFitnessScore(Double.MAX_VALUE);
+				break;
+		}
+		this.optimize = optimize;
+	}
 
-    /**
-     * Gets an instance of {@link crow.javartint.core.util.function.Function} that decodes the the genome.
-     *
-     * @return an instance of {@link crow.javartint.core.util.function.Function}
-     */
-    public Function<D, T> getDecoder() {
-        return decoder;
-    }
+	/**
+	 * Gets an instance of {@link crow.javartint.core.util.function.Function} that decodes the the genome.
+	 *
+	 * @return an instance of {@link crow.javartint.core.util.function.Function}
+	 */
+	public Function<D, T> getDecoder() {
+		return decoder;
+	}
 
-    /**
-     * Gets the value of best fitness score.
-     *
-     * @return the value of best fitness score.
-     */
-    public double getBestFitnessScore() {
-        return bestFitnessScore;
-    }
+	/**
+	 * Gets the value of best fitness score.
+	 *
+	 * @return the value of best fitness score.
+	 */
+	public double getBestFitnessScore() {
+		return bestFitnessScore;
+	}
 
-    /**
-     * Updates the value of best fitness score.
-     *
-     * @param bestFitnessScore new value of best fitness score
-     */
-    protected void setBestFitnessScore(double bestFitnessScore) {
-        this.bestFitnessScore = bestFitnessScore;
-    }
+	/**
+	 * Updates the value of best fitness score.
+	 *
+	 * @param bestFitnessScore new value of best fitness score
+	 */
+	protected void setBestFitnessScore(double bestFitnessScore) {
+		this.bestFitnessScore = bestFitnessScore;
+	}
 
-    /**
-     * Retrieves the generations.
-     *
-     * @return generations.
-     */
-    public long getGenerations() {
-        return generations;
-    }
+	/**
+	 * Retrieves the generations.
+	 *
+	 * @return generations.
+	 */
+	public long getGenerations() {
+		return generations;
+	}
 
-    /**
-     * Gets the population size.
-     *
-     * @return population size.
-     */
-    public int getPopulationSize() {
-        return populationSize;
-    }
+	/**
+	 * Gets the population size.
+	 *
+	 * @return population size.
+	 */
+	public int getPopulationSize() {
+		return populationSize;
+	}
 
-    /**
-     * Gets the population.
-     *
-     * @return a list with a population.
-     */
-    protected List<T> getPopulation() {
-        return population;
-    }
+	/**
+	 * Gets the population.
+	 *
+	 * @return a list with a population.
+	 */
+	protected List<T> getPopulation() {
+		return population;
+	}
 
-    /**
-     * Sets the new population.
-     *
-     * @param population new population list.
-     */
-    protected void setPopulation(List<T> population) {
-        this.population = population;
-    }
+	/**
+	 * Sets the new population.
+	 *
+	 * @param population new population list.
+	 */
+	protected void setPopulation(List<T> population) {
+		this.population = population;
+	}
 
-    /**
-     * Gets the genome filter.
-     *
-     * @return an instance of {@link crow.javartint.gea.util.GenomeFilter}.
-     */
-    protected GenomeFilter<T> getGenomeFilter() {
-        return genomeFilter;
-    }
+	/**
+	 * Gets the genome filter.
+	 *
+	 * @return an instance of {@link crow.javartint.gea.util.GenomeFilter}.
+	 */
+	protected GenomeFilter<T> getGenomeFilter() {
+		return genomeFilter;
+	}
 
-    /**
-     * Sets the genome filter
-     *
-     * @param genomeFilter an instance of {@link crow.javartint.gea.util.GenomeFilter}
-     */
-    protected void setGenomeFilter(GenomeFilter<T> genomeFilter) {
-        this.genomeFilter = genomeFilter;
-    }
+	/**
+	 * Sets the genome filter
+	 *
+	 * @param genomeFilter an instance of {@link crow.javartint.gea.util.GenomeFilter}
+	 */
+	protected void setGenomeFilter(GenomeFilter<T> genomeFilter) {
+		this.genomeFilter = genomeFilter;
+	}
 
-    /**
-     * Gets the function that generates genome
-     *
-     * @return the instance of {@link crow.javartint.gea.function.generator.GeneratorFunction}
-     */
-    public GeneratorFunction<T> getGenerator() {
-        return generator;
-    }
+	/**
+	 * Gets the function that generates genome
+	 *
+	 * @return the instance of {@link crow.javartint.gea.function.generator.GeneratorFunction}
+	 */
+	public GeneratorFunction<T> getGenerator() {
+		return generator;
+	}
 
-    /**
-     * Gets the target function to optimize.
-     *
-     * @return function to optimize
-     */
-    public Function<Double, D> getTargetFunction() {
-        return targetFunction;
-    }
+	/**
+	 * Gets the target function to optimize.
+	 *
+	 * @return function to optimize
+	 */
+	public Function<Double, D> getTargetFunction() {
+		return targetFunction;
+	}
 }

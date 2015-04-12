@@ -45,193 +45,193 @@ import java.util.*;
  * @version 0.0.2
  */
 public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-        extends AbstractEvolutionaryAlgorithm<T, D> {
+	extends AbstractEvolutionaryAlgorithm<T, D> {
 
-    private final RecombinationFunction<T> recombinationFunction;
+	private final RecombinationFunction<T> recombinationFunction;
 
-    private final MutationFunction<T> mutationFunction;
+	private final MutationFunction<T> mutationFunction;
 
-    private final SelectionFunction<T> selectionFunction;
+	private final SelectionFunction<T> selectionFunction;
 
-    private SelectionFunction<T> selectionFunctionToParents;
+	private SelectionFunction<T> selectionFunctionToParents;
 
-    /**
-     * Initializes this class.
-     * By default selection function for parents is an instance of
-     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
-     *
-     * @param populationSize    the population limit
-     * @param optimize          the optimization way
-     * @param decoder           function to decode the genome
-     * @param targetFunction    function to optimize
-     * @param generator         function to generate genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction  function to mutation process
-     * @param selectionFunction function to selection process
-     */
-    public AbstractGeneticAlgorithm(int populationSize,
-                                    Optimize optimize,
-                                    DecoderFunction<D, T> decoder,
-                                    Function<Double, D> targetFunction,
-                                    GeneratorFunction<T> generator,
-                                    RecombinationFunction<T> recombinationFunction,
-                                    MutationFunction<T> mutationFunction,
-                                    SelectionFunction<T> selectionFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator);
-        this.recombinationFunction = recombinationFunction;
-        this.mutationFunction = mutationFunction;
-        this.selectionFunction = selectionFunction;
-        selectionFunctionToParents = new RandomSelectionFunction<>();
-    }
+	/**
+	 * Initializes this class.
+	 * By default selection function for parents is an instance of
+	 * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
+	 *
+	 * @param populationSize        the population limit
+	 * @param optimize              the optimization way
+	 * @param decoder               function to decode the genome
+	 * @param targetFunction        function to optimize
+	 * @param generator             function to generate genomes
+	 * @param recombinationFunction function to crossing process
+	 * @param mutationFunction      function to mutation process
+	 * @param selectionFunction     function to selection process
+	 */
+	public AbstractGeneticAlgorithm(int populationSize,
+	                                Optimize optimize,
+	                                DecoderFunction<D, T> decoder,
+	                                Function<Double, D> targetFunction,
+	                                GeneratorFunction<T> generator,
+	                                RecombinationFunction<T> recombinationFunction,
+	                                MutationFunction<T> mutationFunction,
+	                                SelectionFunction<T> selectionFunction) {
+		super(populationSize, optimize, decoder, targetFunction, generator);
+		this.recombinationFunction = recombinationFunction;
+		this.mutationFunction = mutationFunction;
+		this.selectionFunction = selectionFunction;
+		selectionFunctionToParents = new RandomSelectionFunction<>();
+	}
 
-    /**
-     * Initializes this class.
-     * By default selection function for parents is an instance of
-     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}, and
-     * selection function for new generation is <code>null</code>.
-     *
-     * @param populationSize    the population limit
-     * @param optimize          the optimization way
-     * @param decoder           function to decode the genome
-     * @param targetFunction    function to optimize
-     * @param generator         function to generate genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction  function to mutation process
-     */
-    public AbstractGeneticAlgorithm(int populationSize,
-                                    Optimize optimize,
-                                    DecoderFunction<D, T> decoder,
-                                    Function<Double, D> targetFunction,
-                                    GeneratorFunction<T> generator,
-                                    RecombinationFunction<T> recombinationFunction,
-                                    MutationFunction<T> mutationFunction) {
-        this(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction, null);
-    }
+	/**
+	 * Initializes this class.
+	 * By default selection function for parents is an instance of
+	 * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}, and
+	 * selection function for new generation is <code>null</code>.
+	 *
+	 * @param populationSize        the population limit
+	 * @param optimize              the optimization way
+	 * @param decoder               function to decode the genome
+	 * @param targetFunction        function to optimize
+	 * @param generator             function to generate genomes
+	 * @param recombinationFunction function to crossing process
+	 * @param mutationFunction      function to mutation process
+	 */
+	public AbstractGeneticAlgorithm(int populationSize,
+	                                Optimize optimize,
+	                                DecoderFunction<D, T> decoder,
+	                                Function<Double, D> targetFunction,
+	                                GeneratorFunction<T> generator,
+	                                RecombinationFunction<T> recombinationFunction,
+	                                MutationFunction<T> mutationFunction) {
+		this(populationSize, optimize, decoder, targetFunction, generator,
+			recombinationFunction, mutationFunction, null);
+	}
 
-    /**
-     * This method sets {@code true} to {@code running} attribute, and calls
-     * {@link #evolve()} method. Implemented from Runnable interface.
-     */
-    @Override
-    public void run() {
-        beginAlgorithm();
-        evolve();
-        fireAlgorithmFinishedEvent();
-    }
+	/**
+	 * This method sets {@code true} to {@code running} attribute, and calls
+	 * {@link #evolve()} method. Implemented from Runnable interface.
+	 */
+	@Override
+	public void run() {
+		beginAlgorithm();
+		evolve();
+		fireAlgorithmFinishedEvent();
+	}
 
-    /**
-     * <p>This method is the responsible for create and evolve of the population.</p>
-     */
-    @Override
-    public void evolve() {
-        createStartPopulation();
-        while (isRunning()) {
-            updateFitnessScores();
-            if (testConstraint()) {
-                stop();
-                break;
-            }
-            epoch();
-            increaseGenerations();
-        }
-    }
+	/**
+	 * <p>This method is the responsible for create and evolve of the population.</p>
+	 */
+	@Override
+	public void evolve() {
+		createStartPopulation();
+		while (isRunning()) {
+			updateFitnessScores();
+			if (testConstraint()) {
+				stop();
+				break;
+			}
+			epoch();
+			increaseGenerations();
+		}
+	}
 
-    /**
-     * <p>
-     * In this method a new population is created from the selection and
-     * crossing of individuals of the current population. After completing the
-     * number of individuals, the current population is replaced by the new. The
-     * methods are executed in this order:
-     * </p>
-     * <ol>
-     * <li>If {@link #getSelectionFunction()} is not {@code null}, selects
-     * (according selection method) the configured number of genomes to new
-     * population, otherwise continues.</li>
-     * <li>While the size o new population will be less than the size of
-     * current population.</li>
-     * <ol>
-     * <li>Selects the two parents.</li>
-     * <li>Crossing the pre-selected parents.</li>
-     * <li>Mutates the offspring.</li>
-     * <li>If {@link #getGenomeFilter()} is distinct of {@code null},
-     * the new offspring will be filtered,
-     * and only the successfully filtered genomes will be added to the new generation,
-     * otherwise the offspring will be added to the new population.</li>
-     * </ol>
-     * <li>Old population is replaced by new.</li>
-     * </ol>
-     */
-    @Override
-    protected void epoch() {
-        Set<T> newGeneration = new LinkedHashSet<>(getPopulationSize());
-        if (getSelectionFunction() != null) {
-            newGeneration.addAll(getSelectionFunction().evaluate(getPopulation()));
-        }
-        while (newGeneration.size() < getPopulationSize()) {
-            List<T> parents = getSelectionFunctionToParents().evaluate(getPopulation());
-            @SuppressWarnings("unchecked")
-            T[] offspring = getRecombinationFunction().evaluate(parents.get(0), parents.get(1));
-            for (T genome : offspring) {
-                getMutationFunction().evaluate(genome);
-            }
-            if (getGenomeFilter() != null) {
-                for (T genome : offspring) {
-                    if (getGenomeFilter().accept(genome)) {
-                        newGeneration.add(genome);
-                    }
-                }
-            } else {
-                Collections.addAll(newGeneration, offspring);
-            }
-        }
-        setPopulation(new ArrayList<>(newGeneration));
-    }
+	/**
+	 * <p>
+	 * In this method a new population is created from the selection and
+	 * crossing of individuals of the current population. After completing the
+	 * number of individuals, the current population is replaced by the new. The
+	 * methods are executed in this order:
+	 * </p>
+	 * <ol>
+	 * <li>If {@link #getSelectionFunction()} is not {@code null}, selects
+	 * (according selection method) the configured number of genomes to new
+	 * population, otherwise continues.</li>
+	 * <li>While the size o new population will be less than the size of
+	 * current population.</li>
+	 * <ol>
+	 * <li>Selects the two parents.</li>
+	 * <li>Crossing the pre-selected parents.</li>
+	 * <li>Mutates the offspring.</li>
+	 * <li>If {@link #getGenomeFilter()} is distinct of {@code null},
+	 * the new offspring will be filtered,
+	 * and only the successfully filtered genomes will be added to the new generation,
+	 * otherwise the offspring will be added to the new population.</li>
+	 * </ol>
+	 * <li>Old population is replaced by new.</li>
+	 * </ol>
+	 */
+	@Override
+	protected void epoch() {
+		Set<T> newGeneration = new LinkedHashSet<>(getPopulationSize());
+		if (getSelectionFunction() != null) {
+			newGeneration.addAll(getSelectionFunction().evaluate(getPopulation()));
+		}
+		while (newGeneration.size() < getPopulationSize()) {
+			List<T> parents = getSelectionFunctionToParents().evaluate(getPopulation());
+			@SuppressWarnings("unchecked")
+			T[] offspring = getRecombinationFunction().evaluate(parents.get(0), parents.get(1));
+			for (T genome : offspring) {
+				getMutationFunction().evaluate(genome);
+			}
+			if (getGenomeFilter() != null) {
+				for (T genome : offspring) {
+					if (getGenomeFilter().accept(genome)) {
+						newGeneration.add(genome);
+					}
+				}
+			} else {
+				Collections.addAll(newGeneration, offspring);
+			}
+		}
+		setPopulation(new ArrayList<>(newGeneration));
+	}
 
-    /**
-     * Gets the instance of recombination function.
-     *
-     * @return the recombination function.
-     */
-    public RecombinationFunction<T> getRecombinationFunction() {
-        return recombinationFunction;
-    }
+	/**
+	 * Gets the instance of recombination function.
+	 *
+	 * @return the recombination function.
+	 */
+	public RecombinationFunction<T> getRecombinationFunction() {
+		return recombinationFunction;
+	}
 
-    /**
-     * Gets the instance of mutation function.
-     *
-     * @return the mutation function.
-     */
-    public MutationFunction<T> getMutationFunction() {
-        return mutationFunction;
-    }
+	/**
+	 * Gets the instance of mutation function.
+	 *
+	 * @return the mutation function.
+	 */
+	public MutationFunction<T> getMutationFunction() {
+		return mutationFunction;
+	}
 
-    /**
-     * Gets the instance of selection function.
-     *
-     * @return the selection function.
-     */
-    public SelectionFunction<T> getSelectionFunction() {
-        return selectionFunction;
-    }
+	/**
+	 * Gets the instance of selection function.
+	 *
+	 * @return the selection function.
+	 */
+	public SelectionFunction<T> getSelectionFunction() {
+		return selectionFunction;
+	}
 
 
-    /**
-     * Gets the selection function used to select the parents and use them in the crossing process.
-     * By default is an instance of {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
-     *
-     * @return an instance of {@link crow.javartint.gea.function.selection.SelectionFunction}
-     */
-    public SelectionFunction<T> getSelectionFunctionToParents() {
-        return selectionFunctionToParents;
-    }
+	/**
+	 * Gets the selection function used to select the parents and use them in the crossing process.
+	 * By default is an instance of {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
+	 *
+	 * @return an instance of {@link crow.javartint.gea.function.selection.SelectionFunction}
+	 */
+	public SelectionFunction<T> getSelectionFunctionToParents() {
+		return selectionFunctionToParents;
+	}
 
-    /**
-     * Sets the selection function used to select the parents in the crossing process.
-     *
-     * @param selectionFunctionToParents selection function instance.
-     */
-    public void setSelectionFunctionToParents(SelectionFunction<T> selectionFunctionToParents) {
-        this.selectionFunctionToParents = selectionFunctionToParents;
-    }
+	/**
+	 * Sets the selection function used to select the parents in the crossing process.
+	 *
+	 * @param selectionFunctionToParents selection function instance.
+	 */
+	public void setSelectionFunctionToParents(SelectionFunction<T> selectionFunctionToParents) {
+		this.selectionFunctionToParents = selectionFunctionToParents;
+	}
 }

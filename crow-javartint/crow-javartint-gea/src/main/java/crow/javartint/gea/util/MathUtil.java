@@ -23,8 +23,6 @@ package crow.javartint.gea.util;
  */
 
 
-import crow.javartint.gea.chromosome.Chromosome;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.List;
@@ -37,51 +35,51 @@ import java.util.List;
  */
 public final class MathUtil {
 
-    private MathUtil() {
-    }
+	private MathUtil() {
+	}
 
-    /**
-     * This method takes a list of genomes and determines the mean of their fitness.
-     *
-     * @param genomes list of genomes
-     * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
-     * @return the mean of fitness
-     */
-    static public <T extends Genome> double mean(List<T> genomes) {
-        double sum = 0.0;
-        for (T genome : genomes) {
-            sum += genome.getFitness();
-        }
-        return sum / genomes.size();
-    }
+	/**
+	 * This method takes a list of genomes and determines the mean of their fitness.
+	 *
+	 * @param genomes list of genomes
+	 * @param <T>     Any class derived from {@link crow.javartint.gea.genome.Genome} interface
+	 * @return the mean of fitness
+	 */
+	static public <T extends Genome> double mean(List<T> genomes) {
+		double sum = 0.0;
+		for (T genome : genomes) {
+			sum += genome.getFitness();
+		}
+		return sum / genomes.size();
+	}
 
-    /**
-     * This method takes a list of genomes and their mean of fitness, and determines the variance of their fitness.
-     *
-     * @param genomes list of genomes
-     * @param mean the mean of the fitness
-     * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
-     * @return the variance of fitness
-     */
-    static public <T extends Genome> double variance(List<T> genomes, Double mean) {
-        double sum = 0.0;
-        for (T genome : genomes) {
-            double diff = genome.getFitness() - mean;
-            sum += diff * diff;
-        }
-        return sum / genomes.size();
-    }
+	/**
+	 * This method takes a list of genomes and their mean of fitness, and determines the variance of their fitness.
+	 *
+	 * @param genomes list of genomes
+	 * @param mean    the mean of the fitness
+	 * @param <T>     Any class derived from {@link crow.javartint.gea.genome.Genome} interface
+	 * @return the variance of fitness
+	 */
+	static public <T extends Genome> double variance(List<T> genomes, Double mean) {
+		double sum = 0.0;
+		for (T genome : genomes) {
+			double diff = genome.getFitness() - mean;
+			sum += diff * diff;
+		}
+		return sum / genomes.size();
+	}
 
-    /**
-     * This method takes a list of genomes and determines the variance of their fitness.
-     *
-     * @param genomes list of genomes
-     * @param <T> Any class derived from {@link crow.javartint.gea.genome.Genome} interface
-     * @return the variance of fitness
-     */
-    static public <T extends Genome> double variance(List<T> genomes) {
-        return variance(genomes, mean(genomes));
-    }
+	/**
+	 * This method takes a list of genomes and determines the variance of their fitness.
+	 *
+	 * @param genomes list of genomes
+	 * @param <T>     Any class derived from {@link crow.javartint.gea.genome.Genome} interface
+	 * @return the variance of fitness
+	 */
+	static public <T extends Genome> double variance(List<T> genomes) {
+		return variance(genomes, mean(genomes));
+	}
 
 
 }

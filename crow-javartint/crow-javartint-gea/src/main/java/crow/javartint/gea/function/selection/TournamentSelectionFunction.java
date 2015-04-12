@@ -22,9 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.ArrayList;
@@ -39,45 +37,45 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class TournamentSelectionFunction<T extends Genome<?>>
-        extends AbstractSelectionFunction<T> {
+	extends AbstractSelectionFunction<T> {
 
-    public TournamentSelectionFunction() {
-        this(2);
-    }
+	public TournamentSelectionFunction() {
+		this(2);
+	}
 
-    public TournamentSelectionFunction(int selectedGenomes) {
-        this(selectedGenomes, null);
-    }
+	public TournamentSelectionFunction(int selectedGenomes) {
+		this(selectedGenomes, null);
+	}
 
-    public TournamentSelectionFunction(int selectedGenomes,
-                                       AbstractScalingMethod<T> scalingMethod)
-            throws IllegalArgumentException {
-        super(selectedGenomes, scalingMethod);
-    }
+	public TournamentSelectionFunction(int selectedGenomes,
+	                                   AbstractScalingMethod<T> scalingMethod)
+		throws IllegalArgumentException {
+		super(selectedGenomes, scalingMethod);
+	}
 
-    @Override
-    protected List<T> select(List<T> genomes) {
-        if (getScalingMethod() != null) {
-            getScalingMethod().evaluate(genomes);
-        }
-        List<T> selected = new ArrayList<>(getNumToSelect());
-        while (selected.size() < getNumToSelect()) {
-            selected.add(tournamentSelection(genomes));
-        }
-        return selected;
-    }
+	@Override
+	protected List<T> select(List<T> genomes) {
+		if (getScalingMethod() != null) {
+			getScalingMethod().evaluate(genomes);
+		}
+		List<T> selected = new ArrayList<>(getNumToSelect());
+		while (selected.size() < getNumToSelect()) {
+			selected.add(tournamentSelection(genomes));
+		}
+		return selected;
+	}
 
-    private T tournamentSelection(List<T> genomes) {
-        double bestFitnessSoFar = 0;
-        int chosenOne = 0;
-        Random rand = new Random();
-        for (int i = 0; i < getNumToSelect(); i++) {
-            int thisTry = rand.nextInt(genomes.size());
-            if (genomes.get(thisTry).getFitness() > bestFitnessSoFar) {
-                chosenOne = thisTry;
-                bestFitnessSoFar = genomes.get(thisTry).getFitness();
-            }
-        }
-        return genomes.get(chosenOne);
-    }
+	private T tournamentSelection(List<T> genomes) {
+		double bestFitnessSoFar = 0;
+		int chosenOne = 0;
+		Random rand = new Random();
+		for (int i = 0; i < getNumToSelect(); i++) {
+			int thisTry = rand.nextInt(genomes.size());
+			if (genomes.get(thisTry).getFitness() > bestFitnessSoFar) {
+				chosenOne = thisTry;
+				bestFitnessSoFar = genomes.get(thisTry).getFitness();
+			}
+		}
+		return genomes.get(chosenOne);
+	}
 }

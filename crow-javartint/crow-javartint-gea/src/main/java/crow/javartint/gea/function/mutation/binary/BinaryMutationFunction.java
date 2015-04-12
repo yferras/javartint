@@ -37,36 +37,36 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class BinaryMutationFunction<T extends Genome<? extends Chromosome<ByteArrayGene>>>
-    extends AbstractMutationFunction<T> {
+	extends AbstractMutationFunction<T> {
 
-    public BinaryMutationFunction(double probability, Random random) {
-        super(probability, random);
-    }
+	public BinaryMutationFunction(double probability, Random random) {
+		super(probability, random);
+	}
 
-    public BinaryMutationFunction(double probability) {
-        super(probability);
-    }
+	public BinaryMutationFunction(double probability) {
+		super(probability);
+	}
 
-    public BinaryMutationFunction() {
-        super();
-    }
+	public BinaryMutationFunction() {
+		super();
+	}
 
-    @Override
-    protected T mutate(T subject) {
-        boolean muted = false;
-        do {
-            for (Chromosome<ByteArrayGene> chromosome : subject) {
-                for (ByteArrayGene gene : chromosome) {
-                    for (int i = 0; i < gene.length(); i++) {
-                        if (getRandom().nextDouble() < getProbability()) {
-                            byte val = gene.getAllele(i);
-                            gene.setAllele(i, (byte)(val == 0 ? 1 : 0));
-                            muted = true;
-                        }
-                    }
-                }
-            }
-        } while (!muted);
-        return subject;
-    }
+	@Override
+	protected T mutate(T subject) {
+		boolean muted = false;
+		do {
+			for (Chromosome<ByteArrayGene> chromosome : subject) {
+				for (ByteArrayGene gene : chromosome) {
+					for (int i = 0; i < gene.length(); i++) {
+						if (getRandom().nextDouble() < getProbability()) {
+							byte val = gene.getAllele(i);
+							gene.setAllele(i, (byte) (val == 0 ? 1 : 0));
+							muted = true;
+						}
+					}
+				}
+			}
+		} while (!muted);
+		return subject;
+	}
 }

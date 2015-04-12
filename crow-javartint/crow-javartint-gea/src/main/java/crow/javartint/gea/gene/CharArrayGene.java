@@ -30,8 +30,8 @@ package crow.javartint.gea.gene;
  */
 public class CharArrayGene extends ArrayGene<Character> {
 
-    public CharArrayGene(Character[] data) {
-        super(data);
-    }
+	public CharArrayGene(Character[] data) {
+		super(data);
+	}
 
 }

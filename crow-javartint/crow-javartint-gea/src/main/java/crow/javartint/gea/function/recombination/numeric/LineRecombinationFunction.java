@@ -33,7 +33,7 @@ import java.util.Random;
  * Specific recombination function to real valued genomes.
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}<code>&lt;? extends </code>
- * {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
+ *            {@link crow.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -68,7 +68,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
 	 * By default it uses as random generator an instance of {@link java.util.Random},
 	 * and <code>probability = 0.75</code>.
 	 *
-	 * @param distance    defines the length of the extra-segment for possible offspring.
+	 * @param distance defines the length of the extra-segment for possible offspring.
 	 */
 	public LineRecombinationFunction(double distance) {
 		super(distance);

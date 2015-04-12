@@ -33,15 +33,15 @@ import java.util.List;
 
 /**
  * <p>
- *     Specific mutation function in TSP.
+ * Specific mutation function in TSP.
  * </p>
  * <p>
- *     Takes the original genome and generates a random section based on genome's size. After that, the genes inside
- *     this section are stored in a list and removed from the source. The genes list reverses the order of their
- *     elements, then is reinserted on same position in the source.
+ * Takes the original genome and generates a random section based on genome's size. After that, the genes inside
+ * this section are stored in a list and removed from the source. The genes list reverses the order of their
+ * elements, then is reinserted on same position in the source.
  * </p>
  * <p>
- *     Example, given the following setting: <code>minSpanSize = 4</code> genome:<br/>
+ * Example, given the following setting: <code>minSpanSize = 4</code> genome:<br/>
  * </p>
  * <pre>
  *     TSPGenome:
@@ -66,34 +66,34 @@ import java.util.List;
 public class InversionMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
 
 
-    private int minSpanSize;
+	private int minSpanSize;
 
-    public InversionMutationFunction(double probability) {
-        this(probability, 2);
-    }
+	public InversionMutationFunction(double probability) {
+		this(probability, 2);
+	}
 
-    public InversionMutationFunction(double probability,
-                                     int minSpanSize) {
-        super(probability);
-        this.minSpanSize = minSpanSize;
-    }
+	public InversionMutationFunction(double probability,
+	                                 int minSpanSize) {
+		super(probability);
+		this.minSpanSize = minSpanSize;
+	}
 
-    public int getMinSpanSize() {
-        return minSpanSize;
-    }
+	public int getMinSpanSize() {
+		return minSpanSize;
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
-            throws CloneNotSupportedException {
-        int start = getRandom().nextInt(subject.size() - getMinSpanSize());
-        int end = start + getMinSpanSize();
-        List genes = Arrays.asList(subject.getChromosome(0).getGenes());
-        List section = genes.subList(start, end);
-        genes.removeAll(section);
-        Collections.reverse(section);
-        genes.addAll(start, section);
-        subject.getChromosome(0).setGenes((DefaultGene<Integer>[]) genes.toArray());
-        return subject;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
+		throws CloneNotSupportedException {
+		int start = getRandom().nextInt(subject.size() - getMinSpanSize());
+		int end = start + getMinSpanSize();
+		List genes = Arrays.asList(subject.getChromosome(0).getGenes());
+		List section = genes.subList(start, end);
+		genes.removeAll(section);
+		Collections.reverse(section);
+		genes.addAll(start, section);
+		subject.getChromosome(0).setGenes((DefaultGene<Integer>[]) genes.toArray());
+		return subject;
+	}
 }

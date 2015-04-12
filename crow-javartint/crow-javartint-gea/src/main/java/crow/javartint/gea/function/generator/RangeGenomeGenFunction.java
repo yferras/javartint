@@ -37,67 +37,67 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class RangeGenomeGenFunction
-        extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
+	extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
-    private final int precision;
-    private Range<Double>[] ranges;
+	private final int precision;
+	private Range<Double>[] ranges;
 
-    /**
-     * Initializes this instance.
-     *
-     * @param genomeSize the number of chromosomes.
-     * @param precision decimal precision.
-     * @param ranges Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
-     *               is used to generate a random value inside range.
-     */
-    public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
-        super(genomeSize, ranges.length, 1);
-        this.precision = precision;
-        this.ranges = ranges;
-    }
+	/**
+	 * Initializes this instance.
+	 *
+	 * @param genomeSize the number of chromosomes.
+	 * @param precision  decimal precision.
+	 * @param ranges     Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+	 *                   is used to generate a random value inside range.
+	 */
+	public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
+		super(genomeSize, ranges.length, 1);
+		this.precision = precision;
+		this.ranges = ranges;
+	}
 
-    /**
-     * Initializes this instance. By default {@code genomeSize} is 1.
-     *
-     * @param precision decimal precision.
-     * @param ranges Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
-     *               is used to generate a random value inside range.
-     */
-    public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
-        super(1, ranges.length, 1);
-        this.precision = precision;
-        this.ranges = ranges;
-    }
+	/**
+	 * Initializes this instance. By default {@code genomeSize} is 1.
+	 *
+	 * @param precision decimal precision.
+	 * @param ranges    Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+	 *                  is used to generate a random value inside range.
+	 */
+	public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
+		super(1, ranges.length, 1);
+		this.precision = precision;
+		this.ranges = ranges;
+	}
 
-    /**
-     * Generates a genome with default set of genes, each of these genes have a double value.
-     *
-     * @param genomeSize the number of chromosomes.
-     * @param lengthsOfGenes the array that contains the length of each gene.
-     * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
-        Random random = new Random();
-        DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
-        for (int i = 0; i < genomeSize; i ++) {
-            DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
-            for (int j = 0; j < lengthsOfGenes.length; j++) {
-                Range<Double> range = ranges[j];
-                double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
-                genes[j] = new DefaultGene<>(v);
-            }
-            genome.add(new DefaultChromosome<DefaultGene<Double>>());
-            genome.getChromosome(i).setGenes(genes);
-        }
-        return genome;
-    }
+	/**
+	 * Generates a genome with default set of genes, each of these genes have a double value.
+	 *
+	 * @param genomeSize     the number of chromosomes.
+	 * @param lengthsOfGenes the array that contains the length of each gene.
+	 * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
+		Random random = new Random();
+		DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
+		for (int i = 0; i < genomeSize; i++) {
+			DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
+			for (int j = 0; j < lengthsOfGenes.length; j++) {
+				Range<Double> range = ranges[j];
+				double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
+				genes[j] = new DefaultGene<>(v);
+			}
+			genome.add(new DefaultChromosome<DefaultGene<Double>>());
+			genome.getChromosome(i).setGenes(genes);
+		}
+		return genome;
+	}
 
-    private double round(double value) {
-        double p = Math.pow(10.0, precision);
-        value *= p;
-        return Math.round(value) / p;
-    }
+	private double round(double value) {
+		double p = Math.pow(10.0, precision);
+		value *= p;
+		return Math.round(value) / p;
+	}
 
 }

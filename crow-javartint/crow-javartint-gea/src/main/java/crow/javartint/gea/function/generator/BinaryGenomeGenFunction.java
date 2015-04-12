@@ -22,10 +22,8 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Random;

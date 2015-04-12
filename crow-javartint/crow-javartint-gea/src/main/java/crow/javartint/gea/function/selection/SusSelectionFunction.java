@@ -22,9 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.ArrayList;
@@ -40,57 +38,57 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class SusSelectionFunction<T extends Genome<?>>
-        extends AbstractSelectionFunction<T> {
+	extends AbstractSelectionFunction<T> {
 
-    public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
-        super(numToSelect, scalingMethod);
-    }
+	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+		super(numToSelect, scalingMethod);
+	}
 
-    public SusSelectionFunction(int numToSelect) {
-        this(numToSelect, null);
-    }
+	public SusSelectionFunction(int numToSelect) {
+		this(numToSelect, null);
+	}
 
-    public SusSelectionFunction() {
-        this(2);
-    }
+	public SusSelectionFunction() {
+		this(2);
+	}
 
 
-    @Override
-    protected List<T> select(List<T> genomes) {
-        if (getScalingMethod() != null) {
-            getScalingMethod().evaluate(genomes);
-        }
-        Collections.sort(genomes);
-        double worstFitness = genomes.get(genomes.size() - 1).getFitness();
-        if (worstFitness < 0) {
-            double absValue = Math.abs(worstFitness);
-            for (Genome genome : genomes) {
-                genome.setFitness(genome.getFitness() + absValue);
-            }
-        }
-        double sum = 0.0;
-        for (T genome : genomes) {
-            sum += genome.getFitness();
-        }
-        for (T genome : genomes) {
-            genome.setFitness(genome.getFitness() / sum);
-        }
-        double inc = 1.0 / (double)getNumToSelect();
-        Random rand = new Random();
-        double mark = rand.nextDouble() * inc;
-        sum = 0.0;
-        List<T> selected = new ArrayList<>(getNumToSelect());
-        Collections.shuffle(genomes);
-        for (T genome : genomes) {
-            sum += genome.getFitness();
-            if (sum > mark) {
-                selected.add(genome);
-                if (selected.size() == getNumToSelect()) {
-                    break;
-                }
-                mark += inc;
-            }
-        }
-        return selected;
-    }
+	@Override
+	protected List<T> select(List<T> genomes) {
+		if (getScalingMethod() != null) {
+			getScalingMethod().evaluate(genomes);
+		}
+		Collections.sort(genomes);
+		double worstFitness = genomes.get(genomes.size() - 1).getFitness();
+		if (worstFitness < 0) {
+			double absValue = Math.abs(worstFitness);
+			for (Genome genome : genomes) {
+				genome.setFitness(genome.getFitness() + absValue);
+			}
+		}
+		double sum = 0.0;
+		for (T genome : genomes) {
+			sum += genome.getFitness();
+		}
+		for (T genome : genomes) {
+			genome.setFitness(genome.getFitness() / sum);
+		}
+		double inc = 1.0 / (double) getNumToSelect();
+		Random rand = new Random();
+		double mark = rand.nextDouble() * inc;
+		sum = 0.0;
+		List<T> selected = new ArrayList<>(getNumToSelect());
+		Collections.shuffle(genomes);
+		for (T genome : genomes) {
+			sum += genome.getFitness();
+			if (sum > mark) {
+				selected.add(genome);
+				if (selected.size() == getNumToSelect()) {
+					break;
+				}
+				mark += inc;
+			}
+		}
+		return selected;
+	}
 }

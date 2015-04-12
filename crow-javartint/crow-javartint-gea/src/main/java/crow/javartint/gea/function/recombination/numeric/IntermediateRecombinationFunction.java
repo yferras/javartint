@@ -77,7 +77,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
 	 * By default it uses as random generator an instance of {@link java.util.Random}.
 	 *
 	 * @param probability probability of mutation
-	 * @param distance defines the size of the area for possible offspring.
+	 * @param distance    defines the size of the area for possible offspring.
 	 */
 	public IntermediateRecombinationFunction(double probability, double distance) {
 		this(probability, new Random(), distance);

@@ -29,14 +29,14 @@ import crow.javartint.gea.genome.DefaultGenome;
 
 /**
  * <p>
- *     Specific mutation function in TSP.
+ * Specific mutation function in TSP.
  * </p>
  * <p>
- *     Takes the original genome and generates tow random indices based on genome's size. After that, the genes on that
- *     indices are exchanged.
+ * Takes the original genome and generates tow random indices based on genome's size. After that, the genes on that
+ * indices are exchanged.
  * </p>
  * <p>
- *     Example, given the following genome:
+ * Example, given the following genome:
  * </p>
  * <pre>
  *     TSPGenome:
@@ -56,25 +56,25 @@ import crow.javartint.gea.genome.DefaultGenome;
  */
 public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
 
-    public ExchangeMutationOperator(double probability) {
-        super(probability);
-    }
+	public ExchangeMutationOperator(double probability) {
+		super(probability);
+	}
 
-    public ExchangeMutationOperator() {
-        super();
-    }
+	public ExchangeMutationOperator() {
+		super();
+	}
 
-    @Override
-    protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
-            throws CloneNotSupportedException {
-        int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
-        int pos2 = getRandom().nextInt(subject.getChromosome(0).size());
-        while (pos2 == pos1) {
-            pos2 = getRandom().nextInt(subject.size());
-        }
-        DefaultGene<Integer> gene1 = subject.getChromosome(0).getGene(pos1);
-        subject.getChromosome(0).setGene(pos1, subject.getChromosome(0).getGene(pos2));
-        subject.getChromosome(0).setGene(pos2, gene1);
-        return subject;
-    }
+	@Override
+	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
+		throws CloneNotSupportedException {
+		int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
+		int pos2 = getRandom().nextInt(subject.getChromosome(0).size());
+		while (pos2 == pos1) {
+			pos2 = getRandom().nextInt(subject.size());
+		}
+		DefaultGene<Integer> gene1 = subject.getChromosome(0).getGene(pos1);
+		subject.getChromosome(0).setGene(pos1, subject.getChromosome(0).getGene(pos2));
+		subject.getChromosome(0).setGene(pos2, gene1);
+		return subject;
+	}
 }

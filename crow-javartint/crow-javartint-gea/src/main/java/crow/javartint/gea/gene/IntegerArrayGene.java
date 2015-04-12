@@ -30,8 +30,8 @@ package crow.javartint.gea.gene;
  */
 public class IntegerArrayGene extends NumberArrayGene<Integer> {
 
-    public IntegerArrayGene(Integer[] data) {
-        super(data);
-    }
+	public IntegerArrayGene(Integer[] data) {
+		super(data);
+	}
 
 }

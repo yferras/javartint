@@ -30,8 +30,8 @@ package crow.javartint.gea.gene;
  */
 public class DoubleArrayGene extends NumberArrayGene<Double> {
 
-    public DoubleArrayGene(Double[] data) {
-        super(data);
-    }
+	public DoubleArrayGene(Double[] data) {
+		super(data);
+	}
 
 }

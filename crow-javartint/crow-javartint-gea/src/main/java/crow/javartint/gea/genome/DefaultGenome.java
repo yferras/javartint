@@ -34,11 +34,11 @@ import crow.javartint.gea.gene.Gene;
  */
 public class DefaultGenome<T extends Chromosome<? extends Gene<?>>> extends AbstractGenome<T> {
 
-    /**
-     * Default constructor.
-     */
-    public DefaultGenome() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public DefaultGenome() {
+		super();
+	}
 
 }

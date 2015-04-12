@@ -25,8 +25,6 @@ package crow.javartint.gea.chromosome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**

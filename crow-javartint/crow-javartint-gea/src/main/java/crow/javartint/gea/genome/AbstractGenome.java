@@ -26,8 +26,6 @@ import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
@@ -38,163 +36,163 @@ import java.util.*;
  * @version 0.0.1
  */
 public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> implements Genome<T> {
-    /**
-     * Array of chromosomes that contains the genome information.
-     */
-    final protected List<T> chromosomes;
-    /**
-     * Genome fitness.
-     */
-    protected double fitness;
+	/**
+	 * Array of chromosomes that contains the genome information.
+	 */
+	final protected List<T> chromosomes;
+	/**
+	 * Genome fitness.
+	 */
+	protected double fitness;
 
 
-    protected AbstractGenome() {
-        fitness = 0.0;
-        chromosomes = new LinkedList<>();
-    }
+	protected AbstractGenome() {
+		fitness = 0.0;
+		chromosomes = new LinkedList<>();
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public Chromosome<? extends Gene<?>>[] getChromosomes() {
-        return chromosomes.toArray(new Chromosome<?>[size()]);
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public Chromosome<? extends Gene<?>>[] getChromosomes() {
+		return chromosomes.toArray(new Chromosome<?>[size()]);
+	}
 
-    @Override
-    public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
-        this.chromosomes.clear();
-        this.chromosomes.addAll(Arrays.asList(chromosomes));
-    }
+	@Override
+	public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
+		this.chromosomes.clear();
+		this.chromosomes.addAll(Arrays.asList(chromosomes));
+	}
 
-    @Override
-    public double getFitness() {
-        return fitness;
-    }
+	@Override
+	public double getFitness() {
+		return fitness;
+	}
 
-    @Override
-    public void setFitness(double fitness) {
-        this.fitness = fitness;
-    }
+	@Override
+	public void setFitness(double fitness) {
+		this.fitness = fitness;
+	}
 
 
-    @Override
-    public T getChromosome(int index) {
-        return this.chromosomes.get(index);
-    }
+	@Override
+	public T getChromosome(int index) {
+		return this.chromosomes.get(index);
+	}
 
-    @Override
-    public void setChromosome(int index, T newChromosome) {
-        this.chromosomes.set(index, newChromosome);
-    }
+	@Override
+	public void setChromosome(int index, T newChromosome) {
+		this.chromosomes.set(index, newChromosome);
+	}
 
-    @Override
-    public int size() {
-        return chromosomes.size();
-    }
+	@Override
+	public int size() {
+		return chromosomes.size();
+	}
 
-    @Override
-    public void add(T chromosome) {
-        chromosomes.add(chromosome);
-    }
+	@Override
+	public void add(T chromosome) {
+		chromosomes.add(chromosome);
+	}
 
-    @Override
-    public Iterator<T> iterator() {
-        return new GenomeIterator();
-    }
+	@Override
+	public Iterator<T> iterator() {
+		return new GenomeIterator();
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public Genome<T> clone() throws CloneNotSupportedException {
-        ObjectInputStream objectInputStream = null;
-        ObjectOutputStream objectOutputStream = null;
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(this);
+	@SuppressWarnings("unchecked")
+	@Override
+	public Genome<T> clone() throws CloneNotSupportedException {
+		ObjectInputStream objectInputStream = null;
+		ObjectOutputStream objectOutputStream = null;
+		try {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(this);
 
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            objectInputStream = new ObjectInputStream(inputStream);
-            return (Genome<T>) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new CloneNotSupportedException(e.getMessage());
-        } finally {
-            try {
-                if (objectInputStream != null) {
-                    objectInputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (objectOutputStream != null) {
-                    objectOutputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+			objectInputStream = new ObjectInputStream(inputStream);
+			return (Genome<T>) objectInputStream.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			throw new CloneNotSupportedException(e.getMessage());
+		} finally {
+			try {
+				if (objectInputStream != null) {
+					objectInputStream.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (objectOutputStream != null) {
+					objectOutputStream.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
 
-        AbstractGenome that = (AbstractGenome) o;
+		AbstractGenome that = (AbstractGenome) o;
 
-        return Double.compare(that.fitness, fitness) == 0 && chromosomes.equals(that.chromosomes);
+		return Double.compare(that.fitness, fitness) == 0 && chromosomes.equals(that.chromosomes);
 
-    }
+	}
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = chromosomes.hashCode();
-        temp = Double.doubleToLongBits(fitness);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		int result;
+		long temp;
+		result = chromosomes.hashCode();
+		temp = Double.doubleToLongBits(fitness);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
 
-    @Override
-    public int compareTo(Genome<?> o) {
-        return Double.compare(getFitness(), o.getFitness());
-    }
+	@Override
+	public int compareTo(Genome<?> o) {
+		return Double.compare(getFitness(), o.getFitness());
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("{");
-        stringBuilder.append("Fitness: ").append(getFitness()).append(';');
-        stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
-        for (int i = 1; i < size(); i++) {
-            stringBuilder.append("; ").append(getChromosome(i));
-        }
-        return stringBuilder.append(")").append("}").toString();
-    }
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder("{");
+		stringBuilder.append("Fitness: ").append(getFitness()).append(';');
+		stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
+		for (int i = 1; i < size(); i++) {
+			stringBuilder.append("; ").append(getChromosome(i));
+		}
+		return stringBuilder.append(")").append("}").toString();
+	}
 
-    private class GenomeIterator implements Iterator<T> {
+	private class GenomeIterator implements Iterator<T> {
 
-        private int cursor = 0;
+		private int cursor = 0;
 
-        @Override
-        public boolean hasNext() {
-            return cursor < size();
-        }
+		@Override
+		public boolean hasNext() {
+			return cursor < size();
+		}
 
-        @Override
-        public T next() {
-            try {
-                int i = cursor;
-                T next = getChromosome(i);
-                cursor = i + 1;
-                return next;
-            } catch (IndexOutOfBoundsException e) {
-                throw new NoSuchElementException();
-            }
-        }
+		@Override
+		public T next() {
+			try {
+				int i = cursor;
+				T next = getChromosome(i);
+				cursor = i + 1;
+				return next;
+			} catch (IndexOutOfBoundsException e) {
+				throw new NoSuchElementException();
+			}
+		}
 
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-        }
-    }
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+		}
+	}
 }

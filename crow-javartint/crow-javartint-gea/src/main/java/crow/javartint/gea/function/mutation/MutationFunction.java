@@ -35,5 +35,5 @@ import crow.javartint.gea.genome.Genome;
  * @version 0.0.1
  */
 public interface MutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-        extends ProbabilisticFunction<T, T> {
+	extends ProbabilisticFunction<T, T> {
 }

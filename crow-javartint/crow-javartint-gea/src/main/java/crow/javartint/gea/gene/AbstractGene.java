@@ -34,79 +34,79 @@ import java.util.Objects;
  */
 public class AbstractGene<T> implements Gene<T> {
 
-    /**
-     * The data.
-     */
-    protected T data;
+	/**
+	 * The data.
+	 */
+	protected T data;
 
-    public AbstractGene(T data) {
-        this.data = data;
-    }
+	public AbstractGene(T data) {
+		this.data = data;
+	}
 
-    @Override
-    public T getData() {
-        return data;
-    }
+	@Override
+	public T getData() {
+		return data;
+	}
 
-    @Override
-    public void setData(T data) {
-        this.data = data;
-    }
+	@Override
+	public void setData(T data) {
+		this.data = data;
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public Gene<T> clone() throws CloneNotSupportedException {
-        ObjectInputStream objectInputStream = null;
-        ObjectOutputStream objectOutputStream = null;
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(this);
+	@SuppressWarnings("unchecked")
+	@Override
+	public Gene<T> clone() throws CloneNotSupportedException {
+		ObjectInputStream objectInputStream = null;
+		ObjectOutputStream objectOutputStream = null;
+		try {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(this);
 
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            objectInputStream = new ObjectInputStream(inputStream);
-            return (Gene<T>) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new CloneNotSupportedException(e.getMessage());
-        } finally {
-            try {
-                if (objectInputStream != null) {
-                    objectInputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (objectOutputStream != null) {
-                    objectOutputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+			objectInputStream = new ObjectInputStream(inputStream);
+			return (Gene<T>) objectInputStream.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			throw new CloneNotSupportedException(e.getMessage());
+		} finally {
+			try {
+				if (objectInputStream != null) {
+					objectInputStream.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (objectOutputStream != null) {
+					objectOutputStream.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.data);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 97 * hash + Objects.hashCode(this.data);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DefaultGene<?> other = (DefaultGene<?>) obj;
-        return Objects.equals(other.getData(), this.data);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DefaultGene<?> other = (DefaultGene<?>) obj;
+		return Objects.equals(other.getData(), this.data);
+	}
 
-    @Override
-    public String toString() {
-        return getData() == null ? "" : getData().toString();
-    }
+	@Override
+	public String toString() {
+		return getData() == null ? "" : getData().toString();
+	}
 }

@@ -53,39 +53,39 @@ import java.util.Random;
  * @version 0.0.2
  */
 public class MultiPointsRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-        extends AbstractRecombinationFunction<T> {
+	extends AbstractRecombinationFunction<T> {
 
-    public MultiPointsRecombinationFunction(double probability, Random random) {
-        super(probability, random);
-    }
+	public MultiPointsRecombinationFunction(double probability, Random random) {
+		super(probability, random);
+	}
 
-    public MultiPointsRecombinationFunction(double probability) {
-        super(probability);
-    }
+	public MultiPointsRecombinationFunction(double probability) {
+		super(probability);
+	}
 
-    public MultiPointsRecombinationFunction() {
-        super();
-    }
+	public MultiPointsRecombinationFunction() {
+		super();
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected T[] recombine(T parent1, T parent2)
-            throws CloneNotSupportedException {
-        Genome[] offspring = new Genome[]{
-                ((Genome) parent1).clone(),
-                ((Genome) parent2).clone()
-        };
-        int numberOfChromosomes = parent1.size();
-        for (int i = 0; i < numberOfChromosomes; i++) {
-            int numberOfGenes = offspring[0].getChromosome(i).size();
-            for (int j = 0; j < numberOfGenes; j++) {
-                if (getRandom().nextDouble() <= getProbability()) {
-                    Gene aux = offspring[0].getChromosome(i).getGene(j);
-                    offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
-                    offspring[1].getChromosome(i).setGene(j, aux);
-                }
-            }
-        }
-        return (T[]) offspring;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	protected T[] recombine(T parent1, T parent2)
+		throws CloneNotSupportedException {
+		Genome[] offspring = new Genome[]{
+			((Genome) parent1).clone(),
+			((Genome) parent2).clone()
+		};
+		int numberOfChromosomes = parent1.size();
+		for (int i = 0; i < numberOfChromosomes; i++) {
+			int numberOfGenes = offspring[0].getChromosome(i).size();
+			for (int j = 0; j < numberOfGenes; j++) {
+				if (getRandom().nextDouble() <= getProbability()) {
+					Gene aux = offspring[0].getChromosome(i).getGene(j);
+					offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
+					offspring[1].getChromosome(i).setGene(j, aux);
+				}
+			}
+		}
+		return (T[]) offspring;
+	}
 }

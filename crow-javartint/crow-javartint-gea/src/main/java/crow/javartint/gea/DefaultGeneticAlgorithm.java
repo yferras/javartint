@@ -39,58 +39,57 @@ import crow.javartint.gea.genome.Genome;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
- *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-        extends AbstractGeneticAlgorithm<T, D> {
-    /**
-     * Initializes this class.
-     * * By default selection function for parents is an instance of
-     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
-     *
-     * @param populationSize    the population limit
-     * @param optimize          the optimization way
-     * @param decoder           function to decode the genome
-     * @param targetFunction    function to optimize
-     * @param generator         function to generate initial population of genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction  function to mutation process
-     * @param selectionFunction function to selection process
-     */
-    public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
-                                   DecoderFunction<D, T> decoder,
-                                   Function<Double, D> targetFunction,
-                                   GeneratorFunction<T> generator,
-                                   RecombinationFunction<T> recombinationFunction,
-                                   MutationFunction<T> mutationFunction,
-                                   SelectionFunction<T> selectionFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction, selectionFunction);
-    }
+	extends AbstractGeneticAlgorithm<T, D> {
+	/**
+	 * Initializes this class.
+	 * * By default selection function for parents is an instance of
+	 * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}.
+	 *
+	 * @param populationSize        the population limit
+	 * @param optimize              the optimization way
+	 * @param decoder               function to decode the genome
+	 * @param targetFunction        function to optimize
+	 * @param generator             function to generate initial population of genomes
+	 * @param recombinationFunction function to crossing process
+	 * @param mutationFunction      function to mutation process
+	 * @param selectionFunction     function to selection process
+	 */
+	public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
+	                               DecoderFunction<D, T> decoder,
+	                               Function<Double, D> targetFunction,
+	                               GeneratorFunction<T> generator,
+	                               RecombinationFunction<T> recombinationFunction,
+	                               MutationFunction<T> mutationFunction,
+	                               SelectionFunction<T> selectionFunction) {
+		super(populationSize, optimize, decoder, targetFunction, generator,
+			recombinationFunction, mutationFunction, selectionFunction);
+	}
 
-    /**
-     * Initializes this class.
-     * * By default selection function for parents is an instance of
-     * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}, and
-     * selection function for new generation is <code>null</code>.
-     *
-     * @param populationSize    the population limit
-     * @param optimize          the optimization way
-     * @param decoder           function to decode the genome
-     * @param targetFunction    function to optimize
-     * @param generator         function to generate initial population of genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction  function to mutation process
-     */
-    public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
-                                   DecoderFunction<D, T> decoder,
-                                   Function<Double, D> targetFunction,
-                                   GeneratorFunction<T> generator,
-                                   RecombinationFunction<T> recombinationFunction,
-                                   MutationFunction<T> mutationFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction);
-    }
+	/**
+	 * Initializes this class.
+	 * * By default selection function for parents is an instance of
+	 * {@link crow.javartint.gea.function.selection.RandomSelectionFunction}, and
+	 * selection function for new generation is <code>null</code>.
+	 *
+	 * @param populationSize        the population limit
+	 * @param optimize              the optimization way
+	 * @param decoder               function to decode the genome
+	 * @param targetFunction        function to optimize
+	 * @param generator             function to generate initial population of genomes
+	 * @param recombinationFunction function to crossing process
+	 * @param mutationFunction      function to mutation process
+	 */
+	public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
+	                               DecoderFunction<D, T> decoder,
+	                               Function<Double, D> targetFunction,
+	                               GeneratorFunction<T> generator,
+	                               RecombinationFunction<T> recombinationFunction,
+	                               MutationFunction<T> mutationFunction) {
+		super(populationSize, optimize, decoder, targetFunction, generator,
+			recombinationFunction, mutationFunction);
+	}
 }

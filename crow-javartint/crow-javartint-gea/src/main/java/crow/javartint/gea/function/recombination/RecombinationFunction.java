@@ -35,15 +35,15 @@ import crow.javartint.gea.genome.Genome;
  * @version 0.0.1
  */
 public interface RecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-        extends ProbabilisticFunction<T[], T[]> {
+	extends ProbabilisticFunction<T[], T[]> {
 
-        /**
-         * Accepts an array of genomes (parents) to perform the recombination process,
-         * and retrieves an array containing the offspring.
-         *
-         * @param params array of parents.
-         * @return offspring.
-         */
-        @Override
-        T[] evaluate(T... params);
+	/**
+	 * Accepts an array of genomes (parents) to perform the recombination process,
+	 * and retrieves an array containing the offspring.
+	 *
+	 * @param params array of parents.
+	 * @return offspring.
+	 */
+	@Override
+	T[] evaluate(T... params);
 }
