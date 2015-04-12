@@ -27,25 +27,24 @@ import crow.javartint.core.Solution;
 /**
  * This interface represents a generic individual for evolutionary algorithms.
  *
- * @param <T> any type that implements interface {@link java.lang.Comparable}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface Individual<T extends Comparable<T>>
-	extends Solution, Comparable<Individual<T>> {
+public interface Individual
+	extends Solution, Comparable<Individual> {
 
 	/**
 	 * Gets the value of fitness.
 	 *
 	 * @return The value of fitness.
 	 */
-	T getFitness();
+	Double getFitness();
 
 	/**
 	 * Sets the value of fitness.
 	 *
 	 * @param fitness New value of fitness.
 	 */
-	void setFitness(T fitness);
+	void setFitness(Double fitness);
 
 }

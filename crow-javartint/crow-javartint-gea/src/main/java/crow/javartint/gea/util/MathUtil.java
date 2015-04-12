@@ -46,10 +46,10 @@ public final class MathUtil {
 	 * @param <T>     Any class derived from {@link crow.javartint.gea.Individual} interface
 	 * @return the mean of fitness
 	 */
-	static public <T extends Individual<? extends Number>> double mean(List<T> individuals) {
+	static public <T extends Individual> double mean(List<T> individuals) {
 		double sum = 0.0;
 		for (T individual : individuals) {
-			sum += individual.getFitness().doubleValue();
+			sum += individual.getFitness();
 		}
 		return sum / individuals.size();
 	}
@@ -62,10 +62,10 @@ public final class MathUtil {
 	 * @param <T>     Any class derived from {@link crow.javartint.gea.Individual} interface
 	 * @return the variance of fitness
 	 */
-	static public <T extends Individual<? extends Number>> double variance(List<T> individuals, Double mean) {
+	static public <T extends Individual> double variance(List<T> individuals, Double mean) {
 		double sum = 0.0;
 		for (T individual : individuals) {
-			double diff = individual.getFitness().doubleValue() - mean;
+			double diff = individual.getFitness() - mean;
 			sum += diff * diff;
 		}
 		return sum / individuals.size();
@@ -78,7 +78,7 @@ public final class MathUtil {
 	 * @param <T>     Any class derived from {@link crow.javartint.gea.Individual} interface
 	 * @return the variance of fitness
 	 */
-	static public <T extends Individual<? extends Number>> double variance(List<T> individuals) {
+	static public <T extends Individual> double variance(List<T> individuals) {
 		return variance(individuals, mean(individuals));
 	}
 
