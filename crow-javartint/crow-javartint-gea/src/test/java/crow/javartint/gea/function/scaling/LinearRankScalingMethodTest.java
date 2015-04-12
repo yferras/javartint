@@ -1,26 +1,26 @@
 package crow.javartint.gea.function.scaling;
 
 /*
- * #%L
- * Crow JavArtInt GEA
- * %%
- * Copyright (C) 2014 - 2015 Eng. Ferrás Cecilio, Yeinier
- * %%
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/gpl-3.0.html>.
- * #L%
- */
+* #%L
+* Crow JavArtInt GEA
+* %%
+* Copyright (C) 2014 - 2015 Eng. Ferrás Cecilio, Yeinier
+* %%
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as
+* published by the Free Software Foundation, either version 3 of the
+* License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program.  If not, see
+* <http://www.gnu.org/licenses/gpl-3.0.html>.
+* #L%
+*/
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.gea.gene.Gene;
@@ -81,15 +81,15 @@ public class LinearRankScalingMethodTest {
     public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         double p = 1.5;
-        LinearRankScalingMethod<DefaultGenome<Gene<?>>> scalingMethod =
+        LinearRankScalingMethod<DefaultGenome> scalingMethod =
                 new LinearRankScalingMethod(p, Optimize.MAX);
-        List<DefaultGenome<Gene<?>>> genomes = new ArrayList<>(10);
+        List<DefaultGenome> genomes = new ArrayList<>(10);
         double[] exp = new double[10];
         for (int i = 0; i < 10; i++) {
             genomes.add(new DefaultGenome());
             exp[i] = 2.0 - p + (2.0 * i * (p - 1.0)) / (9.0);
         }
-        List<DefaultGenome<Gene<?>>> evaluate = scalingMethod.evaluate(genomes);
+        List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
         for (int i = 0; i < evaluate.size(); i++) {
             assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
         }
