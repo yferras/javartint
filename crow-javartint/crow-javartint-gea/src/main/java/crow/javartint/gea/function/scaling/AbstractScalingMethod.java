@@ -24,6 +24,7 @@ package crow.javartint.gea.function.scaling;
 
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -37,7 +38,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public abstract class AbstractScalingMethod<T extends Genome<? extends Gene<?>>>
+public abstract class AbstractScalingMethod<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         implements Function<List<T>, List<T>> {
 
     private final Optimize optimize;
