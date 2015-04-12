@@ -154,7 +154,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	 * <li>Selects the two parents.</li>
 	 * <li>Crossing the pre-selected parents.</li>
 	 * <li>Mutates the offspring.</li>
-	 * <li>If {@link #getGenomeFilter()} is distinct of {@code null},
+	 * <li>If {@link #getFilter()} is distinct of {@code null},
 	 * the new offspring will be filtered,
 	 * and only the successfully filtered genomes will be added to the new generation,
 	 * otherwise the offspring will be added to the new population.</li>
@@ -175,9 +175,9 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 			for (T genome : offspring) {
 				getMutationFunction().evaluate(genome);
 			}
-			if (getGenomeFilter() != null) {
+			if (getFilter() != null) {
 				for (T genome : offspring) {
-					if (getGenomeFilter().accept(genome)) {
+					if (getFilter().accept(genome)) {
 						newGeneration.add(genome);
 					}
 				}

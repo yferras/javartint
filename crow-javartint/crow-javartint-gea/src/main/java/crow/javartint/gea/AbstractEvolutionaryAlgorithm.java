@@ -27,12 +27,9 @@ import crow.javartint.core.IterativeAlgorithm;
 import crow.javartint.core.OptimizationAlgorithm;
 import crow.javartint.core.util.Optimize;
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
-import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.Genome;
-import crow.javartint.gea.util.GenomeFilter;
+import crow.javartint.gea.util.IndividualFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,19 +37,19 @@ import java.util.List;
 /**
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
+public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	extends AbstractAlgorithm<T>
 	implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
 	final private DecoderFunction<D, T> decoder;
 	final private Function<Double, D> targetFunction;
 	final private GeneratorFunction<T> generator;
-	private GenomeFilter<T> genomeFilter;
+	private IndividualFilter<T> filter;
 	private List<T> population;
 	private int populationSize;
 	private long generations;
@@ -93,10 +90,10 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends C
 
 	@SuppressWarnings("unchecked")
 	protected void updateFitnessScores() {
-		for (T genome : getPopulation()) {
-			D decodedValue = getDecoder().evaluate(genome);
+		for (T individual : getPopulation()) {
+			D decodedValue = getDecoder().evaluate(individual);
 			Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);
-			genome.setFitness(currentFitnessScore);
+			individual.setFitness(currentFitnessScore);
 
 			if ((getOptimize() == Optimize.MAX
 				&& currentFitnessScore > getBestFitnessScore())
@@ -104,7 +101,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends C
 				&& currentFitnessScore < getBestFitnessScore())) {
 				setBestFitnessScore(currentFitnessScore);
 				try {
-					setSolution((T) genome.clone());
+					setSolution((T) individual.clone());
 				} catch (CloneNotSupportedException e) {
 					e.printStackTrace();
 				}
@@ -118,7 +115,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends C
 	protected void createStartPopulation() {
 		while (getPopulationSize() > getPopulation().size()) {
 			T genome = getGenerator().evaluate();
-			if (getGenomeFilter() != null && getGenomeFilter().accept(genome)) {
+			if (getFilter() != null && getFilter().accept(genome)) {
 				getPopulation().add(genome);
 			} else {
 				getPopulation().add(genome);
@@ -222,19 +219,19 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends C
 	/**
 	 * Gets the genome filter.
 	 *
-	 * @return an instance of {@link crow.javartint.gea.util.GenomeFilter}.
+	 * @return an instance of {@link crow.javartint.gea.util.IndividualFilter}.
 	 */
-	protected GenomeFilter<T> getGenomeFilter() {
-		return genomeFilter;
+	protected IndividualFilter<T> getFilter() {
+		return filter;
 	}
 
 	/**
 	 * Sets the genome filter
 	 *
-	 * @param genomeFilter an instance of {@link crow.javartint.gea.util.GenomeFilter}
+	 * @param filter an instance of {@link crow.javartint.gea.util.IndividualFilter}
 	 */
-	protected void setGenomeFilter(GenomeFilter<T> genomeFilter) {
-		this.genomeFilter = genomeFilter;
+	protected void setFilter(IndividualFilter<T> filter) {
+		this.filter = filter;
 	}
 
 	/**

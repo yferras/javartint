@@ -23,18 +23,16 @@ package crow.javartint.gea.function.generator;
  */
 
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.chromosome.Chromosome;
-import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.Individual;
 
 /**
  * This interface is used to create a functions to generate genomes.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public interface GeneratorFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public interface GeneratorFunction<T extends Individual>
 	extends Function<T, Void[]> {
 
 	/**

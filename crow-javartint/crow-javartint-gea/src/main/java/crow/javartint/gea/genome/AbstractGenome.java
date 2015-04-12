@@ -22,6 +22,7 @@ package crow.javartint.gea.genome;
  * #L%
  */
 
+import crow.javartint.gea.AbstractIndividual;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
@@ -33,21 +34,16 @@ import java.util.*;
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> implements Genome<T> {
+public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
+	extends AbstractIndividual implements Genome<T> {
 	/**
 	 * Array of chromosomes that contains the genome information.
 	 */
 	final protected List<T> chromosomes;
-	/**
-	 * Genome fitness.
-	 */
-	protected double fitness;
-
 
 	protected AbstractGenome() {
-		fitness = 0.0;
 		chromosomes = new LinkedList<>();
 	}
 
@@ -62,17 +58,6 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
 		this.chromosomes.clear();
 		this.chromosomes.addAll(Arrays.asList(chromosomes));
 	}
-
-	@Override
-	public double getFitness() {
-		return fitness;
-	}
-
-	@Override
-	public void setFitness(double fitness) {
-		this.fitness = fitness;
-	}
-
 
 	@Override
 	public T getChromosome(int index) {
@@ -146,8 +131,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
 
 		AbstractGenome that = (AbstractGenome) o;
 
-		return Double.compare(that.fitness, fitness) == 0 && chromosomes.equals(that.chromosomes);
-
+		return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
 	}
 
 	@Override
@@ -155,14 +139,9 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> im
 		int result;
 		long temp;
 		result = chromosomes.hashCode();
-		temp = Double.doubleToLongBits(fitness);
+		temp = Double.doubleToLongBits(getFitness());
 		result = 31 * result + (int) (temp ^ (temp >>> 32));
 		return result;
-	}
-
-	@Override
-	public int compareTo(Genome<?> o) {
-		return Double.compare(getFitness(), o.getFitness());
 	}
 
 	@Override

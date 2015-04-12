@@ -22,7 +22,7 @@ package crow.javartint.gea.genome;
  * #L%
  */
 
-import crow.javartint.core.Solution;
+import crow.javartint.gea.Individual;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
@@ -36,8 +36,7 @@ import java.io.Serializable;
  * @version 0.0.4
  */
 public interface Genome<T extends Chromosome<? extends Gene<?>>>
-	extends Cloneable, Iterable<T>, Solution, Serializable,
-	Comparable<Genome<?>> {
+	extends Cloneable, Individual, Iterable<T>, Serializable {
 
 	/**
 	 * Gets the array of chromosomes.
@@ -53,20 +52,6 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	 *                                  {@code null}.
 	 */
 	void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
-
-	/**
-	 * Gets the value of fitness.
-	 *
-	 * @return The value of fitness.
-	 */
-	double getFitness();
-
-	/**
-	 * Sets the value of fitness.
-	 *
-	 * @param fitness New value of fitness.
-	 */
-	void setFitness(double fitness);
 
 	/**
 	 * Gets the chromosome at specific index.

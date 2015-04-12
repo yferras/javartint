@@ -23,18 +23,16 @@ package crow.javartint.gea.function.decoder;
  */
 
 import crow.javartint.core.util.function.Function;
-import crow.javartint.gea.chromosome.Chromosome;
-import crow.javartint.gea.gene.Gene;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.Individual;
 
 /**
  * This interface is used to create a functions to decode genomes.
  *
  * @param <D> Type of decoded result.
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 0.0.3
  */
-public interface DecoderFunction<D, T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public interface DecoderFunction<D, T extends Individual>
 	extends Function<D, T> {
 }
