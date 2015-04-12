@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
@@ -53,7 +54,7 @@ import crow.javartint.gea.genome.DefaultGenome;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultGene<Integer>>> {
+public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
 
     public ExchangeMutationOperator(double probability) {
         super(probability);
@@ -64,16 +65,16 @@ public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGe
     }
 
     @Override
-    protected DefaultGenome<DefaultGene<Integer>> mutate(DefaultGenome<DefaultGene<Integer>> subject)
+    protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
             throws CloneNotSupportedException {
-        int pos1 = getRandom().nextInt(subject.size() - 1);
-        int pos2 = getRandom().nextInt(subject.size());
+        int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
+        int pos2 = getRandom().nextInt(subject.getChromosome(0).size());
         while (pos2 == pos1) {
             pos2 = getRandom().nextInt(subject.size());
         }
-        DefaultGene<Integer> gene1 = subject.getGene(pos1);
-        subject.setGene(pos1, subject.getGene(pos2));
-        subject.setGene(pos2, gene1);
+        DefaultGene<Integer> gene1 = subject.getChromosome(0).getGene(pos1);
+        subject.getChromosome(0).setGene(pos1, subject.getChromosome(0).getGene(pos2));
+        subject.getChromosome(0).setGene(pos2, gene1);
         return subject;
     }
 }

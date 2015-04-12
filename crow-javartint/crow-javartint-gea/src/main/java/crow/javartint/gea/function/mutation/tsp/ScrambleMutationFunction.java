@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
@@ -62,7 +63,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ScrambleMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultGene<Integer>>> {
+public class ScrambleMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
 
 
     private int minSpanSize;
@@ -81,23 +82,18 @@ public class ScrambleMutationFunction extends AbstractMutationFunction<DefaultGe
         return minSpanSize;
     }
 
-    @Override
-    protected void validate(DefaultGenome<DefaultGene<Integer>> param) throws IllegalArgumentException {
-        super.validate(param);
-    }
-
     @SuppressWarnings("unchecked")
     @Override
-    protected DefaultGenome<DefaultGene<Integer>> mutate(DefaultGenome<DefaultGene<Integer>> subject)
+    protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
             throws CloneNotSupportedException {
         int start = getRandom().nextInt(subject.size() - getMinSpanSize());
         int end = start + getMinSpanSize();
-        List genes = Arrays.asList(subject.getChromosome());
+        List genes = Arrays.asList(subject.getChromosome(0).getGenes());
         List section = genes.subList(start, end);
         genes.removeAll(section);
         Collections.shuffle(section);
         genes.addAll(start, section);
-        subject.setChromosome((DefaultGene<Integer>[]) genes.toArray());
+        subject.getChromosome(0).setGenes((DefaultGene<Integer>[]) genes.toArray());
         return subject;
     }
 }

@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation.numeric;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
@@ -36,7 +37,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class RealValuedMutationFunction<T extends Genome<? extends Gene<Double>>>
+public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
 	extends AbstractMutationFunction<T> {
 
 	private double[] ranges;
@@ -137,16 +138,18 @@ public class RealValuedMutationFunction<T extends Genome<? extends Gene<Double>>
 	protected T mutate(T subject) throws CloneNotSupportedException {
 		boolean muted = false;
 		do {
-			int i = 0;
-			for (Gene<Double> gene : subject) {
-				if (getRandom().nextDouble() < getProbability()) {
-					double r = ranges[i];
-					double k = precisions[i];
-					double u = getRandom().nextDouble();
-					int s = getRandom().nextInt(2) == 0 ? -1 : 1;
-					double a = Math.pow(2.0, -u * k);
-					gene.setData(gene.getData() + s * r * a);
-					muted = true;
+			for (Chromosome<? extends Gene<Double>> chromosome : subject) {
+				int i = 0;
+				for (Gene<Double> gene : chromosome) {
+					if (getRandom().nextDouble() < getProbability()) {
+						double r = ranges[i];
+						double k = precisions[i];
+						double u = getRandom().nextDouble();
+						int s = getRandom().nextInt(2) == 0 ? -1 : 1;
+						double a = Math.pow(2.0, -u * k);
+						gene.setData(gene.getData() + s * r * a);
+						muted = true;
+					}
 				}
 			}
 		} while (!muted);
