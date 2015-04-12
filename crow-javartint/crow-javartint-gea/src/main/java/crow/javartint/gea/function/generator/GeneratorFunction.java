@@ -23,6 +23,7 @@ package crow.javartint.gea.function.generator;
  */
 
 import crow.javartint.core.util.function.Function;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -33,7 +34,8 @@ import crow.javartint.gea.genome.Genome;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface GeneratorFunction<T extends Genome<? extends Gene<?>>> extends Function<T, Void[]> {
+public interface GeneratorFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+    extends Function<T, Void> {
 
     /**
      * This method must be implemented to generate dynamically instances
@@ -43,5 +45,5 @@ public interface GeneratorFunction<T extends Genome<? extends Gene<?>>> extends 
      * @return a generated instance of {@link crow.javartint.gea.genome.Genome}
      */
     @Override
-    T evaluate(Void... params);
+    T evaluate(Void params);
 }
