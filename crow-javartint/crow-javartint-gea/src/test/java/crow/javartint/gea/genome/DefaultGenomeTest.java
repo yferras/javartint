@@ -22,6 +22,8 @@ package crow.javartint.gea.genome;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.gene.DoubleArrayGene;
 import crow.javartint.gea.gene.Gene;
@@ -71,10 +73,11 @@ public class DefaultGenomeTest {
 	@Test
     public void testGetChromosome() {
         System.out.println("getChromosome");
-		DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
+		DefaultGenome<DefaultChromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
         Object[] expResult = GENES.clone();
-        Object[] result = instance.getChromosome();
+        Object[] result = instance.getChromosome(0).getGenes();
         assertArrayEquals(expResult, result);
     }
 
@@ -97,10 +100,11 @@ public class DefaultGenomeTest {
     public void testGetGene() {
         System.out.println("getGene");
         int index = 1;
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
         Object expResult = GENE2;
-        Object result = instance.getGene(index);
+        Object result = instance.getChromosome(0).getGene(index);
         assertEquals(expResult, result);
     }
 
@@ -110,11 +114,13 @@ public class DefaultGenomeTest {
 	@Test
     public void testGetNumberOfGenes() {
         System.out.println("size");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
         int expResult = 4;
-        int result = instance.size();
+        int result = instance.getChromosome(0).size();
         assertEquals(expResult, result);
+        assertEquals(1, instance.size());
     }
 
     /**
@@ -123,8 +129,9 @@ public class DefaultGenomeTest {
     @Test
     public void testHasNext() {
         System.out.println("hasNext");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
         boolean result = instance.iterator().hasNext();
         assertEquals(true, result);
     }
@@ -135,7 +142,7 @@ public class DefaultGenomeTest {
     @Test
     public void testIterator() {
         System.out.println("iterator");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
         Iterator<?> result = instance.iterator();
         assertTrue(result != null);
     }
@@ -146,8 +153,9 @@ public class DefaultGenomeTest {
     @Test
     public void testNext() {
         System.out.println("next");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
         Object result = instance.iterator().next();
         assertTrue(result != null);
     }
@@ -158,7 +166,7 @@ public class DefaultGenomeTest {
     @Test
     public void testRemove() {
         System.out.println("remove");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
         try {
             instance.iterator().remove();
         } catch (UnsupportedOperationException e) {
@@ -172,9 +180,9 @@ public class DefaultGenomeTest {
     @Test
     public void testSetChromosome() {
         System.out.println("setChromosome");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
-        assertTrue(instance.getChromosome() != null);
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        assertTrue(instance.getChromosome(0) != null);
     }
 
     /**
@@ -184,7 +192,7 @@ public class DefaultGenomeTest {
     public void testSetFitness() {
         System.out.println("setFitness");
         double fitness = 0.0;
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
         instance.setFitness(fitness);
         assertTrue(fitness == instance.getFitness());
     }
@@ -197,10 +205,11 @@ public class DefaultGenomeTest {
         System.out.println("setGene");
         int index = 2;
         Gene<Integer> newGene = new DefaultGene<>(0);
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
-        instance.setGene(index, newGene);
-        assertEquals(newGene, instance.getGene(index));
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
+        instance.getChromosome(0).setGene(index, newGene);
+        assertEquals(newGene, instance.getChromosome(0).getGene(index));
     }
 
     /**
@@ -210,11 +219,12 @@ public class DefaultGenomeTest {
     @Test
     public void testClone() throws Exception {
         System.out.println("clone");
-        DefaultGenome<Gene<?>> instance = new DefaultGenome<>();
-        instance.setChromosome(GENES);
-        DefaultGenome<Gene<?>> result = (DefaultGenome<Gene<?>>) instance.clone();
+        DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+        instance.add(new DefaultChromosome<>());
+        instance.getChromosome(0).setGenes(GENES);
+        DefaultGenome<Chromosome<Gene<?>>> result = (DefaultGenome<Chromosome<Gene<?>>>) instance.clone();
         assertTrue(instance.equals(result));
-        assertFalse(instance.genes == result.genes);
+        assertFalse(instance.chromosomes == result.chromosomes);
     }
 
 }

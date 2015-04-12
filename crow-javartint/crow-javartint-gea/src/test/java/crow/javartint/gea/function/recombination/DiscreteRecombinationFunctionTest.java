@@ -22,6 +22,8 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
@@ -52,8 +54,8 @@ public class DiscreteRecombinationFunctionTest {
 		System.out.println("recombine");
 		DiscreteRecombinationFunction crossoverFunction = new DiscreteRecombinationFunction();
 
-		Genome<Gene<Integer>> parent1 = new DefaultGenome<>();
-		Genome<Gene<Integer>> parent2 = new DefaultGenome<>();
+		Genome<Chromosome<Gene<Integer>>> parent1 = new DefaultGenome<>();
+		Genome<Chromosome<Gene<Integer>>> parent2 = new DefaultGenome<>();
 
 		Gene<Integer>[] genes1 = new DefaultGene[] {
 			new DefaultGene<>(1),
@@ -71,8 +73,10 @@ public class DiscreteRecombinationFunctionTest {
 			new DefaultGene<>(8),
 		};
 
-		parent1.setChromosome(genes1);
-		parent2.setChromosome(genes2);
+		parent1.add(new DefaultChromosome<Gene<Integer>>());
+		parent2.add(new DefaultChromosome<Gene<Integer>>());
+		parent1.getChromosome(0).setGenes(genes1);
+		parent2.getChromosome(0).setGenes(genes2);
 
 		crossoverFunction.setRandom(new Random(){
 			private final int [] values = { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 };
@@ -83,8 +87,8 @@ public class DiscreteRecombinationFunctionTest {
 			}
 		});
 
-		Genome<Gene<Integer>>[] result = crossoverFunction.recombine(parent1, parent2);
-		Genome<Gene<Integer>>[] expected = new DefaultGenome[2];
+		Genome<Chromosome<Gene<Integer>>>[] result = crossoverFunction.recombine(parent1, parent2);
+		Genome<Chromosome<Gene<Integer>>>[] expected = new DefaultGenome[2];
 		Gene<Integer>[] expected1 = new DefaultGene[] {
 			new DefaultGene<>(1),
 			new DefaultGene<>(3),
@@ -102,9 +106,11 @@ public class DiscreteRecombinationFunctionTest {
 		};
 
 		expected[0] = new DefaultGenome<>();
-		expected[0].setChromosome(expected1);
+		expected[0].add(new DefaultChromosome<Gene<Integer>>());
+		expected[0].getChromosome(0).setGenes(expected1);
 		expected[1] = new DefaultGenome<>();
-		expected[1].setChromosome(expected2);
+		expected[1].add(new DefaultChromosome<Gene<Integer>>());
+		expected[1].getChromosome(0).setGenes(expected2);
 
 		assertArrayEquals(expected, result);
 	}

@@ -22,6 +22,7 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import org.junit.After;
@@ -47,10 +48,11 @@ public class BinaryGenomeGenFunctionTest {
     public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
-        DefaultGenome<ByteArrayGene> genome = genFunction.evaluate();
-        assertEquals(3, genome.size());
-        assertEquals(1, genome.getGene(0).length());
-        assertEquals(7, genome.getGene(1).length());
-        assertEquals(4, genome.getGene(2).length());
+        DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = genFunction.evaluate();
+        assertEquals(1, genome.size());
+        assertEquals(3, genome.getChromosome(0).size());
+        assertEquals(1, genome.getChromosome(0).getGene(0).length());
+        assertEquals(7, genome.getChromosome(0).getGene(1).length());
+        assertEquals(4, genome.getChromosome(0).getGene(2).length());
     }
 }

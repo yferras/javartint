@@ -23,6 +23,8 @@ package crow.javartint.gea.function.mutation;
  */
 
 import crow.javartint.gea.GenomeConstants;
+import crow.javartint.gea.chromosome.Chromosome;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
@@ -126,18 +128,19 @@ public class MutationFunctionTest {
     @Test
     public void testEvaluate() throws CloneNotSupportedException {
         System.out.println("evaluate (to invoke mutation process)");
-        DefaultGenome<DefaultGene<Integer>> genome = new DefaultGenome<>();
-        genome.setChromosome(
-                new DefaultGene[]{
-                        new DefaultGene(1),
-                }
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
+        genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+        genome.getChromosome(0).setGenes(
+            new DefaultGene[]{
+                new DefaultGene(1),
+            }
         );
         final DefaultMutationFunction function = new
                 DefaultMutationFunction();
         function.setRandom(GenomeConstants.RANDOM_GENERATOR_4);
-        final Genome<? extends Gene<?>> result = function.evaluate(genome.clone());
+        final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
         assertFalse(genome == result);
-        assertNull(result.getGene(0).getData());
+        assertNull(result.getChromosome(0).getGene(0).getData());
     }
 
     @SuppressWarnings("unchecked")
@@ -147,24 +150,25 @@ public class MutationFunctionTest {
         final DefaultMutationFunction function = new
                 DefaultMutationFunction();
         function.setProbability(0.0);
-        DefaultGenome<DefaultGene<Integer>> genome = new DefaultGenome<>();
-        genome.setChromosome(
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
+        genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+        genome.getChromosome(0).setGenes(
                 new DefaultGene[]{
                         new DefaultGene(1),
                 }
         );
-        final Genome<? extends Gene<?>> result = function.evaluate(genome.clone());
+        final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
         assertFalse(genome == result);
         assertEquals(genome, result);
-        assertNotNull(result.getGene(0).getData());
+        assertNotNull(result.getChromosome(0).getGene(0).getData());
     }
 
     private static class DefaultMutationFunction extends
-            AbstractMutationFunction<Genome<? extends Gene<?>>> {
+            AbstractMutationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
 
         @Override
-        protected Genome<? extends Gene<?>> mutate(Genome<? extends Gene<?>> subject) {
-            subject.getGene(0).setData(null);
+        protected Genome<? extends Chromosome<? extends Gene<?>>> mutate(Genome<? extends Chromosome<? extends Gene<?>>> subject) throws CloneNotSupportedException {
+            subject.getChromosome(0).getGene(0).setData(null);
             return subject;
         }
     }

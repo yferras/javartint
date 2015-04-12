@@ -22,6 +22,7 @@ package crow.javartint.gea.function.recombination;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
@@ -75,24 +76,26 @@ public class MultiPointsRecombinationFunctionTest {
     public void testEvaluate() {
         System.out.println("evaluate (performed algorithm)");
         RANDOM_GENERATOR_3.nextInt(CHROMOSOME_SIZE);
-        MultiPointsRecombinationFunction<DefaultGenome<DefaultGene<Integer>>> function =
+        MultiPointsRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =
                 new MultiPointsRecombinationFunction<>(0.75, RANDOM_GENERATOR_3);
-        Genome<DefaultGene<Integer>>[] result = function.evaluate(GENOMES);
-        DefaultGenome<DefaultGene<Integer>>[] expResult = new DefaultGenome[2];
+        Genome<DefaultChromosome<DefaultGene<Integer>>>[] result = function.evaluate(GENOMES);
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>[] expResult = new DefaultGenome[2];
         expResult[0] = new DefaultGenome<>();
+        expResult[0].add(new DefaultChromosome<DefaultGene<Integer>>());
         expResult[1] = new DefaultGenome<>();
+        expResult[1].add(new DefaultChromosome<DefaultGene<Integer>>());
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
             if (i % 2 != 0) {
-                expResult[0].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
-                expResult[1].addGene(new DefaultGene<>(i));
+                expResult[0].getChromosome(0).addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
+                expResult[1].getChromosome(0).addGene(new DefaultGene<>(i));
             } else {
-                expResult[1].addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
-                expResult[0].addGene(new DefaultGene<>(i));
+                expResult[1].getChromosome(0).addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
+                expResult[0].getChromosome(0).addGene(new DefaultGene<>(i));
             }
         }
-        assertArrayEquals(result[0].getChromosome(),
-                expResult[0].getChromosome());
-        assertArrayEquals(result[1].getChromosome(),
-                expResult[1].getChromosome());
+        assertArrayEquals(result[0].getChromosome(0).getGenes(),
+                expResult[0].getChromosome(0).getGenes());
+        assertArrayEquals(result[1].getChromosome(0).getGenes(),
+                expResult[1].getChromosome(0).getGenes());
     }
 }

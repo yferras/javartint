@@ -22,6 +22,7 @@ package crow.javartint.gea.function.mutation.numeric;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
@@ -56,8 +57,9 @@ public class RealValuedMutationFunctionTest {
     public void testValidate() throws Exception {
         System.out.println("validate");
         RealValuedMutationFunction mutationFunction = new RealValuedMutationFunction(5);
-        DefaultGenome<DefaultGene<Double>> genome = new DefaultGenome<>();
-        genome.setChromosome(new DefaultGene[] {
+        DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
+        genome.add(new DefaultChromosome<DefaultGene<Double>>());
+        genome.getChromosome(0).setGenes(new DefaultGene[] {
                 doubleDefaultGene1, doubleDefaultGene2,
                 doubleDefaultGene3, doubleDefaultGene4
         });
@@ -74,10 +76,11 @@ public class RealValuedMutationFunctionTest {
     @Test
     public void testEvaluate() throws Exception {
         System.out.println("evaluate");
-        DefaultGenome<DefaultGene<Double>> genome = new DefaultGenome<>();
-        genome.setChromosome(new DefaultGene[] {
-                doubleDefaultGene1, doubleDefaultGene2,
-                doubleDefaultGene3, doubleDefaultGene4
+        DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
+        genome.add(new DefaultChromosome<DefaultGene<Double>>());
+        genome.getChromosome(0).setGenes(new DefaultGene[]{
+            doubleDefaultGene1, doubleDefaultGene2,
+            doubleDefaultGene3, doubleDefaultGene4
         });
         RealValuedMutationFunction mutationFunction = new RealValuedMutationFunction(genome.size());
         mutationFunction.setRandom(new Random() {
@@ -90,10 +93,10 @@ public class RealValuedMutationFunctionTest {
                 return values[index++];
             }
         });
-        final Genome<DefaultGene<Double>> r = mutationFunction.evaluate(genome);
+        final Genome<DefaultChromosome<DefaultGene<Double>>> r = mutationFunction.evaluate(genome);
         for (int i = 0; i < r.size(); i++) {
-            double before = genome.getGene(i).getData();
-            double after = r.getGene(i).getData();
+            double before = genome.getChromosome(0).getGene(i).getData();
+            double after = r.getChromosome(0).getGene(i).getData();
             assertEquals(before, after, mutationFunction.getMutationRange(i));
         }
     }

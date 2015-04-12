@@ -22,6 +22,7 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import org.junit.Before;
@@ -41,7 +42,8 @@ public class TspGenomeGenFunctionTest {
     public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         TspGenomeGenFunction genFunction = new TspGenomeGenFunction(5);
-        DefaultGenome<DefaultGene<Integer>> genome = genFunction.evaluate();
-        assertEquals(5, genome.size());
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = genFunction.evaluate();
+        assertEquals(1, genome.size());
+        assertEquals(5, genome.getChromosome(0).size());
     }
 }

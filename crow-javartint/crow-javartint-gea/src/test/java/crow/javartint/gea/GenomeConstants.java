@@ -22,6 +22,7 @@ package crow.javartint.gea;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
@@ -146,9 +147,9 @@ public class GenomeConstants {
                 }
             };
 
-    public static final DefaultGenome<DefaultGene<Integer>> GENOME_1 =
+    public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_1 =
             new DefaultGenome<>();
-    public static final DefaultGenome<DefaultGene<Integer>> GENOME_2 =
+    public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_2 =
             new DefaultGenome<>();
     public static final DefaultGenome[] GENOMES =
             new DefaultGenome[2];
@@ -156,9 +157,11 @@ public class GenomeConstants {
 
     static {
 
+        GENOME_1.add(new DefaultChromosome<DefaultGene<Integer>>());
+        GENOME_2.add(new DefaultChromosome<DefaultGene<Integer>>());
         for (int i = 0; i < CHROMOSOME_SIZE; i++) {
-            GENOME_1.addGene(new DefaultGene<>(i));
-            GENOME_2.addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
+            GENOME_1.getChromosome(0).addGene(new DefaultGene<>(i));
+            GENOME_2.getChromosome(0).addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));
         }
         GENOMES[0] = GENOME_1;
         GENOMES[1] = GENOME_2;

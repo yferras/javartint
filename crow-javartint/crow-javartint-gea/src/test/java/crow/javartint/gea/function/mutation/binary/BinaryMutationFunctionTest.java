@@ -23,6 +23,7 @@ package crow.javartint.gea.function.mutation.binary;
  */
 
 import crow.javartint.gea.GenomeConstants;
+import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.DefaultGenome;
 import crow.javartint.gea.genome.Genome;
@@ -56,24 +57,25 @@ public class BinaryMutationFunctionTest {
     @Test
     public void testEvaluate() throws CloneNotSupportedException {
         System.out.println("evaluate (performed algorithm)");
-        DefaultGenome<ByteArrayGene> genome = new DefaultGenome<>();
+        DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = new DefaultGenome<>();
+        genome.add(new DefaultChromosome<ByteArrayGene>());
         ByteArrayGene[] genes = new ByteArrayGene []{
             new ByteArrayGene(new Byte[]{0}),
             new ByteArrayGene(new Byte[]{1, 1, 0, 1, 0, 0}),
             new ByteArrayGene(new Byte[]{1, 0, 0, 1}),
         };
-        genome.setChromosome(genes);
+        genome.getChromosome(0).setGenes(genes);
 
-        final Genome<ByteArrayGene> clone = genome.clone();
-        clone.getGene(0).setAllele(0, (byte)1);
-        clone.getGene(2).setAllele(1, (byte)1);
-        clone.getGene(2).setAllele(3, (byte)0);
+        final Genome<DefaultChromosome<ByteArrayGene>> clone = genome.clone();
+        clone.getChromosome(0).getGene(0).setAllele(0, (byte)1);
+        clone.getChromosome(0).getGene(2).setAllele(1, (byte)1);
+        clone.getChromosome(0).getGene(2).setAllele(3, (byte)0);
 
-        BinaryMutationFunction<DefaultGenome<ByteArrayGene>> function = new
+        BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>> function = new
             BinaryMutationFunction<>();
         function.setRandom(GenomeConstants.RANDOM_GENERATOR_5);
         genome = function.evaluate(genome);
-        assertArrayEquals(clone.getChromosome(), genome.getChromosome());
+        assertArrayEquals(clone.getChromosome(0).getGenes(), genome.getChromosome(0).getGenes());
     }
 
 
