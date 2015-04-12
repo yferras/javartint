@@ -48,111 +48,111 @@ import static org.junit.Assert.assertTrue;
 
 public class AbstractGeneticAlgorithmIT {
 
-    @Before
-    public void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
-    }
+	}
 
-    @Test
-    public void testAccept2() {
-        final DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> genomeDecoderFunction =
-                new DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>>() {
-                    /**
-                     * Function to decode the binary genome to decimal number.
-                     * y(x) = x
-                     *
-                     * @param params genome to decode.
-                     * @return a decimal number between range (-64.00, 100.00)
-                     */
-                    @Override
-                    public Double evaluate(DefaultGenome<DefaultChromosome<ByteArrayGene>> params) {
+	@Test
+	public void testAccept2() {
+		final DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> genomeDecoderFunction =
+			new DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>>() {
+				/**
+				 * Function to decode the binary genome to decimal number.
+				 * y(x) = x
+				 *
+				 * @param params genome to decode.
+				 * @return a decimal number between range (-64.00, 100.00)
+				 */
+				@Override
+				public Double evaluate(DefaultGenome<DefaultChromosome<ByteArrayGene>> params) {
 
-                        int sign = params.getChromosome(0).getGene(0).getAllele(0) == 0 ? -1 : 1;
-                        StringBuilder stringBuilder = new StringBuilder();
-                        for (Byte b : params.getChromosome(0).getGene(1)) {
-                            stringBuilder.append(b);
-                        }
-                        int a = Integer.valueOf(stringBuilder.toString(), 2);
-                        stringBuilder = new StringBuilder();
-                        for (Byte b : params.getChromosome(0).getGene(2)) {
-                            stringBuilder.append(b);
-                        }
-                        int b = Integer.valueOf(stringBuilder.toString(), 2);
-                        return sign * (a % 100 + b % 1000 / 1000.0);
-                    }
-                };
+					int sign = params.getChromosome(0).getGene(0).getAllele(0) == 0 ? -1 : 1;
+					StringBuilder stringBuilder = new StringBuilder();
+					for (Byte b : params.getChromosome(0).getGene(1)) {
+						stringBuilder.append(b);
+					}
+					int a = Integer.valueOf(stringBuilder.toString(), 2);
+					stringBuilder = new StringBuilder();
+					for (Byte b : params.getChromosome(0).getGene(2)) {
+						stringBuilder.append(b);
+					}
+					int b = Integer.valueOf(stringBuilder.toString(), 2);
+					return sign * (a % 100 + b % 1000 / 1000.0);
+				}
+			};
 
-        final Function<Double, Double> targetFunction = new Function<Double, Double>() {
-            @Override
-            public Double evaluate(Double x) {
-                return - x * x / 100.0 + x / 10.0 + 5.0;
-            }
-        };
+		final Function<Double, Double> targetFunction = new Function<Double, Double>() {
+			@Override
+			public Double evaluate(Double x) {
+				return -x * x / 100.0 + x / 10.0 + 5.0;
+			}
+		};
 
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(genomeDecoderFunction, targetFunction);
+		GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(genomeDecoderFunction, targetFunction);
 
-        geneticAlgorithm.addConstraint(new MaxIterationsConstraint<>(ConstraintType.OPTIONAL, 5000L));
-        geneticAlgorithm.addConstraint(new MinErrorConstraint<GeneticAlgorithm>(ConstraintType.OPTIONAL, .0005));
+		geneticAlgorithm.addConstraint(new MaxIterationsConstraint<>(ConstraintType.OPTIONAL, 5000L));
+		geneticAlgorithm.addConstraint(new MinErrorConstraint<GeneticAlgorithm>(ConstraintType.OPTIONAL, .0005));
 
-        geneticAlgorithm.addSolutionChangeListener(new SolutionChangeListener() {
-            @SuppressWarnings("unchecked")
-            @Override
-            public void solutionUpdated(AlgorithmEvent event) {
-                GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
-                DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = ga.getSolution();
-                Double decodedValue = genomeDecoderFunction.evaluate(genome);
-                Double result = targetFunction.evaluate(decodedValue);
-                String r = MessageFormat.format(
-                        "{0,number,0000}\t\t{1}\t\t\t\t{2,number,#.000}\t\t{3,number,#.0000}\t\t{4,number,#.0000}",
-                        ga.getElapsedTime(),
-                        ga.getIterations(),
-                        decodedValue,
-                        result,
-                        ga.getCurrentError()
-                );
-                System.out.println(r);
-            }
-        });
-        geneticAlgorithm.addExecutionEndListener(new ExecutionEndListener() {
-            @SuppressWarnings("unchecked")
-            @Override
-            public void algorithmFinished(AlgorithmEvent event) {
-                GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
-                DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = ga.getSolution();
-                String r = MessageFormat.format("Best solution:\t{1}\nTime:\t{0,number,integer}\nIterations:\t{2}",
-                        ga.getElapsedTime(),
-                        genome.getFitness(),
-                        ga.getIterations());
-                System.out.println(r);
-                assertTrue(true);
-            }
-        });
-        Thread thread = new Thread(geneticAlgorithm);
-        System.out.println("Time (ms)\tGeneration\t\tX\t\t\tf(x)\t\tE");
-        thread.run();
-    }
+		geneticAlgorithm.addSolutionChangeListener(new SolutionChangeListener() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void solutionUpdated(AlgorithmEvent event) {
+				GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
+				DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = ga.getSolution();
+				Double decodedValue = genomeDecoderFunction.evaluate(genome);
+				Double result = targetFunction.evaluate(decodedValue);
+				String r = MessageFormat.format(
+					"{0,number,0000}\t\t{1}\t\t\t\t{2,number,#.000}\t\t{3,number,#.0000}\t\t{4,number,#.0000}",
+					ga.getElapsedTime(),
+					ga.getIterations(),
+					decodedValue,
+					result,
+					ga.getCurrentError()
+				);
+				System.out.println(r);
+			}
+		});
+		geneticAlgorithm.addExecutionEndListener(new ExecutionEndListener() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void algorithmFinished(AlgorithmEvent event) {
+				GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
+				DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = ga.getSolution();
+				String r = MessageFormat.format("Best solution:\t{1}\nTime:\t{0,number,integer}\nIterations:\t{2}",
+					ga.getElapsedTime(),
+					genome.getFitness(),
+					ga.getIterations());
+				System.out.println(r);
+				assertTrue(true);
+			}
+		});
+		Thread thread = new Thread(geneticAlgorithm);
+		System.out.println("Time (ms)\tGeneration\t\tX\t\t\tf(x)\t\tE");
+		thread.run();
+	}
 
 
-    private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>, Double>
-            implements ErrorBasedAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>> {
-        /**
-         * Initializes this class.
-         *
-         * @param decoder function to decode the genome
-         */
-        public GeneticAlgorithm(DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> decoder,
-                                Function<Double, Double> targetFunction) {
-            super(100, Optimize.MAX, decoder, targetFunction,
-                    new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
-                    new SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
-                    new BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
-                    new ElitismSelectionFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(5, Optimize.MAX));
-        }
+	private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>, Double>
+		implements ErrorBasedAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>> {
+		/**
+		 * Initializes this class.
+		 *
+		 * @param decoder function to decode the genome
+		 */
+		public GeneticAlgorithm(DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> decoder,
+		                        Function<Double, Double> targetFunction) {
+			super(100, Optimize.MAX, decoder, targetFunction,
+				new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
+				new SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
+				new BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
+				new ElitismSelectionFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(5, Optimize.MAX));
+		}
 
-        @Override
-        public Double getCurrentError() {
-            return Math.abs(getBestFitnessScore() - 5.25);
-        }
+		@Override
+		public Double getCurrentError() {
+			return Math.abs(getBestFitnessScore() - 5.25);
+		}
 
-    }
+	}
 }

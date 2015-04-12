@@ -57,7 +57,7 @@ public class DiscreteRecombinationFunctionTest {
 		Genome<Chromosome<Gene<Integer>>> parent1 = new DefaultGenome<>();
 		Genome<Chromosome<Gene<Integer>>> parent2 = new DefaultGenome<>();
 
-		Gene<Integer>[] genes1 = new DefaultGene[] {
+		Gene<Integer>[] genes1 = new DefaultGene[]{
 			new DefaultGene<>(1),
 			new DefaultGene<>(3),
 			new DefaultGene<>(5),
@@ -65,7 +65,7 @@ public class DiscreteRecombinationFunctionTest {
 			new DefaultGene<>(9),
 		};
 
-		Gene<Integer>[] genes2 = new DefaultGene[] {
+		Gene<Integer>[] genes2 = new DefaultGene[]{
 			new DefaultGene<>(0),
 			new DefaultGene<>(2),
 			new DefaultGene<>(4),
@@ -78,9 +78,10 @@ public class DiscreteRecombinationFunctionTest {
 		parent1.getChromosome(0).setGenes(genes1);
 		parent2.getChromosome(0).setGenes(genes2);
 
-		crossoverFunction.setRandom(new Random(){
-			private final int [] values = { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 };
+		crossoverFunction.setRandom(new Random() {
+			private final int[] values = {0, 0, 0, 1, 1, 1, 1, 0, 0, 0};
 			private int index = 0;
+
 			@Override
 			public int nextInt(int n) {
 				return values[index++];
@@ -89,7 +90,7 @@ public class DiscreteRecombinationFunctionTest {
 
 		Genome<Chromosome<Gene<Integer>>>[] result = crossoverFunction.recombine(parent1, parent2);
 		Genome<Chromosome<Gene<Integer>>>[] expected = new DefaultGenome[2];
-		Gene<Integer>[] expected1 = new DefaultGene[] {
+		Gene<Integer>[] expected1 = new DefaultGene[]{
 			new DefaultGene<>(1),
 			new DefaultGene<>(3),
 			new DefaultGene<>(4),
@@ -97,7 +98,7 @@ public class DiscreteRecombinationFunctionTest {
 			new DefaultGene<>(9),
 		};
 
-		Gene<Integer>[] expected2 = new DefaultGene[] {
+		Gene<Integer>[] expected2 = new DefaultGene[]{
 			new DefaultGene<>(1),
 			new DefaultGene<>(2),
 			new DefaultGene<>(4),

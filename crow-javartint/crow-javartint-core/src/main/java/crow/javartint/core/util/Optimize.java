@@ -33,12 +33,12 @@ import crow.javartint.core.OptimizationAlgorithm;
  */
 public enum Optimize {
 
-    /**
-     * Optimize to obtain the maximum solution.
-     */
-    MAX,
-    /**
-     * Optimize to obtain the minimum solution.
-     */
-    MIN
+	/**
+	 * Optimize to obtain the maximum solution.
+	 */
+	MAX,
+	/**
+	 * Optimize to obtain the minimum solution.
+	 */
+	MIN
 }

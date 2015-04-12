@@ -33,17 +33,17 @@ import crow.javartint.core.util.Optimize;
  */
 public interface OptimizationAlgorithm<S extends Solution> extends Algorithm<S> {
 
-    /**
-     * Gets the optimize type.
-     *
-     * @return optimize type.
-     */
-    public Optimize getOptimize();
+	/**
+	 * Gets the optimize type.
+	 *
+	 * @return optimize type.
+	 */
+	public Optimize getOptimize();
 
-    /**
-     * Sets the optimize type.
-     *
-     * @param optimize the optimize type.
-     */
-    public void setOptimize(Optimize optimize);
+	/**
+	 * Sets the optimize type.
+	 *
+	 * @param optimize the optimize type.
+	 */
+	public void setOptimize(Optimize optimize);
 }

@@ -34,41 +34,41 @@ import crow.javartint.core.Solution;
  * @version 0.0.2
  */
 public abstract class AbstractIterationConstraint<A extends IterativeAlgorithm<? extends Solution>>
-        extends AbstractConstraint<A> {
+	extends AbstractConstraint<A> {
 
-    /**
-     * Max iterations.
-     */
-    protected long maxIterations;
+	/**
+	 * Max iterations.
+	 */
+	protected long maxIterations;
 
-    /**
-     * Constructor
-     *
-     * @param constraintType constrain type.
-     * @param maxIterations  max allowed iterations.
-     */
-    public AbstractIterationConstraint(ConstraintType constraintType,
-                                       long maxIterations) {
-        super(constraintType);
-        this.maxIterations = maxIterations;
-    }
+	/**
+	 * Constructor
+	 *
+	 * @param constraintType constrain type.
+	 * @param maxIterations  max allowed iterations.
+	 */
+	public AbstractIterationConstraint(ConstraintType constraintType,
+	                                   long maxIterations) {
+		super(constraintType);
+		this.maxIterations = maxIterations;
+	}
 
-    /**
-     * Gets the value of max iterations.
-     *
-     * @return the value of max iterations.
-     */
-    public long getMaxIterations() {
-        return maxIterations;
-    }
+	/**
+	 * Gets the value of max iterations.
+	 *
+	 * @return the value of max iterations.
+	 */
+	public long getMaxIterations() {
+		return maxIterations;
+	}
 
-    /**
-     * Sets the value of max iterations.
-     *
-     * @param maxIterations the value of max iterations.
-     */
-    public void setMaxIterations(long maxIterations) {
-        this.maxIterations = maxIterations;
-    }
+	/**
+	 * Sets the value of max iterations.
+	 *
+	 * @param maxIterations the value of max iterations.
+	 */
+	public void setMaxIterations(long maxIterations) {
+		this.maxIterations = maxIterations;
+	}
 
 }

@@ -23,7 +23,6 @@ package crow.javartint.gea.function.scaling;
 */
 
 import crow.javartint.core.util.Optimize;
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
 import org.junit.After;
 import org.junit.Before;
@@ -36,30 +35,30 @@ import static org.junit.Assert.assertEquals;
 
 public class RankScalingMethodTest {
 
-    @Before
-    public void setUp() throws Exception {
-        System.out.print(RankScalingMethod.class.getName().concat("."));
-    }
+	@Before
+	public void setUp() throws Exception {
+		System.out.print(RankScalingMethod.class.getName().concat("."));
+	}
 
-    @After
-    public void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 
-    }
+	}
 
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testEvaluate() throws Exception {
-        System.out.println("evaluate (performed algorithm)");
-        RankScalingMethod<DefaultGenome> scalingMethod = new RankScalingMethod<>(Optimize.MAX);
-        List<DefaultGenome> genomes = new ArrayList<>(10);
-        double[] exp = new double[10];
-        for (int i = 0; i < 10; i++) {
-            genomes.add(new DefaultGenome());
-            exp[i] = i + 1;
-        }
-        List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
-        for (int i = 0; i < evaluate.size(); i++) {
-            assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
-        }
-    }
+	@Test
+	@SuppressWarnings("unchecked")
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (performed algorithm)");
+		RankScalingMethod<DefaultGenome> scalingMethod = new RankScalingMethod<>(Optimize.MAX);
+		List<DefaultGenome> genomes = new ArrayList<>(10);
+		double[] exp = new double[10];
+		for (int i = 0; i < 10; i++) {
+			genomes.add(new DefaultGenome());
+			exp[i] = i + 1;
+		}
+		List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
+		for (int i = 0; i < evaluate.size(); i++) {
+			assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
+		}
+	}
 }

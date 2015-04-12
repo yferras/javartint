@@ -34,28 +34,28 @@ import crow.javartint.core.Solution;
  */
 public interface Constraint<A extends Algorithm<? extends Solution>> {
 
-    /**
-     * Test any parameter of the algorithm and if this constraint is
-     * satisfied then returns <code>true</code>, otherwise returns
-     * <code>false</code>.
-     *
-     * @param algorithm algorithm to test.
-     * @return if this constraint is satisfied then returns
-     * <code>true</code>, otherwise returns <code>false</code>.
-     */
-    boolean evaluate(A algorithm);
+	/**
+	 * Test any parameter of the algorithm and if this constraint is
+	 * satisfied then returns <code>true</code>, otherwise returns
+	 * <code>false</code>.
+	 *
+	 * @param algorithm algorithm to test.
+	 * @return if this constraint is satisfied then returns
+	 * <code>true</code>, otherwise returns <code>false</code>.
+	 */
+	boolean evaluate(A algorithm);
 
-    /**
-     * Gets the constraint type.
-     *
-     * @return the constraint type.
-     */
-    ConstraintType getConstraintType();
+	/**
+	 * Gets the constraint type.
+	 *
+	 * @return the constraint type.
+	 */
+	ConstraintType getConstraintType();
 
-    /**
-     * Sets the constraint type.
-     *
-     * @param constraintType constraint type.
-     */
-    void setConstraintType(ConstraintType constraintType);
+	/**
+	 * Sets the constraint type.
+	 *
+	 * @param constraintType constraint type.
+	 */
+	void setConstraintType(ConstraintType constraintType);
 }

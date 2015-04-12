@@ -30,13 +30,13 @@ package crow.javartint.core;
  * @version 0.0.2
  */
 public interface IterativeAlgorithm<S extends Solution>
-        extends Algorithm<S> {
+	extends Algorithm<S> {
 
-    /**
-     * Gets the iterations that the algorithm perform.
-     *
-     * @return the iterations that the algorithm perform.
-     */
-    Long getIterations();
+	/**
+	 * Gets the iterations that the algorithm perform.
+	 *
+	 * @return the iterations that the algorithm perform.
+	 */
+	Long getIterations();
 
 }

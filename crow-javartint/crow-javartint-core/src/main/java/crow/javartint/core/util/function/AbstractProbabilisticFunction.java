@@ -35,69 +35,69 @@ import java.util.Random;
  * @version 0.0.1
  */
 abstract public class AbstractProbabilisticFunction<R, P>
-        implements ProbabilisticFunction<R, P> {
+	implements ProbabilisticFunction<R, P> {
 
-    private double probability;
-    private Random random;
+	private double probability;
+	private Random random;
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * Internally calls {@link #setProbability(double)} and
-     * {@link #setRandom(java.util.Random)}
-     *
-     * @param probability     probability of recombination
-     * @param random          random instance
-     * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
-     * and see {@link #setRandom(java.util.Random)}
-     */
-    protected AbstractProbabilisticFunction(double probability,
-                                            Random random)
-            throws IllegalArgumentException {
-        setProbability(probability);
-        setRandom(random);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * Internally calls {@link #setProbability(double)} and
+	 * {@link #setRandom(java.util.Random)}
+	 *
+	 * @param probability probability of recombination
+	 * @param random      random instance
+	 * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
+	 *                                            and see {@link #setRandom(java.util.Random)}
+	 */
+	protected AbstractProbabilisticFunction(double probability,
+	                                        Random random)
+		throws IllegalArgumentException {
+		setProbability(probability);
+		setRandom(random);
+	}
 
-    /**
-     * Constructor, initializes instances with probability specified by
-     * {@code probability} parameter and random is an instance of
-     * {@link java.util.Random}.
-     *
-     * @param probability probability of recombination
-     * @throws java.lang.IllegalArgumentException see {@link #setProbability}
-     * and see {@link #setRandom}
-     */
-    protected AbstractProbabilisticFunction(double probability)
-            throws IllegalArgumentException {
-        this(probability, new Random());
-    }
+	/**
+	 * Constructor, initializes instances with probability specified by
+	 * {@code probability} parameter and random is an instance of
+	 * {@link java.util.Random}.
+	 *
+	 * @param probability probability of recombination
+	 * @throws java.lang.IllegalArgumentException see {@link #setProbability}
+	 *                                            and see {@link #setRandom}
+	 */
+	protected AbstractProbabilisticFunction(double probability)
+		throws IllegalArgumentException {
+		this(probability, new Random());
+	}
 
-    @Override
-    public double getProbability() {
-        return probability;
-    }
+	@Override
+	public double getProbability() {
+		return probability;
+	}
 
-    @Override
-    public void setProbability(final double probability)
-            throws IllegalArgumentException {
-        if (probability < 0 || probability > 1.0) {
-            throw new IllegalArgumentException(
-                    "'probability' must between 0.0 and 1.0");
-        }
-        this.probability = probability;
-    }
+	@Override
+	public void setProbability(final double probability)
+		throws IllegalArgumentException {
+		if (probability < 0 || probability > 1.0) {
+			throw new IllegalArgumentException(
+				"'probability' must between 0.0 and 1.0");
+		}
+		this.probability = probability;
+	}
 
-    @Override
-    public Random getRandom() {
-        return random;
-    }
+	@Override
+	public Random getRandom() {
+		return random;
+	}
 
-    @Override
-    public void setRandom(final Random random)
-            throws IllegalArgumentException {
-        if (random == null) {
-            throw new IllegalArgumentException("'random' can't be null");
-        }
-        this.random = random;
-    }
+	@Override
+	public void setRandom(final Random random)
+		throws IllegalArgumentException {
+		if (random == null) {
+			throw new IllegalArgumentException("'random' can't be null");
+		}
+		this.random = random;
+	}
 
 }

@@ -30,49 +30,49 @@ import static org.junit.Assert.assertTrue;
 
 public class GenomeFilterTest {
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
+	@BeforeClass
+	public static void setUpClass() {
+	}
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
 
-    @Before
-    public void setUp() {
-        System.out.print(GenomeFilter.class.getName().concat("."));
-    }
+	@Before
+	public void setUp() {
+		System.out.print(GenomeFilter.class.getName().concat("."));
+	}
 
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Test
-    public void testAccept1() {
-        System.out.println("accept (true)");
-        assertTrue(new DefaultFilter().accept(new DefaultGenome<>()));
-    }
+	@Test
+	public void testAccept1() {
+		System.out.println("accept (true)");
+		assertTrue(new DefaultFilter().accept(new DefaultGenome<>()));
+	}
 
-    @Test
-    public void testAccept2() {
-        System.out.println("accept (false)");
-        assertFalse(new DefaultFilter().accept(null));
-    }
+	@Test
+	public void testAccept2() {
+		System.out.println("accept (false)");
+		assertFalse(new DefaultFilter().accept(null));
+	}
 
-    @SuppressWarnings("unchecked")
-    final class DefaultFilter implements GenomeFilter<DefaultGenome<?>> {
+	@SuppressWarnings("unchecked")
+	final class DefaultFilter implements GenomeFilter<DefaultGenome<?>> {
 
-        /**
-         * Returns {@code true} if genome is not {@code null},
-         * otherwise returns {@code false}.
-         *
-         * @param genome genome to filter.
-         * @return {@code true} if the passed genome is accepted.
-         */
-        @Override
-        public boolean accept(DefaultGenome<?> genome) {
-            return genome != null;
-        }
-    }
+		/**
+		 * Returns {@code true} if genome is not {@code null},
+		 * otherwise returns {@code false}.
+		 *
+		 * @param genome genome to filter.
+		 * @return {@code true} if the passed genome is accepted.
+		 */
+		@Override
+		public boolean accept(DefaultGenome<?> genome) {
+			return genome != null;
+		}
+	}
 
 }

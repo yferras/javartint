@@ -33,26 +33,26 @@ import static org.junit.Assert.assertEquals;
 
 public class BinaryGenomeGenFunctionTest {
 
-    @Before
-    public void setUp() throws Exception {
-        System.out.print(
-                BinaryGenomeGenFunction.class.getName().concat("."));
-    }
+	@Before
+	public void setUp() throws Exception {
+		System.out.print(
+			BinaryGenomeGenFunction.class.getName().concat("."));
+	}
 
-    @After
-    public void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 
-    }
+	}
 
-    @Test
-    public void testEvaluate() throws Exception {
-        System.out.println("evaluate (performed algorithm)");
-        BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
-        DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = genFunction.evaluate();
-        assertEquals(1, genome.size());
-        assertEquals(3, genome.getChromosome(0).size());
-        assertEquals(1, genome.getChromosome(0).getGene(0).length());
-        assertEquals(7, genome.getChromosome(0).getGene(1).length());
-        assertEquals(4, genome.getChromosome(0).getGene(2).length());
-    }
+	@Test
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (performed algorithm)");
+		BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
+		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = genFunction.evaluate();
+		assertEquals(1, genome.size());
+		assertEquals(3, genome.getChromosome(0).size());
+		assertEquals(1, genome.getChromosome(0).getGene(0).length());
+		assertEquals(7, genome.getChromosome(0).getGene(1).length());
+		assertEquals(4, genome.getChromosome(0).getGene(2).length());
+	}
 }

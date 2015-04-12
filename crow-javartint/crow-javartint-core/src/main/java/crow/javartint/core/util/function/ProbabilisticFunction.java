@@ -35,48 +35,48 @@ import java.util.Random;
  */
 public interface ProbabilisticFunction<R, P> extends Function<R, P> {
 
-    /**
-     * Gets the probability, a number between {@code 0.0} and {@code 0.0}.
-     * @return the probability
-     */
-    double getProbability();
+	/**
+	 * Gets the probability, a number between {@code 0.0} and {@code 0.0}.
+	 *
+	 * @return the probability
+	 */
+	double getProbability();
 
-    /**
-     * Sets the probability, a number that must between {@code 0.0} and
-     * {@code 1.0}.
-     *
-     * @param probability the probability
-     *
-     * @throws java.lang.IllegalArgumentException if {@code probability is not
-     * inside 0.0 and 1.0}
-     */
-    void setProbability(final double probability)
-            throws IllegalArgumentException;
+	/**
+	 * Sets the probability, a number that must between {@code 0.0} and
+	 * {@code 1.0}.
+	 *
+	 * @param probability the probability
+	 * @throws java.lang.IllegalArgumentException if {@code probability is not
+	 *                                            inside 0.0 and 1.0}
+	 */
+	void setProbability(final double probability)
+		throws IllegalArgumentException;
 
-    /**
-     * Gets the random instance.
-     *
-     * @return the random instance.
-     */
-    Random getRandom();
+	/**
+	 * Gets the random instance.
+	 *
+	 * @return the random instance.
+	 */
+	Random getRandom();
 
-    /**
-     * Sets the random generator. Is used to generate random probabilities.
-     *
-     * @param random the random instance
-     * @throws java.lang.IllegalArgumentException if {@code random} param
-     * is {@code null}
-     */
-    void setRandom(final Random random)
-            throws IllegalArgumentException;
+	/**
+	 * Sets the random generator. Is used to generate random probabilities.
+	 *
+	 * @param random the random instance
+	 * @throws java.lang.IllegalArgumentException if {@code random} param
+	 *                                            is {@code null}
+	 */
+	void setRandom(final Random random)
+		throws IllegalArgumentException;
 
-    /**
-     * Evaluates the params and the result is constrained by the returned
-     * value of {@link #getProbability()}.
-     *
-     * @param params parameters to evaluate.
-     * @return {@inheritDoc}
-     */
-    @Override
-    R evaluate(P params);
+	/**
+	 * Evaluates the params and the result is constrained by the returned
+	 * value of {@link #getProbability()}.
+	 *
+	 * @param params parameters to evaluate.
+	 * @return {@inheritDoc}
+	 */
+	@Override
+	R evaluate(P params);
 }

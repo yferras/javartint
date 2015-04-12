@@ -34,13 +34,13 @@ import crow.javartint.core.Solution;
  * @version 0.0.2
  */
 public interface ThresholdConstraint<T extends Comparable<T>, A extends Algorithm<? extends Solution>>
-        extends Constraint<A> {
+	extends Constraint<A> {
 
-    /**
-     * Gets the threshold.
-     *
-     * @return the threshold.
-     */
-    T getThreshold();
+	/**
+	 * Gets the threshold.
+	 *
+	 * @return the threshold.
+	 */
+	T getThreshold();
 
 }

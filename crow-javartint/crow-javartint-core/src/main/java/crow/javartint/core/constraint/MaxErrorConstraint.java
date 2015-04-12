@@ -33,30 +33,30 @@ import crow.javartint.core.Solution;
  * @version 0.0.2
  */
 public class MaxErrorConstraint<A extends ErrorBasedAlgorithm<? extends Solution>>
-        extends AbstractThresholdConstraint<Double, A> {
+	extends AbstractThresholdConstraint<Double, A> {
 
-    /**
-     * Constructor.
-     *
-     * @param constraintType constrain type.
-     * @param threshold      error threshold.
-     */
-    public MaxErrorConstraint(ConstraintType constraintType, Double threshold) {
-        super(constraintType, threshold);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param constraintType constrain type.
+	 * @param threshold      error threshold.
+	 */
+	public MaxErrorConstraint(ConstraintType constraintType, Double threshold) {
+		super(constraintType, threshold);
+	}
 
-    /**
-     * Tests if the actual error of algorithm is greater than the threshold, in
-     * this case returns <code>true</code>, otherwise returns
-     * <code>false</code>.
-     *
-     * @param algorithm instance derived from {@link ErrorBasedAlgorithm}
-     * @return <code>true</code> if the actual error of algorithm is greater
-     * than the threshold, otherwise returns <code>false</code>.
-     */
-    @Override
-    public boolean evaluate(A algorithm) {
-        return algorithm.getCurrentError().compareTo(getThreshold()) > 0;
-    }
+	/**
+	 * Tests if the actual error of algorithm is greater than the threshold, in
+	 * this case returns <code>true</code>, otherwise returns
+	 * <code>false</code>.
+	 *
+	 * @param algorithm instance derived from {@link ErrorBasedAlgorithm}
+	 * @return <code>true</code> if the actual error of algorithm is greater
+	 * than the threshold, otherwise returns <code>false</code>.
+	 */
+	@Override
+	public boolean evaluate(A algorithm) {
+		return algorithm.getCurrentError().compareTo(getThreshold()) > 0;
+	}
 
 }

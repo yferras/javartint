@@ -30,12 +30,12 @@ package crow.javartint.core.constraint;
  */
 public enum ConstraintType {
 
-    /**
-     * Defines a constraint as mandatory.
-     */
-    MANDATORY,
-    /**
-     * Defines a constraint as optional.
-     */
-    OPTIONAL
+	/**
+	 * Defines a constraint as mandatory.
+	 */
+	MANDATORY,
+	/**
+	 * Defines a constraint as optional.
+	 */
+	OPTIONAL
 }

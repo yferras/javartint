@@ -47,45 +47,45 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-    {
-        DefaultGeneTest.class,
-        GenomeFilterTest.class,
-        ArrayGeneTest.class,
-        DefaultGenomeTest.class,
-        RecombinationFunctionTest.class,
-        MultiPointsRecombinationFunctionTest.class,
-        SinglePointRecombinationFunctionTest.class,
-        TowPointsRecombinationFunctionTest.class,
-        MutationFunctionTest.class,
-        BinaryMutationFunctionTest.class,
-        AbstractScalingMethodTest.class,
-        LinearRankScalingMethodTest.class,
-        RankScalingMethodTest.class,
-        SigmaScalingMethodTest.class,
-        BoltzmannScalingMethodTest.class,
-        BinaryGenomeGenFunctionTest.class,
-        TspGenomeGenFunctionTest.class,
-        RangeGenomeGenFunctionTest.class,
-        AbstractGeneticAlgorithmIT.class,
-        RealValuedMutationFunctionTest.class,
-        DiscreteRecombinationFunctionTest.class
-    }
+	{
+		DefaultGeneTest.class,
+		GenomeFilterTest.class,
+		ArrayGeneTest.class,
+		DefaultGenomeTest.class,
+		RecombinationFunctionTest.class,
+		MultiPointsRecombinationFunctionTest.class,
+		SinglePointRecombinationFunctionTest.class,
+		TowPointsRecombinationFunctionTest.class,
+		MutationFunctionTest.class,
+		BinaryMutationFunctionTest.class,
+		AbstractScalingMethodTest.class,
+		LinearRankScalingMethodTest.class,
+		RankScalingMethodTest.class,
+		SigmaScalingMethodTest.class,
+		BoltzmannScalingMethodTest.class,
+		BinaryGenomeGenFunctionTest.class,
+		TspGenomeGenFunctionTest.class,
+		RangeGenomeGenFunctionTest.class,
+		AbstractGeneticAlgorithmIT.class,
+		RealValuedMutationFunctionTest.class,
+		DiscreteRecombinationFunctionTest.class
+	}
 )
 public class GeaITSuite {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+	}
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+	@AfterClass
+	public static void tearDownClass() throws Exception {
+	}
 
-    @Before
-    public void setUp() throws Exception {
-    }
+	@Before
+	public void setUp() throws Exception {
+	}
 
-    @After
-    public void tearDown() throws Exception {
-    }
+	@After
+	public void tearDown() throws Exception {
+	}
 }

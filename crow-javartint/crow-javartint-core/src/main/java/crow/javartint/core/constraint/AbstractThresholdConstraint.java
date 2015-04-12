@@ -35,38 +35,38 @@ import crow.javartint.core.Solution;
  * @version 0.0.3
  */
 public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A extends Algorithm<? extends Solution>>
-        extends AbstractConstraint<A> implements ThresholdConstraint<T, A> {
+	extends AbstractConstraint<A> implements ThresholdConstraint<T, A> {
 
-    private T threshold;
+	private T threshold;
 
-    /**
-     * Constructor.
-     *
-     * @param constraintType constraint type.
-     * @param threshold      threshold
-     */
-    public AbstractThresholdConstraint(ConstraintType constraintType,
-                                       T threshold) {
-        super(constraintType);
-        this.threshold = threshold;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param constraintType constraint type.
+	 * @param threshold      threshold
+	 */
+	public AbstractThresholdConstraint(ConstraintType constraintType,
+	                                   T threshold) {
+		super(constraintType);
+		this.threshold = threshold;
+	}
 
-    /**
-     * Gets the value of threshold.
-     *
-     * @return the value of threshold.
-     */
-    @Override
-    public T getThreshold() {
-        return threshold;
-    }
+	/**
+	 * Gets the value of threshold.
+	 *
+	 * @return the value of threshold.
+	 */
+	@Override
+	public T getThreshold() {
+		return threshold;
+	}
 
-    /**
-     * Sets the value of threshold.
-     *
-     * @param threshold the value of threshold.
-     */
-    public void setThreshold(T threshold) {
-        this.threshold = threshold;
-    }
+	/**
+	 * Sets the value of threshold.
+	 *
+	 * @param threshold the value of threshold.
+	 */
+	public void setThreshold(T threshold) {
+		this.threshold = threshold;
+	}
 }

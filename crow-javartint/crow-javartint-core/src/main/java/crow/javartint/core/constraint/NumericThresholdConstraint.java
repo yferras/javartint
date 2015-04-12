@@ -34,6 +34,6 @@ import crow.javartint.core.Solution;
  * @version 0.0.2
  */
 public interface NumericThresholdConstraint<N extends Number & Comparable<N>, A extends Algorithm<? extends Solution>>
-        extends ThresholdConstraint<N, A> {
+	extends ThresholdConstraint<N, A> {
 
 }

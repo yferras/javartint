@@ -33,142 +33,142 @@ import static org.junit.Assert.*;
  */
 public class ProbabilisticFunctionTest {
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
+	@BeforeClass
+	public static void setUpClass() {
+	}
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
 
-    @Before
-    public void setUp() {
-        System.out.print(AbstractProbabilisticFunction.class.getName().concat
-                ("."));
-    }
+	@Before
+	public void setUp() {
+		System.out.print(AbstractProbabilisticFunction.class.getName().concat
+			("."));
+	}
 
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Test
-    public void testConstructor1() {
-        System.out.println("constructor " +
-                "(test probability less than 0.0)");
-        try {
-            new DefaultProbabilisticFunction<Double>(-.5);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-            return;
-        }
-        assertTrue(false);
-    }
+	@Test
+	public void testConstructor1() {
+		System.out.println("constructor " +
+			"(test probability less than 0.0)");
+		try {
+			new DefaultProbabilisticFunction<Double>(-.5);
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+			return;
+		}
+		assertTrue(false);
+	}
 
-    @Test
-    public void testConstructor2() {
-        System.out.println("constructor " +
-                "(test probability greater than 1.0)");
-        try {
-            new DefaultProbabilisticFunction<Double>(2.0);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-            return;
-        }
-        assertTrue(false);
-    }
+	@Test
+	public void testConstructor2() {
+		System.out.println("constructor " +
+			"(test probability greater than 1.0)");
+		try {
+			new DefaultProbabilisticFunction<Double>(2.0);
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+			return;
+		}
+		assertTrue(false);
+	}
 
-    @Test
-    public void testConstructor3() {
-        System.out.println("constructor " +
-                "(test probability between 0.0 and 1.0)");
-        try {
-            new DefaultProbabilisticFunction<Double>(0.5);
-        } catch (IllegalArgumentException e) {
-            assertTrue(false);
-            return;
-        }
-        assertTrue(true);
-    }
+	@Test
+	public void testConstructor3() {
+		System.out.println("constructor " +
+			"(test probability between 0.0 and 1.0)");
+		try {
+			new DefaultProbabilisticFunction<Double>(0.5);
+		} catch (IllegalArgumentException e) {
+			assertTrue(false);
+			return;
+		}
+		assertTrue(true);
+	}
 
-    @Test
-    public void testConstructor4() {
-        System.out.println("constructor " +
-                "(test probability = 0.0)");
-        try {
-            new DefaultProbabilisticFunction<Double>(0.0);
-        } catch (IllegalArgumentException e) {
-            assertTrue(false);
-            return;
-        }
-        assertTrue(true);
-    }
+	@Test
+	public void testConstructor4() {
+		System.out.println("constructor " +
+			"(test probability = 0.0)");
+		try {
+			new DefaultProbabilisticFunction<Double>(0.0);
+		} catch (IllegalArgumentException e) {
+			assertTrue(false);
+			return;
+		}
+		assertTrue(true);
+	}
 
-    @Test
-    public void testConstructor5() {
-        System.out.println("constructor " +
-                "(test probability = 1.0)");
-        try {
-            new DefaultProbabilisticFunction<Double>(1.0);
-        } catch (IllegalArgumentException e) {
-            assertTrue(false);
-            return;
-        }
-        assertTrue(true);
-    }
+	@Test
+	public void testConstructor5() {
+		System.out.println("constructor " +
+			"(test probability = 1.0)");
+		try {
+			new DefaultProbabilisticFunction<Double>(1.0);
+		} catch (IllegalArgumentException e) {
+			assertTrue(false);
+			return;
+		}
+		assertTrue(true);
+	}
 
-    @Test
-    public void testConstructor6() {
-        System.out.println("constructor " +
-                "(test probability = 0.5 and randomGenerator is null)");
-        try {
-            new DefaultProbabilisticFunction<Double>(1.0, null);
-        } catch (IllegalArgumentException e) {
-            assertTrue(true);
-        }
-    }
+	@Test
+	public void testConstructor6() {
+		System.out.println("constructor " +
+			"(test probability = 0.5 and randomGenerator is null)");
+		try {
+			new DefaultProbabilisticFunction<Double>(1.0, null);
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		}
+	}
 
-    @Test
-    public void testGetProbability() {
-        System.out.println("getProbability");
-        final DefaultProbabilisticFunction<Double> function =
-                new DefaultProbabilisticFunction<>(0.5);
-        assertEquals(new Double(0.5), new Double(function.getProbability()));
-    }
+	@Test
+	public void testGetProbability() {
+		System.out.println("getProbability");
+		final DefaultProbabilisticFunction<Double> function =
+			new DefaultProbabilisticFunction<>(0.5);
+		assertEquals(new Double(0.5), new Double(function.getProbability()));
+	}
 
-    @Test
-    public void testGetRandomGenerator1() {
-        System.out.println("getRandom (not null)");
-        final DefaultProbabilisticFunction<Double> function =
-                new DefaultProbabilisticFunction<>(0.5);
-        assertNotNull(function.getRandom());
-    }
+	@Test
+	public void testGetRandomGenerator1() {
+		System.out.println("getRandom (not null)");
+		final DefaultProbabilisticFunction<Double> function =
+			new DefaultProbabilisticFunction<>(0.5);
+		assertNotNull(function.getRandom());
+	}
 
-    @Test
-    public void testGetRandomGenerator2() {
-        System.out.println("getRandom (instance of Random)");
-        final DefaultProbabilisticFunction<Double> function =
-                new DefaultProbabilisticFunction<>(0.5);
-        assertTrue(function.getRandom() instanceof Random);
-    }
+	@Test
+	public void testGetRandomGenerator2() {
+		System.out.println("getRandom (instance of Random)");
+		final DefaultProbabilisticFunction<Double> function =
+			new DefaultProbabilisticFunction<>(0.5);
+		assertTrue(function.getRandom() instanceof Random);
+	}
 
-    private static class DefaultProbabilisticFunction<T extends Number>
-            extends AbstractProbabilisticFunction<Double, T[]> {
+	private static class DefaultProbabilisticFunction<T extends Number>
+		extends AbstractProbabilisticFunction<Double, T[]> {
 
-        private DefaultProbabilisticFunction(double probability,
-                                             Random random) {
-            super(probability, random);
-        }
+		private DefaultProbabilisticFunction(double probability,
+		                                     Random random) {
+			super(probability, random);
+		}
 
-        private DefaultProbabilisticFunction(double probability) {
-            super(probability);
-        }
+		private DefaultProbabilisticFunction(double probability) {
+			super(probability);
+		}
 
-        @Override
-        public Double evaluate(T... params) {
-            if (getRandom().nextDouble() > getProbability()) {
-                return params[0].doubleValue() + params[1].doubleValue();
-            }
-            return params[0].doubleValue() - params[1].doubleValue();
-        }
-    }
+		@Override
+		public Double evaluate(T... params) {
+			if (getRandom().nextDouble() > getProbability()) {
+				return params[0].doubleValue() + params[1].doubleValue();
+			}
+			return params[0].doubleValue() - params[1].doubleValue();
+		}
+	}
 }

@@ -22,7 +22,6 @@ package crow.javartint.gea.function.scaling;
 * #L%
 */
 
-import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.DefaultGenome;
 import org.junit.After;
 import org.junit.Before;
@@ -36,45 +35,45 @@ import static org.junit.Assert.assertEquals;
 
 public class SigmaScalingMethodTest {
 
-    @Before
-    public void setUp() throws Exception {
-        System.out.print(SigmaScalingMethod.class.getName().concat("."));
-    }
+	@Before
+	public void setUp() throws Exception {
+		System.out.print(SigmaScalingMethod.class.getName().concat("."));
+	}
 
-    @After
-    public void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 
-    }
+	}
 
-    @Test
-    public void testEvaluate() throws Exception {
-        System.out.println("evaluate (performed algorithm)");
-        SigmaScalingMethod<DefaultGenome> scalingMethod = new SigmaScalingMethod<>();
-                List<DefaultGenome> genomes = new ArrayList<>(10);
-        double[] exp = new double[100];
-        Random random = new Random();
-        double sum = 0.0;
-        for (int i = 0; i < 100; i++) {
-            genomes.add(new DefaultGenome<>());
-            double f = random.nextInt(100);
-            genomes.get(i).setFitness(exp[i] = f);
-            sum += f;
-        }
-        double mean = sum / 100.0;
-        sum = 0.0;
-        for (DefaultGenome<?> genome : genomes) {
-            double diff = genome.getFitness() - mean;
-            sum += diff * diff;
-        }
-        double sigma = Math.sqrt(sum / 100.0);
+	@Test
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (performed algorithm)");
+		SigmaScalingMethod<DefaultGenome> scalingMethod = new SigmaScalingMethod<>();
+		List<DefaultGenome> genomes = new ArrayList<>(10);
+		double[] exp = new double[100];
+		Random random = new Random();
+		double sum = 0.0;
+		for (int i = 0; i < 100; i++) {
+			genomes.add(new DefaultGenome<>());
+			double f = random.nextInt(100);
+			genomes.get(i).setFitness(exp[i] = f);
+			sum += f;
+		}
+		double mean = sum / 100.0;
+		sum = 0.0;
+		for (DefaultGenome<?> genome : genomes) {
+			double diff = genome.getFitness() - mean;
+			sum += diff * diff;
+		}
+		double sigma = Math.sqrt(sum / 100.0);
 
-        for (int i = 0; i < 100; i++) {
-            exp[i] = (exp[i] - mean) / sigma;
-        }
+		for (int i = 0; i < 100; i++) {
+			exp[i] = (exp[i] - mean) / sigma;
+		}
 
-        List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
-        for (int i = 0; i < evaluate.size(); i++) {
-            assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
-        }
-    }
+		List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
+		for (int i = 0; i < evaluate.size(); i++) {
+			assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
+		}
+	}
 }

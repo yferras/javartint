@@ -49,23 +49,15 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Genome<? extends C
 	extends AbstractAlgorithm<T>
 	implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
-	private GenomeFilter<T> genomeFilter;
-
-	private List<T> population;
-
-	private int populationSize;
-
-	private long generations;
-
-	private Optimize optimize;
-
-	private double bestFitnessScore;
-
 	final private DecoderFunction<D, T> decoder;
-
 	final private Function<Double, D> targetFunction;
-
 	final private GeneratorFunction<T> generator;
+	private GenomeFilter<T> genomeFilter;
+	private List<T> population;
+	private int populationSize;
+	private long generations;
+	private Optimize optimize;
+	private double bestFitnessScore;
 
 	/**
 	 * Initializes this class.
