@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
@@ -35,7 +36,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public abstract class AbstractSelectionFunction<T extends Genome<? extends Gene<?>>>
+public abstract class AbstractSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         implements SelectionFunction<T> {
 
     private int numToSelect = 1;
