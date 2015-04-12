@@ -22,6 +22,7 @@ package crow.javartint.gea.function.selection;
  * #L%
  */
 
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
@@ -38,7 +39,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class SusSelectionFunction<T extends Genome<? extends Gene<?>>>
+public class SusSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractSelectionFunction<T> {
 
     public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {

@@ -23,6 +23,7 @@ package crow.javartint.gea.function.selection;
  */
 
 import crow.javartint.core.util.Optimize;
+import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
@@ -37,7 +38,7 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ElitismSelectionFunction<T extends Genome<? extends Gene<?>>>
+public class ElitismSelectionFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
         extends AbstractSelectionFunction<T> {
 
     private final Optimize optimize;
