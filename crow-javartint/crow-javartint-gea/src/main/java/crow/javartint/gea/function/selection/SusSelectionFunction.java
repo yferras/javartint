@@ -24,6 +24,7 @@ package crow.javartint.gea.function.selection;
 
 import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
+import crow.javartint.gea.util.MathUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,36 +59,22 @@ public class SusSelectionFunction<T extends Individual>
 		if (getScalingMethod() != null) {
 			getScalingMethod().evaluate(individuals);
 		}
-		Collections.sort(individuals);
-		double worstFitness = individuals.get(individuals.size() - 1).getFitness();
-		if (worstFitness < 0) {
-			double absValue = Math.abs(worstFitness);
-			for (Individual individual : individuals) {
-				individual.setFitness(individual.getFitness() + absValue);
-			}
+		double total = MathUtil.total(individuals);
+		double d = total / getNumToSelect();
+		double r = new Random().nextDouble();
+		double start = r * d;
+		double[] pointers = new double[getNumToSelect()];
+		for (int i = 0; i < getNumToSelect(); i++) {
+			pointers[i] = start + i * d;
 		}
+		List<T> selected = new ArrayList<>();
+		int i = 0;
 		double sum = 0.0;
-		for (T genome : individuals) {
-			sum += genome.getFitness();
-		}
-		for (T genome : individuals) {
-			genome.setFitness(genome.getFitness() / sum);
-		}
-		double inc = 1.0 / (double) getNumToSelect();
-		Random rand = new Random();
-		double mark = rand.nextDouble() * inc;
-		sum = 0.0;
-		List<T> selected = new ArrayList<>(getNumToSelect());
-		Collections.shuffle(individuals);
-		for (T genome : individuals) {
-			sum += genome.getFitness();
-			if (sum > mark) {
-				selected.add(genome);
-				if (selected.size() == getNumToSelect()) {
-					break;
-				}
-				mark += inc;
+		for (double pointer : pointers) {
+			while (sum < pointer) {
+				sum += individuals.get(i++).getFitness();
 			}
+			selected.add(individuals.get(i - 1));
 		}
 		return selected;
 	}
