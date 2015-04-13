@@ -45,7 +45,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
 	 * Internally calls {@link #setProbability(double)} and
 	 * {@link #setRandom(java.util.Random)}
 	 *
-	 * @param probability probability of recombination
+	 * @param probability value of probability
 	 * @param random      random instance
 	 * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
 	 *                                            and see {@link #setRandom(java.util.Random)}
@@ -62,7 +62,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
 	 * {@code probability} parameter and random is an instance of
 	 * {@link java.util.Random}.
 	 *
-	 * @param probability probability of recombination
+	 * @param probability value of probability
 	 * @throws java.lang.IllegalArgumentException see {@link #setProbability}
 	 *                                            and see {@link #setRandom}
 	 */
@@ -77,7 +77,7 @@ abstract public class AbstractProbabilisticFunction<R, P>
 	}
 
 	@Override
-	public void setProbability(final double probability)
+	public final void setProbability(final double probability)
 		throws IllegalArgumentException {
 		if (probability < 0 || probability > 1.0) {
 			throw new IllegalArgumentException(
