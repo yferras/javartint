@@ -86,9 +86,9 @@ public class TowPointsRecombinationFunctionTest {
 		Genome<DefaultChromosome<DefaultGene<Integer>>>[] result = function.evaluate(GENOMES);
 		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>[] expResult = new DefaultGenome[2];
 		expResult[0] = new DefaultGenome<>();
-		expResult[0].add(new DefaultChromosome<DefaultGene<Integer>>());
+		expResult[0].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 		expResult[1] = new DefaultGenome<>();
-		expResult[1].add(new DefaultChromosome<DefaultGene<Integer>>());
+		expResult[1].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 		int position1 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE - 1);
 		int position2 = RANDOM_GENERATOR_2.nextInt(CHROMOSOME_SIZE);
 		for (int i = 0; i < CHROMOSOME_SIZE; i++) {

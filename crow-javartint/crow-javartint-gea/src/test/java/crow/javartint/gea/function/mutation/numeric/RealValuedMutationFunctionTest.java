@@ -58,7 +58,7 @@ public class RealValuedMutationFunctionTest {
 		System.out.println("validate");
 		RealValuedMutationFunction mutationFunction = new RealValuedMutationFunction(5);
 		DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
-		genome.add(new DefaultChromosome<DefaultGene<Double>>());
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Double>>());
 		genome.getChromosome(0).setGenes(new DefaultGene[]{
 			doubleDefaultGene1, doubleDefaultGene2,
 			doubleDefaultGene3, doubleDefaultGene4
@@ -77,7 +77,7 @@ public class RealValuedMutationFunctionTest {
 	public void testEvaluate() throws Exception {
 		System.out.println("evaluate");
 		DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
-		genome.add(new DefaultChromosome<DefaultGene<Double>>());
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Double>>());
 		genome.getChromosome(0).setGenes(new DefaultGene[]{
 			doubleDefaultGene1, doubleDefaultGene2,
 			doubleDefaultGene3, doubleDefaultGene4

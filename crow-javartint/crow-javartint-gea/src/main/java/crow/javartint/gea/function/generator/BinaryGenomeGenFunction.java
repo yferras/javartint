@@ -101,7 +101,7 @@ public class BinaryGenomeGenFunction
 				}
 				genes[j] = new ByteArrayGene(data);
 			}
-			genome.add(new DefaultChromosome<ByteArrayGene>());
+			genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
 			genome.getChromosome(i).setGenes(genes);
 		}
 		return genome;

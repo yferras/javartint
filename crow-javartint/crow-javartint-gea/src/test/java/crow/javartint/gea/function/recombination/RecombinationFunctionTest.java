@@ -132,14 +132,14 @@ public class RecombinationFunctionTest {
 		System.out.println("evaluate (to invoke recombination process)");
 		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome1 = new DefaultGenome<>();
-		genome1.add(new DefaultChromosome<IntegerArrayGene>());
+		genome1.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome1.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				1, 2, 3
 			})
 		);
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome2 = new DefaultGenome<>();
-		genome2.add(new DefaultChromosome<IntegerArrayGene>());
+		genome2.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome2.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				4, 5, 7
@@ -155,14 +155,14 @@ public class RecombinationFunctionTest {
 		System.out.println("evaluate (two params are equals)");
 		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome1 = new DefaultGenome<>();
-		genome1.add(new DefaultChromosome<IntegerArrayGene>());
+		genome1.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome1.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				1, 2, 3
 			})
 		);
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome2 = new DefaultGenome<>();
-		genome2.add(new DefaultChromosome<IntegerArrayGene>());
+		genome2.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome2.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				1, 2, 3
@@ -180,14 +180,14 @@ public class RecombinationFunctionTest {
 			DefaultRecombinationFunction();
 		function.setProbability(0.0);
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome1 = new DefaultGenome<>();
-		genome1.add(new DefaultChromosome<IntegerArrayGene>());
+		genome1.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome1.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				1, 2, 3
 			})
 		);
 		DefaultGenome<DefaultChromosome<IntegerArrayGene>> genome2 = new DefaultGenome<>();
-		genome2.add(new DefaultChromosome<IntegerArrayGene>());
+		genome2.addChromosome(new DefaultChromosome<IntegerArrayGene>());
 		genome2.getChromosome(0).addGene(
 			new IntegerArrayGene(new Integer[]{
 				4, 5, 7

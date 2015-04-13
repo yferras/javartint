@@ -129,7 +129,7 @@ public class MutationFunctionTest {
 	public void testEvaluate() throws CloneNotSupportedException {
 		System.out.println("evaluate (to invoke mutation process)");
 		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 		genome.getChromosome(0).setGenes(
 			new DefaultGene[]{
 				new DefaultGene(1),
@@ -151,7 +151,7 @@ public class MutationFunctionTest {
 			DefaultMutationFunction();
 		function.setProbability(0.0);
 		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 		genome.getChromosome(0).setGenes(
 			new DefaultGene[]{
 				new DefaultGene(1),

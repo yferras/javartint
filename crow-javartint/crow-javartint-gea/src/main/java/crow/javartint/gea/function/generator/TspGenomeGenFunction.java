@@ -66,7 +66,7 @@ public class TspGenomeGenFunction
 				cities.add(new DefaultGene<>(j));
 			}
 			Collections.shuffle(cities);
-			genome.add(new DefaultChromosome<DefaultGene<Integer>>());
+			genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 			genome.getChromosome(i).setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
 		}
 		return genome;

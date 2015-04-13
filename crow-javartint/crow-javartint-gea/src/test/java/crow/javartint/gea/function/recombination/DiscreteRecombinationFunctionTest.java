@@ -73,8 +73,8 @@ public class DiscreteRecombinationFunctionTest {
 			new DefaultGene<>(8),
 		};
 
-		parent1.add(new DefaultChromosome<Gene<Integer>>());
-		parent2.add(new DefaultChromosome<Gene<Integer>>());
+		parent1.addChromosome(new DefaultChromosome<Gene<Integer>>());
+		parent2.addChromosome(new DefaultChromosome<Gene<Integer>>());
 		parent1.getChromosome(0).setGenes(genes1);
 		parent2.getChromosome(0).setGenes(genes2);
 
@@ -107,10 +107,10 @@ public class DiscreteRecombinationFunctionTest {
 		};
 
 		expected[0] = new DefaultGenome<>();
-		expected[0].add(new DefaultChromosome<Gene<Integer>>());
+		expected[0].addChromosome(new DefaultChromosome<Gene<Integer>>());
 		expected[0].getChromosome(0).setGenes(expected1);
 		expected[1] = new DefaultGenome<>();
-		expected[1].add(new DefaultChromosome<Gene<Integer>>());
+		expected[1].addChromosome(new DefaultChromosome<Gene<Integer>>());
 		expected[1].getChromosome(0).setGenes(expected2);
 
 		assertArrayEquals(expected, result);

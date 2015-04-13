@@ -75,7 +75,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 	}
 
 	@Override
-	public void add(T chromosome) {
+	public void addChromosome(T chromosome) {
 		chromosomes.add(chromosome);
 	}
 

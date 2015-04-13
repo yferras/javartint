@@ -88,7 +88,7 @@ public class RangeGenomeGenFunction
 				double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
 				genes[j] = new DefaultGene<>(v);
 			}
-			genome.add(new DefaultChromosome<DefaultGene<Double>>());
+			genome.addChromosome(new DefaultChromosome<DefaultGene<Double>>());
 			genome.getChromosome(i).setGenes(genes);
 		}
 		return genome;

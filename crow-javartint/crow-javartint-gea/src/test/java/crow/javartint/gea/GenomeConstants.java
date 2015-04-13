@@ -157,8 +157,8 @@ public class GenomeConstants {
 
 	static {
 
-		GENOME_1.add(new DefaultChromosome<DefaultGene<Integer>>());
-		GENOME_2.add(new DefaultChromosome<DefaultGene<Integer>>());
+		GENOME_1.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+		GENOME_2.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
 		for (int i = 0; i < CHROMOSOME_SIZE; i++) {
 			GENOME_1.getChromosome(0).addGene(new DefaultGene<>(i));
 			GENOME_2.getChromosome(0).addGene(new DefaultGene<>(CHROMOSOME_SIZE - i));

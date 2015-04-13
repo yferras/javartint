@@ -58,7 +58,7 @@ public class BinaryMutationFunctionTest {
 	public void testEvaluate() throws CloneNotSupportedException {
 		System.out.println("evaluate (performed algorithm)");
 		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = new DefaultGenome<>();
-		genome.add(new DefaultChromosome<ByteArrayGene>());
+		genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
 		ByteArrayGene[] genes = new ByteArrayGene[]{
 			new ByteArrayGene(new Byte[]{0}),
 			new ByteArrayGene(new Byte[]{1, 1, 0, 1, 0, 0}),
