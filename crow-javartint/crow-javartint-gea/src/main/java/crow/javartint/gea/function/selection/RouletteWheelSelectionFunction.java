@@ -24,6 +24,7 @@ package crow.javartint.gea.function.selection;
 
 import crow.javartint.gea.Individual;
 import crow.javartint.gea.function.scaling.AbstractScalingMethod;
+import crow.javartint.gea.util.MathUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,13 +51,10 @@ public class RouletteWheelSelectionFunction<T extends Individual>
 
 	@Override
 	protected List<T> select(List<T> individuals) {
-		double totalFitnessScore = 0.0;
 		if (getScalingMethod() != null) {
 			getScalingMethod().evaluate(individuals);
 		}
-		for (T genome : individuals) {
-			totalFitnessScore += Math.abs(genome.getFitness());
-		}
+		double totalFitnessScore = MathUtil.total(individuals);
 		Random rand = new Random();
 
 		List<T> selected = new ArrayList<>(getNumToSelect());

@@ -46,11 +46,22 @@ public final class MathUtil {
 	 * @return the mean of fitness
 	 */
 	static public <T extends Individual> double mean(List<T> individuals) {
+		return total(individuals) / individuals.size();
+	}
+
+	/**
+	 * This method takes a list of individuals and determines the total of their fitness.
+	 *
+	 * @param individuals list of individuals
+	 * @param <T>     Any class derived from {@link crow.javartint.gea.Individual} interface
+	 * @return the total of fitness
+	 */
+	static public <T extends Individual> double total(List<T> individuals) {
 		double sum = 0.0;
 		for (T individual : individuals) {
 			sum += individual.getFitness();
 		}
-		return sum / individuals.size();
+		return sum;
 	}
 
 	/**
