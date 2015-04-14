@@ -26,6 +26,8 @@ import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 import crow.javartint.gea.genome.Genome;
 
+import java.util.Random;
+
 /**
  * <p>
  * Specific recombination function, that performs an exchange of variable values between the individuals.
@@ -50,6 +52,18 @@ import crow.javartint.gea.genome.Genome;
  */
 public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
 	extends AbstractRecombinationFunction<T> {
+
+	public DiscreteRecombinationFunction(double probability, Random random) {
+		super(probability, random);
+	}
+
+	public DiscreteRecombinationFunction(double probability) {
+		super(probability);
+	}
+
+	public DiscreteRecombinationFunction() {
+		super();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
