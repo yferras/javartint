@@ -24,6 +24,8 @@ package crow.javartint.gea.gene;
 
 import org.junit.*;
 
+import java.lang.reflect.Array;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -83,11 +85,65 @@ public class DefaultGeneTest {
 	 * @throws java.lang.Exception
 	 */
 	@Test
-	public void testClone1() throws Exception {
+	public void testClone() throws Exception {
 		System.out.println("clone (check references)");
 		DefaultGene<Double> instance = new DefaultGene<>(2.0);
 		DefaultGene<Double> result = (DefaultGene<Double>) instance.clone();
 		assertFalse(instance == result);
+		assertFalse(instance.data == result.data);
+	}
+
+	/**
+	 * Test of clone method, of class DefaultGene.
+	 *
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testClone1() throws Exception {
+		System.out.println("clone (check references)");
+		DefaultGene<Object[]> instance = new DefaultGene<>(
+			new Object[] {
+				(byte)0,
+				'C',
+				(short) 1,
+				2,
+				3L,
+				4F,
+				5.0,
+				true,
+				"S",
+				new Object[] {
+					(byte)0,
+					'C',
+					(short) 1,
+					2,
+					3L,
+					4F,
+					5.0,
+					true,
+					"S",
+				}
+			}
+		);
+		DefaultGene<Object[]> result = (DefaultGene<Object[]>) instance.clone();
+		assertFalse(instance == result);
+		assertFalse(instance.data == result.data);
+		if (instance.data.getClass().isArray()) {
+			final int length = Array.getLength(instance.data);
+			for (int i = 0; i < length; i++) {
+				final Object o1 = Array.get(instance.data, i);
+				final Object o2 = Array.get(result.data, i);
+				assertFalse(o1 == o2);
+				if (o1.getClass().isArray()) {
+					final int length1 = Array.getLength(o1);
+					for (int j = 0; j < length1; j++) {
+						Object o11 = Array.get(o1, j);
+						Object o22 = Array.get(o2, j);
+						assertFalse(o11 == o22);
+					}
+				}
+			}
+		}
 	}
 
 	/**

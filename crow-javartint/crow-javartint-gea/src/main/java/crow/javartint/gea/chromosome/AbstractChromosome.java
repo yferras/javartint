@@ -23,8 +23,6 @@ package crow.javartint.gea.chromosome;
  */
 
 import crow.javartint.gea.gene.Gene;
-
-import java.io.*;
 import java.util.*;
 
 /**
@@ -38,7 +36,7 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 	/**
 	 * List of genes that contains the chromosome information.
 	 */
-	final protected List<T> genes;
+	protected List<T> genes;
 
 	protected AbstractChromosome() {
 		genes = new LinkedList<>();
@@ -83,35 +81,13 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Chromosome<T> clone() throws CloneNotSupportedException {
-		ObjectInputStream objectInputStream = null;
-		ObjectOutputStream objectOutputStream = null;
-		try {
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(this);
-
-			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-			objectInputStream = new ObjectInputStream(inputStream);
-			return (Chromosome<T>) objectInputStream.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			throw new CloneNotSupportedException(e.getMessage());
-		} finally {
-			try {
-				if (objectInputStream != null) {
-					objectInputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				if (objectOutputStream != null) {
-					objectOutputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	public AbstractChromosome<T> clone() throws CloneNotSupportedException {
+		AbstractChromosome<T> copy = (AbstractChromosome<T>) super.clone();
+		copy.genes = new LinkedList<>();
+		for (T t : this) {
+			copy.genes.add((T) t.clone());
 		}
+		return copy;
 	}
 
 	@Override

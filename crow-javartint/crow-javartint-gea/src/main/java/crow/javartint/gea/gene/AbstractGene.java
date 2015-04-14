@@ -22,7 +22,7 @@ package crow.javartint.gea.gene;
  * #L%
  */
 
-import java.io.*;
+import java.lang.reflect.Array;
 import java.util.Objects;
 
 /**
@@ -56,33 +56,44 @@ public abstract class AbstractGene<T> implements Gene<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Gene<T> clone() throws CloneNotSupportedException {
-		ObjectInputStream objectInputStream = null;
-		ObjectOutputStream objectOutputStream = null;
-		try {
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(this);
+		AbstractGene copy = (AbstractGene) super.clone();
+		copy.data = copy(getData());
+		return copy;
+	}
 
-			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-			objectInputStream = new ObjectInputStream(inputStream);
-			return (Gene<T>) objectInputStream.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			throw new CloneNotSupportedException(e.getMessage());
-		} finally {
-			try {
-				if (objectInputStream != null) {
-					objectInputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				if (objectOutputStream != null) {
-					objectOutputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	private static Object copy(Object src) {
+		if (src instanceof Byte)
+			return new Byte((byte) src);
+		else if (src instanceof Character)
+			return new Character((char) src);
+		else if (src instanceof Short)
+			return new Short((short) src);
+		else if (src instanceof Integer)
+			return new Integer((int) src);
+		else if (src instanceof Long)
+			return new Long((long) src);
+		else if (src instanceof Float)
+			return new Float((float) src);
+		else if (src instanceof Double)
+			return new Double((double) src);
+		else if (src instanceof Boolean)
+			return new Boolean((boolean) src);
+		else if (src instanceof String)
+			return new String((String)src);
+		else if (src.getClass().isArray()) {
+			final int length = Array.getLength(src);
+			Object array = Array.newInstance(src.getClass().getComponentType(), length);
+			copyArrays((Object[]) src, (Object[]) array);
+			return array;
+		} else {
+			return src;
+		}
+	}
+	
+	private static void copyArrays(Object[] src, Object[] dst) {
+		final int length = src.length;
+		for (int i = 0; i < length; i++) {
+			dst[i] = copy(src[i]);
 		}
 	}
 

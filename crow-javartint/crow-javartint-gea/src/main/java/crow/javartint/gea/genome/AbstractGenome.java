@@ -26,7 +26,6 @@ import crow.javartint.gea.AbstractIndividual;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.gene.Gene;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -41,7 +40,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 	/**
 	 * Array of chromosomes that contains the genome information.
 	 */
-	final protected List<T> chromosomes;
+	protected List<T> chromosomes;
 
 	protected AbstractGenome() {
 		chromosomes = new LinkedList<>();
@@ -94,34 +93,12 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 	@SuppressWarnings("unchecked")
 	@Override
 	public Genome<T> clone() throws CloneNotSupportedException {
-		ObjectInputStream objectInputStream = null;
-		ObjectOutputStream objectOutputStream = null;
-		try {
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(this);
-
-			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-			objectInputStream = new ObjectInputStream(inputStream);
-			return (Genome<T>) objectInputStream.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			throw new CloneNotSupportedException(e.getMessage());
-		} finally {
-			try {
-				if (objectInputStream != null) {
-					objectInputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				if (objectOutputStream != null) {
-					objectOutputStream.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		final AbstractGenome<T> copy = (AbstractGenome<T>) super.clone();
+		copy.chromosomes = new ArrayList<>(size());
+		for (T t : this) {
+			copy.chromosomes.add((T) t.clone());
 		}
+		return copy;
 	}
 
 	@Override
