@@ -32,7 +32,7 @@ import java.util.Objects;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class AbstractGene<T> implements Gene<T> {
+public abstract class AbstractGene<T> implements Gene<T> {
 
 	/**
 	 * The data.
