@@ -68,8 +68,8 @@ public class BinaryMutationFunctionTest {
 
 		final Genome<DefaultChromosome<ByteArrayGene>> clone = genome.clone();
 		clone.getChromosome(0).getGene(0).setAllele(0, (byte) 1);
-		clone.getChromosome(0).getGene(2).setAllele(1, (byte) 1);
-		clone.getChromosome(0).getGene(2).setAllele(3, (byte) 0);
+		clone.getChromosome(0).getGene(1).setAllele(3, (byte) 0);
+		clone.getChromosome(0).getGene(2).setAllele(2, (byte) 1);
 
 		BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>> function = new
 			BinaryMutationFunction<>();

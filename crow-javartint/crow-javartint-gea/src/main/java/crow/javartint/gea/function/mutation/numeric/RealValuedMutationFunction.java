@@ -136,23 +136,17 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 
 	@Override
 	protected T mutate(T subject) throws CloneNotSupportedException {
-		boolean muted = false;
-		do {
-			for (Chromosome<? extends Gene<Double>> chromosome : subject) {
-				int i = 0;
-				for (Gene<Double> gene : chromosome) {
-					if (getRandom().nextDouble() < getProbability()) {
-						double r = ranges[i];
-						double k = precisions[i];
-						double u = getRandom().nextDouble();
-						int s = getRandom().nextInt(2) == 0 ? -1 : 1;
-						double a = Math.pow(2.0, -u * k);
-						gene.setData(gene.getData() + s * r * a);
-						muted = true;
-					}
-				}
-			}
-		} while (!muted);
+		int i = 0;
+		for (Chromosome<? extends Gene<Double>> chromosome : subject) {
+			int index = getRandom().nextInt(chromosome.size());
+			double r = ranges[i];
+			double k = precisions[i++];
+			double u = getRandom().nextDouble();
+			int s = getRandom().nextInt(2) == 0 ? -1 : 1;
+			double a = Math.pow(2.0, -u * k);
+			final Gene<Double> gene = chromosome.getGene(index);
+			gene.setData(gene.getData() + s * r * a);
+		}
 		return subject;
 	}
 

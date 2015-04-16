@@ -136,7 +136,7 @@ public class GenomeConstants {
 
 			@Override
 			public int nextInt(int n) {
-				return 0;
+				return n / 2;
 			}
 
 			@Override

@@ -53,20 +53,13 @@ public class BinaryMutationFunction<T extends Genome<? extends Chromosome<ByteAr
 
 	@Override
 	protected T mutate(T subject) {
-		boolean muted = false;
-		do {
-			for (Chromosome<ByteArrayGene> chromosome : subject) {
-				for (ByteArrayGene gene : chromosome) {
-					for (int i = 0; i < gene.length(); i++) {
-						if (getRandom().nextDouble() < getProbability()) {
-							byte val = gene.getAllele(i);
-							gene.setAllele(i, (byte) (val == 0 ? 1 : 0));
-							muted = true;
-						}
-					}
-				}
+		for (Chromosome<ByteArrayGene> chromosome : subject) {
+			for (ByteArrayGene gene : chromosome) {
+				int index = getRandom().nextInt(gene.length());
+				byte val = gene.getAllele(index);
+				gene.setAllele(index, (byte) (val == 0 ? 1 : 0));
 			}
-		} while (!muted);
+		}
 		return subject;
 	}
 }
