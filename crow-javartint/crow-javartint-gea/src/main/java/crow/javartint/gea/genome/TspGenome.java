@@ -49,4 +49,26 @@ import crow.javartint.gea.gene.DefaultGene;
  * @version 0.0.1
  */
 public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> {
+
+	public TspGenome() {
+		addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+	}
+
+	/**
+	 * Gets the only chromosome inside the genome.
+	 *
+	 * @return instance of {@link crow.javartint.gea.chromosome.DefaultChromosome}
+	 */
+	public DefaultChromosome<DefaultGene<Integer>> getChromosome() {
+		return super.getChromosome(0);
+	}
+
+	/**
+	 * Sets the chromosome.
+	 *
+	 * @param newChromosome the new chromosome.
+	 */
+	public void setChromosome(DefaultChromosome<DefaultGene<Integer>> newChromosome) {
+		super.setChromosome(0, newChromosome);
+	}
 }
