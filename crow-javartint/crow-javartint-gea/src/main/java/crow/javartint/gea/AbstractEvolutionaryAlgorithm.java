@@ -32,6 +32,7 @@ import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.util.IndividualFilter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -144,10 +145,10 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	final public void setOptimize(Optimize optimize) {
 		switch (optimize) {
 			case MAX:
-				setBestFitnessScore(-Double.MAX_VALUE);
+				setBestFitnessScore(Double.NEGATIVE_INFINITY);
 				break;
 			case MIN:
-				setBestFitnessScore(Double.MAX_VALUE);
+				setBestFitnessScore(Double.POSITIVE_INFINITY);
 				break;
 		}
 		this.optimize = optimize;
