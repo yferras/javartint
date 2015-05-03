@@ -66,18 +66,43 @@ import java.util.Random;
  */
 public class InversionMutationFunction extends AbstractTspSpanMutationFunction {
 
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability probability of mutation
+	 * @param random      random instance
+	 * @param minSpanSize min span size
+	 */
 	public InversionMutationFunction(double probability, Random random, int minSpanSize) {
 		super(probability, random, minSpanSize);
 	}
 
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * By default it uses as random generator an instance of {@link java.util.Random}.
+	 *
+	 * @param probability probability of mutation
+	 * @param minSpanSize min span size
+	 */
 	public InversionMutationFunction(double probability, int minSpanSize) {
 		super(probability, minSpanSize);
 	}
 
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 * By default it uses as random generator an instance of {@link java.util.Random},
+	 * and <code>probability = 0.05</code>.
+	 *
+	 * @param minSpanSize min span size
+	 */
 	public InversionMutationFunction(int minSpanSize) {
 		super(minSpanSize);
 	}
 
+	/**
+	 * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
+	 * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
+	 */
 	public InversionMutationFunction() {
 		super();
 	}
