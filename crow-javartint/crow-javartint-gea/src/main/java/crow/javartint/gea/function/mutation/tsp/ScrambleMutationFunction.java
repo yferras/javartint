@@ -30,6 +30,7 @@ import crow.javartint.gea.genome.DefaultGenome;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -63,23 +64,23 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ScrambleMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+public class ScrambleMutationFunction extends AbstractTspSpanMutationFunction {
 
 
-	private int minSpanSize;
-
-	public ScrambleMutationFunction(double probability) {
-		this(probability, 2);
+	public ScrambleMutationFunction(double probability, Random random, int minSpanSize) {
+		super(probability, random, minSpanSize);
 	}
 
-	public ScrambleMutationFunction(double probability,
-	                                int minSpanSize) {
-		super(probability);
-		this.minSpanSize = minSpanSize;
+	public ScrambleMutationFunction(double probability, int minSpanSize) {
+		super(probability, minSpanSize);
 	}
 
-	public int getMinSpanSize() {
-		return minSpanSize;
+	public ScrambleMutationFunction(int minSpanSize) {
+		super(minSpanSize);
+	}
+
+	public ScrambleMutationFunction() {
+		super();
 	}
 
 	@SuppressWarnings("unchecked")

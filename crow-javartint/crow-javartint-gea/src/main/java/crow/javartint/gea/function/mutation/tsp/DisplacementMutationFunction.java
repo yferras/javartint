@@ -29,6 +29,7 @@ import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -62,23 +63,22 @@ import java.util.List;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class DisplacementMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+public class DisplacementMutationFunction extends AbstractTspSpanMutationFunction {
 
-
-	private int minSpanSize;
-
-	public DisplacementMutationFunction(double probability) {
-		this(probability, 2);
+	public DisplacementMutationFunction(double probability, Random random, int minSpanSize) {
+		super(probability, random, minSpanSize);
 	}
 
-	public DisplacementMutationFunction(double probability,
-	                                    int minSpanSize) {
-		super(probability);
-		this.minSpanSize = minSpanSize;
+	public DisplacementMutationFunction(double probability, int minSpanSize) {
+		super(probability, minSpanSize);
 	}
 
-	public int getMinSpanSize() {
-		return minSpanSize;
+	public DisplacementMutationFunction(int minSpanSize) {
+		super(minSpanSize);
+	}
+
+	public DisplacementMutationFunction() {
+		super();
 	}
 
 	@SuppressWarnings("unchecked")
