@@ -22,9 +22,8 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
-import crow.javartint.gea.genome.DefaultGenome;
+import crow.javartint.gea.genome.TspGenome;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +37,7 @@ import java.util.List;
  * @version 0.0.1
  */
 public class TspGenomeGenFunction
-	extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+	extends AbstractGenomeGeneratorFunction<TspGenome> {
 
 	/**
 	 * Initializes this instance. By default {@code genomeSize} is 1.
@@ -52,23 +51,20 @@ public class TspGenomeGenFunction
 	/**
 	 * Generates genomes for TSP
 	 *
-	 * @param genomeSize     the number of chromosomes.
+	 * @param genomeSize     the number of chromosomes, always is 1.
 	 * @param lengthsOfGenes the array that contains the length of each gene.
 	 * @return an instance of {@link crow.javartint.gea.genome.DefaultGenome}
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> generate(int genomeSize, int[] lengthsOfGenes) {
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		for (int i = 0; i < genomeSize; i++) {
-			List<DefaultGene<Integer>> cities = new ArrayList<>(lengthsOfGenes.length);
-			for (int j = 0; j < lengthsOfGenes.length; j++) {
-				cities.add(new DefaultGene<>(j));
-			}
-			Collections.shuffle(cities);
-			genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-			genome.getChromosome(i).setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
+	protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
+		TspGenome genome = new TspGenome();
+		List<DefaultGene<Integer>> cities = new ArrayList<>(lengthsOfGenes.length);
+		for (int j = 0; j < lengthsOfGenes.length; j++) {
+			cities.add(new DefaultGene<>(j));
 		}
+		Collections.shuffle(cities);
+		genome.getChromosome().setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
 		return genome;
 	}
 
