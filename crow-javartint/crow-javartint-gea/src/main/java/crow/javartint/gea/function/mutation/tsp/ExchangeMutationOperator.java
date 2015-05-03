@@ -22,10 +22,9 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
-import crow.javartint.gea.genome.DefaultGenome;
+import crow.javartint.gea.genome.TspGenome;
 
 import java.util.Random;
 
@@ -53,10 +52,12 @@ import java.util.Random;
  *
  * </pre>
  *
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+public class ExchangeMutationOperator<T extends TspGenome>
+	extends AbstractMutationFunction<T> {
 
 	public ExchangeMutationOperator(double probability, Random random) {
 		super(probability, random);
@@ -71,7 +72,7 @@ public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGe
 	}
 
 	@Override
-	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
+	protected T mutate(T subject)
 		throws CloneNotSupportedException {
 		int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
 		int pos2 = getRandom().nextInt(subject.getChromosome(0).size());

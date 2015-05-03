@@ -22,10 +22,8 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
-import crow.javartint.gea.gene.DefaultGene;
-import crow.javartint.gea.genome.DefaultGenome;
+import crow.javartint.gea.genome.TspGenome;
 
 import java.util.Random;
 
@@ -33,10 +31,12 @@ import java.util.Random;
  * <p>
  * Mutation function in TSP a bit more specialized.
  * </p>
+ *
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public abstract class AbstractTspSpanMutationFunction extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> extends AbstractMutationFunction<T> {
 
 	private int minSpanSize;
 

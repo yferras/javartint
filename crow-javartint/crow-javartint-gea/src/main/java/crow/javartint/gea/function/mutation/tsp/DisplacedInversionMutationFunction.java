@@ -22,10 +22,8 @@ package crow.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
-import crow.javartint.gea.chromosome.DefaultChromosome;
-import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
-import crow.javartint.gea.genome.DefaultGenome;
+import crow.javartint.gea.genome.TspGenome;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -63,10 +61,12 @@ import java.util.Random;
  *     [ 8, 5, 2, 0, 7, 3, 6, 1, 9, 4 ]
  * </pre>
  *
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class DisplacedInversionMutationFunction extends AbstractTspSpanMutationFunction {
+public class DisplacedInversionMutationFunction<T extends TspGenome>
+	extends AbstractTspSpanMutationFunction<T> {
 
 	/**
 	 * Constructor, initializes instances with the given parameters.
@@ -111,7 +111,7 @@ public class DisplacedInversionMutationFunction extends AbstractTspSpanMutationF
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
+	protected T mutate(T subject)
 		throws CloneNotSupportedException {
 		int start = getRandom().nextInt(subject.getChromosome(0).size() - getMinSpanSize());
 		int end = start + getMinSpanSize();
