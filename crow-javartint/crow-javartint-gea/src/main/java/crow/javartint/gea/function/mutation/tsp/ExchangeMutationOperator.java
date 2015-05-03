@@ -74,14 +74,14 @@ public class ExchangeMutationOperator<T extends TspGenome>
 	@Override
 	protected T mutate(T subject)
 		throws CloneNotSupportedException {
-		int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
-		int pos2 = getRandom().nextInt(subject.getChromosome(0).size());
+		int pos1 = getRandom().nextInt(subject.getChromosome().size() - 1);
+		int pos2 = getRandom().nextInt(subject.getChromosome().size());
 		while (pos2 == pos1) {
-			pos2 = getRandom().nextInt(subject.getChromosome(0).size());
+			pos2 = getRandom().nextInt(subject.getChromosome().size());
 		}
-		DefaultGene<Integer> gene1 = subject.getChromosome(0).getGene(pos1);
-		subject.getChromosome(0).setGene(pos1, subject.getChromosome(0).getGene(pos2));
-		subject.getChromosome(0).setGene(pos2, gene1);
+		DefaultGene<Integer> gene1 = subject.getChromosome().getGene(pos1);
+		subject.getChromosome().setGene(pos1, subject.getChromosome().getGene(pos2));
+		subject.getChromosome().setGene(pos2, gene1);
 		return subject;
 	}
 }

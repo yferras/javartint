@@ -110,14 +110,14 @@ public class DisplacementMutationFunction<T extends TspGenome>
 	@Override
 	protected T mutate(T subject)
 		throws CloneNotSupportedException {
-		int start = getRandom().nextInt(subject.getChromosome(0).size() - getMinSpanSize());
+		int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
 		int end = start + getMinSpanSize();
-		List genes = Arrays.asList(subject.getChromosome(0).getGenes());
+		List genes = Arrays.asList(subject.getChromosome().getGenes());
 		List section = genes.subList(start, end);
 		genes.removeAll(section);
 		int curPos = getRandom().nextInt(genes.size());
 		genes.addAll(curPos, section);
-		subject.getChromosome(0).setGenes((DefaultGene<Integer>[]) genes.toArray());
+		subject.getChromosome().setGenes((DefaultGene<Integer>[]) genes.toArray());
 		return subject;
 	}
 }
