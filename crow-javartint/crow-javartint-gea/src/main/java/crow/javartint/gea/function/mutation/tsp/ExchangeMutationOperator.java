@@ -27,6 +27,8 @@ import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.DefaultGenome;
 
+import java.util.Random;
+
 /**
  * <p>
  * Specific mutation function in TSP.
@@ -55,6 +57,10 @@ import crow.javartint.gea.genome.DefaultGenome;
  * @version 0.0.1
  */
 public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> {
+
+	public ExchangeMutationOperator(double probability, Random random) {
+		super(probability, random);
+	}
 
 	public ExchangeMutationOperator(double probability) {
 		super(probability);
