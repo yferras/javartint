@@ -70,7 +70,7 @@ public class ExchangeMutationOperator extends AbstractMutationFunction<DefaultGe
 		int pos1 = getRandom().nextInt(subject.getChromosome(0).size() - 1);
 		int pos2 = getRandom().nextInt(subject.getChromosome(0).size());
 		while (pos2 == pos1) {
-			pos2 = getRandom().nextInt(subject.size());
+			pos2 = getRandom().nextInt(subject.getChromosome(0).size());
 		}
 		DefaultGene<Integer> gene1 = subject.getChromosome(0).getGene(pos1);
 		subject.getChromosome(0).setGene(pos1, subject.getChromosome(0).getGene(pos2));

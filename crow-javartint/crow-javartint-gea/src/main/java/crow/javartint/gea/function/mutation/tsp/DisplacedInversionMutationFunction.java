@@ -88,7 +88,7 @@ public class DisplacedInversionMutationFunction extends AbstractMutationFunction
 	@Override
 	protected DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> mutate(DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> subject)
 		throws CloneNotSupportedException {
-		int start = getRandom().nextInt(subject.size() - getMinSpanSize());
+		int start = getRandom().nextInt(subject.getChromosome(0).size() - getMinSpanSize());
 		int end = start + getMinSpanSize();
 		List genes = Arrays.asList(subject.getChromosome(0).getGenes());
 		List section = genes.subList(start, end);
