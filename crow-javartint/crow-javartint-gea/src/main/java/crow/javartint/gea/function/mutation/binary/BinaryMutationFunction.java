@@ -25,6 +25,7 @@ package crow.javartint.gea.function.mutation.binary;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.ByteArrayGene;
+import crow.javartint.gea.genome.BinaryGenome;
 import crow.javartint.gea.genome.Genome;
 
 import java.util.Random;
@@ -32,11 +33,11 @@ import java.util.Random;
 /**
  * Class that represents an binary mutation function.
  *
- * @param <T> Any derived class from {@link crow.javartint.gea.genome.Genome}
+ * @param <T> Any derived class from {@link crow.javartint.gea.genome.BinaryGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class BinaryMutationFunction<T extends Genome<? extends Chromosome<ByteArrayGene>>>
+public class BinaryMutationFunction<T extends BinaryGenome>
 	extends AbstractMutationFunction<T> {
 
 	public BinaryMutationFunction(double probability, Random random) {

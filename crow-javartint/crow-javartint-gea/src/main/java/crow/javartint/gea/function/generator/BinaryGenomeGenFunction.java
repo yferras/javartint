@@ -24,6 +24,7 @@ package crow.javartint.gea.function.generator;
 
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
+import crow.javartint.gea.genome.BinaryGenome;
 import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Random;
@@ -35,7 +36,7 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class BinaryGenomeGenFunction
-	extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>> {
+	extends AbstractGenomeGeneratorFunction<BinaryGenome> {
 
 	/**
 	 * Initializes the number of genes and the length of each gene.
@@ -89,9 +90,9 @@ public class BinaryGenomeGenFunction
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	protected DefaultGenome<DefaultChromosome<ByteArrayGene>> generate(int genomeSize, int[] lengthsOfGenes) {
+	protected BinaryGenome generate(int genomeSize, int[] lengthsOfGenes) {
 		Random random = new Random();
-		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = new DefaultGenome<>();
+		BinaryGenome genome = new BinaryGenome();
 		for (int i = 0; i < genomeSize; i++) {
 			ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
 			for (int j = 0; j < lengthsOfGenes.length; j++) {
