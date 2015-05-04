@@ -32,4 +32,9 @@ import crow.javartint.gea.gene.ByteArrayGene;
  * @version 0.0.1
  */
 public class BinaryGenome extends DefaultGenome<DefaultChromosome<ByteArrayGene>> {
+
+	@Override
+	public BinaryGenome clone() throws CloneNotSupportedException {
+		return (BinaryGenome)super.clone();
+	}
 }
