@@ -38,6 +38,7 @@ import crow.javartint.gea.function.mutation.binary.BinaryMutationFunction;
 import crow.javartint.gea.function.recombination.SinglePointRecombinationFunction;
 import crow.javartint.gea.function.selection.ElitismSelectionFunction;
 import crow.javartint.gea.gene.ByteArrayGene;
+import crow.javartint.gea.genome.BinaryGenome;
 import crow.javartint.gea.genome.DefaultGenome;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,8 +56,8 @@ public class AbstractGeneticAlgorithmIT {
 
 	@Test
 	public void testAccept2() {
-		final DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> genomeDecoderFunction =
-			new DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>>() {
+		final DecoderFunction<Double, BinaryGenome> genomeDecoderFunction =
+			new DecoderFunction<Double, BinaryGenome>() {
 				/**
 				 * Function to decode the binary genome to decimal number.
 				 * y(x) = x
@@ -65,7 +66,7 @@ public class AbstractGeneticAlgorithmIT {
 				 * @return a decimal number between range (-64.00, 100.00)
 				 */
 				@Override
-				public Double evaluate(DefaultGenome<DefaultChromosome<ByteArrayGene>> params) {
+				public Double evaluate(BinaryGenome params) {
 
 					int sign = params.getChromosome(0).getGene(0).getAllele(0) == 0 ? -1 : 1;
 					StringBuilder stringBuilder = new StringBuilder();
@@ -99,7 +100,7 @@ public class AbstractGeneticAlgorithmIT {
 			@Override
 			public void solutionUpdated(AlgorithmEvent event) {
 				GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
-				DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = ga.getSolution();
+				BinaryGenome genome = ga.getSolution();
 				Double decodedValue = genomeDecoderFunction.evaluate(genome);
 				Double result = targetFunction.evaluate(decodedValue);
 				String r = MessageFormat.format(
@@ -133,20 +134,20 @@ public class AbstractGeneticAlgorithmIT {
 	}
 
 
-	private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>, Double>
-		implements ErrorBasedAlgorithm<DefaultGenome<DefaultChromosome<ByteArrayGene>>> {
+	private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<BinaryGenome, Double>
+		implements ErrorBasedAlgorithm<BinaryGenome> {
 		/**
 		 * Initializes this class.
 		 *
 		 * @param decoder function to decode the genome
 		 */
-		public GeneticAlgorithm(DecoderFunction<Double, DefaultGenome<DefaultChromosome<ByteArrayGene>>> decoder,
+		public GeneticAlgorithm(DecoderFunction<Double, BinaryGenome> decoder,
 		                        Function<Double, Double> targetFunction) {
-			super(100, Optimize.MAX, decoder, targetFunction,
+			super(50, Optimize.MAX, decoder, targetFunction,
 				new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
-				new SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
-				new BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(),
-				new ElitismSelectionFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>>(5, Optimize.MAX));
+				new SinglePointRecombinationFunction<BinaryGenome>(),
+				new BinaryMutationFunction<>(),
+				new ElitismSelectionFunction<BinaryGenome>(2, Optimize.MAX));
 		}
 
 		@Override

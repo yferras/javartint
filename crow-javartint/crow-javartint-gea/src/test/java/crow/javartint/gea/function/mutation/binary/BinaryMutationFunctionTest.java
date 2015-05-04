@@ -25,8 +25,7 @@ package crow.javartint.gea.function.mutation.binary;
 import crow.javartint.gea.GenomeConstants;
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
-import crow.javartint.gea.genome.DefaultGenome;
-import crow.javartint.gea.genome.Genome;
+import crow.javartint.gea.genome.BinaryGenome;
 import org.junit.*;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -57,7 +56,7 @@ public class BinaryMutationFunctionTest {
 	@Test
 	public void testEvaluate() throws CloneNotSupportedException {
 		System.out.println("evaluate (performed algorithm)");
-		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = new DefaultGenome<>();
+		BinaryGenome genome = new BinaryGenome();
 		genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
 		ByteArrayGene[] genes = new ByteArrayGene[]{
 			new ByteArrayGene(new Byte[]{0}),
@@ -66,12 +65,12 @@ public class BinaryMutationFunctionTest {
 		};
 		genome.getChromosome(0).setGenes(genes);
 
-		final Genome<DefaultChromosome<ByteArrayGene>> clone = genome.clone();
+		final BinaryGenome clone = genome.clone();
 		clone.getChromosome(0).getGene(0).setAllele(0, (byte) 1);
 		clone.getChromosome(0).getGene(1).setAllele(3, (byte) 0);
 		clone.getChromosome(0).getGene(2).setAllele(2, (byte) 1);
 
-		BinaryMutationFunction<DefaultGenome<DefaultChromosome<ByteArrayGene>>> function = new
+		BinaryMutationFunction<BinaryGenome> function = new
 			BinaryMutationFunction<>();
 		function.setRandom(GenomeConstants.RANDOM_GENERATOR_5);
 		genome = function.evaluate(genome);
