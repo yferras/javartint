@@ -42,6 +42,10 @@ package crow.javartint.gea.genome;
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.DefaultGene;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
  * This class represents a specialized TSP genome.
  *
@@ -50,8 +54,25 @@ import crow.javartint.gea.gene.DefaultGene;
  */
 public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> {
 
-	public TspGenome() {
+	/**
+	 * Constructor, initializes this instances with the given cities
+	 * @param cities set with the cities
+	 */
+	public TspGenome(Set<Integer> cities) {
 		addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+		if (cities != null) {
+			for (Integer city : cities) {
+				getChromosome().addGene(new DefaultGene<>(city));
+			}
+		}
+	}
+
+	/**
+	 * Constructor, initializes this instances with the given cities
+	 * @param cities array of cities
+	 */
+	public TspGenome(Integer ... cities) {
+		this(new LinkedHashSet<>(Arrays.asList(cities)));
 	}
 
 	/**
