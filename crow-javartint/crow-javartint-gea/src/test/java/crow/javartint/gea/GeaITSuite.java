@@ -29,6 +29,7 @@ import crow.javartint.gea.function.mutation.MutationFunctionTest;
 import crow.javartint.gea.function.mutation.binary.BinaryMutationFunctionTest;
 import crow.javartint.gea.function.mutation.numeric.RealValuedMutationFunctionTest;
 import crow.javartint.gea.function.recombination.*;
+import crow.javartint.gea.function.recombination.tsp.OrderBasedRecombinationFunctionTest;
 import crow.javartint.gea.function.scaling.*;
 import crow.javartint.gea.gene.ArrayGeneTest;
 import crow.javartint.gea.gene.DefaultGeneTest;
@@ -68,7 +69,8 @@ import org.junit.runners.Suite;
 		RangeGenomeGenFunctionTest.class,
 		AbstractGeneticAlgorithmIT.class,
 		RealValuedMutationFunctionTest.class,
-		DiscreteRecombinationFunctionTest.class
+		DiscreteRecombinationFunctionTest.class,
+		OrderBasedRecombinationFunctionTest.class,
 	}
 )
 public class GeaITSuite {
