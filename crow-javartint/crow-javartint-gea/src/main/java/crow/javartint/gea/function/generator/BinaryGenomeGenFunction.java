@@ -25,7 +25,6 @@ package crow.javartint.gea.function.generator;
 import crow.javartint.gea.chromosome.DefaultChromosome;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.BinaryGenome;
-import crow.javartint.gea.genome.DefaultGenome;
 
 import java.util.Random;
 

@@ -26,7 +26,6 @@ import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.mutation.AbstractMutationFunction;
 import crow.javartint.gea.gene.ByteArrayGene;
 import crow.javartint.gea.genome.BinaryGenome;
-import crow.javartint.gea.genome.Genome;
 
 import java.util.Random;
 

@@ -22,8 +22,8 @@ package crow.javartint.gea;
  * #L%
  */
 
-import crow.javartint.core.util.Optimize;
 import crow.javartint.core.function.Function;
+import crow.javartint.core.util.Optimize;
 import crow.javartint.gea.chromosome.Chromosome;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;

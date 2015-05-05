@@ -25,14 +25,13 @@ package crow.javartint.gea;
 import crow.javartint.core.AbstractAlgorithm;
 import crow.javartint.core.IterativeAlgorithm;
 import crow.javartint.core.OptimizationAlgorithm;
-import crow.javartint.core.util.Optimize;
 import crow.javartint.core.function.Function;
+import crow.javartint.core.util.Optimize;
 import crow.javartint.gea.function.decoder.DecoderFunction;
 import crow.javartint.gea.function.generator.GeneratorFunction;
 import crow.javartint.gea.util.IndividualFilter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

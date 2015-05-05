@@ -23,6 +23,7 @@ package crow.javartint.gea.chromosome;
  */
 
 import crow.javartint.gea.gene.Gene;
+
 import java.util.*;
 
 /**
