@@ -22,11 +22,11 @@ package crow.javartint.gea.function.generator;
  * #L%
  */
 
-import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.TspGenome;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -58,14 +58,12 @@ public class TspGenomeGenFunction
 	@SuppressWarnings("unchecked")
 	@Override
 	protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
-		TspGenome genome = new TspGenome();
-		List<DefaultGene<Integer>> cities = new ArrayList<>(lengthsOfGenes.length);
-		for (int j = 0; j < lengthsOfGenes.length; j++) {
-			cities.add(new DefaultGene<>(j));
+		List<Integer> cities = new ArrayList<>(lengthsOfGenes.length);
+		for (int i = 0; i < lengthsOfGenes.length; i++) {
+			cities.add(i);
 		}
 		Collections.shuffle(cities);
-		genome.getChromosome().setGenes(cities.toArray(new DefaultGene[lengthsOfGenes.length]));
-		return genome;
+		return new TspGenome(cities.toArray(new Integer[cities.size()]));
 	}
 
 }
