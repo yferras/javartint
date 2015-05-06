@@ -25,10 +25,7 @@ package crow.javartint.gea.function.mutation.tsp;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.TspGenome;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * <p>
@@ -54,9 +51,9 @@ import java.util.Random;
  *     Scramble the section:
  *     section = (3, 7, 1, 6)
  *     Reinsert section:
- *     [ 8, 5, 2,(7, 3, 6, 1), 0, 9, 4 ]
+ *     [ 8, 5, 2,(3, 7, 6, 1), 0, 9, 4 ]
  *     Result:
- *     [ 8, 5, 2, 7, 3, 6, 1, 0, 9, 4 ]
+ *     [ 8, 5, 2, 3, 7, 6, 1, 0, 9, 4 ]
  * </pre>
  *
  * @param <T> Any derived class from {@link crow.javartint.gea.genome.TspGenome}
@@ -113,12 +110,15 @@ public class ScrambleMutationFunction<T extends TspGenome>
 		throws CloneNotSupportedException {
 		int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
 		int end = start + getMinSpanSize();
-		List genes = Arrays.asList(subject.getChromosome().getGenes());
-		List section = genes.subList(start, end);
-		genes.removeAll(section);
-		Collections.shuffle(section);
-		genes.addAll(start, section);
-		subject.getChromosome().setGenes((DefaultGene<Integer>[]) genes.toArray());
+		List<DefaultGene<Integer>> section = new ArrayList<>(getMinSpanSize());
+		for (int i = start; i < end; i++) {
+			section.add(subject.getChromosome().getGene(i));
+		}
+		Collections.shuffle(section, getRandom());
+		final ListIterator<DefaultGene<Integer>> iterator = section.listIterator();
+		for (int i = start; i < end; i++) {
+			subject.getChromosome().setGene(i, iterator.next());
+		}
 		return subject;
 	}
 }
