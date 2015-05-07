@@ -25,9 +25,7 @@ package crow.javartint.gea.function.mutation.tsp;
 import crow.javartint.gea.gene.DefaultGene;
 import crow.javartint.gea.genome.TspGenome;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * <p>
@@ -112,12 +110,15 @@ public class DisplacementMutationFunction<T extends TspGenome>
 		throws CloneNotSupportedException {
 		int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
 		int end = start + getMinSpanSize();
-		List genes = Arrays.asList(subject.getChromosome().getGenes());
-		List section = genes.subList(start, end);
+		List genes = new ArrayList(Arrays.asList(subject.getChromosome().getGenes()));
+		List<DefaultGene<Integer>> section = new ArrayList<>(genes.subList(start, end));
 		genes.removeAll(section);
 		int curPos = getRandom().nextInt(genes.size());
 		genes.addAll(curPos, section);
-		subject.getChromosome().setGenes((DefaultGene<Integer>[]) genes.toArray());
+		final ListIterator<DefaultGene<Integer>> iterator = genes.listIterator();
+		for (int i = 0; i < genes.size(); i++) {
+			subject.getChromosome().setGene(i, iterator.next());
+		}
 		return subject;
 	}
 }
