@@ -56,18 +56,18 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ExchangeMutationOperator<T extends TspGenome>
+public class ExchangeMutationFunction<T extends TspGenome>
 	extends AbstractMutationFunction<T> {
 
-	public ExchangeMutationOperator(double probability, Random random) {
+	public ExchangeMutationFunction(double probability, Random random) {
 		super(probability, random);
 	}
 
-	public ExchangeMutationOperator(double probability) {
+	public ExchangeMutationFunction(double probability) {
 		super(probability);
 	}
 
-	public ExchangeMutationOperator() {
+	public ExchangeMutationFunction() {
 		super();
 	}
 
