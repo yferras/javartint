@@ -33,8 +33,8 @@ public class ScrambleMutationFunctionTest {
 
 	@Test
 	public void testMutate() throws Exception {
-		ScrambleMutationFunction mutationFunction = new ScrambleMutationFunction(4);
-		mutationFunction.setRandom(
+		ScrambleMutationFunction<TspGenome> function = new ScrambleMutationFunction<>(4);
+		function.setRandom(
 			new Random() {
 				private int[] positions = {3, 0, 1, 0};
 				private int index = 0;
@@ -46,7 +46,7 @@ public class ScrambleMutationFunctionTest {
 		);
 
 		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
-		genome = mutationFunction.mutate(genome);
+		genome = function.mutate(genome);
 
 		TspGenome expected = new TspGenome(8, 5, 2, 3, 7, 6, 1, 0, 9, 4);
 

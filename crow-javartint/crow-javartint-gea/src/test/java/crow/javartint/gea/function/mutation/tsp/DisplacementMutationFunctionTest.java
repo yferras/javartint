@@ -11,7 +11,8 @@ public class DisplacementMutationFunctionTest {
 
 	@Test
 	public void testMutate() throws Exception {
-		DisplacementMutationFunction function = new DisplacementMutationFunction(4);
+		DisplacementMutationFunction<TspGenome> function =
+			new DisplacementMutationFunction<>(4);
 		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
 		function.setRandom(
 			new Random() {
