@@ -29,6 +29,7 @@ import crow.javartint.gea.function.mutation.MutationFunctionTest;
 import crow.javartint.gea.function.mutation.binary.BinaryMutationFunctionTest;
 import crow.javartint.gea.function.mutation.numeric.RealValuedMutationFunctionTest;
 import crow.javartint.gea.function.mutation.tsp.DisplacementMutationFunctionTest;
+import crow.javartint.gea.function.mutation.tsp.InversionMutationFunctionTest;
 import crow.javartint.gea.function.mutation.tsp.ScrambleMutationFunctionTest;
 import crow.javartint.gea.function.recombination.*;
 import crow.javartint.gea.function.recombination.tsp.OrderBasedRecombinationFunctionTest;
@@ -75,6 +76,7 @@ import org.junit.runners.Suite;
 		OrderBasedRecombinationFunctionTest.class,
 		ScrambleMutationFunctionTest.class,
 		DisplacementMutationFunctionTest.class,
+		InversionMutationFunctionTest.class,
 	}
 )
 public class GeaITSuite {
