@@ -59,7 +59,7 @@ public interface Algorithm<S extends Solution> extends Runnable {
 	 *
 	 * @return the elapsed time in milliseconds.
 	 */
-	long getElapsedTime();
+	Long getElapsedTime();
 
 	/**
 	 * Retrieves <code>true</code> if the current algorithm still running,

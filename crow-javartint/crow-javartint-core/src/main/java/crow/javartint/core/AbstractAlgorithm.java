@@ -117,7 +117,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 	}
 
 	@Override
-	public long getElapsedTime() {
+	public Long getElapsedTime() {
 		if (isRunning()) {
 			elapsedTime = System.currentTimeMillis() - startTime;
 		}
