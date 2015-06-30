@@ -93,4 +93,13 @@ public class RangeTest {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.NONE);
 		assertEquals(Range.Use.NONE, range.getUse());
 	}
+
+	@Test
+	public void testEquals() throws Exception {
+		Range<Double> range1 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
+		Range<Double> range2 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
+		Range<Double> range3 = new Range<Double>(-1.0, 1.0, Range.Use.NONE);
+		assertEquals(range1, range2);
+		assertNotEquals(range1, range3);
+	}
 }

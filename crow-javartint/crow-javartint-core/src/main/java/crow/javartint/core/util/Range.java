@@ -109,6 +109,26 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		return use;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Range<?> range = (Range<?>) o;
+
+		if (min != null ? !min.equals(range.min) : range.min != null) return false;
+		if (max != null ? !max.equals(range.max) : range.max != null) return false;
+		return use == range.use;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = min != null ? min.hashCode() : 0;
+		result = 31 * result + (max != null ? max.hashCode() : 0);
+		result = 31 * result + (use != null ? use.hashCode() : 0);
+		return result;
+	}
+
 	/**
 	 * To define the use the limits in the range
 	 */
