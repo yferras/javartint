@@ -6,18 +6,81 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>crow.javartint</groupId>
     <artifactId>javartint</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
+    <url>https://www.linkedin.com/in/yeinierferras</url>
+
+    <scm>
+        <url>https://github.com/yferras/javartint</url>
+        <connection>scm:git:https://github.com/yferras/javartint.git</connection>
+        <developerConnection>scm:git:https://github.com/yferras/javartint.git</developerConnection>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>GPL V3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <!-- Repository for snapshots -->
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <!-- Repository for releases -->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <id>yferras</id>
+            <name>Yeinier Ferrás Cecilio</name>
+            <email>yeinier.ferras@gmail.com</email>
+            <url>https://www.linkedin.com/in/yeinierferras</url>
+        </developer>
+    </developers>
+
     <modules>
         <module>crow-javartint-core</module>
         <module>crow-javartint-gea</module>
     </modules>
+
     <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junuit.version>4.11</junuit.version>
+
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junuit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.2</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
@@ -57,6 +120,20 @@
                                 <goal>update-project-license</goal>
                             </goals>
                             <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.4</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
                         </execution>
                     </executions>
                 </plugin>
