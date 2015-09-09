@@ -1,0 +1,161 @@
+package com.github.yferras.javartint.gea.genome;
+
+/*
+ * #%L
+ * Crow JavArtInt GEA
+ * %%
+ * Copyright (C) 2014 - 2015 Eng. Ferrás Cecilio, Yeinier
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
+import com.github.yferras.javartint.gea.gene.Gene;
+import com.github.yferras.javartint.gea.AbstractIndividual;
+import com.github.yferras.javartint.gea.chromosome.Chromosome;
+
+import java.util.*;
+
+/**
+ * This class is an abstract implementation of {@link Genome}.
+ *
+ * @param <T> Any derived class from {@link Gene} interface.
+ * @author Eng. Ferrás Cecilio, Yeinier.
+ * @version 0.0.2
+ */
+public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
+	extends AbstractIndividual implements Genome<T> {
+	/**
+	 * Array of chromosomes that contains the genome information.
+	 */
+	protected List<T> chromosomes;
+
+	protected AbstractGenome() {
+		chromosomes = new LinkedList<>();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Chromosome<? extends Gene<?>>[] getChromosomes() {
+		return chromosomes.toArray(new Chromosome<?>[size()]);
+	}
+
+	@Override
+	public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
+		this.chromosomes.clear();
+		this.chromosomes.addAll(Arrays.asList(chromosomes));
+	}
+
+	@Override
+	public T getChromosome(int index) {
+		return this.chromosomes.get(index);
+	}
+
+	@Override
+	public void setChromosome(int index, T newChromosome) {
+		this.chromosomes.set(index, newChromosome);
+	}
+
+	@Override
+	public int size() {
+		return chromosomes.size();
+	}
+
+	@Override
+	public void addChromosome(T chromosome) {
+		chromosomes.add(chromosome);
+	}
+
+	@Override
+	public GenomeType getGenomeType() {
+		if (size() == 0)
+			return null;
+		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new GenomeIterator();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Genome<T> clone() throws CloneNotSupportedException {
+		final AbstractGenome<T> copy = (AbstractGenome<T>) super.clone();
+		copy.chromosomes = new ArrayList<>(size());
+		for (T t : this) {
+			copy.chromosomes.add((T) t.clone());
+		}
+		return copy;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		AbstractGenome that = (AbstractGenome) o;
+
+		return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
+	}
+
+	@Override
+	public int hashCode() {
+		int result;
+		long temp;
+		result = chromosomes.hashCode();
+		temp = Double.doubleToLongBits(getFitness());
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder("{");
+		stringBuilder.append("Fitness: ").append(getFitness()).append(';');
+		stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
+		for (int i = 1; i < size(); i++) {
+			stringBuilder.append("; ").append(getChromosome(i));
+		}
+		return stringBuilder.append(")").append("}").toString();
+	}
+
+	private class GenomeIterator implements Iterator<T> {
+
+		private int cursor = 0;
+
+		@Override
+		public boolean hasNext() {
+			return cursor < size();
+		}
+
+		@Override
+		public T next() {
+			try {
+				int i = cursor;
+				T next = getChromosome(i);
+				cursor = i + 1;
+				return next;
+			} catch (IndexOutOfBoundsException e) {
+				throw new NoSuchElementException();
+			}
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+		}
+	}
+}
