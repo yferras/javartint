@@ -4,7 +4,7 @@
     <name>Crow JavArtInt</name>
     <description>Crow Java Artificial Intelligence Library</description>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>crow.javartint</groupId>
+    <groupId>com.github.yferras</groupId>
     <artifactId>javartint</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -25,15 +25,12 @@
     </licenses>
 
     <distributionManagement>
-        <!-- Repository for snapshots -->
         <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <!-- Repository for releases -->
         <repository>
-            <id>nexus-releases</id>
-            <name>Nexus Release Repository</name>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
@@ -70,8 +67,11 @@
     </dependencies>
 
     <build>
+
         <pluginManagement>
+
             <plugins>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -81,11 +81,7 @@
                         <target>${maven.compiler.target}</target>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.1</version>
-                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -97,10 +93,11 @@
                         </includes>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>license-maven-plugin</artifactId>
-                    <version>1.8</version>
+                    <version>1.7</version>
                     <configuration>
                         <licenseName>gpl_v3</licenseName>
                         <organizationName>Eng. Ferrás Cecilio, Yeinier</organizationName>
@@ -123,10 +120,11 @@
                         </execution>
                     </executions>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.4</version>
+                    <version>1.5</version>
                     <executions>
                         <execution>
                             <id>sign-artifacts</id>
@@ -138,6 +136,38 @@
                     </executions>
                 </plugin>
             </plugins>
+
         </pluginManagement>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
     </build>
 </project>

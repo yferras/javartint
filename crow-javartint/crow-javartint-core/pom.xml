@@ -5,7 +5,7 @@
     <description>Crow Java Artificial Intelligence Core Library</description>
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>crow.javartint</groupId>
+        <groupId>com.github.yferras</groupId>
         <artifactId>javartint</artifactId>
         <version>1.0.0</version>
     </parent>
