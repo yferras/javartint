@@ -47,6 +47,7 @@
     <modules>
         <module>crow-javartint-core</module>
         <module>crow-javartint-gea</module>
+        <module>crow-javartint-ann</module>
     </modules>
 
     <properties>
@@ -97,7 +98,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>license-maven-plugin</artifactId>
-                    <version>1.7</version>
+                    <version>1.8</version>
                     <configuration>
                         <licenseName>gpl_v3</licenseName>
                         <organizationName>Eng. Ferrás Cecilio, Yeinier</organizationName>
