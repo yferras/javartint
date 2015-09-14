@@ -27,7 +27,7 @@ import com.github.yferras.javartint.core.constraint.Constraint;
 /**
  * This interface represents in the general way an algorithm.
  *
- * @param <S> Any class derived from {@link Solution} interface.
+ * @param <S> Any class derived from {@link com.github.yferras.javartint.core.Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */

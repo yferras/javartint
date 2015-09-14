@@ -29,7 +29,7 @@ import com.github.yferras.javartint.core.Solution;
  * This abstract class can be used to create constraints to iterative
  * algorithms.
  *
- * @param <A> Any derived class from {@link IterativeAlgorithm} interface.
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.IterativeAlgorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */

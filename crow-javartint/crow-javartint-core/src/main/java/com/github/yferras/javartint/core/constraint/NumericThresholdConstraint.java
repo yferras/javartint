@@ -28,8 +28,8 @@ import com.github.yferras.javartint.core.Algorithm;
 /**
  * This interface allows to create algorithms based on numeric threshold.
  *
- * @param <N> Any derived class from {@link Number} abstract class.
- * @param <A> Any derived class from {@link Algorithm} interface.
+ * @param <N> Any derived class from {@link java.lang.Number} abstract class.
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */

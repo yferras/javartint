@@ -28,7 +28,7 @@ import com.github.yferras.javartint.core.Solution;
 /**
  * Serves to create constraints to stop the algorithm's execution.
  *
- * @param <A> Any derived class from {@link Algorithm} interface.
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */

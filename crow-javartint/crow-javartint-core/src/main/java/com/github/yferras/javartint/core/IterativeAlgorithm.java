@@ -25,7 +25,7 @@ package com.github.yferras.javartint.core;
 /**
  * This interface allows to create iterative algorithms.
  *
- * @param <S> Any class derived from {@link Solution} interface.
+ * @param <S> Any class derived from {@link com.github.yferras.javartint.core.Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */

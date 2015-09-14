@@ -26,7 +26,7 @@ import com.github.yferras.javartint.core.OptimizationAlgorithm;
 
 /**
  * This enumeration serves to tell the way to optimize the solution in the
- * classes derived from {@link OptimizationAlgorithm}.
+ * classes derived from {@link com.github.yferras.javartint.core.OptimizationAlgorithm}.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1

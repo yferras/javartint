@@ -32,9 +32,9 @@ import java.util.EventListener;
 import java.util.List;
 
 /**
- * Abstract class that implements a general methods from {@link Algorithm}.
+ * Abstract class that implements a general methods from {@link com.github.yferras.javartint.core.Algorithm}.
  *
- * @param <S> Any class derived from {@link Solution} interface.
+ * @param <S> Any class derived from {@link com.github.yferras.javartint.core.Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -82,8 +82,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 	}
 
 	/**
-	 * Removes the specified execution end listener. See {@link List#remove(java.lang.Object)
-	 * }
+	 * Removes the specified execution end listener. See {@link java.util.List#remove(java.lang.Object)}
 	 *
 	 * @param listener the execution end listener instance.
 	 * @return Returns {@code true} if this instance is already contained,
@@ -94,8 +93,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 	}
 
 	/**
-	 * Removes the specified solution change listener. See {@link List#remove(java.lang.Object)
-	 * }
+	 * Removes the specified solution change listener. See {@link java.util.List#remove(java.lang.Object)}
 	 *
 	 * @param listener the solution change listener instance.
 	 * @return Returns {@code true} if this instance is already contained,
@@ -105,17 +103,20 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		return eventListeners.remove(listener);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
 		constraints.add(constraint);
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
 		return constraints.toArray(new Constraint[constraints.size()]);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Long getElapsedTime() {
 		if (isRunning()) {
@@ -133,6 +134,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		running = true;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public S getSolution() {
 		return solution;
@@ -148,16 +150,19 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		fireBestSolutionUpdatedEvent();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isRunning() {
 		return running;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
 		constraints.remove(constraint);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void stop() {
 		if (running) {
@@ -165,6 +170,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		}
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	public boolean testConstraint() {
@@ -210,6 +216,11 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
 	}
 
+	/**
+	 * Used to fire solution changed event.
+	 *
+	 * @param event a {@link com.github.yferras.javartint.core.util.AlgorithmEvent} object.
+	 */
 	protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
 		for (EventListener eventListener : eventListeners) {
 			if (eventListener instanceof SolutionChangeListener) {

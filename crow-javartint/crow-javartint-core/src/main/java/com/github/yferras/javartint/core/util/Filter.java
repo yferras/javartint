@@ -27,6 +27,7 @@ package com.github.yferras.javartint.core.util;
  *
  * @param <T> Generic type.
  * @author Eng. Ferrás Cecilio, Yeinier Jul 18, 2011
+ * @version 0.0.1
  */
 public interface Filter<T> {
 

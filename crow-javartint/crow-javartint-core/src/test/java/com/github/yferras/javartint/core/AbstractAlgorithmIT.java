@@ -38,27 +38,46 @@ import java.util.logging.Logger;
 import static org.junit.Assert.*;
 
 /**
+ * <p>AbstractAlgorithmIT class.</p>
+ *
  * @author Eng. Ferrás Cecilio, Yeinier
+ * @version $Id: $Id
+ * @since 1.0.0
  */
 public class AbstractAlgorithmIT {
 
+	/**
+	 * <p>Constructor for AbstractAlgorithmIT.</p>
+	 */
 	public AbstractAlgorithmIT() {
 	}
 
+	/**
+	 * <p>setUpClass.</p>
+	 */
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
+	/**
+	 * <p>tearDownClass.</p>
+	 */
 	@AfterClass
 	public static void tearDownClass() {
 	}
 
+	/**
+	 * <p>setUp.</p>
+	 */
 	@Before
 	public void setUp() {
 		System.out.print(
 			AbstractAlgorithm.class.getName().concat("."));
 	}
 
+	/**
+	 * <p>tearDown.</p>
+	 */
 	@After
 	public void tearDown() {
 	}

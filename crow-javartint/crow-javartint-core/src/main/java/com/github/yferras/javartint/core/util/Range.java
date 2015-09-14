@@ -61,10 +61,9 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 	}
 
 	/**
-	 * Test if a input value is inside range.
+	 * {@inheritDoc}
 	 *
-	 * @param element element to check
-	 * @return {@code true} if the element is inside the bounds; otherwise returns {@code false}
+	 * Test if the element is inside of the range.
 	 */
 	@Override
 	public boolean accept(T element) {
@@ -109,6 +108,7 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		return use;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -121,6 +121,7 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		return use == range.use;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		int result = min != null ? min.hashCode() : 0;

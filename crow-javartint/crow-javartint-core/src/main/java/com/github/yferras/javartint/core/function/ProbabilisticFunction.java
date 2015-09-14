@@ -71,11 +71,9 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
 		throws IllegalArgumentException;
 
 	/**
-	 * Evaluates the params and the result is constrained by the returned
-	 * value of {@link #getProbability()}.
+	 * {@inheritDoc}
 	 *
-	 * @param params parameters to evaluate.
-	 * @return {@inheritDoc}
+	 * The result is constrained by the returned value of {@link #getProbability()}.
 	 */
 	@Override
 	R evaluate(P params);

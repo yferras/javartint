@@ -29,28 +29,47 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 /**
+ * <p>ProbabilisticFunctionTest class.</p>
+ *
  * @author Eng. Ferrás Cecilio, Yeinier
+ * @version $Id: $Id
+ * @since 1.0.0
  */
 public class ProbabilisticFunctionTest {
 
+	/**
+	 * <p>setUpClass.</p>
+	 */
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
+	/**
+	 * <p>tearDownClass.</p>
+	 */
 	@AfterClass
 	public static void tearDownClass() {
 	}
 
+	/**
+	 * <p>setUp.</p>
+	 */
 	@Before
 	public void setUp() {
 		System.out.print(AbstractProbabilisticFunction.class.getName().concat
 			("."));
 	}
 
+	/**
+	 * <p>tearDown.</p>
+	 */
 	@After
 	public void tearDown() {
 	}
 
+	/**
+	 * <p>testConstructor1.</p>
+	 */
 	@Test
 	public void testConstructor1() {
 		System.out.println("constructor " +
@@ -64,6 +83,9 @@ public class ProbabilisticFunctionTest {
 		assertTrue(false);
 	}
 
+	/**
+	 * <p>testConstructor2.</p>
+	 */
 	@Test
 	public void testConstructor2() {
 		System.out.println("constructor " +
@@ -77,6 +99,9 @@ public class ProbabilisticFunctionTest {
 		assertTrue(false);
 	}
 
+	/**
+	 * <p>testConstructor3.</p>
+	 */
 	@Test
 	public void testConstructor3() {
 		System.out.println("constructor " +
@@ -90,6 +115,9 @@ public class ProbabilisticFunctionTest {
 		assertTrue(true);
 	}
 
+	/**
+	 * <p>testConstructor4.</p>
+	 */
 	@Test
 	public void testConstructor4() {
 		System.out.println("constructor " +
@@ -103,6 +131,9 @@ public class ProbabilisticFunctionTest {
 		assertTrue(true);
 	}
 
+	/**
+	 * <p>testConstructor5.</p>
+	 */
 	@Test
 	public void testConstructor5() {
 		System.out.println("constructor " +
@@ -116,6 +147,9 @@ public class ProbabilisticFunctionTest {
 		assertTrue(true);
 	}
 
+	/**
+	 * <p>testConstructor6.</p>
+	 */
 	@Test
 	public void testConstructor6() {
 		System.out.println("constructor " +
@@ -127,6 +161,9 @@ public class ProbabilisticFunctionTest {
 		}
 	}
 
+	/**
+	 * <p>testGetProbability.</p>
+	 */
 	@Test
 	public void testGetProbability() {
 		System.out.println("getProbability");
@@ -135,6 +172,9 @@ public class ProbabilisticFunctionTest {
 		assertEquals(new Double(0.5), new Double(function.getProbability()));
 	}
 
+	/**
+	 * <p>testGetRandomGenerator1.</p>
+	 */
 	@Test
 	public void testGetRandomGenerator1() {
 		System.out.println("getRandom (not null)");
@@ -143,6 +183,9 @@ public class ProbabilisticFunctionTest {
 		assertNotNull(function.getRandom());
 	}
 
+	/**
+	 * <p>testGetRandomGenerator2.</p>
+	 */
 	@Test
 	public void testGetRandomGenerator2() {
 		System.out.println("getRandom (instance of Random)");

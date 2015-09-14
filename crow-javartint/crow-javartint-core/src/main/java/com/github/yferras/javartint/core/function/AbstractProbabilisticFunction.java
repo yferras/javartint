@@ -26,7 +26,7 @@ package com.github.yferras.javartint.core.function;
 import java.util.Random;
 
 /**
- * Class that implements partially {@link ProbabilisticFunction} to create
+ * Class that implements partially {@link com.github.yferras.javartint.core.function.ProbabilisticFunction} to create
  * generic probabilistic functions.
  *
  * @param <R> Type of result
@@ -71,11 +71,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
 		this(probability, new Random());
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public double getProbability() {
 		return probability;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public final void setProbability(final double probability)
 		throws IllegalArgumentException {
@@ -86,11 +88,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
 		this.probability = probability;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Random getRandom() {
 		return random;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setRandom(final Random random)
 		throws IllegalArgumentException {

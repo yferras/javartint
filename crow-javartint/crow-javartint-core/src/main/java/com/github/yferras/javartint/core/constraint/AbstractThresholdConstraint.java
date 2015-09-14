@@ -29,8 +29,8 @@ import com.github.yferras.javartint.core.Solution;
  * This abstract class can be used to create constrains to algorithms based on
  * thresholds.
  *
- * @param <T> Any derived class from {@link Comparable} interface
- * @param <A> Any derived class from {@link Algorithm} interface.
+ * @param <T> Any derived class from {@link java.lang.Comparable} interface
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
@@ -51,11 +51,7 @@ public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A ext
 		this.threshold = threshold;
 	}
 
-	/**
-	 * Gets the value of threshold.
-	 *
-	 * @return the value of threshold.
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public T getThreshold() {
 		return threshold;

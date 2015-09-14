@@ -47,14 +47,11 @@ public class MaxIterationsConstraint<A extends IterativeAlgorithm<? extends Solu
 	}
 
 	/**
-	 * Tests if the iterations of algorithm is greater than or equals to the max
+	 * {@inheritDoc}
+	 *
+	 * If the iterations of algorithm is greater than or equals to the max
 	 * allowed, in this case returns <code>true</code>, otherwise returns
 	 * <code>false</code>.
-	 *
-	 * @param algorithm instance derived from {@link IterativeAlgorithm}
-	 * @return <code>true</code> if the iterations of algorithm is greater than
-	 * or equals to the max allowed, otherwise returns <code>false</code>.
-	 * @throws IllegalArgumentException
 	 */
 	@Override
 	public boolean evaluate(A algorithm) {

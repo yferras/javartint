@@ -28,7 +28,7 @@ import com.github.yferras.javartint.core.Solution;
 /**
  * This class can be used to create constraints based on execution time.
  *
- * @param <A> Any derived class from {@link Algorithm} interface.
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -46,13 +46,11 @@ public class RuntimeConstraint<A extends Algorithm<? extends Solution>>
 	}
 
 	/**
-	 * Tests if the actual elapsed time is greater than the threshold, in
+	 * {@inheritDoc}
+	 *
+	 * If the actual elapsed time is greater than the threshold, in
 	 * this case returns <code>true</code>, otherwise returns
 	 * <code>false</code>.
-	 *
-	 * @param algorithm instance derived from {@link Algorithm}
-	 * @return <code>true</code> if the actual elapsed time of algorithm is greater
-	 * than the threshold, otherwise returns <code>false</code>.
 	 */
 	@Override
 	public boolean evaluate(A algorithm) {

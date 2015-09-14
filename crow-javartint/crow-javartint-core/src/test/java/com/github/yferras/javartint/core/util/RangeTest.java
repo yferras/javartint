@@ -27,14 +27,29 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * <p>RangeTest class.</p>
+ *
+ * @author yferras
+ * @version $Id: $Id
+ * @since 1.0.0
+ */
 public class RangeTest {
 
+	/**
+	 * <p>setUp.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		System.out.print(Range.class.getName().concat
 			("."));
 	}
 
+	/**
+	 * <p>testConstructor3.</p>
+	 */
 	@Test
 	public void testConstructor3() {
 		System.out.println("constructor " +
@@ -48,6 +63,11 @@ public class RangeTest {
 		fail("'IllegalArgumentException' not raised");
 	}
 
+	/**
+	 * <p>testAccept.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Test
 	public void testAccept() throws Exception {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.BOTH);
@@ -76,24 +96,44 @@ public class RangeTest {
 		assertFalse(range.accept(1.05));
 	}
 
+	/**
+	 * <p>testGetMin.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Test
 	public void testGetMin() throws Exception {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.BOTH);
 		assertEquals(-1.0, range.getMin(), 0.0);
 	}
 
+	/**
+	 * <p>testGetMax.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Test
 	public void testGetMax() throws Exception {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.BOTH);
 		assertEquals(1.0, range.getMax(), 0.0);
 	}
 
+	/**
+	 * <p>testGetUse.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Test
 	public void testGetUse() throws Exception {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.NONE);
 		assertEquals(Range.Use.NONE, range.getUse());
 	}
 
+	/**
+	 * <p>testEquals.</p>
+	 *
+	 * @throws java.lang.Exception if any.
+	 */
 	@Test
 	public void testEquals() throws Exception {
 		Range<Double> range1 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
