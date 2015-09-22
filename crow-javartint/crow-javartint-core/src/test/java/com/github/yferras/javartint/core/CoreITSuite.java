@@ -22,6 +22,7 @@ package com.github.yferras.javartint.core;
  * #L%
  */
 
+import com.github.yferras.javartint.core.function.DefaultCompositeFunctionTest;
 import com.github.yferras.javartint.core.util.RangeTest;
 import com.github.yferras.javartint.core.function.ProbabilisticFunctionTest;
 import org.junit.After;
@@ -40,6 +41,7 @@ import org.junit.runners.Suite;
 		AbstractAlgorithmIT.class,
 		ProbabilisticFunctionTest.class,
 		RangeTest.class,
+		DefaultCompositeFunctionTest.class,
 	}
 )
 public class CoreITSuite {
