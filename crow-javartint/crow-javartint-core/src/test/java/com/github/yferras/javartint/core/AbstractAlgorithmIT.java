@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
  * <p>AbstractAlgorithmIT class.</p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier
- * @version $Id: $Id
+ * @version 0.0.1
  * @since 1.0.0
  */
 public class AbstractAlgorithmIT {

@@ -23,29 +23,36 @@ package com.github.yferras.javartint.core.function;
  */
 
 /**
- * Class that implements partially {@link DerivableFunction} to create
+ * Class that implements partially {@link com.github.yferras.javartint.core.function.DerivableFunction} to create
  * generic derivable functions.
  *
  * @param <R> Type of result
  * @param <P> Type of parameters
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
+ * @since 1.0.1
  */
 public abstract class AbstractDerivableFunction<R, P> implements DerivableFunction<R, P> {
 
 	private DerivableFunction parent;
 
+	/**
+	 * Constructor for AbstractDerivableFunction.
+	 */
 	public AbstractDerivableFunction() {
 		this(null);
 	}
 
+	/**
+	 * Constructor for AbstractDerivableFunction.
+	 *
+	 * @param parent a {@link com.github.yferras.javartint.core.function.DerivableFunction} object.
+	 */
 	public AbstractDerivableFunction(DerivableFunction parent) {
 		this.parent = parent;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public int getN() {
 		return  this.parent == null ? 0 : this.parent.getN() + 1;

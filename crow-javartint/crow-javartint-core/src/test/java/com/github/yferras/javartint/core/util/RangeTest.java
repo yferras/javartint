@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
 /**
  * <p>RangeTest class.</p>
  *
- * @author yferras
- * @version $Id: $Id
+ * @author Eng. Ferrás Cecilio, Yeinier
+ * @version 0.0.1
  * @since 1.0.0
  */
 public class RangeTest {

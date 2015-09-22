@@ -29,11 +29,13 @@ package com.github.yferras.javartint.core.function;
  * @param <P> Type of parameters
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
+ * @since 1.0.1
  */
 public interface DerivableFunction<R, P> extends Function<R, P> {
 
 	/**
 	 * Gets the derived function.
+	 *
 	 * @return derived function. If the current function doesn't has derivative, will return {@code null}.
 	 */
 	DerivableFunction<R, P> derive();
@@ -41,6 +43,7 @@ public interface DerivableFunction<R, P> extends Function<R, P> {
 	/**
 	 * Gets the level of derived function. Normally a constant integer, for example for the first derived this method
 	 * must return 1, for the second derived must return 2, and so on.
+	 *
 	 * @return an integer that represents the level of derived function.
 	 */
 	int getN();
