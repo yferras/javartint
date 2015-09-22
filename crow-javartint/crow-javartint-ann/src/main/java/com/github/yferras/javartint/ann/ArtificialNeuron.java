@@ -22,6 +22,7 @@ package com.github.yferras.javartint.ann;
  * #L%
  */
 
+import com.github.yferras.javartint.core.function.CompositeFunction;
 import com.github.yferras.javartint.core.function.Function;
 
 import java.io.Serializable;
@@ -30,9 +31,10 @@ import java.io.Serializable;
  * This interface represents a generic artificial neuron.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public interface ArtificialNeuron extends Function<Double, Double[]>, Iterable<Double>, Serializable {
+public interface ArtificialNeuron
+	extends CompositeFunction<Double, Double[]>, Iterable<Double>, Serializable {
 
 	/**
 	 * Gets the weights

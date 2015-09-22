@@ -24,35 +24,41 @@ package com.github.yferras.javartint.ann;
 
 import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
 import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
+import com.github.yferras.javartint.core.function.DefaultCompositeFunction;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * <p>AbstractArtificialNeuron class.</p>
+ * Class that implements partially {@link com.github.yferras.javartint.ann.ArtificialNeuron} to create
+ * artificial neurons.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class AbstractArtificialNeuron implements ArtificialNeuron {
+public class AbstractArtificialNeuron
+	extends DefaultCompositeFunction<Double, Double[]>
+	implements ArtificialNeuron {
 
-	protected Double[] weights;
-	protected double bias;
+	private Double[] weights;
+	private double bias;
 	protected PropagationRuleFunction propagationRuleFunction;
 	protected ActivationFunction activationFunction;
 
 	/**
-	 * <p>Constructor for AbstractArtificialNeuron.</p>
+	 * Constructor for AbstractArtificialNeuron.
 	 *
-	 * @param size a int.
+	 * @param size the size of the neuron (number of weights).
 	 * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
 	 * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
 	 */
 	public AbstractArtificialNeuron(int size, PropagationRuleFunction propagationRuleFunction,
 	                                ActivationFunction activationFunction) {
 		weights = new Double[size];
+		bias = -1.0;
 		this.propagationRuleFunction = propagationRuleFunction;
 		this.activationFunction = activationFunction;
+		this.setFunctions(activationFunction, propagationRuleFunction);
 	}
 
 	/** {@inheritDoc} */
@@ -71,13 +77,6 @@ public class AbstractArtificialNeuron implements ArtificialNeuron {
 	@Override
 	public int size() {
 		return getWeights().length;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Double evaluate(Double[] params) {
-		final Double r = propagationRuleFunction.evaluate(new Double[][]{params, weights});
-		return activationFunction.evaluate(r);
 	}
 
 	/** {@inheritDoc} */
