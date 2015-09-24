@@ -39,7 +39,7 @@ public class DefaultCompositeFunction<R, P> extends AbstractCompositeFunction<R,
 	/**
 	 * {@inheritDoc}
 	 *
-	 * This method invokes the composite functions in the inverse order that they was introduced. The output of the
+	 * This method invokes the composite functions in the same order that they was introduced. The output of the
 	 * first function will be the input of the next, and so on.
 	 */
 	@SuppressWarnings("unchecked")

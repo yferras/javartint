@@ -63,7 +63,7 @@ public class DefaultCompositeFunctionTest {
 	@Test
 	public void testEvaluate() throws Exception {
 		DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-		function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
+		function.setFunctions(meanFunc, sqrtFunc, towTimesFunc);
 
 		Double[] params = {1.0, 17.0, 4.0, 14.0, 10.0, 8.0};
 

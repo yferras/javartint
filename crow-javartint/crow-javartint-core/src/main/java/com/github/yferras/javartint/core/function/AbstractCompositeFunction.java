@@ -66,7 +66,7 @@ public abstract class AbstractCompositeFunction<R, P> implements CompositeFuncti
 	@Override
 	public void setFunctions(Function... functions) {
 		for (Function function : functions) {
-			functionStack.add(0, function);
+			functionStack.add(function);
 		}
 	}
 }

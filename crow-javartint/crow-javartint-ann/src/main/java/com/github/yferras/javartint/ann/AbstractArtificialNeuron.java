@@ -58,7 +58,7 @@ public class AbstractArtificialNeuron
 		bias = -1.0;
 		this.propagationRuleFunction = propagationRuleFunction;
 		this.activationFunction = activationFunction;
-		this.setFunctions(activationFunction, propagationRuleFunction);
+		this.setFunctions(propagationRuleFunction, activationFunction);
 	}
 
 	/** {@inheritDoc} */
