@@ -1,4 +1,4 @@
-package com.github.yferras.javartint.ann;
+package com.github.yferras.javartint.ann.neuron;
 
 /*
  * #%L
@@ -23,7 +23,6 @@ package com.github.yferras.javartint.ann;
  */
 
 import com.github.yferras.javartint.core.function.CompositeFunction;
-import com.github.yferras.javartint.core.function.Function;
 
 import java.io.Serializable;
 

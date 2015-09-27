@@ -1,4 +1,4 @@
-package com.github.yferras.javartint.ann;
+package com.github.yferras.javartint.ann.neuron;
 
 /*
  * #%L
@@ -30,7 +30,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Class that implements partially {@link com.github.yferras.javartint.ann.ArtificialNeuron} to create
+ * Class that implements partially {@link ArtificialNeuron} to create
  * artificial neurons.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
