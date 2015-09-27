@@ -49,11 +49,9 @@ public class TspGenomeGenFunction
 	}
 
 	/**
-	 * Generates genomes for TSP
+	 * {@inheritDoc}
 	 *
-	 * @param genomeSize     the number of chromosomes, always is 1.
-	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link DefaultGenome}
+	 * Generates genomes for TSP
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

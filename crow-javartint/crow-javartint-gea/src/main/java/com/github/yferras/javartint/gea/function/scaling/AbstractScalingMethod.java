@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Abstract class that represents scaling method function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -70,7 +70,7 @@ public abstract class AbstractScalingMethod<T extends Individual>
 	 * Ensures that parameters are valid.
 	 *
 	 * @param params parameters to validate.
-	 * @throws IllegalArgumentException if {@code params} is null
+	 * @throws java.lang.IllegalArgumentException if {@code params} is null
 	 *                                  or {@code params.isEmpty()} is {@code true}.
 	 */
 	protected void validate(List<T> params) throws IllegalArgumentException {
@@ -83,11 +83,9 @@ public abstract class AbstractScalingMethod<T extends Individual>
 	}
 
 	/**
-	 * Validates the input parameters and performs the scaling process.
+	 * {@inheritDoc}
 	 *
-	 * @param params parameters to evaluate.
-	 * @return a list with scaled genomes
-	 * @throws java.lang.IllegalArgumentException see {@link #validate(java.util.List)}
+	 * Validates the input parameters and performs the scaling process.
 	 */
 	@Override
 	public List<T> evaluate(List<T> params) {

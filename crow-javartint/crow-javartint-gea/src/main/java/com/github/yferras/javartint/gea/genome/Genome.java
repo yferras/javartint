@@ -31,7 +31,7 @@ import java.io.Serializable;
 /**
  * This interface represents a generic genome.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.4
  */
@@ -48,8 +48,9 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	/**
 	 * Sets the array of chromosomes.
 	 *
-	 * @throws IllegalArgumentException if {@code chromosomes} argument is
+	 * @throws java.lang.IllegalArgumentException if {@code chromosomes} argument is
 	 *                                  {@code null}.
+	 * @param chromosomes an array of T objects.
 	 */
 	void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
 
@@ -83,6 +84,12 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	 */
 	void addChromosome(T chromosome);
 
+	/**
+	 * <p>clone.</p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.genome.Genome} object.
+	 * @throws java.lang.CloneNotSupportedException if any.
+	 */
 	Genome<T> clone() throws CloneNotSupportedException;
 
 	/**

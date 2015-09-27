@@ -39,7 +39,7 @@ import java.util.*;
 /**
  * Abstract class that provides a sets of functionalities to subclassing genetic algorithms
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
@@ -58,7 +58,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	/**
 	 * Initializes this class.
 	 * By default selection function for parents is an instance of
-	 * {@link RandomSelectionFunction}.
+	 * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}.
 	 *
 	 * @param populationSize        the population limit
 	 * @param optimize              the optimization way
@@ -87,7 +87,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	/**
 	 * Initializes this class.
 	 * By default selection function for parents is an instance of
-	 * {@link RandomSelectionFunction}, and
+	 * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}, and
 	 * selection function for new generation is <code>null</code>.
 	 *
 	 * @param populationSize        the population limit
@@ -110,6 +110,8 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * This method sets {@code true} to {@code running} attribute, and calls
 	 * {@link #evolve()} method. Implemented from Runnable interface.
 	 */
@@ -121,6 +123,8 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * <p>This method is the responsible for create and evolve of the population.</p>
 	 */
 	@Override
@@ -138,6 +142,8 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * <p>
 	 * In this method a new population is created from the selection and
 	 * crossing of individuals of the current population. After completing the
@@ -218,9 +224,9 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 
 	/**
 	 * Gets the selection function used to select the parents and use them in the crossing process.
-	 * By default is an instance of {@link RandomSelectionFunction}.
+	 * By default is an instance of {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}.
 	 *
-	 * @return an instance of {@link SelectionFunction}
+	 * @return an instance of {@link com.github.yferras.javartint.gea.function.selection.SelectionFunction}
 	 */
 	public SelectionFunction<T> getSelectionFunctionToParents() {
 		return selectionFunctionToParents;

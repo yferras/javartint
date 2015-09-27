@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Abstract class that represents selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -108,10 +108,9 @@ public abstract class AbstractSelectionFunction<T extends Individual>
 	protected abstract List<T> select(List<T> individuals);
 
 	/**
-	 * Performs the selection process after validating the input params ({@link #validate})
+	 * {@inheritDoc}
 	 *
-	 * @param params parameters to evaluate.
-	 * @return an array with selected elements
+	 * Performs the selection process after validating the input params ({@link #validate})
 	 */
 	@Override
 	public List<T> evaluate(List<T> params) {

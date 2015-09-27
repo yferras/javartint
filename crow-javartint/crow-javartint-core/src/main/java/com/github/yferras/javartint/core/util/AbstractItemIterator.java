@@ -26,7 +26,7 @@ package com.github.yferras.javartint.core.util;
 import java.util.NoSuchElementException;
 
 /**
- * Abstract class that implements partially {@link ItemIterator}.
+ * Abstract class that implements partially {@link com.github.yferras.javartint.core.util.ItemIterator}.
  *
  * @author yferras
  * @version 0.0.1

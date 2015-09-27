@@ -47,6 +47,12 @@ public interface Gene<T> extends Cloneable, Serializable {
 	 */
 	void setData(T data);
 
+	/**
+	 * <p>clone.</p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.gene.Gene} object.
+	 * @throws java.lang.CloneNotSupportedException if any.
+	 */
 	Gene<T> clone() throws CloneNotSupportedException;
 
 }

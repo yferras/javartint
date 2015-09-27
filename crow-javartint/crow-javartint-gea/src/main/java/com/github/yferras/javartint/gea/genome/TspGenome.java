@@ -56,6 +56,7 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 
 	/**
 	 * Constructor, initializes this instances with the given cities
+	 *
 	 * @param cities set with the cities
 	 */
 	public TspGenome(Set<Integer> cities) {
@@ -69,6 +70,7 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 
 	/**
 	 * Constructor, initializes this instances with the given cities
+	 *
 	 * @param cities array of cities
 	 */
 	public TspGenome(Integer ... cities) {
@@ -78,7 +80,7 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 	/**
 	 * Gets the only chromosome inside the genome.
 	 *
-	 * @return instance of {@link DefaultChromosome}
+	 * @return instance of {@link com.github.yferras.javartint.gea.chromosome.DefaultChromosome}
 	 */
 	public DefaultChromosome<DefaultGene<Integer>> getChromosome() {
 		return super.getChromosome(0);
@@ -93,6 +95,7 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 		super.setChromosome(0, newChromosome);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public TspGenome clone() throws CloneNotSupportedException {
 		return (TspGenome)super.clone();

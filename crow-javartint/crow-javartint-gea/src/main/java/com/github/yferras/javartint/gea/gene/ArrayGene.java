@@ -37,10 +37,16 @@ import java.util.Iterator;
 public class ArrayGene<T> extends AbstractGene<T[]> implements
 	Cloneable, Iterable<T> {
 
+	/**
+	 * <p>Constructor for ArrayGene.</p>
+	 *
+	 * @param data an array of T objects.
+	 */
 	public ArrayGene(T[] data) {
 		super(data);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -72,6 +78,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
 		return getData().length;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		int hash = 7;
@@ -79,6 +86,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
 		return hash;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<T> iterator() {
 		return new AbstractItemIterator<T>() {
@@ -104,6 +112,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
 		this.data[index] = newData;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder("[")

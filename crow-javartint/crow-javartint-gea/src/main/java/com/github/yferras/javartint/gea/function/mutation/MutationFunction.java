@@ -30,7 +30,7 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Interface that represents mutation function.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */

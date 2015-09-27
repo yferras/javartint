@@ -47,7 +47,7 @@ public class RangeGenomeGenFunction
 	 *
 	 * @param genomeSize the number of chromosomes.
 	 * @param precision  decimal precision.
-	 * @param ranges     Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+	 * @param ranges     Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
 	 *                   is used to generate a random value inside range.
 	 */
 	public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
@@ -60,7 +60,7 @@ public class RangeGenomeGenFunction
 	 * Initializes this instance. By default {@code genomeSize} is 1.
 	 *
 	 * @param precision decimal precision.
-	 * @param ranges    Array of ranges. The length of this array is the size of genome, and each instance of {@link Range}
+	 * @param ranges    Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
 	 *                  is used to generate a random value inside range.
 	 */
 	public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
@@ -70,11 +70,9 @@ public class RangeGenomeGenFunction
 	}
 
 	/**
-	 * Generates a genome with default set of genes, each of these genes have a double value.
+	 * {@inheritDoc}
 	 *
-	 * @param genomeSize     the number of chromosomes.
-	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link DefaultGenome}
+	 * Generates a genome with default set of genes, each of these genes have a double value.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

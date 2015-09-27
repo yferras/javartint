@@ -47,5 +47,11 @@ public interface Individual
 	 */
 	void setFitness(Double fitness);
 
+	/**
+	 * <p>clone.</p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.Individual} object.
+	 * @throws java.lang.CloneNotSupportedException if any.
+	 */
 	Individual clone() throws CloneNotSupportedException;
 }

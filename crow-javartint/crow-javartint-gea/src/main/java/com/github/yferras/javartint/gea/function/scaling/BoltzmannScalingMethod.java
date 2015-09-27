@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Boltzmann scaling method function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -60,6 +60,7 @@ public final class BoltzmannScalingMethod<T extends Individual>
 		return boltzmannTemp;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void scale(List<T> individuals) {
 		boltzmannTemp -= BOLTZMANN_DELTA_TEMP;

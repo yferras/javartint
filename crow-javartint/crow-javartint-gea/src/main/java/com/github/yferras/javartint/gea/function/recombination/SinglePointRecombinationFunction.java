@@ -44,25 +44,40 @@ import java.util.Random;
  * </code>
  * </p>
  *
- * @param <T> any derived type from {@link Genome}
+ * @param <T> any derived type from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public class SinglePointRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
 	extends AbstractRecombinationFunction<T> {
 
+	/**
+	 * <p>Constructor for SinglePointRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 * @param random a {@link java.util.Random} object.
+	 */
 	public SinglePointRecombinationFunction(double probability, Random random) {
 		super(probability, random);
 	}
 
+	/**
+	 * <p>Constructor for SinglePointRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 */
 	public SinglePointRecombinationFunction(double probability) {
 		super(probability);
 	}
 
+	/**
+	 * <p>Constructor for SinglePointRecombinationFunction.</p>
+	 */
 	public SinglePointRecombinationFunction() {
 		super();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

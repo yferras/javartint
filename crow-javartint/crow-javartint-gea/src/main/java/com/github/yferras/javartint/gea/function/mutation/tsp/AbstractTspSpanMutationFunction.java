@@ -32,7 +32,7 @@ import java.util.Random;
  * Mutation function in TSP a bit more specialized.
  * </p>
  *
- * @param <T> Any derived class from {@link TspGenome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */

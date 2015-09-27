@@ -38,7 +38,7 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Default implementation of a GA.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
@@ -48,7 +48,7 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? ext
 	/**
 	 * Initializes this class.
 	 * * By default selection function for parents is an instance of
-	 * {@link RandomSelectionFunction}.
+	 * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}.
 	 *
 	 * @param populationSize        the population limit
 	 * @param optimize              the optimization way
@@ -73,7 +73,7 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? ext
 	/**
 	 * Initializes this class.
 	 * * By default selection function for parents is an instance of
-	 * {@link RandomSelectionFunction}, and
+	 * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}, and
 	 * selection function for new generation is <code>null</code>.
 	 *
 	 * @param populationSize        the population limit

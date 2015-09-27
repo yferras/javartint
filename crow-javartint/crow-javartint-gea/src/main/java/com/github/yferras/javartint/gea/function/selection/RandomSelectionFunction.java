@@ -31,7 +31,7 @@ import java.util.Random;
 /**
  * Random selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -57,10 +57,9 @@ public class RandomSelectionFunction<T extends Individual>
 	}
 
 	/**
-	 * Selects genomes randomly.
+	 * {@inheritDoc}
 	 *
-	 * @param individuals Source to select the number of desired genomes.
-	 * @return selected genomes
+	 * Selects genomes randomly.
 	 */
 	@Override
 	protected List<T> select(List<T> individuals) {

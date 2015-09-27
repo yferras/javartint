@@ -25,13 +25,18 @@ package com.github.yferras.javartint.gea.gene;
 /**
  * Default generic gene to represent arrays of numbers.
  *
- * @param <T> Any derived class from {@link Number} abstract class.
+ * @param <T> Any derived class from {@link java.lang.Number} abstract class.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class NumberArrayGene<T extends Number>
 	extends ArrayGene<T> {
 
+	/**
+	 * <p>Constructor for NumberArrayGene.</p>
+	 *
+	 * @param data an array of T objects.
+	 */
 	public NumberArrayGene(T[] data) {
 		super(data);
 	}

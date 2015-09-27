@@ -29,7 +29,7 @@ import com.github.yferras.javartint.core.util.Filter;
  * This interface serves to implements many filters to ensure that the individuals
  * are valid.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */

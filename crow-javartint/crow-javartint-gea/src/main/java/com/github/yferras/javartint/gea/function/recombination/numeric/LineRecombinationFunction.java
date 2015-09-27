@@ -32,8 +32,8 @@ import java.util.Random;
 /**
  * Specific recombination function to real valued genomes.
  *
- * @param <T> Any derived class from {@link Genome}<code>&lt;? extends </code>
- *            {@link Gene}<code>&lt;Double&gt;&gt;</code>
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}<code>&lt;? extends </code>
+ *            {@link com.github.yferras.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -83,6 +83,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
 		this(.25);
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

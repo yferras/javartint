@@ -28,9 +28,9 @@ import com.github.yferras.javartint.gea.gene.Gene;
 import java.util.*;
 
 /**
- * This class is an abstract implementation of {@link Chromosome}.
+ * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.chromosome.Chromosome}.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
@@ -40,32 +40,40 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 	 */
 	protected List<T> genes;
 
+	/**
+	 * <p>Constructor for AbstractChromosome.</p>
+	 */
 	protected AbstractChromosome() {
 		genes = new LinkedList<>();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Gene<?>[] getGenes() {
 		return genes.toArray(new Gene<?>[size()]);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setGenes(T[] genes) throws IllegalArgumentException {
 		this.genes.clear();
 		this.genes.addAll(Arrays.asList(genes));
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public T getGene(int locus) throws IndexOutOfBoundsException {
 		return genes.get(locus);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int size() {
 		return genes.size();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<T> iterator() {
 		return new AbstractItemIterator<T>() {
@@ -81,16 +89,19 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 		};
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setGene(int locus, T newGene) {
 		genes.set(locus, newGene);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addGene(T gene) {
 		genes.add(gene);
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public AbstractChromosome<T> clone() throws CloneNotSupportedException {
@@ -102,6 +113,7 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 		return copy;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -112,11 +124,13 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 		return genes.equals(that.genes);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		return genes.hashCode();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder("{");

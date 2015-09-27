@@ -56,7 +56,7 @@ import java.util.*;
  *     Result:
  *     [ 8, 5, 2, 7, 3, 6, 1, 0, 9, 4 ]
  *
- * @param <T> Any derived class from {@link TspGenome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -104,6 +104,7 @@ public class InversionMutationFunction<T extends TspGenome>
 		super();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T mutate(T subject)

@@ -27,11 +27,11 @@ import com.github.yferras.javartint.gea.genome.Genome;
 import com.github.yferras.javartint.gea.gene.Gene;
 
 /**
- * This class implements the interface {@link DecoderFunction}.
+ * This class implements the interface {@link com.github.yferras.javartint.gea.function.decoder.DecoderFunction}.
  * This class can be derived to create a functions to decode genomes.
  *
  * @param <D> Type of decoded result
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
@@ -59,10 +59,9 @@ public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Chro
 	protected abstract D decode(T genome);
 
 	/**
-	 * This method validate and performs the decode process.
+	 * {@inheritDoc}
 	 *
-	 * @param genome see {@link #decode(Genome)}
-	 * @return see {@link #decode(Genome)}
+	 * This method validate and performs the decode process.
 	 */
 	@Override
 	public D evaluate(T genome) {

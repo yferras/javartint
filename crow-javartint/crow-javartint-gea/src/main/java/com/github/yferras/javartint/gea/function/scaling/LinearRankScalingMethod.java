@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Linear rank scaling method function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -64,6 +64,7 @@ public final class LinearRankScalingMethod<T extends Individual>
 		return selectivePressure;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected void scale(List<T> individuals) {
 		Collections.sort(individuals); // Sorts ascending

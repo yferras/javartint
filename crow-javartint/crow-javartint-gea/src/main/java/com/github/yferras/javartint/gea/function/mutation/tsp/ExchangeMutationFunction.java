@@ -52,25 +52,40 @@ import java.util.Random;
  *
  * </pre>
  *
- * @param <T> Any derived class from {@link TspGenome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class ExchangeMutationFunction<T extends TspGenome>
 	extends AbstractMutationFunction<T> {
 
+	/**
+	 * <p>Constructor for ExchangeMutationFunction.</p>
+	 *
+	 * @param probability a double.
+	 * @param random a {@link java.util.Random} object.
+	 */
 	public ExchangeMutationFunction(double probability, Random random) {
 		super(probability, random);
 	}
 
+	/**
+	 * <p>Constructor for ExchangeMutationFunction.</p>
+	 *
+	 * @param probability a double.
+	 */
 	public ExchangeMutationFunction(double probability) {
 		super(probability);
 	}
 
+	/**
+	 * <p>Constructor for ExchangeMutationFunction.</p>
+	 */
 	public ExchangeMutationFunction() {
 		super();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected T mutate(T subject)
 		throws CloneNotSupportedException {

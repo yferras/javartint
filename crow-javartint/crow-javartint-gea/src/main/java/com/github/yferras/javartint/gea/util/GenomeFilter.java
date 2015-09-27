@@ -30,7 +30,7 @@ import com.github.yferras.javartint.gea.genome.Genome;
  * This interface serves to implements many filters to ensure that the genomes
  * are valid.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
@@ -38,11 +38,9 @@ public interface GenomeFilter<T extends Genome<? extends Chromosome<? extends Ge
 	extends IndividualFilter<T> {
 
 	/**
-	 * Allows filter the genomes.
+	 * {@inheritDoc}
 	 *
-	 * @param genome genome to filter.
-	 * @return {@code true} if this genome is valid, otherwise returns
-	 * {@code false}
+	 * Allows filter the genomes.
 	 */
 	@Override
 	boolean accept(T genome);

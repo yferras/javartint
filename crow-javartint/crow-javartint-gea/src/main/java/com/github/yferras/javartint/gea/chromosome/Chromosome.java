@@ -30,7 +30,7 @@ import java.io.Serializable;
 /**
  * This interface represents a generic chromosome.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
@@ -48,7 +48,7 @@ public interface Chromosome<T extends Gene<?>>
 	 * Sets the array of genes.
 	 *
 	 * @param genes the array of genes.
-	 * @throws IllegalArgumentException if {@code genes} argument is
+	 * @throws java.lang.IllegalArgumentException if {@code genes} argument is
 	 *                                  {@code null}.
 	 */
 	void setGenes(T[] genes) throws IllegalArgumentException;
@@ -58,7 +58,7 @@ public interface Chromosome<T extends Gene<?>>
 	 *
 	 * @param locus particular position on the chromosome.
 	 * @return This method returns a gene
-	 * @throws IndexOutOfBoundsException if the <code>index</code> is out of
+	 * @throws java.lang.IndexOutOfBoundsException if the <code>index</code> is out of
 	 *                                   range.
 	 */
 	T getGene(int locus) throws IndexOutOfBoundsException;
@@ -85,5 +85,11 @@ public interface Chromosome<T extends Gene<?>>
 	 */
 	int size();
 
+	/**
+	 * <p>clone.</p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.chromosome.Chromosome} object.
+	 * @throws java.lang.CloneNotSupportedException if any.
+	 */
 	Chromosome<T> clone() throws CloneNotSupportedException;
 }

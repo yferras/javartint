@@ -29,7 +29,7 @@ import com.github.yferras.javartint.core.function.Function;
  * This interface is used to create a functions to decode genomes.
  *
  * @param <D> Type of decoded result.
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.3
  */

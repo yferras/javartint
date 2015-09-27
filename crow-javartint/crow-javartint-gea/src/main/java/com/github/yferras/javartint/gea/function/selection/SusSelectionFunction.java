@@ -33,26 +33,41 @@ import java.util.Random;
 /**
  * Stochastic universal sampling selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public class SusSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
+	/**
+	 * <p>Constructor for SusSelectionFunction.</p>
+	 *
+	 * @param numToSelect a int.
+	 * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
+	 */
 	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
 		super(numToSelect, scalingMethod);
 	}
 
+	/**
+	 * <p>Constructor for SusSelectionFunction.</p>
+	 *
+	 * @param numToSelect a int.
+	 */
 	public SusSelectionFunction(int numToSelect) {
 		this(numToSelect, null);
 	}
 
+	/**
+	 * <p>Constructor for SusSelectionFunction.</p>
+	 */
 	public SusSelectionFunction() {
 		this(2);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	protected List<T> select(List<T> individuals) {
 		if (getScalingMethod() != null) {

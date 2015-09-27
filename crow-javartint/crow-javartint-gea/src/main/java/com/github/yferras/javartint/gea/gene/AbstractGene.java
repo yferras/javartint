@@ -26,7 +26,7 @@ import java.lang.reflect.Array;
 import java.util.Objects;
 
 /**
- * Abstract implementation of {@link Gene}.
+ * Abstract implementation of {@link com.github.yferras.javartint.gea.gene.Gene}.
  *
  * @param <T> Any class
  * @author Eng. Ferrás Cecilio, Yeinier
@@ -39,20 +39,28 @@ public abstract class AbstractGene<T> implements Gene<T> {
 	 */
 	protected T data;
 
+	/**
+	 * <p>Constructor for AbstractGene.</p>
+	 *
+	 * @param data a T object.
+	 */
 	public AbstractGene(T data) {
 		this.data = data;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public T getData() {
 		return data;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setData(T data) {
 		this.data = data;
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Gene<T> clone() throws CloneNotSupportedException {
@@ -97,6 +105,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		int hash = 3;
@@ -104,6 +113,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		return hash;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -116,6 +126,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		return Objects.equals(other.getData(), this.data);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return getData() == null ? "" : getData().toString();

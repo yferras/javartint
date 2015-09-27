@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
@@ -80,6 +80,8 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 
 	/**
 	 * This method must be implemented by subclasses to simulate the evolution process.
+	 *
+	 * @throws java.lang.Exception if any.
 	 */
 	public abstract void evolve() throws Exception;
 
@@ -88,6 +90,9 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	 */
 	protected abstract void epoch();
 
+	/**
+	 * <p>updateFitnessScores.</p>
+	 */
 	@SuppressWarnings("unchecked")
 	protected void updateFitnessScores() {
 		for (T individual : getPopulation()) {
@@ -130,16 +135,19 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 		generations++;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Long getIterations() {
 		return getGenerations();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Optimize getOptimize() {
 		return optimize;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	final public void setOptimize(Optimize optimize) {
 		switch (optimize) {
@@ -154,9 +162,9 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	}
 
 	/**
-	 * Gets an instance of {@link Function} that decodes the the genome.
+	 * Gets an instance of {@link com.github.yferras.javartint.core.function.Function} that decodes the the genome.
 	 *
-	 * @return an instance of {@link Function}
+	 * @return an instance of {@link com.github.yferras.javartint.core.function.Function}
 	 */
 	public Function<D, T> getDecoder() {
 		return decoder;
@@ -219,7 +227,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	/**
 	 * Gets the genome filter.
 	 *
-	 * @return an instance of {@link IndividualFilter}.
+	 * @return an instance of {@link com.github.yferras.javartint.gea.util.IndividualFilter}.
 	 */
 	protected IndividualFilter<T> getFilter() {
 		return filter;
@@ -228,7 +236,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	/**
 	 * Sets the genome filter
 	 *
-	 * @param filter an instance of {@link IndividualFilter}
+	 * @param filter an instance of {@link com.github.yferras.javartint.gea.util.IndividualFilter}
 	 */
 	protected void setFilter(IndividualFilter<T> filter) {
 		this.filter = filter;
@@ -237,7 +245,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 	/**
 	 * Gets the function that generates genome
 	 *
-	 * @return the instance of {@link GeneratorFunction}
+	 * @return the instance of {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}
 	 */
 	public GeneratorFunction<T> getGenerator() {
 		return generator;

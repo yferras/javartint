@@ -33,7 +33,7 @@ import java.util.Random;
 /**
  * Roulette wheel selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -41,14 +41,26 @@ public class RouletteWheelSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
 
+	/**
+	 * <p>Constructor for RouletteWheelSelectionFunction.</p>
+	 *
+	 * @param numToSelect a int.
+	 * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
+	 */
 	public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
 		super(numToSelect, scalingMethod);
 	}
 
+	/**
+	 * <p>Constructor for RouletteWheelSelectionFunction.</p>
+	 *
+	 * @param numToSelect a int.
+	 */
 	public RouletteWheelSelectionFunction(int numToSelect) {
 		this(numToSelect, null);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected List<T> select(List<T> individuals) {
 		if (getScalingMethod() != null) {

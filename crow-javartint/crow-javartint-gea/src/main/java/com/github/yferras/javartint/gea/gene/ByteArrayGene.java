@@ -30,6 +30,11 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class ByteArrayGene extends NumberArrayGene<Byte> {
 
+	/**
+	 * <p>Constructor for ByteArrayGene.</p>
+	 *
+	 * @param data an array of {@link java.lang.Byte} objects.
+	 */
 	public ByteArrayGene(Byte[] data) {
 		super(data);
 	}

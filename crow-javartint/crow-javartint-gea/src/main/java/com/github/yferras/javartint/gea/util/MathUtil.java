@@ -42,7 +42,6 @@ public final class MathUtil {
 	 * This method takes a list of individuals and determines the mean of their fitness.
 	 *
 	 * @param individuals list of individuals
-	 * @param <T>     Any class derived from {@link Individual} interface
 	 * @return the mean of fitness
 	 */
 	static public <T extends Individual> double mean(List<T> individuals) {
@@ -53,7 +52,6 @@ public final class MathUtil {
 	 * This method takes a list of individuals and determines the total of their fitness.
 	 *
 	 * @param individuals list of individuals
-	 * @param <T>     Any class derived from {@link Individual} interface
 	 * @return the total of fitness
 	 */
 	static public <T extends Individual> double total(List<T> individuals) {
@@ -69,7 +67,6 @@ public final class MathUtil {
 	 *
 	 * @param individuals list of individuals
 	 * @param mean    the mean of the fitness
-	 * @param <T>     Any class derived from {@link Individual} interface
 	 * @return the variance of fitness
 	 */
 	static public <T extends Individual> double variance(List<T> individuals, Double mean) {
@@ -85,7 +82,6 @@ public final class MathUtil {
 	 * This method takes a list of individuals and determines the variance of their fitness.
 	 *
 	 * @param individuals list of individuals
-	 * @param <T>     Any class derived from {@link Individual} interface
 	 * @return the variance of fitness
 	 */
 	static public <T extends Individual> double variance(List<T> individuals) {

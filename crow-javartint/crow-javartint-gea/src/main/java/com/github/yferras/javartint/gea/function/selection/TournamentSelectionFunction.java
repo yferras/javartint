@@ -32,27 +32,43 @@ import java.util.Random;
 /**
  * Tournament selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public class TournamentSelectionFunction<T extends Individual>
 	extends AbstractSelectionFunction<T> {
 
+	/**
+	 * <p>Constructor for TournamentSelectionFunction.</p>
+	 */
 	public TournamentSelectionFunction() {
 		this(2);
 	}
 
+	/**
+	 * <p>Constructor for TournamentSelectionFunction.</p>
+	 *
+	 * @param selectedGenomes a int.
+	 */
 	public TournamentSelectionFunction(int selectedGenomes) {
 		this(selectedGenomes, null);
 	}
 
+	/**
+	 * <p>Constructor for TournamentSelectionFunction.</p>
+	 *
+	 * @param selectedGenomes a int.
+	 * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
+	 * @throws java.lang.IllegalArgumentException if any.
+	 */
 	public TournamentSelectionFunction(int selectedGenomes,
 	                                   AbstractScalingMethod<T> scalingMethod)
 		throws IllegalArgumentException {
 		super(selectedGenomes, scalingMethod);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected List<T> select(List<T> individuals) {
 		if (getScalingMethod() != null) {

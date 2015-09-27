@@ -30,6 +30,11 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class IntegerArrayGene extends NumberArrayGene<Integer> {
 
+	/**
+	 * <p>Constructor for IntegerArrayGene.</p>
+	 *
+	 * @param data an array of {@link java.lang.Integer} objects.
+	 */
 	public IntegerArrayGene(Integer[] data) {
 		super(data);
 	}

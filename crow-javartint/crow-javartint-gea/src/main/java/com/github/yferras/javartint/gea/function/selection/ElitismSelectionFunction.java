@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Elitism selection function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
@@ -62,6 +62,7 @@ public class ElitismSelectionFunction<T extends Individual>
 		return optimize;
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected List<T> select(List<T> individuals) {

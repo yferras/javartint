@@ -82,11 +82,9 @@ public class BinaryGenomeGenFunction
 	}
 
 	/**
-	 * Generates binary genomes.
+	 * {@inheritDoc}
 	 *
-	 * @param genomeSize     the number of chromosomes.
-	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link DefaultGenome}
+	 * Generates binary genomes.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

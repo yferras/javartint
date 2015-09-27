@@ -35,7 +35,7 @@ import java.util.Random;
  * Specific recombination function in TSP.
  * <p/>
  *
- * @param <T> Any derived class from {@link TspGenome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -71,6 +71,7 @@ public class PermutationRecombinationFunction<T extends TspGenome>
 		this(.75);
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

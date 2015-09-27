@@ -46,25 +46,40 @@ import java.util.Random;
  * </code>
  * </p>
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
 	extends AbstractRecombinationFunction<T> {
 
+	/**
+	 * <p>Constructor for DiscreteRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 * @param random a {@link java.util.Random} object.
+	 */
 	public DiscreteRecombinationFunction(double probability, Random random) {
 		super(probability, random);
 	}
 
+	/**
+	 * <p>Constructor for DiscreteRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 */
 	public DiscreteRecombinationFunction(double probability) {
 		super(probability);
 	}
 
+	/**
+	 * <p>Constructor for DiscreteRecombinationFunction.</p>
+	 */
 	public DiscreteRecombinationFunction() {
 		super();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

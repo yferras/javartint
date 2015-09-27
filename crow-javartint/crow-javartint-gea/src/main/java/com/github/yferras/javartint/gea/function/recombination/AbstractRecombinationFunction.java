@@ -32,7 +32,7 @@ import java.util.Random;
 /**
  * Abstract class that represents recombination function.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
@@ -77,6 +77,7 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
 	 * @param parent1 first parent
 	 * @param parent2 second parent
 	 * @return the offspring.
+	 * @throws java.lang.CloneNotSupportedException if any.
 	 */
 	protected abstract T[] recombine(T parent1, T parent2)
 		throws CloneNotSupportedException;
@@ -85,7 +86,7 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
 	 * Ensures that parameters are valid.
 	 *
 	 * @param params parameters to validate.
-	 * @throws IllegalArgumentException if {@code params} is null
+	 * @throws java.lang.IllegalArgumentException if {@code params} is null
 	 *                                  or {@code params.length} is less than 2.
 	 */
 	protected void validate(T... params) throws IllegalArgumentException {
@@ -99,11 +100,10 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Accepts two genomes (parents) to perform the recombination process,
 	 * and retrieves an array containing the offspring.
-	 *
-	 * @param params parents.
-	 * @return the offspring.
 	 */
 	@Override
 	public T[] evaluate(T... params) {

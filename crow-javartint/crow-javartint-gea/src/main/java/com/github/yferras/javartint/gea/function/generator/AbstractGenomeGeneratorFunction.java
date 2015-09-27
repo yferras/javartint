@@ -28,10 +28,10 @@ import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
- * This class implements the interface {@link GeneratorFunction}.
+ * This class implements the interface {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}.
  * This class can be derived to create a functions to generate genomes.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
@@ -107,10 +107,11 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 	 *
 	 * @param genomeSize     the number of chromosomes.
 	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link Genome}
+	 * @return an instance of {@link com.github.yferras.javartint.gea.genome.Genome}
 	 */
 	protected abstract T generate(final int genomeSize, final int[] lengthsOfGenes);
 
+	/** {@inheritDoc} */
 	@Override
 	public T evaluate(Void... params) {
 		return generate(genomeSize, lengthsOfGenes);

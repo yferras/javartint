@@ -32,7 +32,7 @@ import java.util.Random;
 /**
  * Abstract class that represents mutation function.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -85,7 +85,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Chromo
 	 * Ensures that parameter are valid.
 	 *
 	 * @param param parameter to validate.
-	 * @throws IllegalArgumentException if {@code param} is {@code null}.
+	 * @throws java.lang.IllegalArgumentException if {@code param} is {@code null}.
 	 */
 	protected void validate(T param) throws IllegalArgumentException {
 		if (param == null) {
@@ -94,15 +94,11 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Chromo
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * If validation process is ok and generated random probability
 	 * is in bounds, performs the mutation process with a copy of
 	 * genome and returns a mutated genome.
-	 *
-	 * @param params genome to mutate.
-	 * @return if the mutation process is done, a copy of mutated
-	 * genome is returned, otherwise if a CloneNotSupportedException
-	 * is raised  a null value is returned.
-	 * @throws java.lang.IllegalArgumentException see {@link #validate(Genome)}
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

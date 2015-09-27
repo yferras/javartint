@@ -32,8 +32,8 @@ import java.util.Random;
 /**
  * Specific mutation function to real valued genomes.
  *
- * @param <T> Any derived class from {@link Genome}<code>&lt;? extends </code>
- *            {@link Gene}<code>&lt;Double&gt;&gt;</code>
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}<code>&lt;? extends </code>
+ *            {@link com.github.yferras.javartint.gea.gene.Gene}<code>&lt;Double&gt;&gt;</code>
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -120,11 +120,9 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 	}
 
 	/**
-	 * Ensures that parameters are valid.
+	 * {@inheritDoc}
 	 *
-	 * @param param parameter to validate.
-	 * @throws IllegalArgumentException if <code>param</code> is <code>null</code>,
-	 *                                  or the size of genome differs to the length of <code>ranges</code>
+	 * Ensures that parameters are valid.
 	 */
 	@Override
 	protected void validate(T param) throws IllegalArgumentException {
@@ -134,6 +132,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected T mutate(T subject) throws CloneNotSupportedException {
 		int i = 0;

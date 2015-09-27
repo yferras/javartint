@@ -30,9 +30,9 @@ import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import java.util.*;
 
 /**
- * This class is an abstract implementation of {@link Genome}.
+ * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.genome.Genome}.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
@@ -43,42 +43,52 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 	 */
 	protected List<T> chromosomes;
 
+	/**
+	 * <p>Constructor for AbstractGenome.</p>
+	 */
 	protected AbstractGenome() {
 		chromosomes = new LinkedList<>();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Chromosome<? extends Gene<?>>[] getChromosomes() {
 		return chromosomes.toArray(new Chromosome<?>[size()]);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
 		this.chromosomes.clear();
 		this.chromosomes.addAll(Arrays.asList(chromosomes));
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public T getChromosome(int index) {
 		return this.chromosomes.get(index);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setChromosome(int index, T newChromosome) {
 		this.chromosomes.set(index, newChromosome);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int size() {
 		return chromosomes.size();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addChromosome(T chromosome) {
 		chromosomes.add(chromosome);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public GenomeType getGenomeType() {
 		if (size() == 0)
@@ -86,6 +96,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<T> iterator() {
 		return new AbstractItemIterator<T>() {
@@ -101,6 +112,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 		};
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Genome<T> clone() throws CloneNotSupportedException {
@@ -112,6 +124,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 		return copy;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -122,6 +135,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 		return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		int result;
@@ -132,6 +146,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder("{");

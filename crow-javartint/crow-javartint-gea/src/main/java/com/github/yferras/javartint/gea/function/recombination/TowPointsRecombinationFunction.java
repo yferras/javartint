@@ -43,25 +43,40 @@ import java.util.Random;
  * </code>
  * </p>
  *
- * @param <T> any derived type from {@link Genome}
+ * @param <T> any derived type from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
 	extends AbstractRecombinationFunction<T> {
 
+	/**
+	 * <p>Constructor for TowPointsRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 * @param random a {@link java.util.Random} object.
+	 */
 	public TowPointsRecombinationFunction(double probability, Random random) {
 		super(probability, random);
 	}
 
+	/**
+	 * <p>Constructor for TowPointsRecombinationFunction.</p>
+	 *
+	 * @param probability a double.
+	 */
 	public TowPointsRecombinationFunction(double probability) {
 		super(probability);
 	}
 
+	/**
+	 * <p>Constructor for TowPointsRecombinationFunction.</p>
+	 */
 	public TowPointsRecombinationFunction() {
 		super();
 	}
 
+	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected T[] recombine(T parent1, T parent2)
