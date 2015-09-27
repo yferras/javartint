@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.chromosome;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.AbstractItemIterator;
 import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.util.*;
@@ -67,7 +68,17 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
 	@Override
 	public Iterator<T> iterator() {
-		return new ChromosomeIterator();
+		return new AbstractItemIterator<T>() {
+			@Override
+			public T getItem(int index) {
+				return getGene(index);
+			}
+
+			@Override
+			public int itemsCount() {
+				return size();
+			}
+		};
 	}
 
 	@Override
@@ -114,33 +125,6 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 			stringBuilder.append("; ").append(getGene(i));
 		}
 		return stringBuilder.append(")").append("}").toString();
-	}
-
-	private class ChromosomeIterator implements Iterator<T> {
-
-		private int cursor = 0;
-
-		@Override
-		public boolean hasNext() {
-			return cursor < size();
-		}
-
-		@Override
-		public T next() {
-			try {
-				int i = cursor;
-				T next = getGene(i);
-				cursor = i + 1;
-				return next;
-			} catch (IndexOutOfBoundsException e) {
-				throw new NoSuchElementException();
-			}
-		}
-
-		@Override
-		public void remove() {
-			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-		}
 	}
 
 }

@@ -108,11 +108,11 @@ public class DefaultGenomeTest {
 	}
 
 	/**
-	 * Test of size method, of class DefaultGenome.
+	 * Test of itemsCount method, of class DefaultGenome.
 	 */
 	@Test
 	public void testGetNumberOfGenes() {
-		System.out.println("size");
+		System.out.println("itemsCount");
 		DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
 		instance.addChromosome(new DefaultChromosome<>());
 		instance.getChromosome(0).setGenes(GENES);

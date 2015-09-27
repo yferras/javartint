@@ -22,9 +22,10 @@ package com.github.yferras.javartint.gea.gene;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.AbstractItemIterator;
+
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Default generic gene to represent arrays.
@@ -80,7 +81,17 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
 
 	@Override
 	public Iterator<T> iterator() {
-		return new ArrayGeneIterator();
+		return new AbstractItemIterator<T>() {
+			@Override
+			public T getItem(int index) {
+				return getAllele(index);
+			}
+
+			@Override
+			public int itemsCount() {
+				return length();
+			}
+		};
 	}
 
 	/**
@@ -102,32 +113,5 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
 		}
 		stringBuilder.append("]");
 		return stringBuilder.toString();
-	}
-
-	private class ArrayGeneIterator implements Iterator<T> {
-
-		private int cursor = 0;
-
-		@Override
-		public boolean hasNext() {
-			return cursor < length();
-		}
-
-		@Override
-		public T next() {
-			try {
-				int i = cursor;
-				T next = getAllele(i);
-				cursor = i + 1;
-				return next;
-			} catch (IndexOutOfBoundsException e) {
-				throw new NoSuchElementException();
-			}
-		}
-
-		@Override
-		public void remove() {
-			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-		}
 	}
 }
