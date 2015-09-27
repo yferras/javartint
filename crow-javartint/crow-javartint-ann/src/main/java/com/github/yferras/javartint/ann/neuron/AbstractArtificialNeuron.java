@@ -25,18 +25,18 @@ package com.github.yferras.javartint.ann.neuron;
 import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
 import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
 import com.github.yferras.javartint.core.function.DefaultCompositeFunction;
+import com.github.yferras.javartint.core.util.AbstractItemIterator;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
- * Class that implements partially {@link ArtificialNeuron} to create
+ * Class that implements partially {@link com.github.yferras.javartint.ann.neuron.ArtificialNeuron} to create
  * artificial neurons.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class AbstractArtificialNeuron
+public abstract class AbstractArtificialNeuron
 	extends DefaultCompositeFunction<Double, Double[]>
 	implements ArtificialNeuron {
 
@@ -48,7 +48,7 @@ public class AbstractArtificialNeuron
 	/**
 	 * Constructor for AbstractArtificialNeuron.
 	 *
-	 * @param size the size of the neuron (number of weights).
+	 * @param size the itemsCount of the neuron (number of weights).
 	 * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
 	 * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
 	 */
@@ -76,39 +76,24 @@ public class AbstractArtificialNeuron
 	/** {@inheritDoc} */
 	@Override
 	public int size() {
-		return getWeights().length;
+		return weights.length;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public Iterator<Double> iterator() {
-		return new ArtificialNeuronIterator();
-	}
+		return new AbstractItemIterator<Double>() {
 
-	private class ArtificialNeuronIterator implements Iterator<Double> {
-
-		private int cursor = 0;
-
-		@Override
-		public boolean hasNext() {
-			return cursor < size();
-		}
-
-		@Override
-		public Double next() {
-			try {
-				int i = cursor;
-				Double next = weights[i];
-				cursor = i + 1;
-				return next;
-			} catch (IndexOutOfBoundsException e) {
-				throw new NoSuchElementException();
+			@Override
+			public Double getItem(int index) {
+				return weights[index];
 			}
-		}
 
-		@Override
-		public void remove() {
-			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-		}
+			@Override
+			public int itemsCount() {
+				return weights.length;
+			}
+		};
 	}
+
 }

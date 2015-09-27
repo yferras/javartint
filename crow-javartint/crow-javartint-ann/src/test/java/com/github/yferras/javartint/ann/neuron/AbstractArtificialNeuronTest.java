@@ -1,4 +1,4 @@
-package com.github.yferras.javartint.ann;
+package com.github.yferras.javartint.ann.neuron;
 
 /*
  * #%L
@@ -22,21 +22,29 @@ package com.github.yferras.javartint.ann;
  * #L%
  */
 
-import com.github.yferras.javartint.ann.function.activation.LineActivationFunctionTest;
-import com.github.yferras.javartint.ann.function.propagationrule.BalancedSumPropagationRuleFunctionTest;
-import com.github.yferras.javartint.ann.function.propagationrule.EuclideanDistancePropagationRuleFunctionTest;
-import com.github.yferras.javartint.ann.neuron.AbstractArtificialNeuronTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.Before;
+import org.junit.Test;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses(
-	{
-		LineActivationFunctionTest.class,
-		BalancedSumPropagationRuleFunctionTest.class,
-		EuclideanDistancePropagationRuleFunctionTest.class,
-		AbstractArtificialNeuronTest.class,
+import static org.junit.Assert.*;
+
+
+public class AbstractArtificialNeuronTest {
+
+	@Before
+	public void setUp() {
+		System.out.print(AbstractArtificialNeuron.class.getName().concat("."));
 	}
-)
-public class AnnITSuite {
+
+	@Test
+	public void testIterator() throws Exception {
+		System.out.println("iterator");
+		AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, null, null) {
+
+		};
+		int count = 0;
+		for (Double value : neuron) {
+			count++;
+		}
+		assertEquals(neuron.size(), count);
+	}
 }
