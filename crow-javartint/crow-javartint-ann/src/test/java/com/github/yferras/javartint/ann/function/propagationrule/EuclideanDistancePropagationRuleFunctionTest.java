@@ -26,30 +26,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class EuclideanDistancePropagationRuleFunctionTest {
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-	}
+    }
 
-	@After
-	public void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
-	}
+    }
 
-	@Test
-	public void testEvaluate() throws Exception {
-		EuclideanDistancePropagationRuleFunction function = new EuclideanDistancePropagationRuleFunction();
-		Double[] inputs = {4.0, 4.0, 4.0};
-		Double[] weights = {2.0, 2.0, 2.0};
-		Double expected = 12.0;
-		Double actual = function.evaluate(new Double[][]{inputs, weights});
-		assertEquals(expected, actual);
-	}
+    @Test
+    public void testEvaluate() throws Exception {
+        EuclideanDistancePropagationRuleFunction function = new EuclideanDistancePropagationRuleFunction();
+        Double[] inputs = {4.0, 4.0, 4.0};
+        Double[] weights = {2.0, 2.0, 2.0};
+        Double expected = 12.0;
+        Double actual = function.evaluate(new Double[][]{inputs, weights});
+        assertEquals(expected, actual);
+    }
 }

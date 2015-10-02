@@ -34,30 +34,36 @@ import java.util.NoSuchElementException;
  */
 public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
 
-	private int cursor = 0;
+    private int cursor = 0;
 
-	/** {@inheritDoc} */
-	@Override
-	public boolean hasNext() {
-		return cursor < itemsCount();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean hasNext() {
+        return cursor < itemsCount();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public E next() {
-		try {
-			int i = cursor;
-			E next = getItem(i);
-			cursor = i + 1;
-			return next;
-		} catch (IndexOutOfBoundsException e) {
-			throw new NoSuchElementException();
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public E next() {
+        try {
+            int i = cursor;
+            E next = getItem(i);
+            cursor = i + 1;
+            return next;
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchElementException();
+        }
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void remove() {
-		throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+    }
 }

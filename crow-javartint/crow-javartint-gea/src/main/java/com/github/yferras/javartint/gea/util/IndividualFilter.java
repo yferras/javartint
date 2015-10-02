@@ -22,8 +22,8 @@ package com.github.yferras.javartint.gea.util;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.core.util.Filter;
+import com.github.yferras.javartint.gea.Individual;
 
 /**
  * This interface serves to implements many filters to ensure that the individuals

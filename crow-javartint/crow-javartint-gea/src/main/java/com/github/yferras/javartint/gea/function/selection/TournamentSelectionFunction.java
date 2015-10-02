@@ -37,61 +37,63 @@ import java.util.Random;
  * @version 0.0.2
  */
 public class TournamentSelectionFunction<T extends Individual>
-	extends AbstractSelectionFunction<T> {
+    extends AbstractSelectionFunction<T> {
 
-	/**
-	 * <p>Constructor for TournamentSelectionFunction.</p>
-	 */
-	public TournamentSelectionFunction() {
-		this(2);
-	}
+    /**
+     * <p>Constructor for TournamentSelectionFunction.</p>
+     */
+    public TournamentSelectionFunction() {
+        this(2);
+    }
 
-	/**
-	 * <p>Constructor for TournamentSelectionFunction.</p>
-	 *
-	 * @param selectedGenomes a int.
-	 */
-	public TournamentSelectionFunction(int selectedGenomes) {
-		this(selectedGenomes, null);
-	}
+    /**
+     * <p>Constructor for TournamentSelectionFunction.</p>
+     *
+     * @param selectedGenomes a int.
+     */
+    public TournamentSelectionFunction(int selectedGenomes) {
+        this(selectedGenomes, null);
+    }
 
-	/**
-	 * <p>Constructor for TournamentSelectionFunction.</p>
-	 *
-	 * @param selectedGenomes a int.
-	 * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
-	 * @throws java.lang.IllegalArgumentException if any.
-	 */
-	public TournamentSelectionFunction(int selectedGenomes,
-	                                   AbstractScalingMethod<T> scalingMethod)
-		throws IllegalArgumentException {
-		super(selectedGenomes, scalingMethod);
-	}
+    /**
+     * <p>Constructor for TournamentSelectionFunction.</p>
+     *
+     * @param selectedGenomes a int.
+     * @param scalingMethod   a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
+     * @throws java.lang.IllegalArgumentException if any.
+     */
+    public TournamentSelectionFunction(int selectedGenomes,
+                                       AbstractScalingMethod<T> scalingMethod)
+        throws IllegalArgumentException {
+        super(selectedGenomes, scalingMethod);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	protected List<T> select(List<T> individuals) {
-		if (getScalingMethod() != null) {
-			getScalingMethod().evaluate(individuals);
-		}
-		List<T> selected = new ArrayList<>(getNumToSelect());
-		while (selected.size() < getNumToSelect()) {
-			selected.add(tournamentSelection(individuals));
-		}
-		return selected;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected List<T> select(List<T> individuals) {
+        if (getScalingMethod() != null) {
+            getScalingMethod().evaluate(individuals);
+        }
+        List<T> selected = new ArrayList<>(getNumToSelect());
+        while (selected.size() < getNumToSelect()) {
+            selected.add(tournamentSelection(individuals));
+        }
+        return selected;
+    }
 
-	private T tournamentSelection(List<T> genomes) {
-		double bestFitnessSoFar = 0;
-		int chosenOne = 0;
-		Random rand = new Random();
-		for (int i = 0; i < getNumToSelect(); i++) {
-			int thisTry = rand.nextInt(genomes.size());
-			if (genomes.get(thisTry).getFitness() > bestFitnessSoFar) {
-				chosenOne = thisTry;
-				bestFitnessSoFar = genomes.get(thisTry).getFitness();
-			}
-		}
-		return genomes.get(chosenOne);
-	}
+    private T tournamentSelection(List<T> genomes) {
+        double bestFitnessSoFar = 0;
+        int chosenOne = 0;
+        Random rand = new Random();
+        for (int i = 0; i < getNumToSelect(); i++) {
+            int thisTry = rand.nextInt(genomes.size());
+            if (genomes.get(thisTry).getFitness() > bestFitnessSoFar) {
+                chosenOne = thisTry;
+                bestFitnessSoFar = genomes.get(thisTry).getFitness();
+            }
+        }
+        return genomes.get(chosenOne);
+    }
 }

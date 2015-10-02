@@ -33,17 +33,17 @@ package com.github.yferras.javartint.core.function;
  */
 public interface CompositeFunction<R, P> extends Function<R, P> {
 
-	/**
-	 * Sets an array of functions.
-	 *
-	 * @param functions array of functions.
-	 */
-	void setFunctions(Function... functions);
+    /**
+     * Sets an array of functions.
+     *
+     * @param functions array of functions.
+     */
+    void setFunctions(Function... functions);
 
-	/**
-	 * Gets the numbers of composite functions.
-	 *
-	 * @return the numbers of composite functions.
-	 */
-	int getN();
+    /**
+     * Gets the numbers of composite functions.
+     *
+     * @return the numbers of composite functions.
+     */
+    int getN();
 }

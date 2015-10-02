@@ -35,41 +35,43 @@ import java.util.List;
  * @version 0.0.2
  */
 public final class BoltzmannScalingMethod<T extends Individual>
-	extends AbstractScalingMethod<T> {
+    extends AbstractScalingMethod<T> {
 
-	private final static double BOLTZMANN_DELTA_TEMP = 0.05;
-	private final static double BOLTZMANN_MIN_TEMP = 1.0;
-	private double boltzmannTemp;
+    private final static double BOLTZMANN_DELTA_TEMP = 0.05;
+    private final static double BOLTZMANN_MIN_TEMP = 1.0;
+    private double boltzmannTemp;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param cities number of cities
-	 */
-	public BoltzmannScalingMethod(int cities) {
-		super(null);
-		boltzmannTemp = 2.0 * cities;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param cities number of cities
+     */
+    public BoltzmannScalingMethod(int cities) {
+        super(null);
+        boltzmannTemp = 2.0 * cities;
+    }
 
-	/**
-	 * Gets the Boltzmann temperature
-	 *
-	 * @return Boltzmann temperature value
-	 */
-	public double getBoltzmannTemp() {
-		return boltzmannTemp;
-	}
+    /**
+     * Gets the Boltzmann temperature
+     *
+     * @return Boltzmann temperature value
+     */
+    public double getBoltzmannTemp() {
+        return boltzmannTemp;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	protected void scale(List<T> individuals) {
-		boltzmannTemp -= BOLTZMANN_DELTA_TEMP;
-		if (boltzmannTemp < BOLTZMANN_MIN_TEMP) {
-			boltzmannTemp = BOLTZMANN_MIN_TEMP;
-		}
-		final double divider = MathUtil.mean(individuals) / boltzmannTemp;
-		for (T individual : individuals) {
-			individual.setFitness(individual.getFitness() / divider);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void scale(List<T> individuals) {
+        boltzmannTemp -= BOLTZMANN_DELTA_TEMP;
+        if (boltzmannTemp < BOLTZMANN_MIN_TEMP) {
+            boltzmannTemp = BOLTZMANN_MIN_TEMP;
+        }
+        final double divider = MathUtil.mean(individuals) / boltzmannTemp;
+        for (T individual : individuals) {
+            individual.setFitness(individual.getFitness() / divider);
+        }
+    }
 }

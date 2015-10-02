@@ -35,40 +35,48 @@ import java.util.Iterator;
  */
 public class AbstractArtificialLayer<T extends ArtificialNeuron> implements ArtificialLayer<T> {
 
-	private T[] neurons;
+    private T[] neurons;
 
 
-	/** {@inheritDoc} */
-	@Override
-	public int size() {
-		return neurons.length;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+        return neurons.length;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public T[] getNeurons() {
-		return neurons;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public T[] getNeurons() {
+        return neurons;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public T getNeuron(int index) {
-		return neurons[index];
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public T getNeuron(int index) {
+        return neurons[index];
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Iterator<T> iterator() {
-		return new AbstractItemIterator<T>() {
-			@Override
-			public T getItem(int index) {
-				return neurons[index];
-			}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new AbstractItemIterator<T>() {
+            @Override
+            public T getItem(int index) {
+                return neurons[index];
+            }
 
-			@Override
-			public int itemsCount() {
-				return neurons.length;
-			}
-		};
-	}
+            @Override
+            public int itemsCount() {
+                return neurons.length;
+            }
+        };
+    }
 }

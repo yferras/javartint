@@ -25,26 +25,26 @@ package com.github.yferras.javartint.ann.neuron;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class AbstractArtificialNeuronTest {
 
-	@Before
-	public void setUp() {
-		System.out.print(AbstractArtificialNeuron.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() {
+        System.out.print(AbstractArtificialNeuron.class.getName().concat("."));
+    }
 
-	@Test
-	public void testIterator() throws Exception {
-		System.out.println("iterator");
-		AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, null, null) {
+    @Test
+    public void testIterator() throws Exception {
+        System.out.println("iterator");
+        AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, null, null) {
 
-		};
-		int count = 0;
-		for (Double value : neuron) {
-			count++;
-		}
-		assertEquals(neuron.size(), count);
-	}
+        };
+        int count = 0;
+        for (Double value : neuron) {
+            count++;
+        }
+        assertEquals(neuron.size(), count);
+    }
 }

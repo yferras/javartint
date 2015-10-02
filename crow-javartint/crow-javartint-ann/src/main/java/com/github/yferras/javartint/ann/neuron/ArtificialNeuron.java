@@ -33,27 +33,27 @@ import java.io.Serializable;
  * @version 0.0.2
  */
 public interface ArtificialNeuron
-	extends CompositeFunction<Double, Double[]>, Iterable<Double>, Serializable {
+    extends CompositeFunction<Double, Double[]>, Iterable<Double>, Serializable {
 
-	/**
-	 * Gets the weights
-	 *
-	 * @return an array of weights.
-	 */
-	Double[] getWeights();
+    /**
+     * Gets the weights
+     *
+     * @return an array of weights.
+     */
+    Double[] getWeights();
 
-	/**
-	 * Get the bias of the artificial neuron.
-	 *
-	 * @return the bias value.
-	 */
-	double getBias();
+    /**
+     * Get the bias of the artificial neuron.
+     *
+     * @return the bias value.
+     */
+    double getBias();
 
-	/**
-	 * Gets the size of the artificial neuron. The size of the neuron will be determined by the number of inputs.
-	 *
-	 * @return the size of the neuron.
-	 */
-	int size();
+    /**
+     * Gets the size of the artificial neuron. The size of the neuron will be determined by the number of inputs.
+     *
+     * @return the size of the neuron.
+     */
+    int size();
 
 }

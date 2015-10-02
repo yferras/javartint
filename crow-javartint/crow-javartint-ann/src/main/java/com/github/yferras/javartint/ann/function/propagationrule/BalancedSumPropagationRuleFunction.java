@@ -30,13 +30,15 @@ package com.github.yferras.javartint.ann.function.propagationrule;
  */
 public class BalancedSumPropagationRuleFunction extends AbstractPropagationRuleFunction {
 
-	/** {@inheritDoc} */
-	@Override
-	protected Double evaluate(Double[] inputs, Double[] weights) {
-		double sum = 0.0;
-		for (int i = 0; i < weights.length; i++) {
-			sum += weights[i] * inputs[i];
-		}
-		return sum;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Double evaluate(Double[] inputs, Double[] weights) {
+        double sum = 0.0;
+        for (int i = 0; i < weights.length; i++) {
+            sum += weights[i] * inputs[i];
+        }
+        return sum;
+    }
 }

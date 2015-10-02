@@ -34,28 +34,30 @@ package com.github.yferras.javartint.core.function;
  */
 public abstract class AbstractDerivableFunction<R, P> implements DerivableFunction<R, P> {
 
-	private DerivableFunction parent;
+    private DerivableFunction parent;
 
-	/**
-	 * Constructor for AbstractDerivableFunction.
-	 */
-	public AbstractDerivableFunction() {
-		this(null);
-	}
+    /**
+     * Constructor for AbstractDerivableFunction.
+     */
+    public AbstractDerivableFunction() {
+        this(null);
+    }
 
-	/**
-	 * Constructor for AbstractDerivableFunction.
-	 *
-	 * @param parent a {@link com.github.yferras.javartint.core.function.DerivableFunction} object.
-	 */
-	public AbstractDerivableFunction(DerivableFunction parent) {
-		this.parent = parent;
-	}
+    /**
+     * Constructor for AbstractDerivableFunction.
+     *
+     * @param parent a {@link com.github.yferras.javartint.core.function.DerivableFunction} object.
+     */
+    public AbstractDerivableFunction(DerivableFunction parent) {
+        this.parent = parent;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int getN() {
-		return  this.parent == null ? 0 : this.parent.getN() + 1;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getN() {
+        return this.parent == null ? 0 : this.parent.getN() + 1;
+    }
 
 }

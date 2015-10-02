@@ -22,9 +22,9 @@ package com.github.yferras.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.genome.TspGenome;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
+import com.github.yferras.javartint.gea.genome.TspGenome;
 
 import java.util.Random;
 
@@ -57,46 +57,48 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class ExchangeMutationFunction<T extends TspGenome>
-	extends AbstractMutationFunction<T> {
+    extends AbstractMutationFunction<T> {
 
-	/**
-	 * <p>Constructor for ExchangeMutationFunction.</p>
-	 *
-	 * @param probability a double.
-	 * @param random a {@link java.util.Random} object.
-	 */
-	public ExchangeMutationFunction(double probability, Random random) {
-		super(probability, random);
-	}
+    /**
+     * <p>Constructor for ExchangeMutationFunction.</p>
+     *
+     * @param probability a double.
+     * @param random      a {@link java.util.Random} object.
+     */
+    public ExchangeMutationFunction(double probability, Random random) {
+        super(probability, random);
+    }
 
-	/**
-	 * <p>Constructor for ExchangeMutationFunction.</p>
-	 *
-	 * @param probability a double.
-	 */
-	public ExchangeMutationFunction(double probability) {
-		super(probability);
-	}
+    /**
+     * <p>Constructor for ExchangeMutationFunction.</p>
+     *
+     * @param probability a double.
+     */
+    public ExchangeMutationFunction(double probability) {
+        super(probability);
+    }
 
-	/**
-	 * <p>Constructor for ExchangeMutationFunction.</p>
-	 */
-	public ExchangeMutationFunction() {
-		super();
-	}
+    /**
+     * <p>Constructor for ExchangeMutationFunction.</p>
+     */
+    public ExchangeMutationFunction() {
+        super();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	protected T mutate(T subject)
-		throws CloneNotSupportedException {
-		int pos1 = getRandom().nextInt(subject.getChromosome().size() - 1);
-		int pos2 = getRandom().nextInt(subject.getChromosome().size());
-		while (pos2 == pos1) {
-			pos2 = getRandom().nextInt(subject.getChromosome().size());
-		}
-		DefaultGene<Integer> gene1 = subject.getChromosome().getGene(pos1);
-		subject.getChromosome().setGene(pos1, subject.getChromosome().getGene(pos2));
-		subject.getChromosome().setGene(pos2, gene1);
-		return subject;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected T mutate(T subject)
+        throws CloneNotSupportedException {
+        int pos1 = getRandom().nextInt(subject.getChromosome().size() - 1);
+        int pos2 = getRandom().nextInt(subject.getChromosome().size());
+        while (pos2 == pos1) {
+            pos2 = getRandom().nextInt(subject.getChromosome().size());
+        }
+        DefaultGene<Integer> gene1 = subject.getChromosome().getGene(pos1);
+        subject.getChromosome().setGene(pos1, subject.getChromosome().getGene(pos2));
+        subject.getChromosome().setGene(pos2, gene1);
+        return subject;
+    }
 }

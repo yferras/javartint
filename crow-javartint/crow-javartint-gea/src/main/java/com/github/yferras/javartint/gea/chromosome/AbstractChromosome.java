@@ -25,7 +25,10 @@ package com.github.yferras.javartint.gea.chromosome;
 import com.github.yferras.javartint.core.util.AbstractItemIterator;
 import com.github.yferras.javartint.gea.gene.Gene;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.chromosome.Chromosome}.
@@ -35,110 +38,132 @@ import java.util.*;
  * @version 0.0.1
  */
 public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosome<T> {
-	/**
-	 * List of genes that contains the chromosome information.
-	 */
-	protected List<T> genes;
+    /**
+     * List of genes that contains the chromosome information.
+     */
+    protected List<T> genes;
 
-	/**
-	 * <p>Constructor for AbstractChromosome.</p>
-	 */
-	protected AbstractChromosome() {
-		genes = new LinkedList<>();
-	}
+    /**
+     * <p>Constructor for AbstractChromosome.</p>
+     */
+    protected AbstractChromosome() {
+        genes = new LinkedList<>();
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public Gene<?>[] getGenes() {
-		return genes.toArray(new Gene<?>[size()]);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Gene<?>[] getGenes() {
+        return genes.toArray(new Gene<?>[size()]);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void setGenes(T[] genes) throws IllegalArgumentException {
-		this.genes.clear();
-		this.genes.addAll(Arrays.asList(genes));
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setGenes(T[] genes) throws IllegalArgumentException {
+        this.genes.clear();
+        this.genes.addAll(Arrays.asList(genes));
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public T getGene(int locus) throws IndexOutOfBoundsException {
-		return genes.get(locus);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public T getGene(int locus) throws IndexOutOfBoundsException {
+        return genes.get(locus);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int size() {
-		return genes.size();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+        return genes.size();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Iterator<T> iterator() {
-		return new AbstractItemIterator<T>() {
-			@Override
-			public T getItem(int index) {
-				return getGene(index);
-			}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new AbstractItemIterator<T>() {
+            @Override
+            public T getItem(int index) {
+                return getGene(index);
+            }
 
-			@Override
-			public int itemsCount() {
-				return size();
-			}
-		};
-	}
+            @Override
+            public int itemsCount() {
+                return size();
+            }
+        };
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void setGene(int locus, T newGene) {
-		genes.set(locus, newGene);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setGene(int locus, T newGene) {
+        genes.set(locus, newGene);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void addGene(T gene) {
-		genes.add(gene);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addGene(T gene) {
+        genes.add(gene);
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public AbstractChromosome<T> clone() throws CloneNotSupportedException {
-		AbstractChromosome<T> copy = (AbstractChromosome<T>) super.clone();
-		copy.genes = new LinkedList<>();
-		for (T t : this) {
-			copy.genes.add((T) t.clone());
-		}
-		return copy;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public AbstractChromosome<T> clone() throws CloneNotSupportedException {
+        AbstractChromosome<T> copy = (AbstractChromosome<T>) super.clone();
+        copy.genes = new LinkedList<>();
+        for (T t : this) {
+            copy.genes.add((T) t.clone());
+        }
+        return copy;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-		AbstractChromosome that = (AbstractChromosome) o;
+        AbstractChromosome that = (AbstractChromosome) o;
 
-		return genes.equals(that.genes);
-	}
+        return genes.equals(that.genes);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int hashCode() {
-		return genes.hashCode();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return genes.hashCode();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder("{");
-		stringBuilder.append(" Genes: (").append(size() != 0 ? getGene(0) : "");
-		for (int i = 1; i < size(); i++) {
-			stringBuilder.append("; ").append(getGene(i));
-		}
-		return stringBuilder.append(")").append("}").toString();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        stringBuilder.append(" Genes: (").append(size() != 0 ? getGene(0) : "");
+        for (int i = 1; i < size(); i++) {
+            stringBuilder.append("; ").append(getGene(i));
+        }
+        return stringBuilder.append(")").append("}").toString();
+    }
 
 }

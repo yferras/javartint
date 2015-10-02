@@ -22,10 +22,10 @@ package com.github.yferras.javartint.gea.function.mutation;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.chromosome.Chromosome;
-import com.github.yferras.javartint.gea.genome.Genome;
 import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
+import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
+import com.github.yferras.javartint.gea.genome.Genome;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -39,81 +39,81 @@ import java.util.logging.Logger;
  * @version 0.0.1
  */
 abstract public class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-	extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
+    extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability probability of mutation
-	 * @param random      random instance
-	 */
-	protected AbstractMutationFunction(double probability,
-	                                   Random random) {
-		super(probability, random);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     *
+     * @param probability probability of mutation
+     * @param random      random instance
+     */
+    protected AbstractMutationFunction(double probability,
+                                       Random random) {
+        super(probability, random);
+    }
 
-	/**
-	 * Constructor, initializes instances with probability of mutation
-	 * specified by {@code probability} parameter and random  is an
-	 * instance of
-	 * {@link java.util.Random}.
-	 *
-	 * @param probability probability of mutation
-	 */
-	protected AbstractMutationFunction(double probability) {
-		super(probability);
-	}
+    /**
+     * Constructor, initializes instances with probability of mutation
+     * specified by {@code probability} parameter and random  is an
+     * instance of
+     * {@link java.util.Random}.
+     *
+     * @param probability probability of mutation
+     */
+    protected AbstractMutationFunction(double probability) {
+        super(probability);
+    }
 
-	/**
-	 * Default constructor, initializes instances with probability of mutation
-	 * equals to {@code .05} and random generator is an instance of
-	 * {@link java.util.Random}.
-	 */
-	protected AbstractMutationFunction() {
-		super(.05);
-	}
+    /**
+     * Default constructor, initializes instances with probability of mutation
+     * equals to {@code .05} and random generator is an instance of
+     * {@link java.util.Random}.
+     */
+    protected AbstractMutationFunction() {
+        super(.05);
+    }
 
-	/**
-	 * Performs the specific mutation process. This method is called inside
-	 * the method {@link #evaluate(Genome)}
-	 *
-	 * @param subject individual which will be mutate
-	 * @return mutated genome
-	 * @throws java.lang.CloneNotSupportedException if
-	 */
-	protected abstract T mutate(T subject) throws CloneNotSupportedException;
+    /**
+     * Performs the specific mutation process. This method is called inside
+     * the method {@link #evaluate(Genome)}
+     *
+     * @param subject individual which will be mutate
+     * @return mutated genome
+     * @throws java.lang.CloneNotSupportedException if
+     */
+    protected abstract T mutate(T subject) throws CloneNotSupportedException;
 
-	/**
-	 * Ensures that parameter are valid.
-	 *
-	 * @param param parameter to validate.
-	 * @throws java.lang.IllegalArgumentException if {@code param} is {@code null}.
-	 */
-	protected void validate(T param) throws IllegalArgumentException {
-		if (param == null) {
-			throw new IllegalArgumentException("'params' can't be null.");
-		}
-	}
+    /**
+     * Ensures that parameter are valid.
+     *
+     * @param param parameter to validate.
+     * @throws java.lang.IllegalArgumentException if {@code param} is {@code null}.
+     */
+    protected void validate(T param) throws IllegalArgumentException {
+        if (param == null) {
+            throw new IllegalArgumentException("'params' can't be null.");
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * If validation process is ok and generated random probability
-	 * is in bounds, performs the mutation process with a copy of
-	 * genome and returns a mutated genome.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public T evaluate(T params) {
-		validate(params);
-		if (getRandom().nextDouble() > getProbability()) {
-			return params;
-		}
-		try {
-			return mutate((T) params.clone());
-		} catch (CloneNotSupportedException e) {
-			Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * If validation process is ok and generated random probability
+     * is in bounds, performs the mutation process with a copy of
+     * genome and returns a mutated genome.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public T evaluate(T params) {
+        validate(params);
+        if (getRandom().nextDouble() > getProbability()) {
+            return params;
+        }
+        try {
+            return mutate((T) params.clone());
+        } catch (CloneNotSupportedException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
+            return null;
+        }
+    }
 }

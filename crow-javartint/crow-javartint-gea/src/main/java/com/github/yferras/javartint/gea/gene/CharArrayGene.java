@@ -30,13 +30,13 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class CharArrayGene extends ArrayGene<Character> {
 
-	/**
-	 * <p>Constructor for CharArrayGene.</p>
-	 *
-	 * @param data an array of {@link java.lang.Character} objects.
-	 */
-	public CharArrayGene(Character[] data) {
-		super(data);
-	}
+    /**
+     * <p>Constructor for CharArrayGene.</p>
+     *
+     * @param data an array of {@link java.lang.Character} objects.
+     */
+    public CharArrayGene(Character[] data) {
+        super(data);
+    }
 
 }

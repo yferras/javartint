@@ -33,28 +33,28 @@ import com.github.yferras.javartint.core.Solution;
  * @version 0.0.1
  */
 public class RuntimeConstraint<A extends Algorithm<? extends Solution>>
-	extends AbstractThresholdConstraint<Long, A> {
+    extends AbstractThresholdConstraint<Long, A> {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param constraintType constrain type.
-	 * @param threshold      max time threshold.
-	 */
-	public RuntimeConstraint(ConstraintType constraintType, long threshold) {
-		super(constraintType, threshold);
-	}
+    /**
+     * Constructor.
+     *
+     * @param constraintType constrain type.
+     * @param threshold      max time threshold.
+     */
+    public RuntimeConstraint(ConstraintType constraintType, long threshold) {
+        super(constraintType, threshold);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * If the actual elapsed time is greater than the threshold, in
-	 * this case returns <code>true</code>, otherwise returns
-	 * <code>false</code>.
-	 */
-	@Override
-	public boolean evaluate(A algorithm) {
-		return algorithm.getElapsedTime().compareTo(getThreshold()) > 0;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * If the actual elapsed time is greater than the threshold, in
+     * this case returns <code>true</code>, otherwise returns
+     * <code>false</code>.
+     */
+    @Override
+    public boolean evaluate(A algorithm) {
+        return algorithm.getElapsedTime().compareTo(getThreshold()) > 0;
+    }
 
 }

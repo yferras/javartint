@@ -36,41 +36,43 @@ import java.util.List;
  * @version 0.0.1
  */
 public final class LinearRankScalingMethod<T extends Individual>
-	extends AbstractScalingMethod<T> {
+    extends AbstractScalingMethod<T> {
 
-	private double selectivePressure;
+    private double selectivePressure;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param selectivePressure this value must be between 1.0 and 2.0
-	 * @param optimize          optimization way
-	 * @throws java.lang.IllegalArgumentException if {@code selectivePressure} value is out of 1.0 and 2.0
-	 */
-	public LinearRankScalingMethod(double selectivePressure, Optimize optimize) {
-		super(optimize);
-		if (selectivePressure < 1.0 || selectivePressure > 2.0) {
-			throw new IllegalArgumentException("SELECTIVE PRESSURE MUST BE BETWEEN 1.0 AND 2.0");
-		}
-		this.selectivePressure = selectivePressure;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param selectivePressure this value must be between 1.0 and 2.0
+     * @param optimize          optimization way
+     * @throws java.lang.IllegalArgumentException if {@code selectivePressure} value is out of 1.0 and 2.0
+     */
+    public LinearRankScalingMethod(double selectivePressure, Optimize optimize) {
+        super(optimize);
+        if (selectivePressure < 1.0 || selectivePressure > 2.0) {
+            throw new IllegalArgumentException("SELECTIVE PRESSURE MUST BE BETWEEN 1.0 AND 2.0");
+        }
+        this.selectivePressure = selectivePressure;
+    }
 
-	/**
-	 * Gets the selective pressure
-	 *
-	 * @return selective pressure value
-	 */
-	public double getSelectivePressure() {
-		return selectivePressure;
-	}
+    /**
+     * Gets the selective pressure
+     *
+     * @return selective pressure value
+     */
+    public double getSelectivePressure() {
+        return selectivePressure;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	protected void scale(List<T> individuals) {
-		Collections.sort(individuals); // Sorts ascending
-		for (int i = 0, n = individuals.size(); i < n; i++) {
-			double newValue = 2.0 - getSelectivePressure() + 2.0 * (getSelectivePressure() - 1) * i / (n - 1);
-			individuals.get(i).setFitness(newValue);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void scale(List<T> individuals) {
+        Collections.sort(individuals); // Sorts ascending
+        for (int i = 0, n = individuals.size(); i < n; i++) {
+            double newValue = 2.0 - getSelectivePressure() + 2.0 * (getSelectivePressure() - 1) * i / (n - 1);
+            individuals.get(i).setFitness(newValue);
+        }
+    }
 }

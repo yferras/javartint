@@ -61,65 +61,67 @@ import java.util.*;
  * @version 0.0.1
  */
 public class DisplacementMutationFunction<T extends TspGenome>
-	extends AbstractTspSpanMutationFunction<T> {
+    extends AbstractTspSpanMutationFunction<T> {
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability probability of mutation
-	 * @param random      random instance
-	 * @param minSpanSize min span size
-	 */
-	public DisplacementMutationFunction(double probability, Random random, int minSpanSize) {
-		super(probability, random, minSpanSize);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     *
+     * @param probability probability of mutation
+     * @param random      random instance
+     * @param minSpanSize min span size
+     */
+    public DisplacementMutationFunction(double probability, Random random, int minSpanSize) {
+        super(probability, random, minSpanSize);
+    }
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 * By default it uses as random generator an instance of {@link java.util.Random}.
-	 *
-	 * @param probability probability of mutation
-	 * @param minSpanSize min span size
-	 */
-	public DisplacementMutationFunction(double probability, int minSpanSize) {
-		super(probability, minSpanSize);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     * By default it uses as random generator an instance of {@link java.util.Random}.
+     *
+     * @param probability probability of mutation
+     * @param minSpanSize min span size
+     */
+    public DisplacementMutationFunction(double probability, int minSpanSize) {
+        super(probability, minSpanSize);
+    }
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 * By default it uses as random generator an instance of {@link java.util.Random},
-	 * and <code>probability = 0.05</code>.
-	 *
-	 * @param minSpanSize min span size
-	 */
-	public DisplacementMutationFunction(int minSpanSize) {
-		super(minSpanSize);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     * By default it uses as random generator an instance of {@link java.util.Random},
+     * and <code>probability = 0.05</code>.
+     *
+     * @param minSpanSize min span size
+     */
+    public DisplacementMutationFunction(int minSpanSize) {
+        super(minSpanSize);
+    }
 
-	/**
-	 * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
-	 * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
-	 */
-	public DisplacementMutationFunction() {
-		super();
-	}
+    /**
+     * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
+     * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
+     */
+    public DisplacementMutationFunction() {
+        super();
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected T mutate(T subject)
-		throws CloneNotSupportedException {
-		int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
-		int end = start + getMinSpanSize();
-		List genes = new ArrayList(Arrays.asList(subject.getChromosome().getGenes()));
-		List<DefaultGene<Integer>> section = new ArrayList<>(genes.subList(start, end));
-		genes.removeAll(section);
-		int curPos = getRandom().nextInt(genes.size());
-		genes.addAll(curPos, section);
-		final ListIterator<DefaultGene<Integer>> iterator = genes.listIterator();
-		for (int i = 0; i < genes.size(); i++) {
-			subject.getChromosome().setGene(i, iterator.next());
-		}
-		return subject;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected T mutate(T subject)
+        throws CloneNotSupportedException {
+        int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
+        int end = start + getMinSpanSize();
+        List genes = new ArrayList(Arrays.asList(subject.getChromosome().getGenes()));
+        List<DefaultGene<Integer>> section = new ArrayList<>(genes.subList(start, end));
+        genes.removeAll(section);
+        int curPos = getRandom().nextInt(genes.size());
+        genes.addAll(curPos, section);
+        final ListIterator<DefaultGene<Integer>> iterator = genes.listIterator();
+        for (int i = 0; i < genes.size(); i++) {
+            subject.getChromosome().setGene(i, iterator.next());
+        }
+        return subject;
+    }
 }

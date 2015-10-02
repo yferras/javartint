@@ -22,8 +22,8 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.core.function.Function;
+import com.github.yferras.javartint.gea.Individual;
 
 import java.util.List;
 
@@ -35,5 +35,5 @@ import java.util.List;
  * @version 0.0.2
  */
 public interface SelectionFunction<T extends Individual>
-	extends Function<List<T>, List<T>> {
+    extends Function<List<T>, List<T>> {
 }

@@ -39,68 +39,68 @@ import static org.junit.Assert.assertEquals;
  */
 public class SinglePointRecombinationFunctionTest {
 
-	public SinglePointRecombinationFunctionTest() {
-	}
+    public SinglePointRecombinationFunctionTest() {
+    }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+    @BeforeClass
+    public static void setUpClass() {
+    }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+    @AfterClass
+    public static void tearDownClass() {
+    }
 
-	@Before
-	public void setUp() {
-		System.out.print(
-			SinglePointRecombinationFunction.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() {
+        System.out.print(
+            SinglePointRecombinationFunction.class.getName().concat("."));
+    }
 
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 
-	@Test
-	public void testSinglePointCrossoverFunction1() {
-		System.out.println("SinglePointCrossoverFunction(probability)");
-		final Double probability = new SinglePointRecombinationFunction<>(1.0)
-			.getProbability();
-		assertEquals(new Double(1.0), probability);
-	}
+    @Test
+    public void testSinglePointCrossoverFunction1() {
+        System.out.println("SinglePointCrossoverFunction(probability)");
+        final Double probability = new SinglePointRecombinationFunction<>(1.0)
+            .getProbability();
+        assertEquals(new Double(1.0), probability);
+    }
 
-	@Test
-	public void testSinglePointCrossoverFunction2() {
-		System.out.println("SinglePointCrossoverFunction()");
-		final Double probability = new SinglePointRecombinationFunction<>()
-			.getProbability();
-		assertEquals(new Double(.75), probability);
-	}
+    @Test
+    public void testSinglePointCrossoverFunction2() {
+        System.out.println("SinglePointCrossoverFunction()");
+        final Double probability = new SinglePointRecombinationFunction<>()
+            .getProbability();
+        assertEquals(new Double(.75), probability);
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testEvaluate() {
-		System.out.println("evaluate (performed algorithm)");
-		SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =
-			new SinglePointRecombinationFunction<>(0.75, GenomeConstants.RANDOM_GENERATOR_1);
-		Genome<DefaultChromosome<DefaultGene<Integer>>>[] result = function.evaluate(GenomeConstants.GENOMES);
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>[] expResult = new DefaultGenome[2];
-		expResult[0] = new DefaultGenome<>();
-		expResult[0].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-		expResult[1] = new DefaultGenome<>();
-		expResult[1].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-		for (int i = 0; i < GenomeConstants.CHROMOSOME_SIZE; i++) {
-			if (i < function.getRandom().nextInt(GenomeConstants.CHROMOSOME_SIZE)) {
-				expResult[0].getChromosome(0).addGene(new DefaultGene<>(GenomeConstants.CHROMOSOME_SIZE - i));
-				expResult[1].getChromosome(0).addGene(new DefaultGene<>(i));
-			} else {
-				expResult[1].getChromosome(0).addGene(new DefaultGene<>(GenomeConstants.CHROMOSOME_SIZE - i));
-				expResult[0].getChromosome(0).addGene(new DefaultGene<>(i));
-			}
-		}
-		assertArrayEquals(result[0].getChromosome(0).getGenes(),
-			expResult[0].getChromosome(0).getGenes());
-		assertArrayEquals(result[1].getChromosome(0).getGenes(),
-			expResult[1].getChromosome(0).getGenes());
-	}
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEvaluate() {
+        System.out.println("evaluate (performed algorithm)");
+        SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =
+            new SinglePointRecombinationFunction<>(0.75, GenomeConstants.RANDOM_GENERATOR_1);
+        Genome<DefaultChromosome<DefaultGene<Integer>>>[] result = function.evaluate(GenomeConstants.GENOMES);
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>[] expResult = new DefaultGenome[2];
+        expResult[0] = new DefaultGenome<>();
+        expResult[0].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+        expResult[1] = new DefaultGenome<>();
+        expResult[1].addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+        for (int i = 0; i < GenomeConstants.CHROMOSOME_SIZE; i++) {
+            if (i < function.getRandom().nextInt(GenomeConstants.CHROMOSOME_SIZE)) {
+                expResult[0].getChromosome(0).addGene(new DefaultGene<>(GenomeConstants.CHROMOSOME_SIZE - i));
+                expResult[1].getChromosome(0).addGene(new DefaultGene<>(i));
+            } else {
+                expResult[1].getChromosome(0).addGene(new DefaultGene<>(GenomeConstants.CHROMOSOME_SIZE - i));
+                expResult[0].getChromosome(0).addGene(new DefaultGene<>(i));
+            }
+        }
+        assertArrayEquals(result[0].getChromosome(0).getGenes(),
+            expResult[0].getChromosome(0).getGenes());
+        assertArrayEquals(result[1].getChromosome(0).getGenes(),
+            expResult[1].getChromosome(0).getGenes());
+    }
 
 }

@@ -37,63 +37,71 @@ import java.util.Iterator;
  * @version 0.0.2
  */
 public abstract class AbstractArtificialNeuron
-	extends DefaultCompositeFunction<Double, Double[]>
-	implements ArtificialNeuron {
+    extends DefaultCompositeFunction<Double, Double[]>
+    implements ArtificialNeuron {
 
-	private Double[] weights;
-	private double bias;
-	protected PropagationRuleFunction propagationRuleFunction;
-	protected ActivationFunction activationFunction;
+    protected PropagationRuleFunction propagationRuleFunction;
+    protected ActivationFunction activationFunction;
+    private Double[] weights;
+    private double bias;
 
-	/**
-	 * Constructor for AbstractArtificialNeuron.
-	 *
-	 * @param size the itemsCount of the neuron (number of weights).
-	 * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
-	 * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
-	 */
-	public AbstractArtificialNeuron(int size, PropagationRuleFunction propagationRuleFunction,
-	                                ActivationFunction activationFunction) {
-		weights = new Double[size];
-		bias = -1.0;
-		this.propagationRuleFunction = propagationRuleFunction;
-		this.activationFunction = activationFunction;
-		this.setFunctions(propagationRuleFunction, activationFunction);
-	}
+    /**
+     * Constructor for AbstractArtificialNeuron.
+     *
+     * @param size                    the itemsCount of the neuron (number of weights).
+     * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
+     * @param activationFunction      a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
+     */
+    public AbstractArtificialNeuron(int size, PropagationRuleFunction propagationRuleFunction,
+                                    ActivationFunction activationFunction) {
+        weights = new Double[size];
+        bias = -1.0;
+        this.propagationRuleFunction = propagationRuleFunction;
+        this.activationFunction = activationFunction;
+        this.setFunctions(propagationRuleFunction, activationFunction);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Double[] getWeights() {
-		return weights;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Double[] getWeights() {
+        return weights;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public double getBias() {
-		return bias;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getBias() {
+        return bias;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int size() {
-		return weights.length;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+        return weights.length;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Iterator<Double> iterator() {
-		return new AbstractItemIterator<Double>() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterator<Double> iterator() {
+        return new AbstractItemIterator<Double>() {
 
-			@Override
-			public Double getItem(int index) {
-				return weights[index];
-			}
+            @Override
+            public Double getItem(int index) {
+                return weights[index];
+            }
 
-			@Override
-			public int itemsCount() {
-				return weights.length;
-			}
-		};
-	}
+            @Override
+            public int itemsCount() {
+                return weights.length;
+            }
+        };
+    }
 
 }

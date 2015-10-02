@@ -36,23 +36,23 @@ import java.util.Iterator;
  */
 public class DefaultCompositeFunction<R, P> extends AbstractCompositeFunction<R, P> {
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * This method invokes the composite functions in the same order that they was introduced. The output of the
-	 * first function will be the input of the next, and so on.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public R evaluate(P params) {
-		if (getFunctions().isEmpty()) {
-			return null;
-		}
-		final Iterator<Function> iterator = getFunctions().iterator();
-		Object result = iterator.next().evaluate(params);
-		while (iterator.hasNext()) {
-			result = iterator.next().evaluate(result);
-		}
-		return (R) result;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * This method invokes the composite functions in the same order that they was introduced. The output of the
+     * first function will be the input of the next, and so on.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public R evaluate(P params) {
+        if (getFunctions().isEmpty()) {
+            return null;
+        }
+        final Iterator<Function> iterator = getFunctions().iterator();
+        Object result = iterator.next().evaluate(params);
+        while (iterator.hasNext()) {
+            result = iterator.next().evaluate(result);
+        }
+        return (R) result;
+    }
 }

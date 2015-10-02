@@ -33,32 +33,36 @@ import com.github.yferras.javartint.core.Solution;
  * @version 0.0.2
  */
 public abstract class AbstractConstraint<A extends Algorithm<? extends Solution>>
-	implements Constraint<A> {
+    implements Constraint<A> {
 
-	/**
-	 * Constraint type.
-	 */
-	protected ConstraintType constraintType;
+    /**
+     * Constraint type.
+     */
+    protected ConstraintType constraintType;
 
-	/**
-	 * Constructor
-	 *
-	 * @param constraintType constrain type.
-	 */
-	public AbstractConstraint(ConstraintType constraintType) {
-		this.constraintType = constraintType;
-	}
+    /**
+     * Constructor
+     *
+     * @param constraintType constrain type.
+     */
+    public AbstractConstraint(ConstraintType constraintType) {
+        this.constraintType = constraintType;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public ConstraintType getConstraintType() {
-		return constraintType;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConstraintType getConstraintType() {
+        return constraintType;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void setConstraintType(ConstraintType constraintType) {
-		this.constraintType = constraintType;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setConstraintType(ConstraintType constraintType) {
+        this.constraintType = constraintType;
+    }
 
 }

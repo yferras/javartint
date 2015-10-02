@@ -22,8 +22,8 @@ package com.github.yferras.javartint.gea.genome;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
+import com.github.yferras.javartint.gea.gene.Gene;
 
 /**
  * This class represents a default genome.
@@ -34,11 +34,11 @@ import com.github.yferras.javartint.gea.chromosome.Chromosome;
  */
 public class DefaultGenome<T extends Chromosome<? extends Gene<?>>> extends AbstractGenome<T> {
 
-	/**
-	 * Default constructor.
-	 */
-	public DefaultGenome() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public DefaultGenome() {
+        super();
+    }
 
 }

@@ -24,7 +24,8 @@ package com.github.yferras.javartint.core.function;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * <p>DefaultCompositeFunctionTest class.</p>
@@ -35,61 +36,61 @@ import static org.junit.Assert.*;
  */
 public class DefaultCompositeFunctionTest {
 
-	final Function<Double, Double[]> meanFunc = new Function<Double, Double[]>() {
-		@Override
-		public Double evaluate(Double[] params) {
-			double sum = 0.0;
-			for (Double param : params) {
-				sum += param;
-			}
-			return sum / params.length;
-		}
-	};
+    final Function<Double, Double[]> meanFunc = new Function<Double, Double[]>() {
+        @Override
+        public Double evaluate(Double[] params) {
+            double sum = 0.0;
+            for (Double param : params) {
+                sum += param;
+            }
+            return sum / params.length;
+        }
+    };
 
-	final Function<Double, Double> sqrtFunc = new Function<Double, Double>() {
-		@Override
-		public Double evaluate(Double x) {
-			return Math.sqrt(x);
-		}
-	};
+    final Function<Double, Double> sqrtFunc = new Function<Double, Double>() {
+        @Override
+        public Double evaluate(Double x) {
+            return Math.sqrt(x);
+        }
+    };
 
-	final Function<Double, Double> towTimesFunc = new Function<Double, Double>() {
-		@Override
-		public Double evaluate(Double x) {
-			return 2.0 * x;
-		}
-	};
+    final Function<Double, Double> towTimesFunc = new Function<Double, Double>() {
+        @Override
+        public Double evaluate(Double x) {
+            return 2.0 * x;
+        }
+    };
 
-	@Test
-	public void testEvaluate() throws Exception {
-		DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-		function.setFunctions(meanFunc, sqrtFunc, towTimesFunc);
+    @Test
+    public void testEvaluate() throws Exception {
+        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
+        function.setFunctions(meanFunc, sqrtFunc, towTimesFunc);
 
-		Double[] params = {1.0, 17.0, 4.0, 14.0, 10.0, 8.0};
+        Double[] params = {1.0, 17.0, 4.0, 14.0, 10.0, 8.0};
 
-		double expected =
-			towTimesFunc.evaluate(
-				sqrtFunc.evaluate(
-					meanFunc.evaluate(params)
-				)
-			);
-		double actual = function.evaluate(params);
+        double expected =
+            towTimesFunc.evaluate(
+                sqrtFunc.evaluate(
+                    meanFunc.evaluate(params)
+                )
+            );
+        double actual = function.evaluate(params);
 
-		assertEquals(expected, actual, 0.0);
-	}
+        assertEquals(expected, actual, 0.0);
+    }
 
-	@Test
-	public void testGetN() throws Exception {
-		DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-		function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
-		assertTrue(function.getN() == 3);
-	}
+    @Test
+    public void testGetN() throws Exception {
+        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
+        function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
+        assertTrue(function.getN() == 3);
+    }
 
-	@Test
-	public void testGetFunctions() throws Exception {
-		DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-		function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
-		assertTrue(function.getFunctions() != null && !function.getFunctions().isEmpty());
-	}
+    @Test
+    public void testGetFunctions() throws Exception {
+        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
+        function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
+        assertTrue(function.getFunctions() != null && !function.getFunctions().isEmpty());
+    }
 
 }

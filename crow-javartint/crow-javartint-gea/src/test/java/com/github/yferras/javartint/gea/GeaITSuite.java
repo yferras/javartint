@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea;
  * #L%
  */
 
+import com.github.yferras.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
 import com.github.yferras.javartint.gea.function.generator.RangeGenomeGenFunctionTest;
 import com.github.yferras.javartint.gea.function.generator.TspGenomeGenFunctionTest;
 import com.github.yferras.javartint.gea.function.mutation.MutationFunctionTest;
@@ -29,14 +30,13 @@ import com.github.yferras.javartint.gea.function.mutation.binary.BinaryMutationF
 import com.github.yferras.javartint.gea.function.mutation.numeric.RealValuedMutationFunctionTest;
 import com.github.yferras.javartint.gea.function.mutation.tsp.*;
 import com.github.yferras.javartint.gea.function.recombination.*;
+import com.github.yferras.javartint.gea.function.recombination.tsp.OrderBasedRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.recombination.tsp.PermutationRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.recombination.tsp.PositionBasedRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.scaling.*;
 import com.github.yferras.javartint.gea.gene.ArrayGeneTest;
 import com.github.yferras.javartint.gea.gene.DefaultGeneTest;
 import com.github.yferras.javartint.gea.genome.DefaultGenomeTest;
-import com.github.yferras.javartint.gea.function.generator.BinaryGenomeGenFunctionTest;
-import com.github.yferras.javartint.gea.function.recombination.tsp.OrderBasedRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.util.GenomeFilterTest;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,53 +51,53 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-	{
-		DefaultGeneTest.class,
-		GenomeFilterTest.class,
-		ArrayGeneTest.class,
-		DefaultGenomeTest.class,
-		RecombinationFunctionTest.class,
-		MultiPointsRecombinationFunctionTest.class,
-		SinglePointRecombinationFunctionTest.class,
-		TowPointsRecombinationFunctionTest.class,
-		MutationFunctionTest.class,
-		BinaryMutationFunctionTest.class,
-		AbstractScalingMethodTest.class,
-		LinearRankScalingMethodTest.class,
-		RankScalingMethodTest.class,
-		SigmaScalingMethodTest.class,
-		BoltzmannScalingMethodTest.class,
-		BinaryGenomeGenFunctionTest.class,
-		TspGenomeGenFunctionTest.class,
-		RangeGenomeGenFunctionTest.class,
-		AbstractGeneticAlgorithmIT.class,
-		RealValuedMutationFunctionTest.class,
-		DiscreteRecombinationFunctionTest.class,
-		OrderBasedRecombinationFunctionTest.class,
-		ScrambleMutationFunctionTest.class,
-		DisplacementMutationFunctionTest.class,
-		InversionMutationFunctionTest.class,
-		DisplacedInversionMutationFunctionTest.class,
-		ExchangeMutationFunctionTest.class,
-		PermutationRecombinationFunctionTest.class,
-		PositionBasedRecombinationFunctionTest.class,
-	}
+    {
+        DefaultGeneTest.class,
+        GenomeFilterTest.class,
+        ArrayGeneTest.class,
+        DefaultGenomeTest.class,
+        RecombinationFunctionTest.class,
+        MultiPointsRecombinationFunctionTest.class,
+        SinglePointRecombinationFunctionTest.class,
+        TowPointsRecombinationFunctionTest.class,
+        MutationFunctionTest.class,
+        BinaryMutationFunctionTest.class,
+        AbstractScalingMethodTest.class,
+        LinearRankScalingMethodTest.class,
+        RankScalingMethodTest.class,
+        SigmaScalingMethodTest.class,
+        BoltzmannScalingMethodTest.class,
+        BinaryGenomeGenFunctionTest.class,
+        TspGenomeGenFunctionTest.class,
+        RangeGenomeGenFunctionTest.class,
+        AbstractGeneticAlgorithmIT.class,
+        RealValuedMutationFunctionTest.class,
+        DiscreteRecombinationFunctionTest.class,
+        OrderBasedRecombinationFunctionTest.class,
+        ScrambleMutationFunctionTest.class,
+        DisplacementMutationFunctionTest.class,
+        InversionMutationFunctionTest.class,
+        DisplacedInversionMutationFunctionTest.class,
+        ExchangeMutationFunctionTest.class,
+        PermutationRecombinationFunctionTest.class,
+        PositionBasedRecombinationFunctionTest.class,
+    }
 )
 public class GeaITSuite {
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-	}
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
 
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-	}
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
-	@Before
-	public void setUp() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @After
+    public void tearDown() throws Exception {
+    }
 }

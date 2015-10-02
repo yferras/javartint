@@ -22,8 +22,8 @@ package com.github.yferras.javartint.gea.chromosome;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.core.Solution;
+import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.io.Serializable;
 
@@ -35,61 +35,61 @@ import java.io.Serializable;
  * @version 0.0.1
  */
 public interface Chromosome<T extends Gene<?>>
-	extends Cloneable, Iterable<T>, Solution, Serializable {
+    extends Cloneable, Iterable<T>, Solution, Serializable {
 
-	/**
-	 * Gets the array of genes.
-	 *
-	 * @return the array of genes.
-	 */
-	Gene<?>[] getGenes();
+    /**
+     * Gets the array of genes.
+     *
+     * @return the array of genes.
+     */
+    Gene<?>[] getGenes();
 
-	/**
-	 * Sets the array of genes.
-	 *
-	 * @param genes the array of genes.
-	 * @throws java.lang.IllegalArgumentException if {@code genes} argument is
-	 *                                  {@code null}.
-	 */
-	void setGenes(T[] genes) throws IllegalArgumentException;
+    /**
+     * Sets the array of genes.
+     *
+     * @param genes the array of genes.
+     * @throws java.lang.IllegalArgumentException if {@code genes} argument is
+     *                                            {@code null}.
+     */
+    void setGenes(T[] genes) throws IllegalArgumentException;
 
-	/**
-	 * Gets the gene at specific <code>locus</code>.
-	 *
-	 * @param locus particular position on the chromosome.
-	 * @return This method returns a gene
-	 * @throws java.lang.IndexOutOfBoundsException if the <code>index</code> is out of
-	 *                                   range.
-	 */
-	T getGene(int locus) throws IndexOutOfBoundsException;
+    /**
+     * Gets the gene at specific <code>locus</code>.
+     *
+     * @param locus particular position on the chromosome.
+     * @return This method returns a gene
+     * @throws java.lang.IndexOutOfBoundsException if the <code>index</code> is out of
+     *                                             range.
+     */
+    T getGene(int locus) throws IndexOutOfBoundsException;
 
-	/**
-	 * Sets the <code>newGene</code> at specific <code>locus</code>.
-	 *
-	 * @param locus   particular position on the chromosome.
-	 * @param newGene new value of gene.
-	 */
-	void setGene(int locus, T newGene);
+    /**
+     * Sets the <code>newGene</code> at specific <code>locus</code>.
+     *
+     * @param locus   particular position on the chromosome.
+     * @param newGene new value of gene.
+     */
+    void setGene(int locus, T newGene);
 
-	/**
-	 * Adds a new gene to the chromosome.
-	 *
-	 * @param gene gene to add
-	 */
-	void addGene(T gene);
+    /**
+     * Adds a new gene to the chromosome.
+     *
+     * @param gene gene to add
+     */
+    void addGene(T gene);
 
-	/**
-	 * Gets the number of genes of the chromosome.
-	 *
-	 * @return The number of genes of the chromosome.
-	 */
-	int size();
+    /**
+     * Gets the number of genes of the chromosome.
+     *
+     * @return The number of genes of the chromosome.
+     */
+    int size();
 
-	/**
-	 * <p>clone.</p>
-	 *
-	 * @return a {@link com.github.yferras.javartint.gea.chromosome.Chromosome} object.
-	 * @throws java.lang.CloneNotSupportedException if any.
-	 */
-	Chromosome<T> clone() throws CloneNotSupportedException;
+    /**
+     * <p>clone.</p>
+     *
+     * @return a {@link com.github.yferras.javartint.gea.chromosome.Chromosome} object.
+     * @throws java.lang.CloneNotSupportedException if any.
+     */
+    Chromosome<T> clone() throws CloneNotSupportedException;
 }

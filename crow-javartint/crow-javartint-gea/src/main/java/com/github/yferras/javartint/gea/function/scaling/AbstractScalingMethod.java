@@ -37,62 +37,62 @@ import java.util.List;
  * @version 0.0.2
  */
 public abstract class AbstractScalingMethod<T extends Individual>
-	implements Function<List<T>, List<T>> {
+    implements Function<List<T>, List<T>> {
 
-	private final Optimize optimize;
+    private final Optimize optimize;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param optimize optimization way
-	 */
-	public AbstractScalingMethod(Optimize optimize) {
-		this.optimize = optimize;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param optimize optimization way
+     */
+    public AbstractScalingMethod(Optimize optimize) {
+        this.optimize = optimize;
+    }
 
-	/**
-	 * Get the value of optimize
-	 *
-	 * @return the value of optimize
-	 */
-	public Optimize getOptimize() {
-		return optimize;
-	}
+    /**
+     * Get the value of optimize
+     *
+     * @return the value of optimize
+     */
+    public Optimize getOptimize() {
+        return optimize;
+    }
 
-	/**
-	 * Method to perform scaling process
-	 *
-	 * @param individuals list to scale.
-	 */
-	protected abstract void scale(List<T> individuals);
+    /**
+     * Method to perform scaling process
+     *
+     * @param individuals list to scale.
+     */
+    protected abstract void scale(List<T> individuals);
 
-	/**
-	 * Ensures that parameters are valid.
-	 *
-	 * @param params parameters to validate.
-	 * @throws java.lang.IllegalArgumentException if {@code params} is null
-	 *                                  or {@code params.isEmpty()} is {@code true}.
-	 */
-	protected void validate(List<T> params) throws IllegalArgumentException {
-		if (params == null) {
-			throw new IllegalArgumentException("'params' can't be null.");
-		}
-		if (params.isEmpty()) {
-			throw new IllegalArgumentException("'params' can't be empty.");
-		}
-	}
+    /**
+     * Ensures that parameters are valid.
+     *
+     * @param params parameters to validate.
+     * @throws java.lang.IllegalArgumentException if {@code params} is null
+     *                                            or {@code params.isEmpty()} is {@code true}.
+     */
+    protected void validate(List<T> params) throws IllegalArgumentException {
+        if (params == null) {
+            throw new IllegalArgumentException("'params' can't be null.");
+        }
+        if (params.isEmpty()) {
+            throw new IllegalArgumentException("'params' can't be empty.");
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Validates the input parameters and performs the scaling process.
-	 */
-	@Override
-	public List<T> evaluate(List<T> params) {
-		validate(params);
-		List<T> list = new ArrayList<>(params);
-		scale(list);
-		return list;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Validates the input parameters and performs the scaling process.
+     */
+    @Override
+    public List<T> evaluate(List<T> params) {
+        validate(params);
+        List<T> list = new ArrayList<>(params);
+        scale(list);
+        return list;
+    }
 
 }

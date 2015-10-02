@@ -31,27 +31,27 @@ import com.github.yferras.javartint.core.Solution;
  * @version 0.0.1
  */
 public interface Individual
-	extends Solution, Comparable<Individual>, Cloneable {
+    extends Solution, Comparable<Individual>, Cloneable {
 
-	/**
-	 * Gets the value of fitness.
-	 *
-	 * @return The value of fitness.
-	 */
-	Double getFitness();
+    /**
+     * Gets the value of fitness.
+     *
+     * @return The value of fitness.
+     */
+    Double getFitness();
 
-	/**
-	 * Sets the value of fitness.
-	 *
-	 * @param fitness New value of fitness.
-	 */
-	void setFitness(Double fitness);
+    /**
+     * Sets the value of fitness.
+     *
+     * @param fitness New value of fitness.
+     */
+    void setFitness(Double fitness);
 
-	/**
-	 * <p>clone.</p>
-	 *
-	 * @return a {@link com.github.yferras.javartint.gea.Individual} object.
-	 * @throws java.lang.CloneNotSupportedException if any.
-	 */
-	Individual clone() throws CloneNotSupportedException;
+    /**
+     * <p>clone.</p>
+     *
+     * @return a {@link com.github.yferras.javartint.gea.Individual} object.
+     * @throws java.lang.CloneNotSupportedException if any.
+     */
+    Individual clone() throws CloneNotSupportedException;
 }

@@ -22,9 +22,9 @@ package com.github.yferras.javartint.gea.function.generator;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
+import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,18 +32,18 @@ import static org.junit.Assert.assertEquals;
 
 public class TspGenomeGenFunctionTest {
 
-	@Before
-	public void setUp() throws Exception {
-		System.out.print(
-			TspGenomeGenFunction.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() throws Exception {
+        System.out.print(
+            TspGenomeGenFunction.class.getName().concat("."));
+    }
 
-	@Test
-	public void testEvaluate() throws Exception {
-		System.out.println("evaluate (performed algorithm)");
-		TspGenomeGenFunction genFunction = new TspGenomeGenFunction(5);
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = genFunction.evaluate();
-		assertEquals(1, genome.size());
-		assertEquals(5, genome.getChromosome(0).size());
-	}
+    @Test
+    public void testEvaluate() throws Exception {
+        System.out.println("evaluate (performed algorithm)");
+        TspGenomeGenFunction genFunction = new TspGenomeGenFunction(5);
+        DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = genFunction.evaluate();
+        assertEquals(1, genome.size());
+        assertEquals(5, genome.getChromosome(0).size());
+    }
 }

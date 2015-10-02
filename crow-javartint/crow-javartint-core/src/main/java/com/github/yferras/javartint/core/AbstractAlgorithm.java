@@ -40,193 +40,209 @@ import java.util.List;
  */
 public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm<S> {
 
-	private final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
+    private final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
 
-	private final List<EventListener> eventListeners = new ArrayList<>();
+    private final List<EventListener> eventListeners = new ArrayList<>();
 
-	private long startTime = 0;
-	private long elapsedTime = 0;
+    private long startTime = 0;
+    private long elapsedTime = 0;
 
-	private boolean running = false;
+    private boolean running = false;
 
-	private S solution;
+    private S solution;
 
-	private boolean addAlgorithmListener(EventListener listener) {
-		boolean contains = eventListeners.contains(listener);
-		if (!contains) {
-			eventListeners.add(listener);
-		}
-		return contains;
-	}
+    private boolean addAlgorithmListener(EventListener listener) {
+        boolean contains = eventListeners.contains(listener);
+        if (!contains) {
+            eventListeners.add(listener);
+        }
+        return contains;
+    }
 
-	/**
-	 * Adds new execution end listener.
-	 *
-	 * @param listener the execution end listener instance.
-	 * @return Returns {@code true} if this instance is already contained,
-	 * {@code false} otherwise.
-	 */
-	public boolean addExecutionEndListener(ExecutionEndListener listener) {
-		return addAlgorithmListener(listener);
-	}
+    /**
+     * Adds new execution end listener.
+     *
+     * @param listener the execution end listener instance.
+     * @return Returns {@code true} if this instance is already contained,
+     * {@code false} otherwise.
+     */
+    public boolean addExecutionEndListener(ExecutionEndListener listener) {
+        return addAlgorithmListener(listener);
+    }
 
-	/**
-	 * Adds new solution change listener.
-	 *
-	 * @param listener the solution change listener instance.
-	 * @return Returns {@code true} if this instance is already contained,
-	 * {@code false} otherwise.
-	 */
-	public boolean addSolutionChangeListener(SolutionChangeListener listener) {
-		return addAlgorithmListener(listener);
-	}
+    /**
+     * Adds new solution change listener.
+     *
+     * @param listener the solution change listener instance.
+     * @return Returns {@code true} if this instance is already contained,
+     * {@code false} otherwise.
+     */
+    public boolean addSolutionChangeListener(SolutionChangeListener listener) {
+        return addAlgorithmListener(listener);
+    }
 
-	/**
-	 * Removes the specified execution end listener. See {@link java.util.List#remove(java.lang.Object)}
-	 *
-	 * @param listener the execution end listener instance.
-	 * @return Returns {@code true} if this instance is already contained,
-	 * {@code false} otherwise.
-	 */
-	public boolean removeExecutionEndListener(ExecutionEndListener listener) {
-		return eventListeners.remove(listener);
-	}
+    /**
+     * Removes the specified execution end listener. See {@link java.util.List#remove(java.lang.Object)}
+     *
+     * @param listener the execution end listener instance.
+     * @return Returns {@code true} if this instance is already contained,
+     * {@code false} otherwise.
+     */
+    public boolean removeExecutionEndListener(ExecutionEndListener listener) {
+        return eventListeners.remove(listener);
+    }
 
-	/**
-	 * Removes the specified solution change listener. See {@link java.util.List#remove(java.lang.Object)}
-	 *
-	 * @param listener the solution change listener instance.
-	 * @return Returns {@code true} if this instance is already contained,
-	 * {@code false} otherwise.
-	 */
-	public boolean removeSolutionChangeListener(SolutionChangeListener listener) {
-		return eventListeners.remove(listener);
-	}
+    /**
+     * Removes the specified solution change listener. See {@link java.util.List#remove(java.lang.Object)}
+     *
+     * @param listener the solution change listener instance.
+     * @return Returns {@code true} if this instance is already contained,
+     * {@code false} otherwise.
+     */
+    public boolean removeSolutionChangeListener(SolutionChangeListener listener) {
+        return eventListeners.remove(listener);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
-		constraints.add(constraint);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
+        constraints.add(constraint);
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
-		return constraints.toArray(new Constraint[constraints.size()]);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
+        return constraints.toArray(new Constraint[constraints.size()]);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Long getElapsedTime() {
-		if (isRunning()) {
-			elapsedTime = System.currentTimeMillis() - startTime;
-		}
-		return elapsedTime;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Long getElapsedTime() {
+        if (isRunning()) {
+            elapsedTime = System.currentTimeMillis() - startTime;
+        }
+        return elapsedTime;
+    }
 
-	/**
-	 * This method sets the current time and sets true to running attribute.
-	 * Should be invoked at the beginning of run method implementation
-	 */
-	protected void beginAlgorithm() {
-		startTime = System.currentTimeMillis();
-		running = true;
-	}
+    /**
+     * This method sets the current time and sets true to running attribute.
+     * Should be invoked at the beginning of run method implementation
+     */
+    protected void beginAlgorithm() {
+        startTime = System.currentTimeMillis();
+        running = true;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public S getSolution() {
-		return solution;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public S getSolution() {
+        return solution;
+    }
 
-	/**
-	 * Sets the solution.
-	 *
-	 * @param solution new solution.
-	 */
-	protected void setSolution(S solution) {
-		this.solution = solution;
-		fireBestSolutionUpdatedEvent();
-	}
+    /**
+     * Sets the solution.
+     *
+     * @param solution new solution.
+     */
+    protected void setSolution(S solution) {
+        this.solution = solution;
+        fireBestSolutionUpdatedEvent();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public boolean isRunning() {
-		return running;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isRunning() {
+        return running;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
-		constraints.remove(constraint);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
+        constraints.remove(constraint);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void stop() {
-		if (running) {
-			running = false;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void stop() {
+        if (running) {
+            running = false;
+        }
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	@Override
-	public boolean testConstraint() {
-		int countMandatory = 0;
-		int countMandatoryTrue = 0;
-		int countOptionalsTrue = 0;
-		for (Constraint constraint : constraints) {
-			switch (constraint.getConstraintType()) {
-				case MANDATORY:
-					countMandatory++;
-					if (constraint.evaluate(this)) {
-						countMandatoryTrue++;
-					}
-					break;
-				case OPTIONAL:
-					if (constraint.evaluate(this)) {
-						countOptionalsTrue++;
-					}
-					break;
-			}
-		}
-		return countMandatory == countMandatoryTrue && (countMandatory != 0 || countOptionalsTrue != 0);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
+    public boolean testConstraint() {
+        int countMandatory = 0;
+        int countMandatoryTrue = 0;
+        int countOptionalsTrue = 0;
+        for (Constraint constraint : constraints) {
+            switch (constraint.getConstraintType()) {
+                case MANDATORY:
+                    countMandatory++;
+                    if (constraint.evaluate(this)) {
+                        countMandatoryTrue++;
+                    }
+                    break;
+                case OPTIONAL:
+                    if (constraint.evaluate(this)) {
+                        countOptionalsTrue++;
+                    }
+                    break;
+            }
+        }
+        return countMandatory == countMandatoryTrue && (countMandatory != 0 || countOptionalsTrue != 0);
+    }
 
-	/**
-	 * Used to fire algorithm end execution event. This method should be invoked an the
-	 * end of {@link #run()} implementation
-	 */
-	protected void fireAlgorithmFinishedEvent() {
-		for (EventListener eventListener : eventListeners) {
-			if (eventListener instanceof ExecutionEndListener) {
-				ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
-				executionEndListener.algorithmFinished(new AlgorithmEvent(
-					this, getSolution()));
-			}
-		}
-	}
+    /**
+     * Used to fire algorithm end execution event. This method should be invoked an the
+     * end of {@link #run()} implementation
+     */
+    protected void fireAlgorithmFinishedEvent() {
+        for (EventListener eventListener : eventListeners) {
+            if (eventListener instanceof ExecutionEndListener) {
+                ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
+                executionEndListener.algorithmFinished(new AlgorithmEvent(
+                    this, getSolution()));
+            }
+        }
+    }
 
-	/**
-	 * Used to fire solution changed event.
-	 */
-	protected void fireBestSolutionUpdatedEvent() {
-		fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
-	}
+    /**
+     * Used to fire solution changed event.
+     */
+    protected void fireBestSolutionUpdatedEvent() {
+        fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
+    }
 
-	/**
-	 * Used to fire solution changed event.
-	 *
-	 * @param event a {@link com.github.yferras.javartint.core.util.AlgorithmEvent} object.
-	 */
-	protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
-		for (EventListener eventListener : eventListeners) {
-			if (eventListener instanceof SolutionChangeListener) {
-				SolutionChangeListener solutionChangeListener = (SolutionChangeListener) eventListener;
-				solutionChangeListener.solutionUpdated(event);
-			}
-		}
-	}
+    /**
+     * Used to fire solution changed event.
+     *
+     * @param event a {@link com.github.yferras.javartint.core.util.AlgorithmEvent} object.
+     */
+    protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
+        for (EventListener eventListener : eventListeners) {
+            if (eventListener instanceof SolutionChangeListener) {
+                SolutionChangeListener solutionChangeListener = (SolutionChangeListener) eventListener;
+                solutionChangeListener.solutionUpdated(event);
+            }
+        }
+    }
 }

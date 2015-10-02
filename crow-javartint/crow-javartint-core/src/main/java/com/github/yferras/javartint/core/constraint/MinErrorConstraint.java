@@ -33,28 +33,28 @@ import com.github.yferras.javartint.core.Solution;
  * @version 0.0.2
  */
 public class MinErrorConstraint<A extends ErrorBasedAlgorithm<? extends Solution>>
-	extends AbstractThresholdConstraint<Double, A> {
+    extends AbstractThresholdConstraint<Double, A> {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param constraintType constrain type.
-	 * @param threshold      error threshold.
-	 */
-	public MinErrorConstraint(ConstraintType constraintType, double threshold) {
-		super(constraintType, threshold);
-	}
+    /**
+     * Constructor.
+     *
+     * @param constraintType constrain type.
+     * @param threshold      error threshold.
+     */
+    public MinErrorConstraint(ConstraintType constraintType, double threshold) {
+        super(constraintType, threshold);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * If the actual error of algorithm is less than the threshold, in
-	 * this case returns <code>true</code>, otherwise returns
-	 * <code>false</code>.
-	 */
-	@Override
-	public boolean evaluate(A algorithm) {
-		return algorithm.getCurrentError().compareTo(getThreshold()) < 0;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * If the actual error of algorithm is less than the threshold, in
+     * this case returns <code>true</code>, otherwise returns
+     * <code>false</code>.
+     */
+    @Override
+    public boolean evaluate(A algorithm) {
+        return algorithm.getCurrentError().compareTo(getThreshold()) < 0;
+    }
 
 }

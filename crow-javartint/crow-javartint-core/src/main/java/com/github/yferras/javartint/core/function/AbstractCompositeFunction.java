@@ -1,4 +1,3 @@
-
 package com.github.yferras.javartint.core.function;
 
 /*
@@ -38,35 +37,39 @@ import java.util.List;
  */
 public abstract class AbstractCompositeFunction<R, P> implements CompositeFunction<R, P> {
 
-	private List<Function> functionStack;
+    private List<Function> functionStack;
 
-	/**
-	 * Constructor for AbstractCompositeFunction.
-	 */
-	public AbstractCompositeFunction() {
-		functionStack = new ArrayList<>();
-	}
+    /**
+     * Constructor for AbstractCompositeFunction.
+     */
+    public AbstractCompositeFunction() {
+        functionStack = new ArrayList<>();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int getN() {
-		return functionStack.size();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getN() {
+        return functionStack.size();
+    }
 
-	/**
-	 * Gets the list that contains the functions.
-	 *
-	 * @return a list with functions.
-	 */
-	protected List<Function> getFunctions() {
-		return functionStack;
-	}
+    /**
+     * Gets the list that contains the functions.
+     *
+     * @return a list with functions.
+     */
+    protected List<Function> getFunctions() {
+        return functionStack;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void setFunctions(Function... functions) {
-		for (Function function : functions) {
-			functionStack.add(function);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFunctions(Function... functions) {
+        for (Function function : functions) {
+            functionStack.add(function);
+        }
+    }
 }

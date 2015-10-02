@@ -49,38 +49,40 @@ import com.github.yferras.javartint.core.function.DerivableFunction;
  * @version 0.0.1
  */
 public class LineActivationFunction extends AbstractDerivableFunction<Double, Double>
-	implements ActivationFunction {
+    implements ActivationFunction {
 
-	/**
-	 * <p>Constructor for LineActivationFunction.</p>
-	 */
-	public LineActivationFunction() {
-		super(null);
-	}
+    /**
+     * <p>Constructor for LineActivationFunction.</p>
+     */
+    public LineActivationFunction() {
+        super(null);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public DerivableFunction<Double, Double> derive() {
-		return new AbstractDerivableFunction<Double, Double>(this) {
-			@Override
-			public DerivableFunction<Double, Double> derive() {
-				return null;
-			}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DerivableFunction<Double, Double> derive() {
+        return new AbstractDerivableFunction<Double, Double>(this) {
+            @Override
+            public DerivableFunction<Double, Double> derive() {
+                return null;
+            }
 
-			@Override
-			public Double evaluate(Double params) {
-				return 1.0;
-			}
-		};
-	}
+            @Override
+            public Double evaluate(Double params) {
+                return 1.0;
+            }
+        };
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 *  f(x) = x
-	 */
-	@Override
-	public Double evaluate(Double x) {
-		return x;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * f(x) = x
+     */
+    @Override
+    public Double evaluate(Double x) {
+        return x;
+    }
 }

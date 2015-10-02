@@ -1,4 +1,3 @@
-
 package com.github.yferras.javartint.ann.function.propagationrule;
 
 /*
@@ -31,13 +30,15 @@ package com.github.yferras.javartint.ann.function.propagationrule;
  * @version 0.0.1
  */
 public class EuclideanDistancePropagationRuleFunction extends AbstractPropagationRuleFunction {
-	/** {@inheritDoc} */
-	@Override
-	protected Double evaluate(Double[] inputs, Double[] weights) {
-		double sum = 0.0f;
-		for (int i = 0; i < weights.length; i++) {
-			sum += Math.pow(weights[i] - inputs[i], 2);
-		}
-		return sum;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Double evaluate(Double[] inputs, Double[] weights) {
+        double sum = 0.0f;
+        for (int i = 0; i < weights.length; i++) {
+            sum += Math.pow(weights[i] - inputs[i], 2);
+        }
+        return sum;
+    }
 }

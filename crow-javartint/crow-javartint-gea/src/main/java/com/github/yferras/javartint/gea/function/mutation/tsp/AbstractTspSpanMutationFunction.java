@@ -38,56 +38,56 @@ import java.util.Random;
  */
 public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> extends AbstractMutationFunction<T> {
 
-	private int minSpanSize;
+    private int minSpanSize;
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability probability of mutation
-	 * @param random      random instance
-	 * @param minSpanSize min span size
-	 */
-	public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) {
-		super(probability, random);
-		this.minSpanSize = minSpanSize;
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     *
+     * @param probability probability of mutation
+     * @param random      random instance
+     * @param minSpanSize min span size
+     */
+    public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) {
+        super(probability, random);
+        this.minSpanSize = minSpanSize;
+    }
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 * By default it uses as random generator an instance of {@link java.util.Random}.
-	 *
-	 * @param probability probability of mutation
-	 * @param minSpanSize min span size
-	 */
-	public AbstractTspSpanMutationFunction(double probability, int minSpanSize) {
-		this(probability, new Random(), minSpanSize);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     * By default it uses as random generator an instance of {@link java.util.Random}.
+     *
+     * @param probability probability of mutation
+     * @param minSpanSize min span size
+     */
+    public AbstractTspSpanMutationFunction(double probability, int minSpanSize) {
+        this(probability, new Random(), minSpanSize);
+    }
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 * By default it uses as random generator an instance of {@link java.util.Random},
-	 * and <code>probability = 0.05</code>.
-	 *
-	 * @param minSpanSize min span size
-	 */
-	public AbstractTspSpanMutationFunction(int minSpanSize) {
-		this(.05, minSpanSize);
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     * By default it uses as random generator an instance of {@link java.util.Random},
+     * and <code>probability = 0.05</code>.
+     *
+     * @param minSpanSize min span size
+     */
+    public AbstractTspSpanMutationFunction(int minSpanSize) {
+        this(.05, minSpanSize);
+    }
 
-	/**
-	 * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
-	 * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
-	 */
-	public AbstractTspSpanMutationFunction() {
-		this(2);
-	}
+    /**
+     * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
+     * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
+     */
+    public AbstractTspSpanMutationFunction() {
+        this(2);
+    }
 
-	/**
-	 * Gets the min span of section.
-	 *
-	 * @return the size of span
-	 */
-	public int getMinSpanSize() {
-		return minSpanSize;
-	}
+    /**
+     * Gets the min span of section.
+     *
+     * @return the size of span
+     */
+    public int getMinSpanSize() {
+        return minSpanSize;
+    }
 }

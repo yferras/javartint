@@ -32,13 +32,13 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class DefaultGene<T> extends AbstractGene<T> {
 
-	/**
-	 * Default constructor.
-	 *
-	 * @param data value to initialize this gene.
-	 */
-	public DefaultGene(T data) {
-		super(data);
-	}
+    /**
+     * Default constructor.
+     *
+     * @param data value to initialize this gene.
+     */
+    public DefaultGene(T data) {
+        super(data);
+    }
 
 }
