@@ -28,6 +28,8 @@ import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Abstract class that represents mutation function.
@@ -110,7 +112,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Chromo
 		try {
 			return mutate((T) params.clone());
 		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
+			Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
 			return null;
 		}
 	}
