@@ -42,6 +42,8 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
     extends AbstractProbabilisticFunction<T[], T[]>
     implements RecombinationFunction<T> {
 
+    public static final double DEFAULT_PROBABILITY = .75;
+
     /**
      * Constructor, initializes instances with the given parameters.
      *
@@ -69,7 +71,7 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     protected AbstractRecombinationFunction() {
-        super(.75);
+        super(DEFAULT_PROBABILITY);
     }
 
     /**

@@ -40,6 +40,9 @@ import java.util.Random;
 public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractMutationFunction<T> {
 
+    public static final double DEFAULT_MUTATION_RANGE = .1;
+    public static final double DEFAULT_MUTATION_PRECISION = 6;
+
     private double[] ranges;
     private double[] precisions;
 
@@ -85,7 +88,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
      */
     public RealValuedMutationFunction(double[] ranges, double[] precisions) {
-        this(.05, ranges, precisions);
+        this(DEFAULT_PROBABILITY, ranges, precisions);
     }
 
     /**
@@ -116,7 +119,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @param length the number of dimensions.
      */
     public RealValuedMutationFunction(int length) {
-        this(.1, 6, length);
+        this(DEFAULT_MUTATION_RANGE, DEFAULT_MUTATION_PRECISION, length);
     }
 
     /**

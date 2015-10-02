@@ -41,6 +41,9 @@ import java.util.Random;
 public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    public static final double DEFAULT_RANGE = .1;
+    public static final double DEFAULT_PRECISION = 6;
+
     private double[] ranges;
     private double precision;
 
@@ -80,7 +83,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param precision recombination precisions.
      */
     public ExtendedLineRecombinationFunction(double[] ranges, double precision) {
-        this(.75, ranges, precision);
+        this(DEFAULT_PROBABILITY, ranges, precision);
     }
 
     /**
@@ -110,7 +113,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param length the number of dimensions.
      */
     public ExtendedLineRecombinationFunction(int length) {
-        this(.1, length, 6);
+        this(DEFAULT_RANGE, length, DEFAULT_PRECISION);
     }
 
     /**

@@ -80,7 +80,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
      * <code>probability = 0.75</code> and <code>distance = 0.25</code>.
      */
     public LineRecombinationFunction() {
-        this(.25);
+        this(DEFAULT_DISTANCE);
     }
 
     /**

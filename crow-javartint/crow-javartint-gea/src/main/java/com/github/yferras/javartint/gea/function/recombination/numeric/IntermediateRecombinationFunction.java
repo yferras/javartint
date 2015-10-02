@@ -58,6 +58,8 @@ import java.util.Random;
 public class IntermediateRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    public static final double DEFAULT_DISTANCE = .25;
+
     private double distance;
 
     /**
@@ -101,7 +103,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
      * <code>probability = 0.75</code> and <code>distance = 0.25</code>.
      */
     public IntermediateRecombinationFunction() {
-        this(.25);
+        this(DEFAULT_DISTANCE);
     }
 
     /**
