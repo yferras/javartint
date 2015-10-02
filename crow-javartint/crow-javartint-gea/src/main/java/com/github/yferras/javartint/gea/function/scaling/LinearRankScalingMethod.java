@@ -69,7 +69,8 @@ public final class LinearRankScalingMethod<T extends Individual>
      */
     @Override
     protected void scale(List<T> individuals) {
-        Collections.sort(individuals); // Sorts ascending
+        // Sorts ascending
+        Collections.sort(individuals);
         for (int i = 0, n = individuals.size(); i < n; i++) {
             double newValue = 2.0 - getSelectivePressure() + 2.0 * (getSelectivePressure() - 1) * i / (n - 1);
             individuals.get(i).setFitness(newValue);

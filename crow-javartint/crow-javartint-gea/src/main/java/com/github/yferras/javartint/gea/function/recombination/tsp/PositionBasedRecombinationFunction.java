@@ -24,10 +24,12 @@ package com.github.yferras.javartint.gea.function.recombination.tsp;
 
 import com.github.yferras.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
-import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.TspGenome;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 /**
  * <p/>
@@ -67,7 +69,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     public PositionBasedRecombinationFunction() {
-        this(.75);
+        this(DEFAULT_PROBABILITY);
     }
 
     /**
@@ -117,17 +119,5 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
         offspring[1].getChromosome().setGenes(genes[1].toArray(new DefaultGene[n]));
 
         return (T[]) offspring;
-    }
-
-    private int indexOf(T genome, Gene gene) {
-        final Iterator<DefaultGene<Integer>> iterator = genome.getChromosome().iterator();
-        int index = 0;
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(gene)) {
-                return index;
-            }
-            index++;
-        }
-        return -1;
     }
 }

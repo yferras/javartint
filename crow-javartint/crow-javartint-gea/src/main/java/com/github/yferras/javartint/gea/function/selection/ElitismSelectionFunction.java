@@ -70,7 +70,10 @@ public class ElitismSelectionFunction<T extends Individual>
     protected List<T> select(List<T> individuals) {
         List<T> list = new ArrayList<>(individuals);
         Collections.sort(list);
-        if (optimize == Optimize.MIN) return list.subList(0, getNumToSelect());
-        else return list.subList(list.size() - getNumToSelect(), list.size());
+        if (optimize == Optimize.MIN) {
+            return list.subList(0, getNumToSelect());
+        } else {
+            return list.subList(list.size() - getNumToSelect(), list.size());
+        }
     }
 }

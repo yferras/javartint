@@ -137,8 +137,12 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbstractChromosome that = (AbstractChromosome) o;
 

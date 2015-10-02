@@ -52,7 +52,8 @@ public final class RankScalingMethod<T extends Individual>
      */
     @Override
     protected void scale(List<T> individuals) {
-        Collections.sort(individuals); // Sorts ascending
+        // Sorts ascending
+        Collections.sort(individuals);
         for (int i = 0; i < individuals.size(); i++) {
             individuals.get(i).setFitness(i + 1.0);
         }

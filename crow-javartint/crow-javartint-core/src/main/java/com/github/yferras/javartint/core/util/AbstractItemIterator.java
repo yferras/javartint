@@ -55,7 +55,7 @@ public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
             cursor = i + 1;
             return next;
         } catch (IndexOutOfBoundsException e) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException(e.getMessage());
         }
     }
 

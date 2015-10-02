@@ -165,6 +165,8 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
             case MIN:
                 setBestFitnessScore(Double.POSITIVE_INFINITY);
                 break;
+            default:
+                break;
         }
         this.optimize = optimize;
     }

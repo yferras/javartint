@@ -206,6 +206,8 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
                         countOptionalsTrue++;
                     }
                     break;
+                default:
+                    break;
             }
         }
         return countMandatory == countMandatoryTrue && (countMandatory != 0 || countOptionalsTrue != 0);

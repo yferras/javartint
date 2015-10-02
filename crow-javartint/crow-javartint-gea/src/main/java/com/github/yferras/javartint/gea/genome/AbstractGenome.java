@@ -105,8 +105,9 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
      */
     @Override
     public GenomeType getGenomeType() {
-        if (size() == 0)
+        if (size() == 0) {
             return null;
+        }
         return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
     }
 
@@ -147,8 +148,12 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbstractGenome that = (AbstractGenome) o;
 

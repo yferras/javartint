@@ -39,6 +39,8 @@ import java.util.Random;
 public class RangeGenomeGenFunction
     extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
+    public final static int DEFAULT_LENGTH_OF_GENES = 1;
+    private final static double BASE = 10.0;
     private final int precision;
     private Range<Double>[] ranges;
 
@@ -51,7 +53,7 @@ public class RangeGenomeGenFunction
      *                   is used to generate a random value inside range.
      */
     public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
-        super(genomeSize, ranges.length, 1);
+        super(genomeSize, ranges.length, DEFAULT_LENGTH_OF_GENES);
         this.precision = precision;
         this.ranges = ranges;
     }
@@ -64,7 +66,7 @@ public class RangeGenomeGenFunction
      *                  is used to generate a random value inside range.
      */
     public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
-        super(1, ranges.length, 1);
+        super(DEFAULT_GENOME_SIZE, ranges.length, DEFAULT_LENGTH_OF_GENES);
         this.precision = precision;
         this.ranges = ranges;
     }
@@ -93,9 +95,9 @@ public class RangeGenomeGenFunction
     }
 
     private double round(double value) {
-        double p = Math.pow(10.0, precision);
-        value *= p;
-        return Math.round(value) / p;
+        double p = Math.pow(BASE, precision);
+        double k = value * p;
+        return Math.round(k) / p;
     }
 
 }

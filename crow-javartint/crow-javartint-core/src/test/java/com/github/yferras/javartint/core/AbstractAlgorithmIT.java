@@ -261,7 +261,7 @@ public class AbstractAlgorithmIT {
         instance.fireBestSolutionUpdatedEvent();
     }
 
-    static public class AlgorithmImpl
+    public static class AlgorithmImpl
         extends AbstractAlgorithm<SolutionImpl>
         implements ErrorBasedAlgorithm<SolutionImpl>, IterativeAlgorithm<SolutionImpl> {
 
@@ -299,7 +299,7 @@ public class AbstractAlgorithmIT {
 
     }
 
-    static public class SolutionImpl implements Solution {
+    public static class SolutionImpl implements Solution {
 
         private int data;
 
@@ -317,7 +317,7 @@ public class AbstractAlgorithmIT {
 
     }
 
-    static public class ExecutionEndListenerImpl implements ExecutionEndListener {
+    public static class ExecutionEndListenerImpl implements ExecutionEndListener {
 
         @Override
         public void algorithmFinished(AlgorithmEvent event) {
@@ -326,7 +326,7 @@ public class AbstractAlgorithmIT {
 
     }
 
-    static public class SolutionChangeListenerImpl implements SolutionChangeListener {
+    public static class SolutionChangeListenerImpl implements SolutionChangeListener {
 
         @Override
         public void solutionUpdated(AlgorithmEvent event) {

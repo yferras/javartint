@@ -38,6 +38,7 @@ import com.github.yferras.javartint.gea.genome.Genome;
 public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
     implements GeneratorFunction<T> {
 
+    public final static int DEFAULT_GENOME_SIZE = 1;
     private final int[] lengthsOfGenes;
     private final int genomeSize;
 
@@ -63,7 +64,7 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
      * @param lengthOfGene  the length of each gene.
      */
     public AbstractGenomeGeneratorFunction(int numberOfGenes, int lengthOfGene) {
-        this(1, numberOfGenes, lengthOfGene);
+        this(DEFAULT_GENOME_SIZE, numberOfGenes, lengthOfGene);
     }
 
     /**
@@ -87,7 +88,7 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
      * @param lengthsOfGenes array that contains the length of genes.
      */
     public AbstractGenomeGeneratorFunction(int[] lengthsOfGenes) {
-        this(1, lengthsOfGenes);
+        this(DEFAULT_GENOME_SIZE, lengthsOfGenes);
     }
 
     /**

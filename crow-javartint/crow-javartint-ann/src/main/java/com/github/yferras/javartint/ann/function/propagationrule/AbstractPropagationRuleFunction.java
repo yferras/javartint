@@ -37,16 +37,21 @@ public abstract class AbstractPropagationRuleFunction implements PropagationRule
      */
     @Override
     public Double evaluate(Double[][] params) {
-        if (params == null)
+        if (params == null) {
             throw new IllegalArgumentException("'params' can't be null.");
-        if (params.length != 2)
+        }
+        if (params.length != 2) {
             throw new IllegalArgumentException("'params' must contains exactly two arrays");
-        if (params[0] == null)
+        }
+        if (params[0] == null) {
             throw new IllegalArgumentException("'params[0]' can't be null.");
-        if (params[1] == null)
+        }
+        if (params[1] == null) {
             throw new IllegalArgumentException("'params[1]' can't be null.");
-        if (params[0].length != params[1].length)
+        }
+        if (params[0].length != params[1].length) {
             throw new IllegalArgumentException("the length between two arrays must be the same.");
+        }
         return evaluate(params[0], params[1]);
     }
 

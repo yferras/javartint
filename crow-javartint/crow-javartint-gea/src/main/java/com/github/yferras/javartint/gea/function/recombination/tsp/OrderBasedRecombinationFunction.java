@@ -71,7 +71,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     public OrderBasedRecombinationFunction() {
-        this(.75);
+        this(DEFAULT_PROBABILITY);
     }
 
 

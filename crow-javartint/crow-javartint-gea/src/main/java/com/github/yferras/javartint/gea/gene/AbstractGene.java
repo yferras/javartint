@@ -49,25 +49,25 @@ public abstract class AbstractGene<T> implements Gene<T> {
     }
 
     private static Object copy(Object src) {
-        if (src instanceof Byte)
+        if (src instanceof Byte) {
             return new Byte((byte) src);
-        else if (src instanceof Character)
+        } else if (src instanceof Character) {
             return new Character((char) src);
-        else if (src instanceof Short)
+        } else if (src instanceof Short) {
             return new Short((short) src);
-        else if (src instanceof Integer)
+        } else if (src instanceof Integer) {
             return new Integer((int) src);
-        else if (src instanceof Long)
+        } else if (src instanceof Long) {
             return new Long((long) src);
-        else if (src instanceof Float)
+        } else if (src instanceof Float) {
             return new Float((float) src);
-        else if (src instanceof Double)
+        } else if (src instanceof Double) {
             return new Double((double) src);
-        else if (src instanceof Boolean)
+        } else if (src instanceof Boolean) {
             return new Boolean((boolean) src);
-        else if (src instanceof String)
+        } else if (src instanceof String) {
             return new String((String) src);
-        else if (src.getClass().isArray()) {
+        } else if (src.getClass().isArray()) {
             final int length = Array.getLength(src);
             Object array = Array.newInstance(src.getClass().getComponentType(), length);
             copyArrays((Object[]) src, (Object[]) array);
