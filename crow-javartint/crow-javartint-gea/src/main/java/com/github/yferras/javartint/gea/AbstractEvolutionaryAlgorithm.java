@@ -137,25 +137,19 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
         generations++;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Long getIterations() {
         return getGenerations();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Optimize getOptimize() {
         return optimize;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     final public void setOptimize(Optimize optimize) {
         switch (optimize) {

@@ -64,9 +64,7 @@ public final class LinearRankScalingMethod<T extends Individual>
         return selectivePressure;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void scale(List<T> individuals) {
         // Sorts ascending

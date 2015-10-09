@@ -79,9 +79,7 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

@@ -95,9 +95,7 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
         super.setChromosome(0, newChromosome);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public TspGenome clone() throws CloneNotSupportedException {
         return (TspGenome) super.clone();

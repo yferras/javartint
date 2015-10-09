@@ -62,9 +62,7 @@ public class ElitismSelectionFunction<T extends Individual>
         return optimize;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected List<T> select(List<T> individuals) {

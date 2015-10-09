@@ -46,9 +46,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         super(data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -80,9 +78,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         return getData().length;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -90,9 +86,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         return hash;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new AbstractItemIterator<T>() {
@@ -118,9 +112,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
         this.data[index] = newData;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("[")

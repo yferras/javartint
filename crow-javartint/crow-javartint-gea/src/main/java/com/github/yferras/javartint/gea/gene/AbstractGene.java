@@ -84,25 +84,19 @@ public abstract class AbstractGene<T> implements Gene<T> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getData() {
         return data;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setData(T data) {
         this.data = data;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Gene<T> clone() throws CloneNotSupportedException {
@@ -111,9 +105,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
         return copy;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -121,9 +113,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
         return hash;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -136,9 +126,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
         return Objects.equals(other.getData(), this.data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getData() == null ? "" : getData().toString();

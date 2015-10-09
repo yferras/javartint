@@ -32,33 +32,25 @@ public abstract class AbstractIndividual implements Individual {
 
     private Double fitness = 0.0;
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Double getFitness() {
         return fitness;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setFitness(Double fitness) {
         this.fitness = fitness;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int compareTo(Individual o) {
         return Double.compare(this.getFitness(), o.getFitness());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Individual clone() throws CloneNotSupportedException {
         return (Individual) super.clone();

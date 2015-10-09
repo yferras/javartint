@@ -106,9 +106,7 @@ public class DisplacedInversionMutationFunction<T extends TspGenome>
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T mutate(T subject)

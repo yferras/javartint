@@ -39,6 +39,7 @@ import java.util.Random;
 public class RangeGenomeGenFunction
     extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
+    /** Constant <code>DEFAULT_LENGTH_OF_GENES=1</code> */
     public final static int DEFAULT_LENGTH_OF_GENES = 1;
     private final static double BASE = 10.0;
     private final int precision;

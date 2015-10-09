@@ -43,9 +43,7 @@ public final class SigmaScalingMethod<T extends Individual>
         super(null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void scale(List<T> individuals) {
         final Double mean = MathUtil.mean(individuals);

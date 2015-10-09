@@ -60,9 +60,7 @@ public class RouletteWheelSelectionFunction<T extends Individual>
         this(numToSelect, null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected List<T> select(List<T> individuals) {
         if (getScalingMethod() != null) {

@@ -68,9 +68,7 @@ public class TournamentSelectionFunction<T extends Individual>
         super(selectedGenomes, scalingMethod);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected List<T> select(List<T> individuals) {
         if (getScalingMethod() != null) {

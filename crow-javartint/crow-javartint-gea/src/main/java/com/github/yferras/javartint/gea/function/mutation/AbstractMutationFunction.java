@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 abstract public class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
     extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
+    /** Constant <code>DEFAULT_PROBABILITY=.05</code> */
     public static final double DEFAULT_PROBABILITY = .05;
 
     /**

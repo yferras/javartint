@@ -75,9 +75,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2)

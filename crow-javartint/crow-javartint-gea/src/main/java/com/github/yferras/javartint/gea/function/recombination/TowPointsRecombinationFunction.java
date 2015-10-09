@@ -76,9 +76,7 @@ public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosom
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2)

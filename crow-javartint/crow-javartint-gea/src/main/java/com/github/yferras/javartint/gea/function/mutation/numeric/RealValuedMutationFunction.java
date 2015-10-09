@@ -40,7 +40,9 @@ import java.util.Random;
 public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractMutationFunction<T> {
 
+    /** Constant <code>DEFAULT_MUTATION_RANGE=.1</code> */
     public static final double DEFAULT_MUTATION_RANGE = .1;
+    /** Constant <code>DEFAULT_MUTATION_PRECISION=6</code> */
     public static final double DEFAULT_MUTATION_PRECISION = 6;
 
     private double[] ranges;
@@ -135,9 +137,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected T mutate(T subject) throws CloneNotSupportedException {
         int i = 0;

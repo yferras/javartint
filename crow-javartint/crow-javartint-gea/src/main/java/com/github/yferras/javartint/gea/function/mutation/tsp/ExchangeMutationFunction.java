@@ -85,9 +85,7 @@ public class ExchangeMutationFunction<T extends TspGenome>
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected T mutate(T subject)
         throws CloneNotSupportedException {

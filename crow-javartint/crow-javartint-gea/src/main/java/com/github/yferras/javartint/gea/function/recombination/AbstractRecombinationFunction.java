@@ -42,6 +42,7 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
     extends AbstractProbabilisticFunction<T[], T[]>
     implements RecombinationFunction<T> {
 
+    /** Constant <code>DEFAULT_PROBABILITY=.75</code> */
     public static final double DEFAULT_PROBABILITY = .75;
 
     /**

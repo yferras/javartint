@@ -104,9 +104,7 @@ public class DisplacementMutationFunction<T extends TspGenome>
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T mutate(T subject)

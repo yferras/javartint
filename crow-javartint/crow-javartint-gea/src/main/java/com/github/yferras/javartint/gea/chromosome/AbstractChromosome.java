@@ -50,43 +50,33 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
         genes = new LinkedList<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Gene<?>[] getGenes() {
         return genes.toArray(new Gene<?>[size()]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setGenes(T[] genes) throws IllegalArgumentException {
         this.genes.clear();
         this.genes.addAll(Arrays.asList(genes));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getGene(int locus) throws IndexOutOfBoundsException {
         return genes.get(locus);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int size() {
         return genes.size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new AbstractItemIterator<T>() {
@@ -102,25 +92,19 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setGene(int locus, T newGene) {
         genes.set(locus, newGene);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addGene(T gene) {
         genes.add(gene);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public AbstractChromosome<T> clone() throws CloneNotSupportedException {
@@ -132,9 +116,7 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
         return copy;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -149,17 +131,13 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
         return genes.equals(that.genes);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return genes.hashCode();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");

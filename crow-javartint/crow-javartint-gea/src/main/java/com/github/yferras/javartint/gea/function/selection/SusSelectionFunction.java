@@ -67,9 +67,7 @@ public class SusSelectionFunction<T extends Individual>
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected List<T> select(List<T> individuals) {
         if (getScalingMethod() != null) {

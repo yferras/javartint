@@ -58,6 +58,7 @@ import java.util.Random;
 public class IntermediateRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    /** Constant <code>DEFAULT_DISTANCE=.25</code> */
     public static final double DEFAULT_DISTANCE = .25;
 
     private double distance;
@@ -115,9 +116,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
         return distance;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

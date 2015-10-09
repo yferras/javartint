@@ -65,9 +65,7 @@ public class BinaryMutationFunction<T extends BinaryGenome>
         super();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected T mutate(T subject) {
         for (Chromosome<ByteArrayGene> chromosome : subject) {

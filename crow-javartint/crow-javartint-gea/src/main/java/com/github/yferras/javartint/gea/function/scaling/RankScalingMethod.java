@@ -47,9 +47,7 @@ public final class RankScalingMethod<T extends Individual>
         super(optimize);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void scale(List<T> individuals) {
         // Sorts ascending

@@ -83,9 +83,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
         this(DEFAULT_DISTANCE);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

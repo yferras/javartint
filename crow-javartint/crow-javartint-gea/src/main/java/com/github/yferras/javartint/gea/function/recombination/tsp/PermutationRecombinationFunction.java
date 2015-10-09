@@ -71,9 +71,7 @@ public class PermutationRecombinationFunction<T extends TspGenome>
         this(.75);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

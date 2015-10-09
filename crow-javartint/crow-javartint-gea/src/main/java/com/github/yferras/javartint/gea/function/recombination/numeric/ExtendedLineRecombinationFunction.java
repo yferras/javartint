@@ -41,7 +41,9 @@ import java.util.Random;
 public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    /** Constant <code>DEFAULT_RANGE=.1</code> */
     public static final double DEFAULT_RANGE = .1;
+    /** Constant <code>DEFAULT_PRECISION=6</code> */
     public static final double DEFAULT_PRECISION = 6;
 
     private double[] ranges;
@@ -116,9 +118,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
         this(DEFAULT_RANGE, length, DEFAULT_PRECISION);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

@@ -72,9 +72,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
         this(DEFAULT_PROBABILITY);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {

@@ -60,9 +60,7 @@ public final class BoltzmannScalingMethod<T extends Individual>
         return boltzmannTemp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void scale(List<T> individuals) {
         boltzmannTemp -= BOLTZMANN_DELTA_TEMP;
