@@ -51,9 +51,7 @@ public abstract class AbstractThresholdConstraint<T extends Comparable<T>, A ext
         this.threshold = threshold;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getThreshold() {
         return threshold;

@@ -36,17 +36,13 @@ public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
 
     private int cursor = 0;
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasNext() {
         return cursor < itemsCount();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public E next() {
         try {
@@ -59,9 +55,7 @@ public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove() {
         throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");

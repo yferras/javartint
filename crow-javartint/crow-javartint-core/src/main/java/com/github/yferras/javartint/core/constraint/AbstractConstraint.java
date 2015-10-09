@@ -49,17 +49,13 @@ public abstract class AbstractConstraint<A extends Algorithm<? extends Solution>
         this.constraintType = constraintType;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ConstraintType getConstraintType() {
         return constraintType;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setConstraintType(ConstraintType constraintType) {
         this.constraintType = constraintType;

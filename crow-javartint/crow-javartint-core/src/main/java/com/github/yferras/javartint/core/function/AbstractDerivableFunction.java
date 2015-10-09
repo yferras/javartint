@@ -52,9 +52,7 @@ public abstract class AbstractDerivableFunction<R, P> implements DerivableFuncti
         this.parent = parent;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getN() {
         return this.parent == null ? 0 : this.parent.getN() + 1;

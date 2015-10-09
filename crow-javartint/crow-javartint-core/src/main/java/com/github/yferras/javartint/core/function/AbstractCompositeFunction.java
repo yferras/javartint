@@ -46,9 +46,7 @@ public abstract class AbstractCompositeFunction<R, P> implements CompositeFuncti
         functionStack = new ArrayList<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getN() {
         return functionStack.size();
@@ -63,9 +61,7 @@ public abstract class AbstractCompositeFunction<R, P> implements CompositeFuncti
         return functionStack;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setFunctions(Function... functions) {
         for (Function function : functions) {

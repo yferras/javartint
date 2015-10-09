@@ -103,26 +103,20 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         return eventListeners.remove(listener);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
         constraints.add(constraint);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
         return constraints.toArray(new Constraint[constraints.size()]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Long getElapsedTime() {
         if (isRunning()) {
@@ -140,9 +134,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         running = true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public S getSolution() {
         return solution;
@@ -158,25 +150,19 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         fireBestSolutionUpdatedEvent();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isRunning() {
         return running;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
         constraints.remove(constraint);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void stop() {
         if (running) {
@@ -184,9 +170,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public boolean testConstraint() {

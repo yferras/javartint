@@ -71,17 +71,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
         this(probability, new Random());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getProbability() {
         return probability;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public final void setProbability(final double probability)
         throws IllegalArgumentException {
@@ -92,17 +88,13 @@ abstract public class AbstractProbabilisticFunction<R, P>
         this.probability = probability;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Random getRandom() {
         return random;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setRandom(final Random random)
         throws IllegalArgumentException {

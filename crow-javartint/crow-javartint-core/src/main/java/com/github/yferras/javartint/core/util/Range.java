@@ -111,9 +111,7 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
         return use;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -134,9 +132,7 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
         return use == range.use;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int result = min != null ? min.hashCode() : 0;
@@ -146,7 +142,7 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
     }
 
     /**
-     * To define the use the limits in the range
+     * To define the use the limits in the range.
      */
     public static enum Use {
         /**
