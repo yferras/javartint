@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.genome;
  */
 
 import com.github.yferras.javartint.core.util.AbstractItemIterator;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.AbstractIndividual;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -50,59 +51,48 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         chromosomes = new LinkedList<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Chromosome<? extends Gene<?>>[] getChromosomes() {
         return chromosomes.toArray(new Chromosome<?>[size()]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
-    public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
+    public void setChromosomes(T[] chromosomes) throws ValidationException {
+        if (chromosomes == null) {
+            throw new ValidationException("'chromosomes' array can't be null.");
+        }
         this.chromosomes.clear();
         this.chromosomes.addAll(Arrays.asList(chromosomes));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getChromosome(int index) {
         return this.chromosomes.get(index);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setChromosome(int index, T newChromosome) {
         this.chromosomes.set(index, newChromosome);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int size() {
         return chromosomes.size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addChromosome(T chromosome) {
         chromosomes.add(chromosome);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public GenomeType getGenomeType() {
         if (size() == 0) {
@@ -111,9 +101,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new AbstractItemIterator<T>() {
@@ -129,9 +117,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Genome<T> clone() throws CloneNotSupportedException {
@@ -143,9 +129,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         return copy;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -160,9 +144,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int result;
@@ -173,9 +155,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         return result;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{");

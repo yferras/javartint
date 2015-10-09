@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.genome;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -49,10 +50,9 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
      * Sets the array of chromosomes.
      *
      * @param chromosomes an array of T objects.
-     * @throws java.lang.IllegalArgumentException if {@code chromosomes} argument is
-     *                                            {@code null}.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code chromosomes} argument is {@code null}.
      */
-    void setChromosomes(T[] chromosomes) throws IllegalArgumentException;
+    void setChromosomes(T[] chromosomes) throws ValidationException;
 
     /**
      * Gets the chromosome at specific index.
