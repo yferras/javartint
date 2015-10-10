@@ -38,33 +38,25 @@ public class AbstractArtificialLayer<T extends ArtificialNeuron> implements Arti
     private T[] neurons;
 
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int size() {
         return neurons.length;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T[] getNeurons() {
         return neurons;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getNeuron(int index) {
         return neurons[index];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new AbstractItemIterator<T>() {

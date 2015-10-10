@@ -47,6 +47,7 @@ public class ElitismSelectionFunction<T extends Individual>
      *
      * @param numToSelect number of elements to select
      * @param optimize    the optimization way
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public ElitismSelectionFunction(int numToSelect, Optimize optimize) throws ValidationException {
         super(numToSelect);

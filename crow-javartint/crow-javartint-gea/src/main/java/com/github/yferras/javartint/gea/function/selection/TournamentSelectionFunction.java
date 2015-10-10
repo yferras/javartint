@@ -51,6 +51,7 @@ public class TournamentSelectionFunction<T extends Individual>
      * <p>Constructor for TournamentSelectionFunction.</p>
      *
      * @param selectedGenomes a int.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public TournamentSelectionFunction(int selectedGenomes) throws ValidationException {
         this(selectedGenomes, null);
@@ -61,6 +62,7 @@ public class TournamentSelectionFunction<T extends Individual>
      *
      * @param selectedGenomes a int.
      * @param scalingMethod   a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public TournamentSelectionFunction(int selectedGenomes,
                                        AbstractScalingMethod<T> scalingMethod) throws ValidationException {

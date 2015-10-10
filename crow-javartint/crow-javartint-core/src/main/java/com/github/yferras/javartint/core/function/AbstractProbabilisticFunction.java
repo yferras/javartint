@@ -51,7 +51,7 @@ public abstract class AbstractProbabilisticFunction<R, P>
      *
      * @param probability value of probability
      * @param random      random instance
-     * @throws ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
      */
     protected AbstractProbabilisticFunction(double probability, Random random) throws ValidationException {
         setProbability(probability);
@@ -64,7 +64,7 @@ public abstract class AbstractProbabilisticFunction<R, P>
      * {@link java.util.Random}.
      *
      * @param probability value of probability
-     * @throws ValidationException see {@link #setProbability}
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability}
      */
     protected AbstractProbabilisticFunction(double probability) throws ValidationException {
         this(probability, new Random());
@@ -73,6 +73,8 @@ public abstract class AbstractProbabilisticFunction<R, P>
     /**
      * Constructor, initializes instances with default probability (.5) and random is an instance of
      * {@link java.util.Random}.
+     *
+     * @since 1.0.1
      */
     protected AbstractProbabilisticFunction() {
         this.probability = DEFAULT_PROBABILITY;

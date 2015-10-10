@@ -38,6 +38,7 @@ import java.util.List;
 public abstract class AbstractSelectionFunction<T extends Individual>
     implements SelectionFunction<T> {
 
+    /** Constant <code>DEFAULT_TO_SELECT=2</code> */
     public static final int DEFAULT_TO_SELECT = 2;
 
     private int numToSelect;
@@ -49,6 +50,7 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      *
      * @param numToSelect   number of elements to select
      * @param scalingMethod scaling method
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) throws ValidationException {
         if (numToSelect < 1) {
@@ -62,6 +64,7 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      * Constructor than initializes this instance.
      *
      * @param numToSelect number of elements to select
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public AbstractSelectionFunction(int numToSelect) throws ValidationException {
         this(numToSelect, null);
@@ -69,6 +72,8 @@ public abstract class AbstractSelectionFunction<T extends Individual>
 
     /**
      * Constructor than initializes this instance.
+     *
+     * @since 1.0.1
      */
     public AbstractSelectionFunction() {
         this.numToSelect = DEFAULT_TO_SELECT;

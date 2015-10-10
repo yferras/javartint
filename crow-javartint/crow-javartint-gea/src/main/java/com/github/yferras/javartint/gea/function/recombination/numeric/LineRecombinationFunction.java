@@ -47,6 +47,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
      * @param probability probability of mutation
      * @param random      random instance
      * @param distance    defines the length of the extra-segment for possible offspring.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public LineRecombinationFunction(double probability, Random random, double distance) throws ValidationException {
         super(probability, random, distance);
@@ -58,6 +59,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
      *
      * @param probability probability of mutation
      * @param distance    defines the length of the extra-segment for possible offspring.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public LineRecombinationFunction(double probability, double distance) throws ValidationException {
         super(probability, distance);

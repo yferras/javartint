@@ -65,6 +65,7 @@ public class ExchangeMutationFunction<T extends TspGenome>
      *
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public ExchangeMutationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
@@ -74,6 +75,7 @@ public class ExchangeMutationFunction<T extends TspGenome>
      * <p>Constructor for ExchangeMutationFunction.</p>
      *
      * @param probability a double.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public ExchangeMutationFunction(double probability) throws ValidationException {
         super(probability);

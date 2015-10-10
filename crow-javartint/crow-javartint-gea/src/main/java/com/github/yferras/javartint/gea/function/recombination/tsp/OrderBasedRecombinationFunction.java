@@ -51,6 +51,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      *
      * @param probability probability of recombination
      * @param random      random instance
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public OrderBasedRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
@@ -62,6 +63,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      * instance of {@link java.util.Random}.
      *
      * @param probability probability of recombination
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public OrderBasedRecombinationFunction(double probability) throws ValidationException {
         this(probability, new Random());

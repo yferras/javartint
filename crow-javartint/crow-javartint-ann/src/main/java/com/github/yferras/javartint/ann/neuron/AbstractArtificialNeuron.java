@@ -61,33 +61,25 @@ public abstract class AbstractArtificialNeuron
         this.setFunctions(propagationRuleFunction, activationFunction);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Double[] getWeights() {
         return weights;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getBias() {
         return bias;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int size() {
         return weights.length;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<Double> iterator() {
         return new AbstractItemIterator<Double>() {

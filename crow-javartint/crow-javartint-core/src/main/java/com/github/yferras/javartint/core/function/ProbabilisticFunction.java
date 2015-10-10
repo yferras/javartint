@@ -49,7 +49,7 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * {@code 1.0}.
      *
      * @param probability the probability
-     * @throws ValidationException if {@code probability is not
+     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code probability is not
      *                                            inside 0.0 and 1.0}
      */
     void setProbability(final double probability) throws ValidationException;
@@ -65,7 +65,7 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * Sets the random generator. Is used to generate random probabilities.
      *
      * @param random the random instance
-     * @throws ValidationException if {@code random} param is {@code null}
+     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code random} param is {@code null}
      */
     void setRandom(final Random random) throws ValidationException;
 

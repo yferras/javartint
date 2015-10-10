@@ -57,6 +57,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @param ranges      array with the mutation ranges, one per dimension. (Typical values from 0.1 to 10E-6)
      * @param precisions  array with mutation precisions, one per dimension. (Typical values from 4 to 20)
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public RealValuedMutationFunction(double probability, Random random, double[] ranges,
                                       double[] precisions) throws ValidationException {
@@ -76,6 +77,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @param ranges      array with the mutation ranges, one per dimension.
      * @param precisions  array with mutation precisions, one per dimension.
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) throws ValidationException {
         this(probability, new Random(), ranges, precisions);

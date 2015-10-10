@@ -57,6 +57,7 @@ public class SinglePointRecombinationFunction<T extends Genome<? extends Chromos
      *
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public SinglePointRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
@@ -66,6 +67,7 @@ public class SinglePointRecombinationFunction<T extends Genome<? extends Chromos
      * <p>Constructor for SinglePointRecombinationFunction.</p>
      *
      * @param probability a double.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public SinglePointRecombinationFunction(double probability) throws ValidationException {
         super(probability);

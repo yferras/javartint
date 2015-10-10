@@ -61,6 +61,7 @@ public class MultiPointsRecombinationFunction<T extends Genome<? extends Chromos
      *
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public MultiPointsRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
@@ -70,6 +71,7 @@ public class MultiPointsRecombinationFunction<T extends Genome<? extends Chromos
      * <p>Constructor for MultiPointsRecombinationFunction.</p>
      *
      * @param probability a double.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public MultiPointsRecombinationFunction(double probability) throws ValidationException {
         super(probability);

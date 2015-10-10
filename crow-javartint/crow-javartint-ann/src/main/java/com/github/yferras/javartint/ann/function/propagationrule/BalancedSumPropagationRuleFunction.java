@@ -30,9 +30,7 @@ package com.github.yferras.javartint.ann.function.propagationrule;
  */
 public class BalancedSumPropagationRuleFunction extends AbstractPropagationRuleFunction {
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected Double evaluate(Double[] inputs, Double[] weights) {
         double sum = 0.0;

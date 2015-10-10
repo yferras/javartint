@@ -48,7 +48,7 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      *
      * @param probability probability of mutation
      * @param random      random instance
-     * @throws ValidationException see {@link AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
      */
     protected AbstractMutationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
@@ -61,7 +61,7 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      * {@link java.util.Random}.
      *
      * @param probability probability of mutation
-     * @throws ValidationException see {@link AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
      */
     protected AbstractMutationFunction(double probability) throws ValidationException {
         super(probability);

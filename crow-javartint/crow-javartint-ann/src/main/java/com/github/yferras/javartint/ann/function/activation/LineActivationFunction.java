@@ -58,9 +58,7 @@ public class LineActivationFunction extends AbstractDerivableFunction<Double, Do
         super(null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public DerivableFunction<Double, Double> derive() {
         return new AbstractDerivableFunction<Double, Double>(this) {

@@ -30,9 +30,7 @@ package com.github.yferras.javartint.ann.function.propagationrule;
  * @version 0.0.1
  */
 public class EuclideanDistancePropagationRuleFunction extends AbstractPropagationRuleFunction {
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected Double evaluate(Double[] inputs, Double[] weights) {
         double sum = 0.0f;
