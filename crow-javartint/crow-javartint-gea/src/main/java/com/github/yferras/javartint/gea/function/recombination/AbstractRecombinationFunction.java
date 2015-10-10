@@ -28,8 +28,6 @@ import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Abstract class that represents recombination function.
@@ -119,10 +117,9 @@ abstract public class AbstractRecombinationFunction<T extends Genome<? extends C
             return params.clone();
         }
         try {
-            return recombine(params[0], params[1]);
+            return recombine((T) params[0].clone(), (T) params[1].clone());
         } catch (CloneNotSupportedException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new RuntimeException("Cloning params.", e);
         }
     }
 }

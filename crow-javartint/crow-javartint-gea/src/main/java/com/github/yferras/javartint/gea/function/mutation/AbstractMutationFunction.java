@@ -28,8 +28,6 @@ import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Abstract class that represents mutation function.
@@ -82,7 +80,6 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Chromo
      *
      * @param subject individual which will be mutate
      * @return mutated genome
-     * @throws java.lang.CloneNotSupportedException if
      */
     protected abstract T mutate(T subject) throws CloneNotSupportedException;
 
@@ -115,8 +112,7 @@ abstract public class AbstractMutationFunction<T extends Genome<? extends Chromo
         try {
             return mutate((T) params.clone());
         } catch (CloneNotSupportedException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new RuntimeException("Cloning params.", e);
         }
     }
 }

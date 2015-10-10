@@ -74,7 +74,8 @@ public class RouletteWheelSelectionFunction<T extends Individual>
             double sumAux = 0.0;
             double randNumb = rand.nextDouble() * totalFitnessScore;
             for (T genome : individuals) {
-                if ((sumAux += Math.abs(genome.getFitness())) >= randNumb) {
+                sumAux += Math.abs(genome.getFitness());
+                if (sumAux >= randNumb) {
                     selected.add(i, genome);
                     break;
                 }

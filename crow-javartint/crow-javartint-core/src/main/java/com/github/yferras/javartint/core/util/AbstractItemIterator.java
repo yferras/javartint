@@ -24,6 +24,7 @@ package com.github.yferras.javartint.core.util;
 
 
 import java.util.NoSuchElementException;
+import java.util.logging.Logger;
 
 /**
  * Abstract class that implements partially {@link com.github.yferras.javartint.core.util.ItemIterator}.
@@ -50,7 +51,8 @@ public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
             E next = getItem(i);
             cursor = i + 1;
             return next;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).throwing(getClass().getName(), "next", e);
             throw new NoSuchElementException(e.getMessage());
         }
     }

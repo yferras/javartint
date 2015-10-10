@@ -229,8 +229,7 @@ public class RecombinationFunctionTest {
         @Override
         protected Genome<? extends Chromosome<? extends Gene<?>>>[] recombine(
             Genome<? extends Chromosome<? extends Gene<?>>> parent1,
-            Genome<? extends Chromosome<? extends Gene<?>>> parent2)
-            throws CloneNotSupportedException {
+            Genome<? extends Chromosome<? extends Gene<?>>> parent2) {
             return null;
         }
 

@@ -52,7 +52,7 @@ public interface Algorithm<S extends Solution> extends Runnable {
      *
      * @return constraint array.
      */
-    Constraint<? extends Algorithm<? extends Solution>>[] getConstraints();
+    Constraint<Algorithm<Solution>>[] getConstraints();
 
     /**
      * Gets the elapsed time in milliseconds.

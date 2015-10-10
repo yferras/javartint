@@ -33,8 +33,6 @@ import com.github.yferras.javartint.gea.util.IndividualFilter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms
@@ -110,7 +108,8 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
                 try {
                     setSolution((T) individual.clone());
                 } catch (CloneNotSupportedException e) {
-                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
+                    setSolution(null);
+                    throw new RuntimeException("Cloning the solution.", e);
                 }
             }
         }

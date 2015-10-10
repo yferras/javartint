@@ -112,7 +112,7 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Constraint<? extends Algorithm<? extends Solution>>[] getConstraints() {
+    public Constraint<Algorithm<Solution>>[] getConstraints() {
         return constraints.toArray(new Constraint[constraints.size()]);
     }
 
