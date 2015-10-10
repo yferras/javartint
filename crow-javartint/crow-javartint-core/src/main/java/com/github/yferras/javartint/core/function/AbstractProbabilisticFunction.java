@@ -22,9 +22,6 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
-
-import com.github.yferras.javartint.core.util.ValidationException;
-
 import java.util.Random;
 
 /**
