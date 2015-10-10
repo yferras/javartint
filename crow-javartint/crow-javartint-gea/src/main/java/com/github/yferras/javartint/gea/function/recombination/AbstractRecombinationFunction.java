@@ -36,7 +36,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
-abstract public class AbstractRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public abstract class AbstractRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
     extends AbstractProbabilisticFunction<T[], T[]>
     implements RecombinationFunction<T> {
 

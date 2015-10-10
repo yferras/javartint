@@ -40,8 +40,8 @@ public class RangeGenomeGenFunction
     extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
     /** Constant <code>DEFAULT_LENGTH_OF_GENES=1</code> */
-    public final static int DEFAULT_LENGTH_OF_GENES = 1;
-    private final static double BASE = 10.0;
+    public static final int DEFAULT_LENGTH_OF_GENES = 1;
+    private static final double BASE = 10.0;
     private final int precision;
     private Range<Double>[] ranges;
 

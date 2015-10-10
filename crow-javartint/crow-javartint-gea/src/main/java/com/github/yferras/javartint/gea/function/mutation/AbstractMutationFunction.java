@@ -36,7 +36,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-abstract public class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
+public abstract class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
     extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
     /** Constant <code>DEFAULT_PROBABILITY=.05</code> */

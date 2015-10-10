@@ -39,7 +39,7 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
     implements GeneratorFunction<T> {
 
     /** Constant <code>DEFAULT_GENOME_SIZE=1</code> */
-    public final static int DEFAULT_GENOME_SIZE = 1;
+    public static final int DEFAULT_GENOME_SIZE = 1;
     private final int[] lengthsOfGenes;
     private final int genomeSize;
 

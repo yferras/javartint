@@ -37,8 +37,8 @@ import java.util.List;
 public final class BoltzmannScalingMethod<T extends Individual>
     extends AbstractScalingMethod<T> {
 
-    private final static double BOLTZMANN_DELTA_TEMP = 0.05;
-    private final static double BOLTZMANN_MIN_TEMP = 1.0;
+    private static final double BOLTZMANN_DELTA_TEMP = 0.05;
+    private static final double BOLTZMANN_MIN_TEMP = 1.0;
     private double boltzmannTemp;
 
     /**

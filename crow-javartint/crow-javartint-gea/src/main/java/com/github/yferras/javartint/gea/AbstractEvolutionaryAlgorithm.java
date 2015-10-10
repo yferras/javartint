@@ -46,9 +46,9 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
     extends AbstractAlgorithm<T>
     implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
-    final private DecoderFunction<D, T> decoder;
-    final private Function<Double, D> targetFunction;
-    final private GeneratorFunction<T> generator;
+    private final DecoderFunction<D, T> decoder;
+    private final Function<Double, D> targetFunction;
+    private final GeneratorFunction<T> generator;
     private IndividualFilter<T> filter;
     private List<T> population;
     private int populationSize;
@@ -150,7 +150,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 
     /** {@inheritDoc} */
     @Override
-    final public void setOptimize(Optimize optimize) {
+    public final void setOptimize(Optimize optimize) {
         switch (optimize) {
             case MAX:
                 setBestFitnessScore(Double.NEGATIVE_INFINITY);
