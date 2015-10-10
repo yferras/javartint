@@ -54,8 +54,8 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Chromosome<? extends Gene<?>>[] getChromosomes() {
-        return chromosomes.toArray(new Chromosome<?>[size()]);
+    public T[] getChromosomes() {
+        return (T[])chromosomes.toArray(new Chromosome<?>[size()]);
     }
 
     /** {@inheritDoc} */
