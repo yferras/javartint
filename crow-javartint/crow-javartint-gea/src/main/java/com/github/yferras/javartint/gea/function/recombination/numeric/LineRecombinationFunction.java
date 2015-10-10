@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination.numeric;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -47,7 +48,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
      * @param random      random instance
      * @param distance    defines the length of the extra-segment for possible offspring.
      */
-    public LineRecombinationFunction(double probability, Random random, double distance) {
+    public LineRecombinationFunction(double probability, Random random, double distance) throws ValidationException {
         super(probability, random, distance);
     }
 
@@ -58,7 +59,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
      * @param probability probability of mutation
      * @param distance    defines the length of the extra-segment for possible offspring.
      */
-    public LineRecombinationFunction(double probability, double distance) {
+    public LineRecombinationFunction(double probability, double distance) throws ValidationException {
         super(probability, distance);
     }
 

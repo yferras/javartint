@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.TspGenome;
 
@@ -72,7 +73,7 @@ public class DisplacedInversionMutationFunction<T extends TspGenome>
      * @param random      random instance
      * @param minSpanSize min span size
      */
-    public DisplacedInversionMutationFunction(double probability, Random random, int minSpanSize) {
+    public DisplacedInversionMutationFunction(double probability, Random random, int minSpanSize) throws ValidationException {
         super(probability, random, minSpanSize);
     }
 
@@ -83,7 +84,7 @@ public class DisplacedInversionMutationFunction<T extends TspGenome>
      * @param probability probability of mutation
      * @param minSpanSize min span size
      */
-    public DisplacedInversionMutationFunction(double probability, int minSpanSize) {
+    public DisplacedInversionMutationFunction(double probability, int minSpanSize) throws ValidationException {
         super(probability, minSpanSize);
     }
 

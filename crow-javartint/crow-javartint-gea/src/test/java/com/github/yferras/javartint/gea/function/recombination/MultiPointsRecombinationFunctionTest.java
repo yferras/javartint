@@ -56,7 +56,7 @@ public class MultiPointsRecombinationFunctionTest {
     }
 
     @Test
-    public void testMultiPointsCrossoverFunction1() {
+    public void testMultiPointsCrossoverFunction1() throws Exception {
         System.out.println("MultiPointsCrossoverFunction(probability)");
         final Double probability = new MultiPointsRecombinationFunction<>(1.0)
             .getProbability();
@@ -73,7 +73,7 @@ public class MultiPointsRecombinationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate() {
+    public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         GenomeConstants.RANDOM_GENERATOR_3.nextInt(GenomeConstants.CHROMOSOME_SIZE);
         MultiPointsRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =

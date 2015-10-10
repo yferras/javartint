@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.GenomeConstants;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
@@ -56,7 +57,7 @@ public class MutationFunctionTest {
     }
 
     @Test
-    public void testGetProbability() {
+    public void testGetProbability() throws Exception {
         System.out.println("getProbability");
         final DefaultMutationFunction function = new DefaultMutationFunction();
         function.setProbability(.5);
@@ -70,7 +71,7 @@ public class MutationFunctionTest {
         final DefaultMutationFunction function = new DefaultMutationFunction();
         try {
             function.setProbability(-.5);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(true);
             return;
         }
@@ -78,7 +79,7 @@ public class MutationFunctionTest {
     }
 
     @Test
-    public void testSetProbability2() {
+    public void testSetProbability2() throws Exception {
         System.out.println("setProbability (valid argument)");
         final DefaultMutationFunction function = new DefaultMutationFunction();
         function.setProbability(.1);
@@ -126,7 +127,7 @@ public class MutationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate() throws CloneNotSupportedException {
+    public void testEvaluate() throws Exception {
         System.out.println("evaluate (to invoke mutation process)");
         DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
         genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
@@ -145,7 +146,7 @@ public class MutationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate2() throws CloneNotSupportedException {
+    public void testEvaluate2() throws Exception {
         System.out.println("evaluate (probability constrain not meet)");
         final DefaultMutationFunction function = new
             DefaultMutationFunction();

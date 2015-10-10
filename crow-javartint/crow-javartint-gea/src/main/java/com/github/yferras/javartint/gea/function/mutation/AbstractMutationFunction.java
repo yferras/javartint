@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.mutation;
  */
 
 import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -47,9 +48,9 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      *
      * @param probability probability of mutation
      * @param random      random instance
+     * @throws ValidationException see {@link AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
      */
-    protected AbstractMutationFunction(double probability,
-                                       Random random) {
+    protected AbstractMutationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -60,8 +61,9 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      * {@link java.util.Random}.
      *
      * @param probability probability of mutation
+     * @throws ValidationException see {@link AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
      */
-    protected AbstractMutationFunction(double probability) {
+    protected AbstractMutationFunction(double probability) throws ValidationException {
         super(probability);
     }
 
@@ -71,7 +73,8 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      * {@link java.util.Random}.
      */
     protected AbstractMutationFunction() {
-        super(DEFAULT_PROBABILITY);
+        super();
+        this.probability = DEFAULT_PROBABILITY;
     }
 
     /**

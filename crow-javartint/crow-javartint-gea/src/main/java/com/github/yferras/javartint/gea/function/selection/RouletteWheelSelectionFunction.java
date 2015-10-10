@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod;
 import com.github.yferras.javartint.gea.util.MathUtil;
@@ -47,7 +48,7 @@ public class RouletteWheelSelectionFunction<T extends Individual>
      * @param numToSelect   a int.
      * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
      */
-    public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+    public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) throws ValidationException {
         super(numToSelect, scalingMethod);
     }
 
@@ -56,7 +57,7 @@ public class RouletteWheelSelectionFunction<T extends Individual>
      *
      * @param numToSelect a int.
      */
-    public RouletteWheelSelectionFunction(int numToSelect) {
+    public RouletteWheelSelectionFunction(int numToSelect) throws ValidationException {
         this(numToSelect, null);
     }
 

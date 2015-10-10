@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination.tsp;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.TspGenome;
@@ -49,7 +50,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      * @param probability probability of recombination
      * @param random      random instance
      */
-    public PositionBasedRecombinationFunction(double probability, Random random) {
+    public PositionBasedRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -60,7 +61,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      *
      * @param probability probability of recombination
      */
-    public PositionBasedRecombinationFunction(double probability) {
+    public PositionBasedRecombinationFunction(double probability) throws ValidationException {
         this(probability, new Random());
     }
 
@@ -69,7 +70,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     public PositionBasedRecombinationFunction() {
-        this(DEFAULT_PROBABILITY);
+        super();
     }
 
     /** {@inheritDoc} */

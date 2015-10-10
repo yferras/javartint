@@ -62,7 +62,7 @@ public class TowPointsRecombinationFunctionTest {
     }
 
     @Test
-    public void testTowPointsCrossoverFunction1() {
+    public void testTowPointsCrossoverFunction1() throws Exception {
         System.out.println("SinglePointCrossoverFunction(probability)");
         final Double probability = new TowPointsRecombinationFunction<>(1.0)
             .getProbability();
@@ -79,7 +79,7 @@ public class TowPointsRecombinationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate() {
+    public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         TowPointsRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =
             new TowPointsRecombinationFunction<>(.75, GenomeConstants.RANDOM_GENERATOR_2);

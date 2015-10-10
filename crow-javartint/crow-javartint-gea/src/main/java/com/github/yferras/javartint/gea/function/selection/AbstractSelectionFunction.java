@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod;
 
@@ -37,9 +38,11 @@ import java.util.List;
 public abstract class AbstractSelectionFunction<T extends Individual>
     implements SelectionFunction<T> {
 
-    private int numToSelect = 1;
+    public static final int DEFAULT_TO_SELECT = 2;
 
-    private AbstractScalingMethod<T> scalingMethod = null;
+    private int numToSelect;
+
+    private AbstractScalingMethod<T> scalingMethod;
 
     /**
      * Constructor than initializes this instance.
@@ -47,9 +50,9 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      * @param numToSelect   number of elements to select
      * @param scalingMethod scaling method
      */
-    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) throws ValidationException {
         if (numToSelect < 1) {
-            throw new IllegalArgumentException("'numToSelect' can't be less than 1.");
+            throw new ValidationException("'numToSelect' can't be less than 1.");
         }
         this.numToSelect = numToSelect;
         this.scalingMethod = scalingMethod;
@@ -60,8 +63,16 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      *
      * @param numToSelect number of elements to select
      */
-    public AbstractSelectionFunction(int numToSelect) {
+    public AbstractSelectionFunction(int numToSelect) throws ValidationException {
         this(numToSelect, null);
+    }
+
+    /**
+     * Constructor than initializes this instance.
+     */
+    public AbstractSelectionFunction() {
+        this.numToSelect = DEFAULT_TO_SELECT;
+        this.scalingMethod = null;
     }
 
     /**

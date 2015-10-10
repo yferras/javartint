@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.recombination;
  */
 
 import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -49,8 +50,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
      * @param probability probability of recombination
      * @param random      random instance
      */
-    protected AbstractRecombinationFunction(double probability,
-                                            Random random) {
+    protected AbstractRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -61,7 +61,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
      *
      * @param probability probability of recombination
      */
-    protected AbstractRecombinationFunction(double probability) {
+    protected AbstractRecombinationFunction(double probability) throws ValidationException {
         super(probability);
     }
 
@@ -70,7 +70,8 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     protected AbstractRecombinationFunction() {
-        super(DEFAULT_PROBABILITY);
+        super();
+        this.probability = DEFAULT_PROBABILITY;
     }
 
     /**

@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.TspGenome;
@@ -65,7 +66,7 @@ public class ExchangeMutationFunction<T extends TspGenome>
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
      */
-    public ExchangeMutationFunction(double probability, Random random) {
+    public ExchangeMutationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -74,7 +75,7 @@ public class ExchangeMutationFunction<T extends TspGenome>
      *
      * @param probability a double.
      */
-    public ExchangeMutationFunction(double probability) {
+    public ExchangeMutationFunction(double probability) throws ValidationException {
         super(probability);
     }
 

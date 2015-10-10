@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation.binary;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
@@ -45,7 +46,7 @@ public class BinaryMutationFunction<T extends BinaryGenome>
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
      */
-    public BinaryMutationFunction(double probability, Random random) {
+    public BinaryMutationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -54,7 +55,7 @@ public class BinaryMutationFunction<T extends BinaryGenome>
      *
      * @param probability a double.
      */
-    public BinaryMutationFunction(double probability) {
+    public BinaryMutationFunction(double probability) throws ValidationException {
         super(probability);
     }
 

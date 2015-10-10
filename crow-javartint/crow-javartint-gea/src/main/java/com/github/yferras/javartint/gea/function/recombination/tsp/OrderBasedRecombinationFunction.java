@@ -24,6 +24,7 @@ package com.github.yferras.javartint.gea.function.recombination.tsp;
  * #L%
 */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.TspGenome;
@@ -51,7 +52,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      * @param probability probability of recombination
      * @param random      random instance
      */
-    public OrderBasedRecombinationFunction(double probability, Random random) {
+    public OrderBasedRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -62,7 +63,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      *
      * @param probability probability of recombination
      */
-    public OrderBasedRecombinationFunction(double probability) {
+    public OrderBasedRecombinationFunction(double probability) throws ValidationException {
         this(probability, new Random());
     }
 
@@ -71,7 +72,7 @@ public class OrderBasedRecombinationFunction<T extends TspGenome>
      * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
      */
     public OrderBasedRecombinationFunction() {
-        this(DEFAULT_PROBABILITY);
+        super();
     }
 
 

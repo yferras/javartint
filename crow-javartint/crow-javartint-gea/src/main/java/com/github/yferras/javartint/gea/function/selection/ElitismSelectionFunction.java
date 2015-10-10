@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.selection;
  */
 
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class ElitismSelectionFunction<T extends Individual>
      * @param numToSelect number of elements to select
      * @param optimize    the optimization way
      */
-    public ElitismSelectionFunction(int numToSelect, Optimize optimize) {
+    public ElitismSelectionFunction(int numToSelect, Optimize optimize) throws ValidationException {
         super(numToSelect);
         this.optimize = optimize;
     }

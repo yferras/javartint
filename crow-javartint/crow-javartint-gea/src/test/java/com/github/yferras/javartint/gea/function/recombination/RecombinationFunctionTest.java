@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.GenomeConstants;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
@@ -61,7 +62,7 @@ public class RecombinationFunctionTest {
     }
 
     @Test
-    public void testGetProbability() {
+    public void testGetProbability() throws Exception {
         System.out.println("getProbability");
         final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setProbability(.5);
@@ -75,7 +76,7 @@ public class RecombinationFunctionTest {
         final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         try {
             function.setProbability(-.5);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(true);
             return;
         }
@@ -83,7 +84,7 @@ public class RecombinationFunctionTest {
     }
 
     @Test
-    public void testSetProbability2() {
+    public void testSetProbability2() throws Exception {
         System.out.println("setProbability (valid argument)");
         final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setProbability(.1);
@@ -174,7 +175,7 @@ public class RecombinationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate3() {
+    public void testEvaluate3() throws Exception {
         System.out.println("evaluate (probability constrain not meet)");
         final DefaultRecombinationFunction function = new
             DefaultRecombinationFunction();
@@ -200,7 +201,7 @@ public class RecombinationFunctionTest {
     }
 
     @Test
-    public void testSetRandomGenerator() {
+    public void testSetRandomGenerator() throws Exception {
         final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
         function.setRandom(GenomeConstants.RANDOM_GENERATOR_1);
         assertEquals(
@@ -213,7 +214,8 @@ public class RecombinationFunctionTest {
         extends AbstractRecombinationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
 
         private DefaultRecombinationFunction() {
-            super(0.75, new Random() {
+            this.probability = 0.75;
+            this.random = new Random() {
                 @Override
                 public int nextInt(int n) {
                     return 0;
@@ -223,7 +225,7 @@ public class RecombinationFunctionTest {
                 public double nextDouble() {
                     return 0.5;
                 }
-            });
+            };
         }
 
         @Override

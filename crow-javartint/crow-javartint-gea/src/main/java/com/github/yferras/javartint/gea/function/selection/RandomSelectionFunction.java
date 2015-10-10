@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class RandomSelectionFunction<T extends Individual>
      *
      * @param numToSelect number of elements to select
      */
-    public RandomSelectionFunction(int numToSelect) {
+    public RandomSelectionFunction(int numToSelect) throws ValidationException {
         super(numToSelect);
     }
 
@@ -53,7 +54,7 @@ public class RandomSelectionFunction<T extends Individual>
      * Constructor that initializes this instance.
      */
     public RandomSelectionFunction() {
-        super(2);
+        super();
     }
 
     /**

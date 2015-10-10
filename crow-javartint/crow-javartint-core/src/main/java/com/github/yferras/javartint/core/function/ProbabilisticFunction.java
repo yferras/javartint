@@ -49,11 +49,10 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * {@code 1.0}.
      *
      * @param probability the probability
-     * @throws java.lang.IllegalArgumentException if {@code probability is not
+     * @throws ValidationException if {@code probability is not
      *                                            inside 0.0 and 1.0}
      */
-    void setProbability(final double probability)
-        throws IllegalArgumentException;
+    void setProbability(final double probability) throws ValidationException;
 
     /**
      * Gets the random instance.
@@ -66,11 +65,9 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * Sets the random generator. Is used to generate random probabilities.
      *
      * @param random the random instance
-     * @throws java.lang.IllegalArgumentException if {@code random} param
-     *                                            is {@code null}
+     * @throws ValidationException if {@code random} param is {@code null}
      */
-    void setRandom(final Random random)
-        throws IllegalArgumentException;
+    void setRandom(final Random random) throws ValidationException;
 
     /**
      * {@inheritDoc}

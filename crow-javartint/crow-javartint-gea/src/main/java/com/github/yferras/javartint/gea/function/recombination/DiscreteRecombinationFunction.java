@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -59,7 +60,7 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
      * @param probability a double.
      * @param random      a {@link java.util.Random} object.
      */
-    public DiscreteRecombinationFunction(double probability, Random random) {
+    public DiscreteRecombinationFunction(double probability, Random random) throws ValidationException {
         super(probability, random);
     }
 
@@ -68,7 +69,7 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
      *
      * @param probability a double.
      */
-    public DiscreteRecombinationFunction(double probability) {
+    public DiscreteRecombinationFunction(double probability) throws ValidationException {
         super(probability);
     }
 

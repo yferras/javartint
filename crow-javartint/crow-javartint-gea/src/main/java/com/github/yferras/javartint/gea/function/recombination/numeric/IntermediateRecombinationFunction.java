@@ -39,6 +39,7 @@ package com.github.yferras.javartint.gea.function.recombination.numeric;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -70,7 +71,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
      * @param random      random instance
      * @param distance    defines the size of the area for possible offspring.
      */
-    public IntermediateRecombinationFunction(double probability, Random random, double distance) {
+    public IntermediateRecombinationFunction(double probability, Random random, double distance) throws ValidationException {
         super(probability, random);
         this.distance = distance;
     }
@@ -82,7 +83,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
      * @param probability probability of mutation
      * @param distance    defines the size of the area for possible offspring.
      */
-    public IntermediateRecombinationFunction(double probability, double distance) {
+    public IntermediateRecombinationFunction(double probability, double distance) throws ValidationException {
         this(probability, new Random(), distance);
     }
 

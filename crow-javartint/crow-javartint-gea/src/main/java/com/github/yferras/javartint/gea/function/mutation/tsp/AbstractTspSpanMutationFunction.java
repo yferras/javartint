@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation.tsp;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.genome.TspGenome;
 
@@ -47,7 +48,7 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * @param random      random instance
      * @param minSpanSize min span size
      */
-    public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) {
+    public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) throws ValidationException {
         super(probability, random);
         this.minSpanSize = minSpanSize;
     }
@@ -59,7 +60,7 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * @param probability probability of mutation
      * @param minSpanSize min span size
      */
-    public AbstractTspSpanMutationFunction(double probability, int minSpanSize) {
+    public AbstractTspSpanMutationFunction(double probability, int minSpanSize) throws ValidationException {
         this(probability, new Random(), minSpanSize);
     }
 
@@ -71,7 +72,8 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * @param minSpanSize min span size
      */
     public AbstractTspSpanMutationFunction(int minSpanSize) {
-        this(.05, minSpanSize);
+        super();
+        this.minSpanSize = minSpanSize;
     }
 
     /**

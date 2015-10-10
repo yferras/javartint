@@ -22,6 +22,8 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 import java.util.Random;
 
 /**
@@ -36,8 +38,11 @@ import java.util.Random;
 public abstract class AbstractProbabilisticFunction<R, P>
     implements ProbabilisticFunction<R, P> {
 
-    private double probability;
-    private Random random;
+    /** Constant <code>DEFAULT_PROBABILITY=.05</code> */
+    public static final double DEFAULT_PROBABILITY = .5;
+
+    protected double probability;
+    protected Random random;
 
     /**
      * Constructor, initializes instances with the given parameters.
@@ -46,12 +51,9 @@ public abstract class AbstractProbabilisticFunction<R, P>
      *
      * @param probability value of probability
      * @param random      random instance
-     * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
-     *                                            and see {@link #setRandom(java.util.Random)}
+     * @throws ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
      */
-    protected AbstractProbabilisticFunction(double probability,
-                                            Random random)
-        throws IllegalArgumentException {
+    protected AbstractProbabilisticFunction(double probability, Random random) throws ValidationException {
         setProbability(probability);
         setRandom(random);
     }
@@ -62,12 +64,19 @@ public abstract class AbstractProbabilisticFunction<R, P>
      * {@link java.util.Random}.
      *
      * @param probability value of probability
-     * @throws java.lang.IllegalArgumentException see {@link #setProbability}
-     *                                            and see {@link #setRandom}
+     * @throws ValidationException see {@link #setProbability}
      */
-    protected AbstractProbabilisticFunction(double probability)
-        throws IllegalArgumentException {
+    protected AbstractProbabilisticFunction(double probability) throws ValidationException {
         this(probability, new Random());
+    }
+
+    /**
+     * Constructor, initializes instances with default probability (.5) and random is an instance of
+     * {@link java.util.Random}.
+     */
+    protected AbstractProbabilisticFunction() {
+        this.probability = DEFAULT_PROBABILITY;
+        this.random = new Random();
     }
 
     /** {@inheritDoc} */
@@ -78,10 +87,9 @@ public abstract class AbstractProbabilisticFunction<R, P>
 
     /** {@inheritDoc} */
     @Override
-    public final void setProbability(final double probability)
-        throws IllegalArgumentException {
+    public final void setProbability(final double probability) throws ValidationException {
         if (probability < 0 || probability > 1.0) {
-            throw new IllegalArgumentException(
+            throw new ValidationException (
                 "'probability' must between 0.0 and 1.0");
         }
         this.probability = probability;
@@ -95,10 +103,9 @@ public abstract class AbstractProbabilisticFunction<R, P>
 
     /** {@inheritDoc} */
     @Override
-    public void setRandom(final Random random)
-        throws IllegalArgumentException {
+    public void setRandom(final Random random) throws ValidationException {
         if (random == null) {
-            throw new IllegalArgumentException("'random' can't be null");
+            throw new ValidationException("'random' can't be null");
         }
         this.random = random;
     }

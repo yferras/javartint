@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination.numeric;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.recombination.AbstractRecombinationFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -58,7 +59,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param precision   recombination precisions. (Typical values from 4 to 20)
      */
     public ExtendedLineRecombinationFunction(double probability, Random random, double[] ranges,
-                                             double precision) {
+                                             double precision) throws ValidationException {
         super(probability, random);
         this.ranges = ranges;
         this.precision = precision;
@@ -72,7 +73,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param ranges      array with the recombination ranges, one per dimension.
      * @param precision   recombination precisions.
      */
-    public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) {
+    public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) throws ValidationException {
         this(probability, new Random(), ranges, precision);
     }
 
@@ -85,7 +86,9 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param precision recombination precisions.
      */
     public ExtendedLineRecombinationFunction(double[] ranges, double precision) {
-        this(DEFAULT_PROBABILITY, ranges, precision);
+        super();
+        this.ranges = ranges;
+        this.precision = precision;
     }
 
     /**

@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.mutation.numeric;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -58,7 +59,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
      */
     public RealValuedMutationFunction(double probability, Random random, double[] ranges,
-                                      double[] precisions) {
+                                      double[] precisions) throws ValidationException {
         super(probability, random);
         if (precisions.length != ranges.length) {
             throw new IllegalArgumentException("the length of 'precisions' and 'ranges' mismatch.");
@@ -76,7 +77,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @param precisions  array with mutation precisions, one per dimension.
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
      */
-    public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) {
+    public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) throws ValidationException {
         this(probability, new Random(), ranges, precisions);
     }
 
@@ -90,7 +91,9 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
      */
     public RealValuedMutationFunction(double[] ranges, double[] precisions) {
-        this(DEFAULT_PROBABILITY, ranges, precisions);
+        super();
+        this.ranges = ranges;
+        this.precisions = precisions;
     }
 
     /**

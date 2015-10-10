@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod;
 
@@ -43,7 +44,7 @@ public class TournamentSelectionFunction<T extends Individual>
      * <p>Constructor for TournamentSelectionFunction.</p>
      */
     public TournamentSelectionFunction() {
-        this(2);
+        super();
     }
 
     /**
@@ -51,7 +52,7 @@ public class TournamentSelectionFunction<T extends Individual>
      *
      * @param selectedGenomes a int.
      */
-    public TournamentSelectionFunction(int selectedGenomes) {
+    public TournamentSelectionFunction(int selectedGenomes) throws ValidationException {
         this(selectedGenomes, null);
     }
 
@@ -60,11 +61,9 @@ public class TournamentSelectionFunction<T extends Individual>
      *
      * @param selectedGenomes a int.
      * @param scalingMethod   a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
-     * @throws java.lang.IllegalArgumentException if any.
      */
     public TournamentSelectionFunction(int selectedGenomes,
-                                       AbstractScalingMethod<T> scalingMethod)
-        throws IllegalArgumentException {
+                                       AbstractScalingMethod<T> scalingMethod) throws ValidationException {
         super(selectedGenomes, scalingMethod);
     }
 

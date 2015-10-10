@@ -61,7 +61,7 @@ public class SinglePointRecombinationFunctionTest {
     }
 
     @Test
-    public void testSinglePointCrossoverFunction1() {
+    public void testSinglePointCrossoverFunction1() throws Exception {
         System.out.println("SinglePointCrossoverFunction(probability)");
         final Double probability = new SinglePointRecombinationFunction<>(1.0)
             .getProbability();
@@ -78,7 +78,7 @@ public class SinglePointRecombinationFunctionTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testEvaluate() {
+    public void testEvaluate() throws Exception {
         System.out.println("evaluate (performed algorithm)");
         SinglePointRecombinationFunction<DefaultGenome<DefaultChromosome<DefaultGene<Integer>>>> function =
             new SinglePointRecombinationFunction<>(0.75, GenomeConstants.RANDOM_GENERATOR_1);
