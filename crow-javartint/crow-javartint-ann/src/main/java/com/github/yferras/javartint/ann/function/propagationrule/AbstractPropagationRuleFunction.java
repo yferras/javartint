@@ -22,6 +22,8 @@ package com.github.yferras.javartint.ann.function.propagationrule;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 /**
  * <p>Abstract AbstractPropagationRuleFunction class.</p>
  *
@@ -36,21 +38,21 @@ public abstract class AbstractPropagationRuleFunction implements PropagationRule
      * After all validations executes {@link AbstractPropagationRuleFunction#evaluate(Double[], Double[])}.
      */
     @Override
-    public Double evaluate(Double[][] params) {
+    public Double evaluate(Double[][] params) throws ValidationException {
         if (params == null) {
-            throw new IllegalArgumentException("'params' can't be null.");
+            throw new ValidationException("'params' can't be null.");
         }
         if (params.length != 2) {
-            throw new IllegalArgumentException("'params' must contains exactly two arrays");
+            throw new ValidationException("'params' must contains exactly two arrays");
         }
         if (params[0] == null) {
-            throw new IllegalArgumentException("'params[0]' can't be null.");
+            throw new ValidationException("'params[0]' can't be null.");
         }
         if (params[1] == null) {
-            throw new IllegalArgumentException("'params[1]' can't be null.");
+            throw new ValidationException("'params[1]' can't be null.");
         }
         if (params[0].length != params[1].length) {
-            throw new IllegalArgumentException("the length between two arrays must be the same.");
+            throw new ValidationException("the length between two arrays must be the same.");
         }
         return evaluate(params[0], params[1]);
     }

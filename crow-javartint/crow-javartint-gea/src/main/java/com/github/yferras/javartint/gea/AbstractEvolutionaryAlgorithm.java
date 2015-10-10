@@ -27,6 +27,7 @@ import com.github.yferras.javartint.core.IterativeAlgorithm;
 import com.github.yferras.javartint.core.OptimizationAlgorithm;
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
 import com.github.yferras.javartint.gea.util.IndividualFilter;
@@ -81,20 +82,24 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
     /**
      * This method must be implemented by subclasses to simulate the evolution process.
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception if any error occurs.
      */
     public abstract void evolve() throws Exception;
 
     /**
      * This method must be implemented to evolve one generation
+     *
+     * @throws java.lang.Exception if any error occurs.
      */
-    protected abstract void epoch();
+    protected abstract void epoch() throws Exception;
 
     /**
      * <p>updateFitnessScores.</p>
+     *
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any validation error occurs.
      */
     @SuppressWarnings("unchecked")
-    protected void updateFitnessScores() {
+    protected void updateFitnessScores() throws ValidationException {
         for (T individual : getPopulation()) {
             D decodedValue = getDecoder().evaluate(individual);
             Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);

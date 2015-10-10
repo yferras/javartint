@@ -24,6 +24,7 @@ package com.github.yferras.javartint.gea;
 
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
@@ -117,9 +118,13 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
      */
     @Override
     public void run() {
-        beginAlgorithm();
-        evolve();
-        fireAlgorithmFinishedEvent();
+        try {
+            beginAlgorithm();
+            evolve();
+            fireAlgorithmFinishedEvent();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -128,7 +133,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
      * <p>This method is the responsible for create and evolve of the population.</p>
      */
     @Override
-    public void evolve() {
+    public void evolve() throws Exception {
         createStartPopulation();
         while (isRunning()) {
             updateFitnessScores();
@@ -169,7 +174,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
      * </ol>
      */
     @Override
-    protected void epoch() {
+    protected void epoch() throws Exception {
         Set<T> newGeneration = new LinkedHashSet<>(getPopulationSize());
         if (getSelectionFunction() != null) {
             newGeneration.addAll(getSelectionFunction().evaluate(getPopulation()));

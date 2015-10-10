@@ -23,6 +23,8 @@ package com.github.yferras.javartint.core.function;
  */
 
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 import java.util.Random;
 
 /**
@@ -34,7 +36,7 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-abstract public class AbstractProbabilisticFunction<R, P>
+public abstract class AbstractProbabilisticFunction<R, P>
     implements ProbabilisticFunction<R, P> {
 
     private double probability;

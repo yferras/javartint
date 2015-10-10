@@ -22,6 +22,8 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 /**
  * Interface to create generic functions.
  *
@@ -37,7 +39,8 @@ public interface Function<R, P> {
      *
      * @param params parameters to evaluate.
      * @return the result.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if the function argument is not valid.
      */
-    R evaluate(P params);
+    R evaluate(P params) throws ValidationException;
 
 }

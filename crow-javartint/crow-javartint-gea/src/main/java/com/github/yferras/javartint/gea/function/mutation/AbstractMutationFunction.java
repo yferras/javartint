@@ -80,6 +80,7 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      *
      * @param subject individual which will be mutate
      * @return mutated genome
+     * @throws java.lang.CloneNotSupportedException if any.
      */
     protected abstract T mutate(T subject) throws CloneNotSupportedException;
 

@@ -23,6 +23,8 @@ package com.github.yferras.javartint.core.function;
  */
 
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 import java.util.Random;
 
 /**
@@ -76,5 +78,5 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * The result is constrained by the returned value of {@link #getProbability()}.
      */
     @Override
-    R evaluate(P params);
+    R evaluate(P params) throws ValidationException;
 }

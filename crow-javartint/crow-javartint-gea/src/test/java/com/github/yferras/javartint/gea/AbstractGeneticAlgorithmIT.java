@@ -27,10 +27,7 @@ import com.github.yferras.javartint.core.constraint.ConstraintType;
 import com.github.yferras.javartint.core.constraint.MaxIterationsConstraint;
 import com.github.yferras.javartint.core.constraint.MinErrorConstraint;
 import com.github.yferras.javartint.core.function.Function;
-import com.github.yferras.javartint.core.util.AlgorithmEvent;
-import com.github.yferras.javartint.core.util.ExecutionEndListener;
-import com.github.yferras.javartint.core.util.Optimize;
-import com.github.yferras.javartint.core.util.SolutionChangeListener;
+import com.github.yferras.javartint.core.util.*;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.BinaryGenomeGenFunction;
@@ -46,6 +43,7 @@ import org.junit.Test;
 import java.text.MessageFormat;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class AbstractGeneticAlgorithmIT {
 
@@ -55,7 +53,7 @@ public class AbstractGeneticAlgorithmIT {
     }
 
     @Test
-    public void testAccept2() {
+    public void testAccept2() throws Exception {
         final DecoderFunction<Double, BinaryGenome> genomeDecoderFunction =
             new DecoderFunction<Double, BinaryGenome>() {
                 /**
@@ -99,19 +97,23 @@ public class AbstractGeneticAlgorithmIT {
             @SuppressWarnings("unchecked")
             @Override
             public void solutionUpdated(AlgorithmEvent event) {
-                GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
-                BinaryGenome genome = ga.getSolution();
-                Double decodedValue = genomeDecoderFunction.evaluate(genome);
-                Double result = targetFunction.evaluate(decodedValue);
-                String r = MessageFormat.format(
-                    "{0,number,0000}\t\t{1}\t\t\t\t{2,number,#.000}\t\t{3,number,#.0000}\t\t{4,number,#.0000}",
-                    ga.getElapsedTime(),
-                    ga.getIterations(),
-                    decodedValue,
-                    result,
-                    ga.getCurrentError()
-                );
-                System.out.println(r);
+                try {
+                    GeneticAlgorithm ga = (GeneticAlgorithm) event.getSource();
+                    BinaryGenome genome = ga.getSolution();
+                    Double decodedValue = genomeDecoderFunction.evaluate(genome);
+                    Double result = targetFunction.evaluate(decodedValue);
+                    String r = MessageFormat.format(
+                        "{0,number,0000}\t\t{1}\t\t\t\t{2,number,#.000}\t\t{3,number,#.0000}\t\t{4,number,#.0000}",
+                        ga.getElapsedTime(),
+                        ga.getIterations(),
+                        decodedValue,
+                        result,
+                        ga.getCurrentError()
+                    );
+                    System.out.println(r);
+                } catch (ValidationException e) {
+                    fail(e.getMessage());
+                }
             }
         });
         geneticAlgorithm.addExecutionEndListener(new ExecutionEndListener() {

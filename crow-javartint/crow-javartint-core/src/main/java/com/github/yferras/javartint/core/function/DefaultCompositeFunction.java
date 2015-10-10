@@ -22,6 +22,8 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
+
 import java.util.Iterator;
 
 
@@ -44,7 +46,7 @@ public class DefaultCompositeFunction<R, P> extends AbstractCompositeFunction<R,
      */
     @SuppressWarnings("unchecked")
     @Override
-    public R evaluate(P params) {
+    public R evaluate(P params) throws ValidationException {
         if (getFunctions().isEmpty()) {
             return null;
         }

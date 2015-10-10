@@ -22,6 +22,7 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import org.junit.*;
 
 import java.util.Random;
@@ -76,7 +77,7 @@ public class ProbabilisticFunctionTest {
             "(test probability less than 0.0)");
         try {
             new DefaultProbabilisticFunction<Double>(-.5);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(true);
             return;
         }
@@ -92,7 +93,7 @@ public class ProbabilisticFunctionTest {
             "(test probability greater than 1.0)");
         try {
             new DefaultProbabilisticFunction<Double>(2.0);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(true);
             return;
         }
@@ -108,7 +109,7 @@ public class ProbabilisticFunctionTest {
             "(test probability between 0.0 and 1.0)");
         try {
             new DefaultProbabilisticFunction<Double>(0.5);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(false);
             return;
         }
@@ -124,7 +125,7 @@ public class ProbabilisticFunctionTest {
             "(test probability = 0.0)");
         try {
             new DefaultProbabilisticFunction<Double>(0.0);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(false);
             return;
         }
@@ -140,7 +141,7 @@ public class ProbabilisticFunctionTest {
             "(test probability = 1.0)");
         try {
             new DefaultProbabilisticFunction<Double>(1.0);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(false);
             return;
         }
@@ -156,7 +157,7 @@ public class ProbabilisticFunctionTest {
             "(test probability = 0.5 and randomGenerator is null)");
         try {
             new DefaultProbabilisticFunction<Double>(1.0, null);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             assertTrue(true);
         }
     }
@@ -167,9 +168,13 @@ public class ProbabilisticFunctionTest {
     @Test
     public void testGetProbability() {
         System.out.println("getProbability");
-        final DefaultProbabilisticFunction<Double> function =
-            new DefaultProbabilisticFunction<>(0.5);
-        assertEquals(new Double(0.5), new Double(function.getProbability()));
+        try {
+            final DefaultProbabilisticFunction<Double> function =
+                new DefaultProbabilisticFunction<>(0.5);
+            assertEquals(new Double(0.5), new Double(function.getProbability()));
+        } catch (ValidationException e) {
+            fail(e.getMessage());
+        }
     }
 
     /**
@@ -178,9 +183,13 @@ public class ProbabilisticFunctionTest {
     @Test
     public void testGetRandomGenerator1() {
         System.out.println("getRandom (not null)");
-        final DefaultProbabilisticFunction<Double> function =
-            new DefaultProbabilisticFunction<>(0.5);
-        assertNotNull(function.getRandom());
+        try {
+            final DefaultProbabilisticFunction<Double> function =
+                new DefaultProbabilisticFunction<>(0.5);
+            assertNotNull(function.getRandom());
+        } catch (ValidationException e) {
+            fail(e.getMessage());
+        }
     }
 
     /**
@@ -189,20 +198,24 @@ public class ProbabilisticFunctionTest {
     @Test
     public void testGetRandomGenerator2() {
         System.out.println("getRandom (instance of Random)");
-        final DefaultProbabilisticFunction<Double> function =
-            new DefaultProbabilisticFunction<>(0.5);
-        assertTrue(function.getRandom() instanceof Random);
+        try {
+            final DefaultProbabilisticFunction<Double> function =
+                new DefaultProbabilisticFunction<>(0.5);
+            assertTrue(function.getRandom() instanceof Random);
+        } catch (ValidationException e) {
+            fail(e.getMessage());
+        }
     }
 
     private static class DefaultProbabilisticFunction<T extends Number>
         extends AbstractProbabilisticFunction<Double, T[]> {
 
         private DefaultProbabilisticFunction(double probability,
-                                             Random random) {
+                                             Random random) throws ValidationException {
             super(probability, random);
         }
 
-        private DefaultProbabilisticFunction(double probability) {
+        private DefaultProbabilisticFunction(double probability) throws ValidationException {
             super(probability);
         }
 
