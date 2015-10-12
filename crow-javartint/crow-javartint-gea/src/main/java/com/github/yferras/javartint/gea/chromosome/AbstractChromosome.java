@@ -60,7 +60,7 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
     /** {@inheritDoc} */
     @Override
-    public void setGenes(T[] genes) throws ValidationException {
+    public void setGenes(T[] genes)  {
         if (genes == null) {
             throw new ValidationException("'genes' param can't be null.");
         }

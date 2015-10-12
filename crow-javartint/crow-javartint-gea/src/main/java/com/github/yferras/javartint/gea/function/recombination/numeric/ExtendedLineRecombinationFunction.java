@@ -62,7 +62,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public ExtendedLineRecombinationFunction(double probability, Random random, double[] ranges,
-                                             double precision) throws ValidationException {
+                                             double precision)  {
         super(probability, random);
         this.ranges = ranges;
         this.precision = precision;
@@ -77,7 +77,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
      * @param precision   recombination precisions.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) throws ValidationException {
+    public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision)  {
         this(probability, new Random(), ranges, precision);
     }
 

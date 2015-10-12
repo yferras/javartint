@@ -40,7 +40,7 @@ public abstract class AbstractPropagationRuleFunction implements PropagationRule
      * After all validations executes {@link AbstractPropagationRuleFunction#evaluate(Double[], Double[])}.
      */
     @Override
-    public Double evaluate(Double[][] params) throws ValidationException {
+    public Double evaluate(Double[][] params)  {
         if (params == null) {
             throw new ValidationException("'params' can't be null.");
         }

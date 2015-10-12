@@ -48,7 +48,7 @@ public class SusSelectionFunction<T extends Individual>
      * @param scalingMethod a {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod} object.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) throws ValidationException {
+    public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod)  {
         super(numToSelect, scalingMethod);
     }
 
@@ -58,7 +58,7 @@ public class SusSelectionFunction<T extends Individual>
      * @param numToSelect a int.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public SusSelectionFunction(int numToSelect) throws ValidationException {
+    public SusSelectionFunction(int numToSelect)  {
         this(numToSelect, null);
     }
 

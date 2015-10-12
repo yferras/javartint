@@ -71,7 +71,6 @@ public abstract class AbstractScalingMethod<T extends Individual>
      * Ensures that parameters are valid.
      *
      * @param params parameters to validate.
-     * @throws ValidationException if {@code params} is null or {@code params.isEmpty()} is {@code true}.
      */
     protected void validate(List<T> params) {
         if (params == null) {

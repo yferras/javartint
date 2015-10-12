@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.decoder;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -42,11 +43,11 @@ public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Chro
      * Validates the input params.
      *
      * @param genome genome to validate.
-     * @throws java.lang.IllegalArgumentException if argument is {@code null}
+     * @throws ValidationException if argument is {@code null}
      */
     protected void validate(T genome) {
         if (genome == null) {
-            throw new IllegalArgumentException();
+            throw new ValidationException();
         }
     }
 

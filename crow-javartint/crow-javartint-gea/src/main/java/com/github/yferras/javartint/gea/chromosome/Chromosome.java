@@ -51,7 +51,7 @@ public interface Chromosome<T extends Gene<?>>
      * @param genes the array of genes.
      * @throws com.github.yferras.javartint.core.util.ValidationException if {@code genes} param is null.
      */
-    void setGenes(T[] genes) throws ValidationException;
+    void setGenes(T[] genes) ;
 
     /**
      * Gets the gene at specific <code>locus</code>.

@@ -52,7 +52,7 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
      * @param chromosomes an array of T objects.
      * @throws com.github.yferras.javartint.core.util.ValidationException if {@code chromosomes} argument is {@code null}.
      */
-    void setChromosomes(T[] chromosomes) throws ValidationException;
+    void setChromosomes(T[] chromosomes) ;
 
     /**
      * Gets the chromosome at specific index.

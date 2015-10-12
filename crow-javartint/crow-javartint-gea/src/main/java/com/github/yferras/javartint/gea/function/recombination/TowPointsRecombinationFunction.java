@@ -58,7 +58,7 @@ public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosom
      * @param random      a {@link java.util.Random} object.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public TowPointsRecombinationFunction(double probability, Random random) throws ValidationException {
+    public TowPointsRecombinationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -68,7 +68,7 @@ public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosom
      * @param probability a double.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public TowPointsRecombinationFunction(double probability) throws ValidationException {
+    public TowPointsRecombinationFunction(double probability)  {
         super(probability);
     }
 

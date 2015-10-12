@@ -47,7 +47,7 @@ public class RandomSelectionFunction<T extends Individual>
      * @param numToSelect number of elements to select
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public RandomSelectionFunction(int numToSelect) throws ValidationException {
+    public RandomSelectionFunction(int numToSelect)  {
         super(numToSelect);
     }
 

@@ -50,7 +50,7 @@ public class PermutationRecombinationFunction<T extends TspGenome>
      * @param random      random instance
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public PermutationRecombinationFunction(double probability, Random random) throws ValidationException {
+    public PermutationRecombinationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -62,7 +62,7 @@ public class PermutationRecombinationFunction<T extends TspGenome>
      * @param probability probability of recombination
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public PermutationRecombinationFunction(double probability) throws ValidationException {
+    public PermutationRecombinationFunction(double probability)  {
         this(probability, new Random());
     }
 

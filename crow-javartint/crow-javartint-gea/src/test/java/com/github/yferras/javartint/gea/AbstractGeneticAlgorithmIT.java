@@ -144,7 +144,7 @@ public class AbstractGeneticAlgorithmIT {
          * @param decoder function to decode the genome
          */
         public GeneticAlgorithm(DecoderFunction<Double, BinaryGenome> decoder,
-                                Function<Double, Double> targetFunction) throws ValidationException {
+                                Function<Double, Double> targetFunction)  {
             super(50, Optimize.MAX, decoder, targetFunction,
                 new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
                 new SinglePointRecombinationFunction<BinaryGenome>(),

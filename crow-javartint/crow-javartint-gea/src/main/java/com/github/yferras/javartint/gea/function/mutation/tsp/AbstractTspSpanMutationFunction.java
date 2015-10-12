@@ -51,7 +51,7 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * @param minSpanSize min span size
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) throws ValidationException {
+    public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize)  {
         super(probability, random);
         this.minSpanSize = minSpanSize;
     }
@@ -64,7 +64,7 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * @param minSpanSize min span size
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public AbstractTspSpanMutationFunction(double probability, int minSpanSize) throws ValidationException {
+    public AbstractTspSpanMutationFunction(double probability, int minSpanSize)  {
         this(probability, new Random(), minSpanSize);
     }
 

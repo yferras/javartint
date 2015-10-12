@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.scaling;
  */
 
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.Collections;
@@ -45,12 +46,12 @@ public final class LinearRankScalingMethod<T extends Individual>
      *
      * @param selectivePressure this value must be between 1.0 and 2.0
      * @param optimize          optimization way
-     * @throws java.lang.IllegalArgumentException if {@code selectivePressure} value is out of 1.0 and 2.0
+     * @throws ValidationException if {@code selectivePressure} value is out of 1.0 and 2.0
      */
     public LinearRankScalingMethod(double selectivePressure, Optimize optimize) {
         super(optimize);
         if (selectivePressure < 1.0 || selectivePressure > 2.0) {
-            throw new IllegalArgumentException("SELECTIVE PRESSURE MUST BE BETWEEN 1.0 AND 2.0");
+            throw new ValidationException("SELECTIVE PRESSURE MUST BE BETWEEN 1.0 AND 2.0");
         }
         this.selectivePressure = selectivePressure;
     }

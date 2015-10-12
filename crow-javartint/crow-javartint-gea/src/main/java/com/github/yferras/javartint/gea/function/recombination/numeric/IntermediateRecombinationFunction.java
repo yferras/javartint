@@ -75,7 +75,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
      * @param distance    defines the size of the area for possible offspring.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public IntermediateRecombinationFunction(double probability, Random random, double distance) throws ValidationException {
+    public IntermediateRecombinationFunction(double probability, Random random, double distance)  {
         super(probability, random);
         this.distance = distance;
     }
@@ -88,7 +88,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
      * @param distance    defines the size of the area for possible offspring.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public IntermediateRecombinationFunction(double probability, double distance) throws ValidationException {
+    public IntermediateRecombinationFunction(double probability, double distance)  {
         this(probability, new Random(), distance);
     }
 

@@ -47,7 +47,7 @@ public class BinaryMutationFunction<T extends BinaryGenome>
      * @param random      a {@link java.util.Random} object.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public BinaryMutationFunction(double probability, Random random) throws ValidationException {
+    public BinaryMutationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -57,7 +57,7 @@ public class BinaryMutationFunction<T extends BinaryGenome>
      * @param probability a double.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public BinaryMutationFunction(double probability) throws ValidationException {
+    public BinaryMutationFunction(double probability)  {
         super(probability);
     }
 

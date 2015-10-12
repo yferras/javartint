@@ -72,7 +72,7 @@ public class DisplacementMutationFunction<T extends TspGenome>
      * @param minSpanSize min span size
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public DisplacementMutationFunction(double probability, Random random, int minSpanSize) throws ValidationException {
+    public DisplacementMutationFunction(double probability, Random random, int minSpanSize)  {
         super(probability, random, minSpanSize);
     }
 
@@ -84,7 +84,7 @@ public class DisplacementMutationFunction<T extends TspGenome>
      * @param minSpanSize min span size
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public DisplacementMutationFunction(double probability, int minSpanSize) throws ValidationException {
+    public DisplacementMutationFunction(double probability, int minSpanSize)  {
         super(probability, minSpanSize);
     }
 

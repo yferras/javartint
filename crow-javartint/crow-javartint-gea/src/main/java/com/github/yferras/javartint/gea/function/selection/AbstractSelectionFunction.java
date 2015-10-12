@@ -52,7 +52,7 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      * @param scalingMethod scaling method
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) throws ValidationException {
+    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod)  {
         if (numToSelect < 1) {
             throw new ValidationException("'numToSelect' can't be less than 1.");
         }
@@ -66,7 +66,7 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      * @param numToSelect number of elements to select
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public AbstractSelectionFunction(int numToSelect) throws ValidationException {
+    public AbstractSelectionFunction(int numToSelect)  {
         this(numToSelect, null);
     }
 
@@ -102,15 +102,15 @@ public abstract class AbstractSelectionFunction<T extends Individual>
      * Ensures that parameter are valid.
      *
      * @param params parameters to validate.
-     * @throws IllegalArgumentException If {@code params} is {@code null}.
+     * @throws ValidationException If {@code params} is {@code null}.
      *                                  Or, the length is less than the number of elements to select
      */
     private void validate(List<T> params) {
         if (params == null) {
-            throw new IllegalArgumentException("'params' can't be null.");
+            throw new ValidationException("'params' can't be null.");
         }
         if (params.size() < getNumToSelect()) {
-            throw new IllegalArgumentException("'params.length' is less than getNumToSelect()");
+            throw new ValidationException("'params.length' is less than getNumToSelect()");
         }
     }
 

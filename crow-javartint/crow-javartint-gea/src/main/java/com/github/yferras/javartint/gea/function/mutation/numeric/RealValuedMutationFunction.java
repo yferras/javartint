@@ -62,10 +62,10 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
     public RealValuedMutationFunction(double probability, Random random, double[] ranges,
-                                      double[] precisions) throws ValidationException {
+                                      double[] precisions)  {
         super(probability, random);
         if (precisions.length != ranges.length) {
-            throw new IllegalArgumentException("the length of 'precisions' and 'ranges' mismatch.");
+            throw new ValidationException("the length of 'precisions' and 'ranges' mismatch.");
         }
         this.ranges = ranges;
         this.precisions = precisions;
@@ -81,7 +81,7 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * @throws java.lang.IllegalArgumentException if the length of arrays is not the same.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) throws ValidationException {
+    public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions)  {
         this(probability, new Random(), ranges, precisions);
     }
 

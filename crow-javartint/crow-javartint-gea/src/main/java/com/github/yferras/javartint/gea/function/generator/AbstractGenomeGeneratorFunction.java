@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.generator;
  */
 
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -96,11 +97,11 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
      * Validates the input params.
      *
      * @param params params to validate.
-     * @throws java.lang.IllegalArgumentException if argument is {@code null}
+     * @throws ValidationException if argument is {@code null}
      */
     protected void validate(int[] params) {
         if (params == null) {
-            throw new IllegalArgumentException();
+            throw new ValidationException();
         }
     }
 

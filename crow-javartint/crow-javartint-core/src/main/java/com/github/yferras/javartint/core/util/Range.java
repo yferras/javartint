@@ -42,11 +42,11 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
      * @param min lower bound
      * @param max upper bound
      * @param use defines the use of bounds
-     * @throws java.lang.IllegalArgumentException if {@code min} is greater than {@code max}
+     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code min} is greater than {@code max}
      */
     public Range(T min, T max, Use use) {
         if (min.compareTo(max) > 0) {
-            throw new IllegalArgumentException("'min' is greater than 'max'");
+            throw new ValidationException("'min' is greater than 'max'");
         }
         this.min = min;
         this.max = max;

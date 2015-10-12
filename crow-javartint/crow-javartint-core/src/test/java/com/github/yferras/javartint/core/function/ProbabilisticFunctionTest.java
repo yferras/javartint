@@ -211,11 +211,11 @@ public class ProbabilisticFunctionTest {
         extends AbstractProbabilisticFunction<Double, T[]> {
 
         private DefaultProbabilisticFunction(double probability,
-                                             Random random) throws ValidationException {
+                                             Random random)  {
             super(probability, random);
         }
 
-        private DefaultProbabilisticFunction(double probability) throws ValidationException {
+        private DefaultProbabilisticFunction(double probability)  {
             super(probability);
         }
 

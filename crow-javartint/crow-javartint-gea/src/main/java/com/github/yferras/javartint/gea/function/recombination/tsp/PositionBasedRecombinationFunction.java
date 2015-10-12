@@ -51,7 +51,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      * @param random      random instance
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public PositionBasedRecombinationFunction(double probability, Random random) throws ValidationException {
+    public PositionBasedRecombinationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -63,7 +63,7 @@ public class PositionBasedRecombinationFunction<T extends TspGenome>
      * @param probability probability of recombination
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public PositionBasedRecombinationFunction(double probability) throws ValidationException {
+    public PositionBasedRecombinationFunction(double probability)  {
         this(probability, new Random());
     }
 

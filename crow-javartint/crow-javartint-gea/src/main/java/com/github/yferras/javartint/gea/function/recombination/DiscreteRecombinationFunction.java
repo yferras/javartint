@@ -63,7 +63,7 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
      * @param random      a {@link java.util.Random} object.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public DiscreteRecombinationFunction(double probability, Random random) throws ValidationException {
+    public DiscreteRecombinationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -73,7 +73,7 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
      * @param probability a double.
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    public DiscreteRecombinationFunction(double probability) throws ValidationException {
+    public DiscreteRecombinationFunction(double probability)  {
         super(probability);
     }
 

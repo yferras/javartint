@@ -53,7 +53,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
      * @param random      random instance
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    protected AbstractRecombinationFunction(double probability, Random random) throws ValidationException {
+    protected AbstractRecombinationFunction(double probability, Random random)  {
         super(probability, random);
     }
 
@@ -65,7 +65,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
      * @param probability probability of recombination
      * @throws com.github.yferras.javartint.core.util.ValidationException if any.
      */
-    protected AbstractRecombinationFunction(double probability) throws ValidationException {
+    protected AbstractRecombinationFunction(double probability)  {
         super(probability);
     }
 
