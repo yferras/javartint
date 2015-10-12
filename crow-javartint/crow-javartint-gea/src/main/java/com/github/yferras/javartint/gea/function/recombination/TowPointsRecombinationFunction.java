@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.recombination;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -48,59 +49,61 @@ import java.util.Random;
  * @version 0.0.2
  */
 public class TowPointsRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-	extends AbstractRecombinationFunction<T> {
+    extends AbstractRecombinationFunction<T> {
 
-	/**
-	 * <p>Constructor for TowPointsRecombinationFunction.</p>
-	 *
-	 * @param probability a double.
-	 * @param random a {@link java.util.Random} object.
-	 */
-	public TowPointsRecombinationFunction(double probability, Random random) {
-		super(probability, random);
-	}
+    /**
+     * <p>Constructor for TowPointsRecombinationFunction.</p>
+     *
+     * @param probability a double.
+     * @param random      a {@link java.util.Random} object.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
+     */
+    public TowPointsRecombinationFunction(double probability, Random random)  {
+        super(probability, random);
+    }
 
-	/**
-	 * <p>Constructor for TowPointsRecombinationFunction.</p>
-	 *
-	 * @param probability a double.
-	 */
-	public TowPointsRecombinationFunction(double probability) {
-		super(probability);
-	}
+    /**
+     * <p>Constructor for TowPointsRecombinationFunction.</p>
+     *
+     * @param probability a double.
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
+     */
+    public TowPointsRecombinationFunction(double probability)  {
+        super(probability);
+    }
 
-	/**
-	 * <p>Constructor for TowPointsRecombinationFunction.</p>
-	 */
-	public TowPointsRecombinationFunction() {
-		super();
-	}
+    /**
+     * <p>Constructor for TowPointsRecombinationFunction.</p>
+     */
+    public TowPointsRecombinationFunction() {
+        super();
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected T[] recombine(T parent1, T parent2)
-		throws CloneNotSupportedException {
-		Genome[] offspring = new Genome[2];
-		offspring[0] = ((Genome) parent1).clone();
-		offspring[1] = ((Genome) parent2).clone();
+    /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected T[] recombine(T parent1, T parent2)
+        throws CloneNotSupportedException {
+        Genome[] offspring = new Genome[2];
+        offspring[0] = ((Genome) parent1).clone();
+        offspring[1] = ((Genome) parent2).clone();
 
-		int numberOfChromosomes = parent1.size();
-		for (int i = 0; i < numberOfChromosomes; i++) {
-			int numberOfGenes = offspring[0].getChromosome(i).size();
-			int position1 = getRandom().nextInt(numberOfGenes - 1);
-			int position2 = position1;
-			while (position2 <= position1) {
-				position2 = getRandom().nextInt(numberOfGenes);
-			}
-			for (int j = position1; j < position2; j++) {
-				Gene<?> aux = offspring[0].getChromosome(i).getGene(j);
-				offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
-				offspring[1].getChromosome(i).setGene(j, aux);
-			}
-		}
-		return (T[]) offspring;
-	}
+        int numberOfChromosomes = parent1.size();
+        for (int i = 0; i < numberOfChromosomes; i++) {
+            int numberOfGenes = offspring[0].getChromosome(i).size();
+            int position1 = getRandom().nextInt(numberOfGenes - 1);
+            int position2 = position1;
+            while (position2 <= position1) {
+                position2 = getRandom().nextInt(numberOfGenes);
+            }
+            for (int j = position1; j < position2; j++) {
+                Gene<?> aux = offspring[0].getChromosome(i).getGene(j);
+                offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
+                offspring[1].getChromosome(i).setGene(j, aux);
+            }
+        }
+        return (T[]) offspring;
+    }
 
 
 }

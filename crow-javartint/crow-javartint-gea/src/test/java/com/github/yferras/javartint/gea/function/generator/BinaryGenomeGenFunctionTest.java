@@ -22,9 +22,9 @@ package com.github.yferras.javartint.gea.function.generator;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
+import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,26 +34,26 @@ import static org.junit.Assert.assertEquals;
 
 public class BinaryGenomeGenFunctionTest {
 
-	@Before
-	public void setUp() throws Exception {
-		System.out.print(
-			BinaryGenomeGenFunction.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() throws Exception {
+        System.out.print(
+            BinaryGenomeGenFunction.class.getName().concat("."));
+    }
 
-	@After
-	public void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
-	}
+    }
 
-	@Test
-	public void testEvaluate() throws Exception {
-		System.out.println("evaluate (performed algorithm)");
-		BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
-		DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = genFunction.evaluate();
-		assertEquals(1, genome.size());
-		Assert.assertEquals(3, genome.getChromosome(0).size());
-		assertEquals(1, genome.getChromosome(0).getGene(0).length());
-		assertEquals(7, genome.getChromosome(0).getGene(1).length());
-		assertEquals(4, genome.getChromosome(0).getGene(2).length());
-	}
+    @Test
+    public void testEvaluate() throws Exception {
+        System.out.println("evaluate (performed algorithm)");
+        BinaryGenomeGenFunction genFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 4});
+        DefaultGenome<DefaultChromosome<ByteArrayGene>> genome = genFunction.evaluate();
+        assertEquals(1, genome.size());
+        Assert.assertEquals(3, genome.getChromosome(0).size());
+        assertEquals(1, genome.getChromosome(0).getGene(0).length());
+        assertEquals(7, genome.getChromosome(0).getGene(1).length());
+        assertEquals(4, genome.getChromosome(0).getGene(2).length());
+    }
 }

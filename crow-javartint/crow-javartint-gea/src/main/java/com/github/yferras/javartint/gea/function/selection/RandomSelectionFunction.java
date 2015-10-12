@@ -22,6 +22,7 @@ package com.github.yferras.javartint.gea.function.selection;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -36,38 +37,39 @@ import java.util.Random;
  * @version 0.0.2
  */
 public class RandomSelectionFunction<T extends Individual>
-	extends AbstractSelectionFunction<T> {
+    extends AbstractSelectionFunction<T> {
 
-	private Random random = new Random();
+    private Random random = new Random();
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param numToSelect number of elements to select
-	 */
-	public RandomSelectionFunction(int numToSelect) {
-		super(numToSelect);
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param numToSelect number of elements to select
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
+     */
+    public RandomSelectionFunction(int numToSelect)  {
+        super(numToSelect);
+    }
 
-	/**
-	 * Constructor that initializes this instance.
-	 */
-	public RandomSelectionFunction() {
-		super(2);
-	}
+    /**
+     * Constructor that initializes this instance.
+     */
+    public RandomSelectionFunction() {
+        super();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Selects genomes randomly.
-	 */
-	@Override
-	protected List<T> select(List<T> individuals) {
-		List<T> list = new ArrayList<>(getNumToSelect());
-		int n = individuals.size();
-		while (list.size() < getNumToSelect()) {
-			list.add(individuals.get(random.nextInt(n)));
-		}
-		return list;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Selects genomes randomly.
+     */
+    @Override
+    protected List<T> select(List<T> individuals) {
+        List<T> list = new ArrayList<>(getNumToSelect());
+        int n = individuals.size();
+        while (list.size() < getNumToSelect()) {
+            list.add(individuals.get(random.nextInt(n)));
+        }
+        return list;
+    }
 }

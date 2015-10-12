@@ -22,8 +22,8 @@ package com.github.yferras.javartint.core.constraint;
  * #L%
  */
 
-import com.github.yferras.javartint.core.Solution;
 import com.github.yferras.javartint.core.Algorithm;
+import com.github.yferras.javartint.core.Solution;
 
 /**
  * This interface allows to create algorithms based on numeric threshold.
@@ -34,6 +34,6 @@ import com.github.yferras.javartint.core.Algorithm;
  * @version 0.0.2
  */
 public interface NumericThresholdConstraint<N extends Number & Comparable<N>, A extends Algorithm<? extends Solution>>
-	extends ThresholdConstraint<N, A> {
+    extends ThresholdConstraint<N, A> {
 
 }

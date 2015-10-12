@@ -27,32 +27,33 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class PermutationRecombinationFunctionTest {
 
-	@Test
-	public void testRecombine() throws Exception {
-		PermutationRecombinationFunction<TspGenome> function = new PermutationRecombinationFunction<>();
-		function.setRandom(
-			new Random() {
-				private int [] positions = {4,3,7};
-				private int index = 0;
-				@Override
-				public int nextInt(int n) {
-					return positions[index++];
-				}
-			}
-		);
+    @Test
+    public void testRecombine() throws Exception {
+        PermutationRecombinationFunction<TspGenome> function = new PermutationRecombinationFunction<>();
+        function.setRandom(
+            new Random() {
+                private int[] positions = {4, 3, 7};
+                private int index = 0;
 
-		TspGenome genomeA = new TspGenome(1,2,3,4,5,6,7,8,9,0);
-		TspGenome genomeB = new TspGenome(0,9,8,7,6,5,4,3,2,1);
+                @Override
+                public int nextInt(int n) {
+                    return positions[index++];
+                }
+            }
+        );
 
-		final TspGenome[] offspring = function.recombine(genomeA, genomeB);
+        TspGenome genomeA = new TspGenome(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+        TspGenome genomeB = new TspGenome(0, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 
-		TspGenome expectedA = new TspGenome(1,2,3,7,5,6,4,8,9,0);
-		TspGenome expectedB = new TspGenome(0,9,8,4,6,5,7,3,2,1);
+        final TspGenome[] offspring = function.recombine(genomeA, genomeB);
 
-		assertArrayEquals(offspring, new TspGenome[]{expectedA, expectedB});
-	}
+        TspGenome expectedA = new TspGenome(1, 2, 3, 7, 5, 6, 4, 8, 9, 0);
+        TspGenome expectedB = new TspGenome(0, 9, 8, 4, 6, 5, 7, 3, 2, 1);
+
+        assertArrayEquals(offspring, new TspGenome[]{expectedA, expectedB});
+    }
 }

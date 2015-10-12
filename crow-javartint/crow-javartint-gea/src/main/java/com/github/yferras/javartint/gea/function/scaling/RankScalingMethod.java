@@ -22,8 +22,8 @@ package com.github.yferras.javartint.gea.function.scaling;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.gea.Individual;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,23 +36,24 @@ import java.util.List;
  * @version 0.0.1
  */
 public final class RankScalingMethod<T extends Individual>
-	extends AbstractScalingMethod<T> {
+    extends AbstractScalingMethod<T> {
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param optimize optimization way
-	 */
-	public RankScalingMethod(Optimize optimize) {
-		super(optimize);
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param optimize optimization way
+     */
+    public RankScalingMethod(Optimize optimize) {
+        super(optimize);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	protected void scale(List<T> individuals) {
-		Collections.sort(individuals); // Sorts ascending
-		for (int i = 0; i < individuals.size(); i++) {
-			individuals.get(i).setFitness(i + 1.0);
-		}
-	}
+    /** {@inheritDoc} */
+    @Override
+    protected void scale(List<T> individuals) {
+        // Sorts ascending
+        Collections.sort(individuals);
+        for (int i = 0; i < individuals.size(); i++) {
+            individuals.get(i).setFitness(i + 1.0);
+        }
+    }
 }

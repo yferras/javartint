@@ -30,13 +30,13 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class DoubleArrayGene extends NumberArrayGene<Double> {
 
-	/**
-	 * <p>Constructor for DoubleArrayGene.</p>
-	 *
-	 * @param data an array of {@link java.lang.Double} objects.
-	 */
-	public DoubleArrayGene(Double[] data) {
-		super(data);
-	}
+    /**
+     * <p>Constructor for DoubleArrayGene.</p>
+     *
+     * @param data an array of {@link java.lang.Double} objects.
+     */
+    public DoubleArrayGene(Double[] data) {
+        super(data);
+    }
 
 }

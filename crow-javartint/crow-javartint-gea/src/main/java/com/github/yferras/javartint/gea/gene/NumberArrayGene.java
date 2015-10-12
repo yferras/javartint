@@ -30,15 +30,15 @@ package com.github.yferras.javartint.gea.gene;
  * @version 0.0.1
  */
 public class NumberArrayGene<T extends Number>
-	extends ArrayGene<T> {
+    extends ArrayGene<T> {
 
-	/**
-	 * <p>Constructor for NumberArrayGene.</p>
-	 *
-	 * @param data an array of T objects.
-	 */
-	public NumberArrayGene(T[] data) {
-		super(data);
-	}
+    /**
+     * <p>Constructor for NumberArrayGene.</p>
+     *
+     * @param data an array of T objects.
+     */
+    public NumberArrayGene(T[] data) {
+        super(data);
+    }
 
 }

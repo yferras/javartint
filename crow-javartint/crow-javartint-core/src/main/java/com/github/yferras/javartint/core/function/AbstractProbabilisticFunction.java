@@ -22,6 +22,7 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 
 import java.util.Random;
 
@@ -34,74 +35,80 @@ import java.util.Random;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-abstract public class AbstractProbabilisticFunction<R, P>
-	implements ProbabilisticFunction<R, P> {
+public abstract class AbstractProbabilisticFunction<R, P>
+    implements ProbabilisticFunction<R, P> {
 
-	private double probability;
-	private Random random;
+    /** Constant <code>DEFAULT_PROBABILITY=.05</code> */
+    public static final double DEFAULT_PROBABILITY = .5;
 
-	/**
-	 * Constructor, initializes instances with the given parameters.
-	 * Internally calls {@link #setProbability(double)} and
-	 * {@link #setRandom(java.util.Random)}
-	 *
-	 * @param probability value of probability
-	 * @param random      random instance
-	 * @throws java.lang.IllegalArgumentException see {@link #setProbability(double)}
-	 *                                            and see {@link #setRandom(java.util.Random)}
-	 */
-	protected AbstractProbabilisticFunction(double probability,
-	                                        Random random)
-		throws IllegalArgumentException {
-		setProbability(probability);
-		setRandom(random);
-	}
+    protected double probability;
+    protected Random random;
 
-	/**
-	 * Constructor, initializes instances with probability specified by
-	 * {@code probability} parameter and random is an instance of
-	 * {@link java.util.Random}.
-	 *
-	 * @param probability value of probability
-	 * @throws java.lang.IllegalArgumentException see {@link #setProbability}
-	 *                                            and see {@link #setRandom}
-	 */
-	protected AbstractProbabilisticFunction(double probability)
-		throws IllegalArgumentException {
-		this(probability, new Random());
-	}
+    /**
+     * Constructor, initializes instances with the given parameters.
+     * Internally calls {@link #setProbability(double)} and
+     * {@link #setRandom(java.util.Random)}
+     *
+     * @param probability value of probability
+     * @param random      random instance
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
+     */
+    protected AbstractProbabilisticFunction(double probability, Random random) {
+        setProbability(probability);
+        setRandom(random);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public double getProbability() {
-		return probability;
-	}
+    /**
+     * Constructor, initializes instances with probability specified by
+     * {@code probability} parameter and random is an instance of
+     * {@link java.util.Random}.
+     *
+     * @param probability value of probability
+     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability}
+     */
+    protected AbstractProbabilisticFunction(double probability) {
+        this(probability, new Random());
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public final void setProbability(final double probability)
-		throws IllegalArgumentException {
-		if (probability < 0 || probability > 1.0) {
-			throw new IllegalArgumentException(
-				"'probability' must between 0.0 and 1.0");
-		}
-		this.probability = probability;
-	}
+    /**
+     * Constructor, initializes instances with default probability (.5) and random is an instance of
+     * {@link java.util.Random}.
+     *
+     * @since 1.0.1
+     */
+    protected AbstractProbabilisticFunction() {
+        this.probability = DEFAULT_PROBABILITY;
+        this.random = new Random();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Random getRandom() {
-		return random;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public double getProbability() {
+        return probability;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public void setRandom(final Random random)
-		throws IllegalArgumentException {
-		if (random == null) {
-			throw new IllegalArgumentException("'random' can't be null");
-		}
-		this.random = random;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public final void setProbability(final double probability) {
+        if (probability < 0 || probability > 1.0) {
+            throw new ValidationException ("'probability' must between 0.0 and 1.0");
+        }
+        this.probability = probability;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Random getRandom() {
+        return random;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setRandom(final Random random) {
+        if (random == null) {
+            throw new ValidationException("'random' can't be null");
+        }
+        this.random = random;
+    }
 
 }

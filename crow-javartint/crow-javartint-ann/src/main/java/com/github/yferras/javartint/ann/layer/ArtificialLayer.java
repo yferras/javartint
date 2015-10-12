@@ -33,28 +33,28 @@ import java.io.Serializable;
  * @version 0.0.1
  */
 public interface ArtificialLayer<T extends ArtificialNeuron>
-	extends Iterable<T>, Serializable {
+    extends Iterable<T>, Serializable {
 
-	/**
-	 * Gets the itemsCount of the layer.
-	 *
-	 * @return the itemsCount of the layer.
-	 */
-	int size();
+    /**
+     * Gets the itemsCount of the layer.
+     *
+     * @return the itemsCount of the layer.
+     */
+    int size();
 
-	/**
-	 * Retrieves an array with neurons.
-	 *
-	 * @return an array with neurons.
-	 */
-	T[] getNeurons();
+    /**
+     * Retrieves an array with neurons.
+     *
+     * @return an array with neurons.
+     */
+    T[] getNeurons();
 
-	/**
-	 * Gets the neuron in specified index.
-	 *
-	 * @param index index to get the neuron.
-	 * @return an instance of neuron.
-	 */
-	T getNeuron(int index);
+    /**
+     * Gets the neuron in specified index.
+     *
+     * @param index index to get the neuron.
+     * @return an instance of neuron.
+     */
+    T getNeuron(int index);
 
 }

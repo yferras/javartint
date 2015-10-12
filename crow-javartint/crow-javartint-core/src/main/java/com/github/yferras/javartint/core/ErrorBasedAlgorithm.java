@@ -30,12 +30,12 @@ package com.github.yferras.javartint.core;
  * @version 0.0.3
  */
 public interface ErrorBasedAlgorithm<S extends Solution>
-	extends Algorithm<S> {
+    extends Algorithm<S> {
 
-	/**
-	 * Gets the actual error.
-	 *
-	 * @return the actual error.
-	 */
-	Double getCurrentError();
+    /**
+     * Gets the actual error.
+     *
+     * @return the actual error.
+     */
+    Double getCurrentError();
 }

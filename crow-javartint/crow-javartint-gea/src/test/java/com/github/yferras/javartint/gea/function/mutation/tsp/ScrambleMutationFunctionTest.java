@@ -27,33 +27,34 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class ScrambleMutationFunctionTest {
 
-	@Test
-	public void testMutate() throws Exception {
-		ScrambleMutationFunction<TspGenome> function = new ScrambleMutationFunction<>(4);
-		function.setRandom(
-			new Random() {
-				private int[] positions = {3, 0, 1, 0};
-				private int index = 0;
-				@Override
-				public int nextInt(int n) {
-					return positions[index++];
-				}
-			}
-		);
+    @Test
+    public void testMutate() throws Exception {
+        ScrambleMutationFunction<TspGenome> function = new ScrambleMutationFunction<>(4);
+        function.setRandom(
+            new Random() {
+                private int[] positions = {3, 0, 1, 0};
+                private int index = 0;
 
-		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
-		genome = function.mutate(genome);
+                @Override
+                public int nextInt(int n) {
+                    return positions[index++];
+                }
+            }
+        );
 
-		TspGenome expected = new TspGenome(8, 5, 2, 3, 7, 6, 1, 0, 9, 4);
+        TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
+        genome = function.mutate(genome);
 
-		assertArrayEquals(
-			expected.getChromosome().getGenes(),
-			genome.getChromosome().getGenes()
-		);
+        TspGenome expected = new TspGenome(8, 5, 2, 3, 7, 6, 1, 0, 9, 4);
 
-	}
+        assertArrayEquals(
+            expected.getChromosome().getGenes(),
+            genome.getChromosome().getGenes()
+        );
+
+    }
 }

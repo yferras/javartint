@@ -31,50 +31,50 @@ import org.junit.BeforeClass;
 
 public class LineActivationFunctionTest extends TestCase {
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+    @BeforeClass
+    public static void setUpClass() {
+    }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+    @AfterClass
+    public static void tearDownClass() {
+    }
 
-	@Before
-	public void setUp() {
-		System.out.print(LineActivationFunction.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() {
+        System.out.print(LineActivationFunction.class.getName().concat("."));
+    }
 
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 
-	public void testDerive() throws Exception {
-		System.out.println("derive");
-		LineActivationFunction function = new LineActivationFunction();
-		Double expected = 1.0;
-		Double actual = function.derive().evaluate(56.0);
-		assertEquals(expected, actual);
-		actual = function.derive().evaluate(-64.0);
-		assertEquals(expected, actual);
-	}
+    public void testDerive() throws Exception {
+        System.out.println("derive");
+        LineActivationFunction function = new LineActivationFunction();
+        Double expected = 1.0;
+        Double actual = function.derive().evaluate(56.0);
+        assertEquals(expected, actual);
+        actual = function.derive().evaluate(-64.0);
+        assertEquals(expected, actual);
+    }
 
-	public void testGetN() throws Exception {
-		System.out.println("getN");
-		LineActivationFunction function = new LineActivationFunction();
-		int expected = 0;
-		assertEquals(expected, function.getN());
-		expected = 1;
-		assertEquals(expected, function.derive().getN());
-	}
+    public void testGetN() throws Exception {
+        System.out.println("getN");
+        LineActivationFunction function = new LineActivationFunction();
+        int expected = 0;
+        assertEquals(expected, function.getN());
+        expected = 1;
+        assertEquals(expected, function.derive().getN());
+    }
 
-	public void testEvaluate() throws Exception {
-		System.out.println("evaluate");
-		LineActivationFunction function = new LineActivationFunction();
-		Double expected = 1.0;
-		Double actual = function.evaluate(1.0);
-		assertEquals(expected, actual);
-		expected = -64.0;
-		actual = function.evaluate(-64.0);
-		assertEquals(expected, actual);
-	}
+    public void testEvaluate() throws Exception {
+        System.out.println("evaluate");
+        LineActivationFunction function = new LineActivationFunction();
+        Double expected = 1.0;
+        Double actual = function.evaluate(1.0);
+        assertEquals(expected, actual);
+        expected = -64.0;
+        actual = function.evaluate(-64.0);
+        assertEquals(expected, actual);
+    }
 }

@@ -31,12 +31,12 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-	{
-		LineActivationFunctionTest.class,
-		BalancedSumPropagationRuleFunctionTest.class,
-		EuclideanDistancePropagationRuleFunctionTest.class,
-		AbstractArtificialNeuronTest.class,
-	}
+    {
+        LineActivationFunctionTest.class,
+        BalancedSumPropagationRuleFunctionTest.class,
+        EuclideanDistancePropagationRuleFunctionTest.class,
+        AbstractArtificialNeuronTest.class,
+    }
 )
 public class AnnITSuite {
 }

@@ -30,13 +30,13 @@ package com.github.yferras.javartint.gea.genome;
  */
 public enum GenomeType {
 
-	/**
-	 * Organisms whose chromosomes are arrayed in pairs.
-	 */
-	DIPLOID,
-	/**
-	 * Organisms whose chromosomes are unpaired.
-	 */
-	HAPLOID,
+    /**
+     * Organisms whose chromosomes are arrayed in pairs.
+     */
+    DIPLOID,
+    /**
+     * Organisms whose chromosomes are unpaired.
+     */
+    HAPLOID,
 
 }

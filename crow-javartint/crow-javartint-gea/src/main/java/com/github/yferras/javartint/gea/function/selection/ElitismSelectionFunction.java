@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.function.selection;
  */
 
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -37,38 +38,42 @@ import java.util.List;
  * @version 0.0.2
  */
 public class ElitismSelectionFunction<T extends Individual>
-	extends AbstractSelectionFunction<T> {
+    extends AbstractSelectionFunction<T> {
 
-	private final Optimize optimize;
+    private final Optimize optimize;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param numToSelect number of elements to select
-	 * @param optimize    the optimization way
-	 */
-	public ElitismSelectionFunction(int numToSelect, Optimize optimize) {
-		super(numToSelect);
-		this.optimize = optimize;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param numToSelect number of elements to select
+     * @param optimize    the optimization way
+     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
+     */
+    public ElitismSelectionFunction(int numToSelect, Optimize optimize)  {
+        super(numToSelect);
+        this.optimize = optimize;
+    }
 
 
-	/**
-	 * Gets the optimization way.
-	 *
-	 * @return optimization way value.
-	 */
-	public Optimize getOptimize() {
-		return optimize;
-	}
+    /**
+     * Gets the optimization way.
+     *
+     * @return optimization way value.
+     */
+    public Optimize getOptimize() {
+        return optimize;
+    }
 
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected List<T> select(List<T> individuals) {
-		List<T> list = new ArrayList<>(individuals);
-		Collections.sort(list);
-		if (optimize == Optimize.MIN) return list.subList(0, getNumToSelect());
-		else return list.subList(list.size() - getNumToSelect(), list.size());
-	}
+    /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected List<T> select(List<T> individuals) {
+        List<T> list = new ArrayList<>(individuals);
+        Collections.sort(list);
+        if (optimize == Optimize.MIN) {
+            return list.subList(0, getNumToSelect());
+        } else {
+            return list.subList(list.size() - getNumToSelect(), list.size());
+        }
+    }
 }

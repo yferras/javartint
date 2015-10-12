@@ -26,30 +26,30 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class BalancedSumPropagationRuleFunctionTest {
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-	}
+    }
 
-	@After
-	public void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
-	}
+    }
 
-	@Test
-	public void testEvaluate() throws Exception {
-		BalancedSumPropagationRuleFunction function = new BalancedSumPropagationRuleFunction();
-		Double[] inputs = {1.0, 1.0, 1.0};
-		Double[] weights = {1.0, 1.0, 1.0};
-		Double expected = 3.0;
-		Double actual = function.evaluate(new Double[][]{inputs, weights});
-		assertEquals(expected, actual);
-	}
+    @Test
+    public void testEvaluate() throws Exception {
+        BalancedSumPropagationRuleFunction function = new BalancedSumPropagationRuleFunction();
+        Double[] inputs = {1.0, 1.0, 1.0};
+        Double[] weights = {1.0, 1.0, 1.0};
+        Double expected = 3.0;
+        Double actual = function.evaluate(new Double[][]{inputs, weights});
+        assertEquals(expected, actual);
+    }
 }
