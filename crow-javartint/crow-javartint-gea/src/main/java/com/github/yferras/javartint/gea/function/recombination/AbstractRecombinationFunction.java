@@ -41,6 +41,8 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
     extends AbstractProbabilisticFunction<T[], T[]>
     implements RecombinationFunction<T> {
 
+    private static final int MAX_PARAMS = 2;
+
     /** Constant <code>DEFAULT_PROBABILITY=.75</code> */
     public static final double DEFAULT_PROBABILITY = .75;
 
@@ -99,7 +101,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
         if (params == null) {
             throw new IllegalArgumentException("'params' can't be null.");
         }
-        if (params.length < 2) {
+        if (params.length < MAX_PARAMS) {
             throw new IllegalArgumentException(
                 "'params' must contain at less two elements");
         }

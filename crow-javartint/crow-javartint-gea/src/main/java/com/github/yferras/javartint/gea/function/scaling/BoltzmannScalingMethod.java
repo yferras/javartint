@@ -39,6 +39,8 @@ public final class BoltzmannScalingMethod<T extends Individual>
 
     private static final double BOLTZMANN_DELTA_TEMP = 0.05;
     private static final double BOLTZMANN_MIN_TEMP = 1.0;
+    private static final double A = 2.0;
+
     private double boltzmannTemp;
 
     /**
@@ -48,7 +50,7 @@ public final class BoltzmannScalingMethod<T extends Individual>
      */
     public BoltzmannScalingMethod(int cities) {
         super(null);
-        boltzmannTemp = 2.0 * cities;
+        boltzmannTemp = A * cities;
     }
 
     /**

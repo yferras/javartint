@@ -34,6 +34,8 @@ import java.util.Objects;
  */
 public abstract class AbstractGene<T> implements Gene<T> {
 
+    private static final int HASH_CODE_CONST = 3 * 97;
+
     /**
      * The data.
      */
@@ -108,9 +110,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.data);
-        return hash;
+        return HASH_CODE_CONST + Objects.hashCode(this.data);
     }
 
     /** {@inheritDoc} */

@@ -42,6 +42,8 @@ import java.util.Random;
 public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    private static final double BASE_2 = 2.0;
+
     /** Constant <code>DEFAULT_RANGE=.1</code> */
     public static final double DEFAULT_RANGE = .1;
     /** Constant <code>DEFAULT_PRECISION=6</code> */
@@ -132,13 +134,13 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
             ((Genome) parent1).clone(),
             ((Genome) parent2).clone()
         };
-        double a = Math.pow(2, -precision * getRandom().nextDouble());
+        double a = Math.pow(BASE_2, -precision * getRandom().nextDouble());
         Chromosome<? extends Gene<Double>> chromosome0 = offspring[0].getChromosome(0);
         Chromosome<? extends Gene<Double>> chromosome1 = offspring[1].getChromosome(0);
         for (int i = 0; i < numberOfGenes; i++) {
             double value0 = chromosome0.getGene(i).getData();
             double value1 = chromosome1.getGene(i).getData();
-            double s = getRandom().nextInt(2) == 0 ? -1.0 : 1.0;
+            double s = getRandom().nextBoolean() ? -1.0 : 1.0;
             double diff = value0 - value1;
             double newValue0 = value0 + s * ranges[i] * a * (diff / Math.abs(diff));
             double newValue1 = value1 + s * ranges[i] * a * (diff / Math.abs(diff));

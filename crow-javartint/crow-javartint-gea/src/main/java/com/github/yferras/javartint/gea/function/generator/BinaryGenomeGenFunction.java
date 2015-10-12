@@ -95,7 +95,7 @@ public class BinaryGenomeGenFunction
             for (int j = 0; j < lengthsOfGenes.length; j++) {
                 Byte[] data = new Byte[lengthsOfGenes[j]];
                 for (int k = 0; k < data.length; k++) {
-                    data[k] = (byte) random.nextInt(2);
+                    data[k] = (byte) (random.nextBoolean() ? 1 : 0);
                 }
                 genes[j] = new ByteArrayGene(data);
             }

@@ -46,6 +46,8 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
     /** Constant <code>DEFAULT_MUTATION_PRECISION=6</code> */
     public static final double DEFAULT_MUTATION_PRECISION = 6;
 
+    private static final double BASE_2 = 2.0;
+
     private double[] ranges;
     private double[] precisions;
 
@@ -151,8 +153,8 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
             double r = ranges[i];
             double k = precisions[i++];
             double u = getRandom().nextDouble();
-            int s = getRandom().nextInt(2) == 0 ? -1 : 1;
-            double a = Math.pow(2.0, -u * k);
+            int s = getRandom().nextBoolean() ? -1 : 1;
+            double a = Math.pow(BASE_2, -u * k);
             final Gene<Double> gene = chromosome.getGene(index);
             gene.setData(gene.getData() + s * r * a);
         }

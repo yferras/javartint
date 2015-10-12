@@ -32,6 +32,8 @@ import com.github.yferras.javartint.core.util.ValidationException;
  */
 public abstract class AbstractPropagationRuleFunction implements PropagationRuleFunction {
 
+    private static final int NUMBER_OF_PARAMS = 2;
+
     /**
      * {@inheritDoc}
      * <p/>
@@ -42,7 +44,7 @@ public abstract class AbstractPropagationRuleFunction implements PropagationRule
         if (params == null) {
             throw new ValidationException("'params' can't be null.");
         }
-        if (params.length != 2) {
+        if (params.length != NUMBER_OF_PARAMS) {
             throw new ValidationException("'params' must contains exactly two arrays");
         }
         if (params[0] == null) {

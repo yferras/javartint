@@ -39,6 +39,7 @@ import java.util.Random;
  */
 public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> extends AbstractMutationFunction<T> {
 
+    public static final int MIN_SPAN_SIZE = 2;
     private int minSpanSize;
 
     /**
@@ -83,7 +84,7 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
      * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
      */
     public AbstractTspSpanMutationFunction() {
-        this(2);
+        this(MIN_SPAN_SIZE);
     }
 
     /**

@@ -41,6 +41,9 @@ import java.util.Random;
 public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends IntermediateRecombinationFunction<T> {
 
+    private static final double A = 1.0;
+    private static final double B = 2.0;
+
     /**
      * Constructor, initializes instances with the given parameters.
      *
@@ -95,7 +98,7 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
             ((Genome) parent1).clone(),
             ((Genome) parent2).clone()
         };
-        double a = getRandom().nextDouble() * (1.0 + 2.0 * getDistance()) - getDistance();
+        double a = getRandom().nextDouble() * (A + B * getDistance()) - getDistance();
         Chromosome<? extends Gene<Double>> chromosome0 = offspring[0].getChromosome(0);
         Chromosome<? extends Gene<Double>> chromosome1 = offspring[1].getChromosome(0);
         for (int i = 0; i < numberOfGenes; i++) {

@@ -37,6 +37,8 @@ import java.util.Iterator;
 public class ArrayGene<T> extends AbstractGene<T[]> implements
     Cloneable, Iterable<T> {
 
+    private static final int HASH_CODE_CONST = 7 * 23;
+
     /**
      * <p>Constructor for ArrayGene.</p>
      *
@@ -81,9 +83,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Arrays.deepHashCode(this.getData());
-        return hash;
+        return HASH_CODE_CONST + Arrays.deepHashCode(this.getData());
     }
 
     /** {@inheritDoc} */

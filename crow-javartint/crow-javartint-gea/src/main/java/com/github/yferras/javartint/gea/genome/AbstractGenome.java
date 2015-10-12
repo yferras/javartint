@@ -39,6 +39,9 @@ import java.util.*;
  */
 public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
     extends AbstractIndividual implements Genome<T> {
+    private static final int HASH_CODE_CONST_31 = 31;
+    private static final int HASH_CODE_CONST_32 = 32;
+
     /**
      * Array of chromosomes that contains the genome information.
      */
@@ -151,7 +154,7 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
         long temp;
         result = chromosomes.hashCode();
         temp = Double.doubleToLongBits(getFitness());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = HASH_CODE_CONST_31 * result + (int) (temp ^ (temp >>> HASH_CODE_CONST_32));
         return result;
     }
 

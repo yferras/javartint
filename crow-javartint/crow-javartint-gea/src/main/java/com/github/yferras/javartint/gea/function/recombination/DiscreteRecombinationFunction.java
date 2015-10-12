@@ -54,6 +54,8 @@ import java.util.Random;
 public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
     extends AbstractRecombinationFunction<T> {
 
+    private static final int MAX_INDEX = 2;
+
     /**
      * <p>Constructor for DiscreteRecombinationFunction.</p>
      *
@@ -94,8 +96,8 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
         for (int i = 0; i < numberOfChromosomes; i++) {
             int numberOfGenes = offspring[0].getChromosome(i).size();
             for (int j = 0; j < numberOfGenes; j++) {
-                Gene<?> aux0 = offspring[getRandom().nextInt(2)].getChromosome(i).getGene(j);
-                Gene<?> aux1 = offspring[getRandom().nextInt(2)].getChromosome(i).getGene(j);
+                Gene<?> aux0 = offspring[getRandom().nextInt(MAX_INDEX)].getChromosome(i).getGene(j);
+                Gene<?> aux1 = offspring[getRandom().nextInt(MAX_INDEX)].getChromosome(i).getGene(j);
                 offspring[0].getChromosome(i).setGene(j, aux0.clone());
                 offspring[1].getChromosome(i).setGene(j, aux1.clone());
             }

@@ -59,6 +59,9 @@ import java.util.Random;
 public class IntermediateRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
     extends AbstractRecombinationFunction<T> {
 
+    private static final double A = 1.0;
+    private static final double B = 2.0;
+
     /** Constant <code>DEFAULT_DISTANCE=.25</code> */
     public static final double DEFAULT_DISTANCE = .25;
 
@@ -133,7 +136,7 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
         for (int i = 0; i < numberOfGenes; i++) {
             double value0 = chromosome0.getGene(i).getData();
             double value1 = chromosome1.getGene(i).getData();
-            double a = getRandom().nextDouble() * (1.0 + 2.0 * getDistance()) - getDistance();
+            double a = getRandom().nextDouble() * (A + B * getDistance()) - getDistance();
             double newValue0 = value0 * a + value1 * (1.0 - a);
             double newValue1 = value1 * a + value0 * (1.0 - a);
             chromosome0.getGene(i).setData(newValue0);
