@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.chromosome;
  */
 
 import com.github.yferras.javartint.core.Solution;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.io.Serializable;
@@ -48,20 +49,16 @@ public interface Chromosome<T extends Gene<?>>
      * Sets the array of genes.
      *
      * @param genes the array of genes.
-     * @throws java.lang.IllegalArgumentException if {@code genes} argument is
-     *                                            {@code null}.
      */
-    void setGenes(T[] genes) throws IllegalArgumentException;
+    void setGenes(T[] genes) throws ValidationException;
 
     /**
      * Gets the gene at specific <code>locus</code>.
      *
      * @param locus particular position on the chromosome.
      * @return This method returns a gene
-     * @throws java.lang.IndexOutOfBoundsException if the <code>index</code> is out of
-     *                                             range.
      */
-    T getGene(int locus) throws IndexOutOfBoundsException;
+    T getGene(int locus);
 
     /**
      * Sets the <code>newGene</code> at specific <code>locus</code>.

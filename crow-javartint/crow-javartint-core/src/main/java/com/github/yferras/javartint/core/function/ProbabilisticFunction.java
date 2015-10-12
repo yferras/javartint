@@ -22,9 +22,6 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
-
-import com.github.yferras.javartint.core.util.ValidationException;
-
 import java.util.Random;
 
 /**
@@ -49,10 +46,8 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * {@code 1.0}.
      *
      * @param probability the probability
-     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code probability is not
-     *                                            inside 0.0 and 1.0}
      */
-    void setProbability(final double probability) throws ValidationException;
+    void setProbability(final double probability);
 
     /**
      * Gets the random instance.
@@ -65,9 +60,8 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * Sets the random generator. Is used to generate random probabilities.
      *
      * @param random the random instance
-     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code random} param is {@code null}
      */
-    void setRandom(final Random random) throws ValidationException;
+    void setRandom(final Random random);
 
     /**
      * {@inheritDoc}
@@ -75,5 +69,5 @@ public interface ProbabilisticFunction<R, P> extends Function<R, P> {
      * The result is constrained by the returned value of {@link #getProbability()}.
      */
     @Override
-    R evaluate(P params) throws ValidationException;
+    R evaluate(P params);
 }

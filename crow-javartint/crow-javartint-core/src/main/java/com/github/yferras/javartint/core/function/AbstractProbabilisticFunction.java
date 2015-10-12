@@ -53,7 +53,7 @@ public abstract class AbstractProbabilisticFunction<R, P>
      * @param random      random instance
      * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
      */
-    protected AbstractProbabilisticFunction(double probability, Random random) throws ValidationException {
+    protected AbstractProbabilisticFunction(double probability, Random random) {
         setProbability(probability);
         setRandom(random);
     }
@@ -66,7 +66,7 @@ public abstract class AbstractProbabilisticFunction<R, P>
      * @param probability value of probability
      * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability}
      */
-    protected AbstractProbabilisticFunction(double probability) throws ValidationException {
+    protected AbstractProbabilisticFunction(double probability) {
         this(probability, new Random());
     }
 
@@ -89,10 +89,9 @@ public abstract class AbstractProbabilisticFunction<R, P>
 
     /** {@inheritDoc} */
     @Override
-    public final void setProbability(final double probability) throws ValidationException {
+    public final void setProbability(final double probability) {
         if (probability < 0 || probability > 1.0) {
-            throw new ValidationException (
-                "'probability' must between 0.0 and 1.0");
+            throw new ValidationException ("'probability' must between 0.0 and 1.0");
         }
         this.probability = probability;
     }
@@ -105,7 +104,7 @@ public abstract class AbstractProbabilisticFunction<R, P>
 
     /** {@inheritDoc} */
     @Override
-    public void setRandom(final Random random) throws ValidationException {
+    public void setRandom(final Random random) {
         if (random == null) {
             throw new ValidationException("'random' can't be null");
         }

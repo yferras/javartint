@@ -63,7 +63,7 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      * @param probability probability of mutation
      * @throws com.github.yferras.javartint.core.util.ValidationException see {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
      */
-    protected AbstractMutationFunction(double probability) throws ValidationException {
+    protected AbstractMutationFunction(double probability) {
         super(probability);
     }
 
@@ -91,11 +91,11 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
      * Ensures that parameter are valid.
      *
      * @param param parameter to validate.
-     * @throws java.lang.IllegalArgumentException if {@code param} is {@code null}.
+     * @throws ValidationException if {@code param} is {@code null}.
      */
-    protected void validate(T param) throws IllegalArgumentException {
+    protected void validate(T param) {
         if (param == null) {
-            throw new IllegalArgumentException("'params' can't be null.");
+            throw new ValidationException("'params' can't be null.");
         }
     }
 

@@ -137,10 +137,10 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
      * Ensures that parameters are valid.
      */
     @Override
-    protected void validate(T param) throws IllegalArgumentException {
+    protected void validate(T param) {
         super.validate(param);
         if (param.size() != ranges.length) {
-            throw new IllegalArgumentException("the size of genome and the length of 'precisions' and 'ranges' mismatch.");
+            throw new ValidationException("the size of genome and the length of 'precisions' and 'ranges' mismatch.");
         }
     }
 

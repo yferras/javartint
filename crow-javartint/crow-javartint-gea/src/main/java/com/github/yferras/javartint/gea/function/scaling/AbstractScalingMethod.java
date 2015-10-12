@@ -24,6 +24,7 @@ package com.github.yferras.javartint.gea.function.scaling;
 
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -70,15 +71,14 @@ public abstract class AbstractScalingMethod<T extends Individual>
      * Ensures that parameters are valid.
      *
      * @param params parameters to validate.
-     * @throws java.lang.IllegalArgumentException if {@code params} is null
-     *                                            or {@code params.isEmpty()} is {@code true}.
+     * @throws ValidationException if {@code params} is null or {@code params.isEmpty()} is {@code true}.
      */
-    protected void validate(List<T> params) throws IllegalArgumentException {
+    protected void validate(List<T> params) {
         if (params == null) {
-            throw new IllegalArgumentException("'params' can't be null.");
+            throw new ValidationException("'params' can't be null.");
         }
         if (params.isEmpty()) {
-            throw new IllegalArgumentException("'params' can't be empty.");
+            throw new ValidationException("'params' can't be empty.");
         }
     }
 

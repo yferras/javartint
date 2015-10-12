@@ -23,6 +23,7 @@ package com.github.yferras.javartint.gea.chromosome;
  */
 
 import com.github.yferras.javartint.core.util.AbstractItemIterator;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.util.Arrays;
@@ -59,14 +60,17 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
     /** {@inheritDoc} */
     @Override
-    public void setGenes(T[] genes) throws IllegalArgumentException {
+    public void setGenes(T[] genes) throws ValidationException {
+        if (genes == null) {
+            throw new ValidationException("'genes' param can't be null.");
+        }
         this.genes.clear();
         this.genes.addAll(Arrays.asList(genes));
     }
 
     /** {@inheritDoc} */
     @Override
-    public T getGene(int locus) throws IndexOutOfBoundsException {
+    public T getGene(int locus) {
         return genes.get(locus);
     }
 
