@@ -43,7 +43,6 @@ public final class MathUtil {
      *
      * @param individuals list of individuals
      * @return the mean of fitness
-     * @param <T> a T object.
      */
     public static <T extends Individual> double mean(List<T> individuals) {
         return total(individuals) / individuals.size();
@@ -54,7 +53,6 @@ public final class MathUtil {
      *
      * @param individuals list of individuals
      * @return the total of fitness
-     * @param <T> a T object.
      */
     public static <T extends Individual> double total(List<T> individuals) {
         double sum = 0.0;
@@ -70,7 +68,6 @@ public final class MathUtil {
      * @param individuals list of individuals
      * @param mean        the mean of the fitness
      * @return the variance of fitness
-     * @param <T> a T object.
      */
     public static <T extends Individual> double variance(List<T> individuals, Double mean) {
         double sum = 0.0;
@@ -86,7 +83,6 @@ public final class MathUtil {
      *
      * @param individuals list of individuals
      * @return the variance of fitness
-     * @param <T> a T object.
      */
     public static <T extends Individual> double variance(List<T> individuals) {
         return variance(individuals, mean(individuals));

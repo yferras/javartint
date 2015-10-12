@@ -95,11 +95,9 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
 
     /**
      * <p>updateFitnessScores.</p>
-     *
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any validation error occurs.
      */
     @SuppressWarnings("unchecked")
-    protected void updateFitnessScores() throws ValidationException {
+    protected void updateFitnessScores() {
         for (T individual : getPopulation()) {
             D decodedValue = getDecoder().evaluate(individual);
             Double currentFitnessScore = getTargetFunction().evaluate(decodedValue);
