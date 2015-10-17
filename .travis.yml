@@ -1,0 +1,18 @@
+language: java
+
+jdk:
+  - openjdk7
+
+os:
+  - linux
+
+branches:
+  only:
+    - develop
+
+before_script:
+#  - pwd
+  - cd crow-javartint/
+
+script:
+  - mvn clean install
