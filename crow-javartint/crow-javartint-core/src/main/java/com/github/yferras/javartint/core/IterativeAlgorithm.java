@@ -25,18 +25,18 @@ package com.github.yferras.javartint.core;
 /**
  * This interface allows to create iterative algorithms.
  *
- * @param <S> Any class derived from {@link Solution} interface.
+ * @param <S> Any class derived from {@link com.github.yferras.javartint.core.Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public interface IterativeAlgorithm<S extends Solution>
-	extends Algorithm<S> {
+    extends Algorithm<S> {
 
-	/**
-	 * Gets the iterations that the algorithm perform.
-	 *
-	 * @return the iterations that the algorithm perform.
-	 */
-	Long getIterations();
+    /**
+     * Gets the iterations that the algorithm perform.
+     *
+     * @return the iterations that the algorithm perform.
+     */
+    Long getIterations();
 
 }

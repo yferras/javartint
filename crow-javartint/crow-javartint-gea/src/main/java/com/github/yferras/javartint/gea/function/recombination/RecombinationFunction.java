@@ -22,28 +22,27 @@ package com.github.yferras.javartint.gea.function.recombination;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.core.function.ProbabilisticFunction;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
+import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
  * Interface that represents recombination function.
  *
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public interface RecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-	extends ProbabilisticFunction<T[], T[]> {
+    extends ProbabilisticFunction<T[], T[]> {
 
-	/**
-	 * Accepts an array of genomes (parents) to perform the recombination process,
-	 * and retrieves an array containing the offspring.
-	 *
-	 * @param params array of parents.
-	 * @return offspring.
-	 */
-	@Override
-	T[] evaluate(T... params);
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Accepts an array of genomes (parents) to perform the recombination process,
+     * and retrieves an array containing the offspring.
+     */
+    @Override
+    T[] evaluate(T... params);
 }

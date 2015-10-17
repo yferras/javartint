@@ -22,8 +22,9 @@ package com.github.yferras.javartint.core;
  * #L%
  */
 
-import com.github.yferras.javartint.core.util.RangeTest;
+import com.github.yferras.javartint.core.function.DefaultCompositeFunctionTest;
 import com.github.yferras.javartint.core.function.ProbabilisticFunctionTest;
+import com.github.yferras.javartint.core.util.RangeTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,27 +37,28 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
-	{
-		AbstractAlgorithmIT.class,
-		ProbabilisticFunctionTest.class,
-		RangeTest.class,
-	}
+    {
+        AbstractAlgorithmIT.class,
+        ProbabilisticFunctionTest.class,
+        RangeTest.class,
+        DefaultCompositeFunctionTest.class,
+    }
 )
 public class CoreITSuite {
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-	}
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
 
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-	}
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
-	@Before
-	public void setUp() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @After
+    public void tearDown() throws Exception {
+    }
 }

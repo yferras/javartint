@@ -22,18 +22,18 @@ package com.github.yferras.javartint.core.constraint;
  * #L%
  */
 
-import com.github.yferras.javartint.core.Solution;
 import com.github.yferras.javartint.core.Algorithm;
+import com.github.yferras.javartint.core.Solution;
 
 /**
  * This interface allows to create algorithms based on numeric threshold.
  *
- * @param <N> Any derived class from {@link Number} abstract class.
- * @param <A> Any derived class from {@link Algorithm} interface.
+ * @param <N> Any derived class from {@link java.lang.Number} abstract class.
+ * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public interface NumericThresholdConstraint<N extends Number & Comparable<N>, A extends Algorithm<? extends Solution>>
-	extends ThresholdConstraint<N, A> {
+    extends ThresholdConstraint<N, A> {
 
 }

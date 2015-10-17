@@ -23,7 +23,6 @@ package com.github.yferras.javartint.gea.function.generator;
  */
 
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
-import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
 import com.github.yferras.javartint.gea.genome.BinaryGenome;
 
@@ -36,76 +35,74 @@ import java.util.Random;
  * @version 0.0.1
  */
 public class BinaryGenomeGenFunction
-	extends AbstractGenomeGeneratorFunction<BinaryGenome> {
+    extends AbstractGenomeGeneratorFunction<BinaryGenome> {
 
-	/**
-	 * Initializes the number of genes and the length of each gene.
-	 *
-	 * @param genomeSize    the number of chromosomes.
-	 * @param numberOfGenes the number of genes.
-	 * @param lengthOfGene  the length of each gene.
-	 */
-	public BinaryGenomeGenFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
-		super(genomeSize, numberOfGenes, lengthOfGene);
-	}
+    /**
+     * Initializes the number of genes and the length of each gene.
+     *
+     * @param genomeSize    the number of chromosomes.
+     * @param numberOfGenes the number of genes.
+     * @param lengthOfGene  the length of each gene.
+     */
+    public BinaryGenomeGenFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
+        super(genomeSize, numberOfGenes, lengthOfGene);
+    }
 
-	/**
-	 * Initializes the number of genes and the length of each gene. By default {@code genomeSize} is 1.
-	 *
-	 * @param numberOfGenes the number of genes.
-	 * @param lengthOfGene  the length of each gene.
-	 */
-	public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
-		super(numberOfGenes, lengthOfGene);
-	}
+    /**
+     * Initializes the number of genes and the length of each gene. By default {@code genomeSize} is 1.
+     *
+     * @param numberOfGenes the number of genes.
+     * @param lengthOfGene  the length of each gene.
+     */
+    public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
+        super(numberOfGenes, lengthOfGene);
+    }
 
-	/**
-	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
-	 * if the number of genes and the value in each position is the size of each gene.
-	 *
-	 * @param genomeSize     the number of chromosomes.
-	 * @param lengthsOfGenes array that contains the length of genes.
-	 */
-	public BinaryGenomeGenFunction(int genomeSize, int[] lengthsOfGenes) {
-		super(genomeSize, lengthsOfGenes);
-	}
+    /**
+     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
+     * if the number of genes and the value in each position is the size of each gene.
+     *
+     * @param genomeSize     the number of chromosomes.
+     * @param lengthsOfGenes array that contains the length of genes.
+     */
+    public BinaryGenomeGenFunction(int genomeSize, int[] lengthsOfGenes) {
+        super(genomeSize, lengthsOfGenes);
+    }
 
-	/**
-	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
-	 * if the number of genes and the value in each position is the size of each gene.
-	 * By default {@code genomeSize} is 1.
-	 *
-	 * @param lengthsOfGenes array that contains the length of genes.
-	 */
-	public BinaryGenomeGenFunction(int[] lengthsOfGenes) {
-		super(lengthsOfGenes);
-	}
+    /**
+     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
+     * if the number of genes and the value in each position is the size of each gene.
+     * By default {@code genomeSize} is 1.
+     *
+     * @param lengthsOfGenes array that contains the length of genes.
+     */
+    public BinaryGenomeGenFunction(int[] lengthsOfGenes) {
+        super(lengthsOfGenes);
+    }
 
-	/**
-	 * Generates binary genomes.
-	 *
-	 * @param genomeSize     the number of chromosomes.
-	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link DefaultGenome}
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected BinaryGenome generate(int genomeSize, int[] lengthsOfGenes) {
-		Random random = new Random();
-		BinaryGenome genome = new BinaryGenome();
-		for (int i = 0; i < genomeSize; i++) {
-			ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
-			for (int j = 0; j < lengthsOfGenes.length; j++) {
-				Byte[] data = new Byte[lengthsOfGenes[j]];
-				for (int k = 0; k < data.length; k++) {
-					data[k] = (byte) random.nextInt(2);
-				}
-				genes[j] = new ByteArrayGene(data);
-			}
-			genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
-			genome.getChromosome(i).setGenes(genes);
-		}
-		return genome;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Generates binary genomes.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected BinaryGenome generate(int genomeSize, int[] lengthsOfGenes) {
+        Random random = new Random();
+        BinaryGenome genome = new BinaryGenome();
+        for (int i = 0; i < genomeSize; i++) {
+            ByteArrayGene[] genes = new ByteArrayGene[lengthsOfGenes.length];
+            for (int j = 0; j < lengthsOfGenes.length; j++) {
+                Byte[] data = new Byte[lengthsOfGenes[j]];
+                for (int k = 0; k < data.length; k++) {
+                    data[k] = (byte) (random.nextBoolean() ? 1 : 0);
+                }
+                genes[j] = new ByteArrayGene(data);
+            }
+            genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
+            genome.getChromosome(i).setGenes(genes);
+        }
+        return genome;
+    }
 
 }

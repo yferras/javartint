@@ -27,17 +27,17 @@ import com.github.yferras.javartint.gea.gene.Gene;
 /**
  * This class represents a default chromosome.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
 public class DefaultChromosome<T extends Gene<?>> extends AbstractChromosome<T> {
 
-	/**
-	 * Default constructor.
-	 */
-	public DefaultChromosome() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public DefaultChromosome() {
+        super();
+    }
 
 }

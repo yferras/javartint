@@ -22,140 +22,151 @@ package com.github.yferras.javartint.gea.genome;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.gene.Gene;
+import com.github.yferras.javartint.core.util.AbstractItemIterator;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.AbstractIndividual;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
+import com.github.yferras.javartint.gea.gene.Gene;
 
 import java.util.*;
 
 /**
- * This class is an abstract implementation of {@link Genome}.
+ * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.genome.Genome}.
  *
- * @param <T> Any derived class from {@link Gene} interface.
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>>
-	extends AbstractIndividual implements Genome<T> {
-	/**
-	 * Array of chromosomes that contains the genome information.
-	 */
-	protected List<T> chromosomes;
+    extends AbstractIndividual implements Genome<T> {
+    private static final int HASH_CODE_CONST_31 = 31;
+    private static final int HASH_CODE_CONST_32 = 32;
 
-	protected AbstractGenome() {
-		chromosomes = new LinkedList<>();
-	}
+    /**
+     * Array of chromosomes that contains the genome information.
+     */
+    protected List<T> chromosomes;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Chromosome<? extends Gene<?>>[] getChromosomes() {
-		return chromosomes.toArray(new Chromosome<?>[size()]);
-	}
+    /**
+     * <p>Constructor for AbstractGenome.</p>
+     */
+    protected AbstractGenome() {
+        chromosomes = new LinkedList<>();
+    }
 
-	@Override
-	public void setChromosomes(T[] chromosomes) throws IllegalArgumentException {
-		this.chromosomes.clear();
-		this.chromosomes.addAll(Arrays.asList(chromosomes));
-	}
+    /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
+    @Override
+    public T[] getChromosomes() {
+        return (T[])chromosomes.toArray(new Chromosome<?>[size()]);
+    }
 
-	@Override
-	public T getChromosome(int index) {
-		return this.chromosomes.get(index);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public void setChromosomes(T[] chromosomes)  {
+        if (chromosomes == null) {
+            throw new ValidationException("'chromosomes' array can't be null.");
+        }
+        this.chromosomes.clear();
+        this.chromosomes.addAll(Arrays.asList(chromosomes));
+    }
 
-	@Override
-	public void setChromosome(int index, T newChromosome) {
-		this.chromosomes.set(index, newChromosome);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public T getChromosome(int index) {
+        return this.chromosomes.get(index);
+    }
 
-	@Override
-	public int size() {
-		return chromosomes.size();
-	}
+    /** {@inheritDoc} */
+    @Override
+    public void setChromosome(int index, T newChromosome) {
+        this.chromosomes.set(index, newChromosome);
+    }
 
-	@Override
-	public void addChromosome(T chromosome) {
-		chromosomes.add(chromosome);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public int size() {
+        return chromosomes.size();
+    }
 
-	@Override
-	public GenomeType getGenomeType() {
-		if (size() == 0)
-			return null;
-		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public void addChromosome(T chromosome) {
+        chromosomes.add(chromosome);
+    }
 
-	@Override
-	public Iterator<T> iterator() {
-		return new GenomeIterator();
-	}
+    /** {@inheritDoc} */
+    @Override
+    public GenomeType getGenomeType() {
+        if (size() == 0) {
+            return null;
+        }
+        return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Genome<T> clone() throws CloneNotSupportedException {
-		final AbstractGenome<T> copy = (AbstractGenome<T>) super.clone();
-		copy.chromosomes = new ArrayList<>(size());
-		for (T t : this) {
-			copy.chromosomes.add((T) t.clone());
-		}
-		return copy;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public Iterator<T> iterator() {
+        return new AbstractItemIterator<T>() {
+            @Override
+            public T getItem(int index) {
+                return getChromosome(index);
+            }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+            @Override
+            public int itemsCount() {
+                return size();
+            }
+        };
+    }
 
-		AbstractGenome that = (AbstractGenome) o;
+    /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Genome<T> clone() throws CloneNotSupportedException {
+        final AbstractGenome<T> copy = (AbstractGenome<T>) super.clone();
+        copy.chromosomes = new ArrayList<>(size());
+        for (T t : this) {
+            copy.chromosomes.add((T) t.clone());
+        }
+        return copy;
+    }
 
-		return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-	@Override
-	public int hashCode() {
-		int result;
-		long temp;
-		result = chromosomes.hashCode();
-		temp = Double.doubleToLongBits(getFitness());
-		result = 31 * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
+        AbstractGenome that = (AbstractGenome) o;
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder("{");
-		stringBuilder.append("Fitness: ").append(getFitness()).append(';');
-		stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
-		for (int i = 1; i < size(); i++) {
-			stringBuilder.append("; ").append(getChromosome(i));
-		}
-		return stringBuilder.append(")").append("}").toString();
-	}
+        return Double.compare(that.getFitness(), getFitness()) == 0 && chromosomes.equals(that.chromosomes);
+    }
 
-	private class GenomeIterator implements Iterator<T> {
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = chromosomes.hashCode();
+        temp = Double.doubleToLongBits(getFitness());
+        result = HASH_CODE_CONST_31 * result + (int) (temp ^ (temp >>> HASH_CODE_CONST_32));
+        return result;
+    }
 
-		private int cursor = 0;
-
-		@Override
-		public boolean hasNext() {
-			return cursor < size();
-		}
-
-		@Override
-		public T next() {
-			try {
-				int i = cursor;
-				T next = getChromosome(i);
-				cursor = i + 1;
-				return next;
-			} catch (IndexOutOfBoundsException e) {
-				throw new NoSuchElementException();
-			}
-		}
-
-		@Override
-		public void remove() {
-			throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-		}
-	}
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        stringBuilder.append("Fitness: ").append(getFitness()).append(';');
+        stringBuilder.append(" Chromosome: (").append(size() != 0 ? getChromosome(0) : "");
+        for (int i = 1; i < size(); i++) {
+            stringBuilder.append("; ").append(getChromosome(i));
+        }
+        return stringBuilder.append(")").append("}").toString();
+    }
 }

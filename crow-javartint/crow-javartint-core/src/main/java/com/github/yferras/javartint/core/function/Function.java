@@ -32,12 +32,12 @@ package com.github.yferras.javartint.core.function;
  */
 public interface Function<R, P> {
 
-	/**
-	 * Evaluates the params and returns a result.
-	 *
-	 * @param params parameters to evaluate.
-	 * @return the result.
-	 */
-	R evaluate(P params);
+    /**
+     * Evaluates the params and returns a result.
+     *
+     * @param params parameters to evaluate.
+     * @return the result.
+     */
+    R evaluate(P params);
 
 }

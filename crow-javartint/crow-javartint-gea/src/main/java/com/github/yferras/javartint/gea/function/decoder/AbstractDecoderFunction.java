@@ -22,51 +22,51 @@ package com.github.yferras.javartint.gea.function.decoder;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
-import com.github.yferras.javartint.gea.genome.Genome;
 import com.github.yferras.javartint.gea.gene.Gene;
+import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
- * This class implements the interface {@link DecoderFunction}.
+ * This class implements the interface {@link com.github.yferras.javartint.gea.function.decoder.DecoderFunction}.
  * This class can be derived to create a functions to decode genomes.
  *
  * @param <D> Type of decoded result
- * @param <T> Any derived class from {@link Genome}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-	implements DecoderFunction<D, T> {
+    implements DecoderFunction<D, T> {
 
-	/**
-	 * Validates the input params.
-	 *
-	 * @param genome genome to validate.
-	 * @throws java.lang.IllegalArgumentException if argument is {@code null}
-	 */
-	protected void validate(T genome) {
-		if (genome == null) {
-			throw new IllegalArgumentException();
-		}
-	}
+    /**
+     * Validates the input params.
+     *
+     * @param genome genome to validate.
+     * @throws ValidationException if argument is {@code null}
+     */
+    protected void validate(T genome) {
+        if (genome == null) {
+            throw new ValidationException();
+        }
+    }
 
-	/**
-	 * This method must be implemented to decode the genome.
-	 *
-	 * @param genome genome to decode
-	 * @return decoded value
-	 */
-	protected abstract D decode(T genome);
+    /**
+     * This method must be implemented to decode the genome.
+     *
+     * @param genome genome to decode
+     * @return decoded value
+     */
+    protected abstract D decode(T genome);
 
-	/**
-	 * This method validate and performs the decode process.
-	 *
-	 * @param genome see {@link #decode(Genome)}
-	 * @return see {@link #decode(Genome)}
-	 */
-	@Override
-	public D evaluate(T genome) {
-		validate(genome);
-		return decode(genome);
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * This method validate and performs the decode process.
+     */
+    @Override
+    public D evaluate(T genome) {
+        validate(genome);
+        return decode(genome);
+    }
 }

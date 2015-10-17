@@ -33,20 +33,26 @@ import java.io.Serializable;
  */
 public interface Gene<T> extends Cloneable, Serializable {
 
-	/**
-	 * Gets the data.
-	 *
-	 * @return the data
-	 */
-	T getData();
+    /**
+     * Gets the data.
+     *
+     * @return the data
+     */
+    T getData();
 
-	/**
-	 * Sets the data.
-	 *
-	 * @param data data argument to set.
-	 */
-	void setData(T data);
+    /**
+     * Sets the data.
+     *
+     * @param data data argument to set.
+     */
+    void setData(T data);
 
-	Gene<T> clone() throws CloneNotSupportedException;
+    /**
+     * <p>clone.</p>
+     *
+     * @return a {@link com.github.yferras.javartint.gea.gene.Gene} object.
+     * @throws java.lang.CloneNotSupportedException if any.
+     */
+    Gene<T> clone() throws CloneNotSupportedException;
 
 }

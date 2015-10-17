@@ -24,6 +24,7 @@ package com.github.yferras.javartint.gea.function.scaling;
 
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 
 import java.util.ArrayList;
@@ -32,69 +33,65 @@ import java.util.List;
 /**
  * Abstract class that represents scaling method function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public abstract class AbstractScalingMethod<T extends Individual>
-	implements Function<List<T>, List<T>> {
+    implements Function<List<T>, List<T>> {
 
-	private final Optimize optimize;
+    private final Optimize optimize;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param optimize optimization way
-	 */
-	public AbstractScalingMethod(Optimize optimize) {
-		this.optimize = optimize;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param optimize optimization way
+     */
+    public AbstractScalingMethod(Optimize optimize) {
+        this.optimize = optimize;
+    }
 
-	/**
-	 * Get the value of optimize
-	 *
-	 * @return the value of optimize
-	 */
-	public Optimize getOptimize() {
-		return optimize;
-	}
+    /**
+     * Get the value of optimize
+     *
+     * @return the value of optimize
+     */
+    public Optimize getOptimize() {
+        return optimize;
+    }
 
-	/**
-	 * Method to perform scaling process
-	 *
-	 * @param individuals list to scale.
-	 */
-	protected abstract void scale(List<T> individuals);
+    /**
+     * Method to perform scaling process
+     *
+     * @param individuals list to scale.
+     */
+    protected abstract void scale(List<T> individuals);
 
-	/**
-	 * Ensures that parameters are valid.
-	 *
-	 * @param params parameters to validate.
-	 * @throws IllegalArgumentException if {@code params} is null
-	 *                                  or {@code params.isEmpty()} is {@code true}.
-	 */
-	protected void validate(List<T> params) throws IllegalArgumentException {
-		if (params == null) {
-			throw new IllegalArgumentException("'params' can't be null.");
-		}
-		if (params.isEmpty()) {
-			throw new IllegalArgumentException("'params' can't be empty.");
-		}
-	}
+    /**
+     * Ensures that parameters are valid.
+     *
+     * @param params parameters to validate.
+     */
+    protected void validate(List<T> params) {
+        if (params == null) {
+            throw new ValidationException("'params' can't be null.");
+        }
+        if (params.isEmpty()) {
+            throw new ValidationException("'params' can't be empty.");
+        }
+    }
 
-	/**
-	 * Validates the input parameters and performs the scaling process.
-	 *
-	 * @param params parameters to evaluate.
-	 * @return a list with scaled genomes
-	 * @throws java.lang.IllegalArgumentException see {@link #validate(java.util.List)}
-	 */
-	@Override
-	public List<T> evaluate(List<T> params) {
-		validate(params);
-		List<T> list = new ArrayList<>(params);
-		scale(list);
-		return list;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Validates the input parameters and performs the scaling process.
+     */
+    @Override
+    public List<T> evaluate(List<T> params) {
+        validate(params);
+        List<T> list = new ArrayList<>(params);
+        scale(list);
+        return list;
+    }
 
 }

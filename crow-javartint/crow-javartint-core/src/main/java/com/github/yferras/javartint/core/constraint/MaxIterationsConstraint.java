@@ -33,32 +33,29 @@ import com.github.yferras.javartint.core.Solution;
  * @version 0.0.2
  */
 public class MaxIterationsConstraint<A extends IterativeAlgorithm<? extends Solution>>
-	extends AbstractIterationConstraint<A> {
+    extends AbstractIterationConstraint<A> {
 
-	/**
-	 * Constructor.
-	 *
-	 * @param constraintType constrain type.
-	 * @param maxIterations  max allowed iterations.
-	 */
-	public MaxIterationsConstraint(ConstraintType constraintType,
-	                               long maxIterations) {
-		super(constraintType, maxIterations);
-	}
+    /**
+     * Constructor.
+     *
+     * @param constraintType constrain type.
+     * @param maxIterations  max allowed iterations.
+     */
+    public MaxIterationsConstraint(ConstraintType constraintType,
+                                   long maxIterations) {
+        super(constraintType, maxIterations);
+    }
 
-	/**
-	 * Tests if the iterations of algorithm is greater than or equals to the max
-	 * allowed, in this case returns <code>true</code>, otherwise returns
-	 * <code>false</code>.
-	 *
-	 * @param algorithm instance derived from {@link IterativeAlgorithm}
-	 * @return <code>true</code> if the iterations of algorithm is greater than
-	 * or equals to the max allowed, otherwise returns <code>false</code>.
-	 * @throws IllegalArgumentException
-	 */
-	@Override
-	public boolean evaluate(A algorithm) {
-		return algorithm.getIterations() >= maxIterations;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * If the iterations of algorithm is greater than or equals to the max
+     * allowed, in this case returns <code>true</code>, otherwise returns
+     * <code>false</code>.
+     */
+    @Override
+    public boolean evaluate(A algorithm) {
+        return algorithm.getIterations() >= maxIterations;
+    }
 
 }

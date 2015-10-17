@@ -54,47 +54,50 @@ import java.util.Set;
  */
 public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> {
 
-	/**
-	 * Constructor, initializes this instances with the given cities
-	 * @param cities set with the cities
-	 */
-	public TspGenome(Set<Integer> cities) {
-		addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-		if (cities != null) {
-			for (Integer city : cities) {
-				getChromosome().addGene(new DefaultGene<>(city));
-			}
-		}
-	}
+    /**
+     * Constructor, initializes this instances with the given cities
+     *
+     * @param cities set with the cities
+     */
+    public TspGenome(Set<Integer> cities) {
+        addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+        if (cities != null) {
+            for (Integer city : cities) {
+                getChromosome().addGene(new DefaultGene<>(city));
+            }
+        }
+    }
 
-	/**
-	 * Constructor, initializes this instances with the given cities
-	 * @param cities array of cities
-	 */
-	public TspGenome(Integer ... cities) {
-		this(new LinkedHashSet<>(Arrays.asList(cities)));
-	}
+    /**
+     * Constructor, initializes this instances with the given cities
+     *
+     * @param cities array of cities
+     */
+    public TspGenome(Integer... cities) {
+        this(new LinkedHashSet<>(Arrays.asList(cities)));
+    }
 
-	/**
-	 * Gets the only chromosome inside the genome.
-	 *
-	 * @return instance of {@link DefaultChromosome}
-	 */
-	public DefaultChromosome<DefaultGene<Integer>> getChromosome() {
-		return super.getChromosome(0);
-	}
+    /**
+     * Gets the only chromosome inside the genome.
+     *
+     * @return instance of {@link com.github.yferras.javartint.gea.chromosome.DefaultChromosome}
+     */
+    public DefaultChromosome<DefaultGene<Integer>> getChromosome() {
+        return super.getChromosome(0);
+    }
 
-	/**
-	 * Sets the chromosome.
-	 *
-	 * @param newChromosome the new chromosome.
-	 */
-	public void setChromosome(DefaultChromosome<DefaultGene<Integer>> newChromosome) {
-		super.setChromosome(0, newChromosome);
-	}
+    /**
+     * Sets the chromosome.
+     *
+     * @param newChromosome the new chromosome.
+     */
+    public void setChromosome(DefaultChromosome<DefaultGene<Integer>> newChromosome) {
+        super.setChromosome(0, newChromosome);
+    }
 
-	@Override
-	public TspGenome clone() throws CloneNotSupportedException {
-		return (TspGenome)super.clone();
-	}
+    /** {@inheritDoc} */
+    @Override
+    public TspGenome clone() throws CloneNotSupportedException {
+        return (TspGenome) super.clone();
+    }
 }

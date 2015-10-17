@@ -22,23 +22,21 @@ package com.github.yferras.javartint.core.util;
  * #L%
  */
 
-import com.github.yferras.javartint.core.OptimizationAlgorithm;
-
 /**
  * This enumeration serves to tell the way to optimize the solution in the
- * classes derived from {@link OptimizationAlgorithm}.
+ * classes derived from {@link com.github.yferras.javartint.core.OptimizationAlgorithm}.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public enum Optimize {
 
-	/**
-	 * Optimize to obtain the maximum solution.
-	 */
-	MAX,
-	/**
-	 * Optimize to obtain the minimum solution.
-	 */
-	MIN
+    /**
+     * Optimize to obtain the maximum solution.
+     */
+    MAX,
+    /**
+     * Optimize to obtain the minimum solution.
+     */
+    MIN
 }

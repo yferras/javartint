@@ -33,8 +33,9 @@ import com.github.yferras.javartint.gea.gene.ByteArrayGene;
  */
 public class BinaryGenome extends DefaultGenome<DefaultChromosome<ByteArrayGene>> {
 
-	@Override
-	public BinaryGenome clone() throws CloneNotSupportedException {
-		return (BinaryGenome)super.clone();
-	}
+    /** {@inheritDoc} */
+    @Override
+    public BinaryGenome clone() throws CloneNotSupportedException {
+        return (BinaryGenome) super.clone();
+    }
 }

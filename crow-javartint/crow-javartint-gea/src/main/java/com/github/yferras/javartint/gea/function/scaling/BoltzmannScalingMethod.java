@@ -30,45 +30,48 @@ import java.util.List;
 /**
  * Boltzmann scaling method function.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public final class BoltzmannScalingMethod<T extends Individual>
-	extends AbstractScalingMethod<T> {
+    extends AbstractScalingMethod<T> {
 
-	private final static double BOLTZMANN_DELTA_TEMP = 0.05;
-	private final static double BOLTZMANN_MIN_TEMP = 1.0;
-	private double boltzmannTemp;
+    private static final double BOLTZMANN_DELTA_TEMP = 0.05;
+    private static final double BOLTZMANN_MIN_TEMP = 1.0;
+    private static final double A = 2.0;
 
-	/**
-	 * Constructor that initializes this instance.
-	 *
-	 * @param cities number of cities
-	 */
-	public BoltzmannScalingMethod(int cities) {
-		super(null);
-		boltzmannTemp = 2.0 * cities;
-	}
+    private double boltzmannTemp;
 
-	/**
-	 * Gets the Boltzmann temperature
-	 *
-	 * @return Boltzmann temperature value
-	 */
-	public double getBoltzmannTemp() {
-		return boltzmannTemp;
-	}
+    /**
+     * Constructor that initializes this instance.
+     *
+     * @param cities number of cities
+     */
+    public BoltzmannScalingMethod(int cities) {
+        super(null);
+        boltzmannTemp = A * cities;
+    }
 
-	@Override
-	protected void scale(List<T> individuals) {
-		boltzmannTemp -= BOLTZMANN_DELTA_TEMP;
-		if (boltzmannTemp < BOLTZMANN_MIN_TEMP) {
-			boltzmannTemp = BOLTZMANN_MIN_TEMP;
-		}
-		final double divider = MathUtil.mean(individuals) / boltzmannTemp;
-		for (T individual : individuals) {
-			individual.setFitness(individual.getFitness() / divider);
-		}
-	}
+    /**
+     * Gets the Boltzmann temperature
+     *
+     * @return Boltzmann temperature value
+     */
+    public double getBoltzmannTemp() {
+        return boltzmannTemp;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void scale(List<T> individuals) {
+        boltzmannTemp -= BOLTZMANN_DELTA_TEMP;
+        if (boltzmannTemp < BOLTZMANN_MIN_TEMP) {
+            boltzmannTemp = BOLTZMANN_MIN_TEMP;
+        }
+        final double divider = MathUtil.mean(individuals) / boltzmannTemp;
+        for (T individual : individuals) {
+            individual.setFitness(individual.getFitness() / divider);
+        }
+    }
 }

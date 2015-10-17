@@ -35,47 +35,47 @@ import static org.junit.Assert.assertArrayEquals;
  */
 public class BinaryMutationFunctionTest {
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+    @BeforeClass
+    public static void setUpClass() {
+    }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+    @AfterClass
+    public static void tearDownClass() {
+    }
 
-	@Before
-	public void setUp() {
-		System.out.print(BinaryMutationFunction.class.getName().concat("."));
-	}
+    @Before
+    public void setUp() {
+        System.out.print(BinaryMutationFunction.class.getName().concat("."));
+    }
 
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testEvaluate() throws CloneNotSupportedException {
-		System.out.println("evaluate (performed algorithm)");
-		BinaryGenome genome = new BinaryGenome();
-		genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
-		ByteArrayGene[] genes = new ByteArrayGene[]{
-			new ByteArrayGene(new Byte[]{0}),
-			new ByteArrayGene(new Byte[]{1, 1, 0, 1, 0, 0}),
-			new ByteArrayGene(new Byte[]{1, 0, 0, 1}),
-		};
-		genome.getChromosome(0).setGenes(genes);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEvaluate() throws Exception {
+        System.out.println("evaluate (performed algorithm)");
+        BinaryGenome genome = new BinaryGenome();
+        genome.addChromosome(new DefaultChromosome<ByteArrayGene>());
+        ByteArrayGene[] genes = new ByteArrayGene[]{
+            new ByteArrayGene(new Byte[]{0}),
+            new ByteArrayGene(new Byte[]{1, 1, 0, 1, 0, 0}),
+            new ByteArrayGene(new Byte[]{1, 0, 0, 1}),
+        };
+        genome.getChromosome(0).setGenes(genes);
 
-		final BinaryGenome clone = genome.clone();
-		clone.getChromosome(0).getGene(0).setAllele(0, (byte) 1);
-		clone.getChromosome(0).getGene(1).setAllele(3, (byte) 0);
-		clone.getChromosome(0).getGene(2).setAllele(2, (byte) 1);
+        final BinaryGenome clone = genome.clone();
+        clone.getChromosome(0).getGene(0).setAllele(0, (byte) 1);
+        clone.getChromosome(0).getGene(1).setAllele(3, (byte) 0);
+        clone.getChromosome(0).getGene(2).setAllele(2, (byte) 1);
 
-		BinaryMutationFunction<BinaryGenome> function = new
-			BinaryMutationFunction<>();
-		function.setRandom(GenomeConstants.RANDOM_GENERATOR_5);
-		genome = function.evaluate(genome);
-		assertArrayEquals(clone.getChromosome(0).getGenes(), genome.getChromosome(0).getGenes());
-	}
+        BinaryMutationFunction<BinaryGenome> function = new
+            BinaryMutationFunction<>();
+        function.setRandom(GenomeConstants.RANDOM_GENERATOR_5);
+        genome = function.evaluate(genome);
+        assertArrayEquals(clone.getChromosome(0).getGenes(), genome.getChromosome(0).getGenes());
+    }
 
 
 }

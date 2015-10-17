@@ -30,124 +30,136 @@ package com.github.yferras.javartint.core.util;
  */
 public final class Range<T extends Comparable<T>> implements Filter<T> {
 
-	private final T min;
-	private final T max;
-	private final Use use;
-	/**
-	 * Initializes this instance.
-	 *
-	 * @param min lower bound
-	 * @param max upper bound
-	 * @param use defines the use of bounds
-	 * @throws java.lang.IllegalArgumentException if {@code min} is greater than {@code max}
-	 */
-	public Range(T min, T max, Use use) {
-		if (min.compareTo(max) > 0) {
-			throw new IllegalArgumentException("'min' is greater than 'max'");
-		}
-		this.min = min;
-		this.max = max;
-		this.use = use;
-	}
+    private static final int MAGIC_NUMBER = 31;
 
-	/**
-	 * Initializes this instance.
-	 *
-	 * @param min lower bound
-	 * @param max upper bound
-	 */
-	public Range(T min, T max) {
-		this(min, max, Use.BOTH);
-	}
+    private final T min;
+    private final T max;
+    private final Use use;
 
-	/**
-	 * Test if a input value is inside range.
-	 *
-	 * @param element element to check
-	 * @return {@code true} if the element is inside the bounds; otherwise returns {@code false}
-	 */
-	@Override
-	public boolean accept(T element) {
-		switch (use) {
-			case BOTH:
-				return element.compareTo(getMin()) >= 0 && element.compareTo(getMax()) <= 0;
-			case NONE:
-				return element.compareTo(getMin()) > 0 && element.compareTo(getMax()) < 0;
-			case MIN:
-				return element.compareTo(getMin()) >= 0 && element.compareTo(getMax()) < 0;
-			case MAX:
-				return element.compareTo(getMin()) > 0 && element.compareTo(getMax()) <= 0;
-			default:
-				return false;
-		}
-	}
+    /**
+     * Initializes this instance.
+     *
+     * @param min lower bound
+     * @param max upper bound
+     * @param use defines the use of bounds
+     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code min} is greater than {@code max}
+     */
+    public Range(T min, T max, Use use) {
+        if (min.compareTo(max) > 0) {
+            throw new ValidationException("'min' is greater than 'max'");
+        }
+        this.min = min;
+        this.max = max;
+        this.use = use;
+    }
 
-	/**
-	 * Gets the lower bound
-	 *
-	 * @return the min value
-	 */
-	public T getMin() {
-		return min;
-	}
+    /**
+     * Initializes this instance.
+     *
+     * @param min lower bound
+     * @param max upper bound
+     */
+    public Range(T min, T max) {
+        this(min, max, Use.BOTH);
+    }
 
-	/**
-	 * Gets the upper bound
-	 *
-	 * @return the max value
-	 */
-	public T getMax() {
-		return max;
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Test if the element is inside of the range.
+     */
+    @Override
+    public boolean accept(T element) {
+        switch (use) {
+            case BOTH:
+                return element.compareTo(getMin()) >= 0 && element.compareTo(getMax()) <= 0;
+            case NONE:
+                return element.compareTo(getMin()) > 0 && element.compareTo(getMax()) < 0;
+            case MIN:
+                return element.compareTo(getMin()) >= 0 && element.compareTo(getMax()) < 0;
+            case MAX:
+                return element.compareTo(getMin()) > 0 && element.compareTo(getMax()) <= 0;
+            default:
+                return false;
+        }
+    }
 
-	/**
-	 * Gets the use of bounds
-	 *
-	 * @return use value
-	 */
-	public Use getUse() {
-		return use;
-	}
+    /**
+     * Gets the lower bound
+     *
+     * @return the min value
+     */
+    public T getMin() {
+        return min;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    /**
+     * Gets the upper bound
+     *
+     * @return the max value
+     */
+    public T getMax() {
+        return max;
+    }
 
-		Range<?> range = (Range<?>) o;
+    /**
+     * Gets the use of bounds
+     *
+     * @return use value
+     */
+    public Use getUse() {
+        return use;
+    }
 
-		if (min != null ? !min.equals(range.min) : range.min != null) return false;
-		if (max != null ? !max.equals(range.max) : range.max != null) return false;
-		return use == range.use;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-	@Override
-	public int hashCode() {
-		int result = min != null ? min.hashCode() : 0;
-		result = 31 * result + (max != null ? max.hashCode() : 0);
-		result = 31 * result + (use != null ? use.hashCode() : 0);
-		return result;
-	}
+        Range<?> range = (Range<?>) o;
 
-	/**
-	 * To define the use the limits in the range
-	 */
-	public static enum Use {
-		/**
-		 * Both limits are included
-		 */
-		BOTH,
-		/**
-		 * None are include
-		 */
-		NONE,
-		/**
-		 * Only min is included
-		 */
-		MIN,
-		/**
-		 * Only max is included
-		 */
-		MAX
-	}
+        if (min != null ? !min.equals(range.min) : range.min != null) {
+            return false;
+        }
+        if (max != null ? !max.equals(range.max) : range.max != null) {
+            return false;
+        }
+        return use == range.use;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode() {
+        int result = min != null ? min.hashCode() : 0;
+        result = MAGIC_NUMBER * result + (max != null ? max.hashCode() : 0);
+        result = MAGIC_NUMBER * result + (use != null ? use.hashCode() : 0);
+        return result;
+    }
+
+    /**
+     * To define the use the limits in the range.
+     */
+    public static enum Use {
+        /**
+         * Both limits are included
+         */
+        BOTH,
+        /**
+         * None are include
+         */
+        NONE,
+        /**
+         * Only min is included
+         */
+        MIN,
+        /**
+         * Only max is included
+         */
+        MAX
+    }
 }

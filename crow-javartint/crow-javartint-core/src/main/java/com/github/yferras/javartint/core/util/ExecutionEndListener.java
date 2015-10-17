@@ -32,10 +32,10 @@ import java.util.EventListener;
  */
 public interface ExecutionEndListener extends EventListener {
 
-	/**
-	 * This method should be fired when the algorithm ends its execution.
-	 *
-	 * @param event algorithm event.
-	 */
-	void algorithmFinished(AlgorithmEvent event);
+    /**
+     * This method should be fired when the algorithm ends its execution.
+     *
+     * @param event algorithm event.
+     */
+    void algorithmFinished(AlgorithmEvent event);
 }

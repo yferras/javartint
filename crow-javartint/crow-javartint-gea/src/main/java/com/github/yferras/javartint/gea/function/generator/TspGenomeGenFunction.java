@@ -22,7 +22,6 @@ package com.github.yferras.javartint.gea.function.generator;
  * #L%
  */
 
-import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.genome.TspGenome;
 
 import java.util.ArrayList;
@@ -37,33 +36,31 @@ import java.util.List;
  * @version 0.0.1
  */
 public class TspGenomeGenFunction
-	extends AbstractGenomeGeneratorFunction<TspGenome> {
+    extends AbstractGenomeGeneratorFunction<TspGenome> {
 
-	/**
-	 * Initializes this instance. By default {@code genomeSize} is 1.
-	 *
-	 * @param numberOfGenes the number of genes.
-	 */
-	public TspGenomeGenFunction(int numberOfGenes) {
-		super(numberOfGenes, 1);
-	}
+    /**
+     * Initializes this instance. By default {@code genomeSize} is 1.
+     *
+     * @param numberOfGenes the number of genes.
+     */
+    public TspGenomeGenFunction(int numberOfGenes) {
+        super(numberOfGenes, 1);
+    }
 
-	/**
-	 * Generates genomes for TSP
-	 *
-	 * @param genomeSize     the number of chromosomes, always is 1.
-	 * @param lengthsOfGenes the array that contains the length of each gene.
-	 * @return an instance of {@link DefaultGenome}
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
-		List<Integer> cities = new ArrayList<>(lengthsOfGenes.length);
-		for (int i = 0; i < lengthsOfGenes.length; i++) {
-			cities.add(i);
-		}
-		Collections.shuffle(cities);
-		return new TspGenome(cities.toArray(new Integer[cities.size()]));
-	}
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * Generates genomes for TSP
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
+        List<Integer> cities = new ArrayList<>(lengthsOfGenes.length);
+        for (int i = 0; i < lengthsOfGenes.length; i++) {
+            cities.add(i);
+        }
+        Collections.shuffle(cities);
+        return new TspGenome(cities.toArray(new Integer[cities.size()]));
+    }
 
 }

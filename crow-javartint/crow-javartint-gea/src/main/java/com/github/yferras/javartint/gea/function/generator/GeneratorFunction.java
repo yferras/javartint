@@ -22,27 +22,26 @@ package com.github.yferras.javartint.gea.function.generator;
  * #L%
  */
 
+import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.genome.Genome;
-import com.github.yferras.javartint.core.function.Function;
 
 /**
  * This interface is used to create a functions to generate genomes.
  *
- * @param <T> Any derived class from {@link Individual}
+ * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public interface GeneratorFunction<T extends Individual>
-	extends Function<T, Void[]> {
+    extends Function<T, Void[]> {
 
-	/**
-	 * This method must be implemented to generate dynamically instances
-	 * of {@link Genome}
-	 *
-	 * @param params must be empty.
-	 * @return a generated instance of {@link Genome}
-	 */
-	@Override
-	T evaluate(Void... params);
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * This method must be implemented to generate dynamically instances
+     * of {@link Genome}
+     */
+    @Override
+    T evaluate(Void... params);
 }

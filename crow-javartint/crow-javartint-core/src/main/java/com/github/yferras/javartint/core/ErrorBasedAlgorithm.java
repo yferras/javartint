@@ -25,17 +25,17 @@ package com.github.yferras.javartint.core;
 /**
  * This interface allows to create algorithms based on the error calculus.
  *
- * @param <S> Any class derived from {@link Solution} interface.
+ * @param <S> Any class derived from {@link com.github.yferras.javartint.core.Solution} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
 public interface ErrorBasedAlgorithm<S extends Solution>
-	extends Algorithm<S> {
+    extends Algorithm<S> {
 
-	/**
-	 * Gets the actual error.
-	 *
-	 * @return the actual error.
-	 */
-	Double getCurrentError();
+    /**
+     * Gets the actual error.
+     *
+     * @return the actual error.
+     */
+    Double getCurrentError();
 }
