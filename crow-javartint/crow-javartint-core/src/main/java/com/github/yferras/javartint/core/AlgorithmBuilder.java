@@ -22,6 +22,8 @@ package com.github.yferras.javartint.core;
  * #L%
  */
 
+import com.github.yferras.javartint.core.util.Builder;
+
 /**
  * <p>Interface to create algorithm builders.</p>
  *
@@ -32,5 +34,6 @@ package com.github.yferras.javartint.core;
  * @version 1.0
  * @since 1.1.0
  */
-public interface AlgorithmBuilder<A extends Algorithm<? extends Solution>> {
+public interface AlgorithmBuilder<A extends Algorithm<? extends Solution>>
+    extends Builder<A> {
 }
