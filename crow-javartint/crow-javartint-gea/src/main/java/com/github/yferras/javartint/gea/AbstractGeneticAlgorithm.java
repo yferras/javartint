@@ -22,18 +22,14 @@ package com.github.yferras.javartint.gea;
  * #L%
  */
 
-import com.github.yferras.javartint.core.function.Function;
-import com.github.yferras.javartint.core.util.Optimize;
-import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
-import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
-import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
 import com.github.yferras.javartint.gea.function.mutation.MutationFunction;
 import com.github.yferras.javartint.gea.function.recombination.RecombinationFunction;
 import com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction;
 import com.github.yferras.javartint.gea.function.selection.SelectionFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
+import com.github.yferras.javartint.gea.util.GeaConfigConstants;
 
 import java.util.*;
 
@@ -43,7 +39,7 @@ import java.util.*;
  * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 1.2
  */
 public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
     extends AbstractEvolutionaryAlgorithm<T, D> {
@@ -56,58 +52,22 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 
     private SelectionFunction<T> selectionFunctionToParents;
 
-    /**
-     * Initializes this class.
-     * By default selection function for parents is an instance of
-     * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}.
-     *
-     * @param populationSize        the population limit
-     * @param optimize              the optimization way
-     * @param decoder               function to decode the genome
-     * @param targetFunction        function to optimize
-     * @param generator             function to generate genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction      function to mutation process
-     * @param selectionFunction     function to selection process
-     */
-    public AbstractGeneticAlgorithm(int populationSize,
-                                    Optimize optimize,
-                                    DecoderFunction<D, T> decoder,
-                                    Function<Double, D> targetFunction,
-                                    GeneratorFunction<T> generator,
-                                    RecombinationFunction<T> recombinationFunction,
-                                    MutationFunction<T> mutationFunction,
-                                    SelectionFunction<T> selectionFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator);
-        this.recombinationFunction = recombinationFunction;
-        this.mutationFunction = mutationFunction;
-        this.selectionFunction = selectionFunction;
-        selectionFunctionToParents = new RandomSelectionFunction<>();
-    }
 
     /**
-     * Initializes this class.
-     * By default selection function for parents is an instance of
-     * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}, and
-     * selection function for new generation is <code>null</code>.
+     * <p>Constructor for AbstractGeneticAlgorithm.</p>
      *
-     * @param populationSize        the population limit
-     * @param optimize              the optimization way
-     * @param decoder               function to decode the genome
-     * @param targetFunction        function to optimize
-     * @param generator             function to generate genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction      function to mutation process
+     * @param properties a {@link java.util.Properties} object.
      */
-    public AbstractGeneticAlgorithm(int populationSize,
-                                    Optimize optimize,
-                                    DecoderFunction<D, T> decoder,
-                                    Function<Double, D> targetFunction,
-                                    GeneratorFunction<T> generator,
-                                    RecombinationFunction<T> recombinationFunction,
-                                    MutationFunction<T> mutationFunction) {
-        this(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction, null);
+    @SuppressWarnings("unchecked")
+    protected AbstractGeneticAlgorithm(Properties properties) {
+        super(properties);
+        recombinationFunction = (RecombinationFunction<T>) properties.get(GeaConfigConstants.RECOMBINATION_FUNCTION);
+        mutationFunction = (MutationFunction<T>) properties.get(GeaConfigConstants.MUTATION_FUNCTION);
+        selectionFunction = (SelectionFunction<T>) properties.get(GeaConfigConstants.SELECTION_FUNCTION);
+        selectionFunctionToParents = (SelectionFunction<T>) properties.get(GeaConfigConstants.SELECTION_FUNCTION_FOR_PARENTS);
+        if (selectionFunctionToParents == null) {
+            selectionFunctionToParents = new RandomSelectionFunction<>();
+        }
     }
 
     /**
@@ -244,5 +204,49 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
      */
     public void setSelectionFunctionToParents(SelectionFunction<T> selectionFunctionToParents) {
         this.selectionFunctionToParents = selectionFunctionToParents;
+    }
+
+    protected abstract static class Builder<A extends AbstractGeneticAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
+        extends AbstractEvolutionaryAlgorithm.Builder<A, T, D> implements GeneticAlgorithmBuilder<A, T, D> {
+
+        public static final String[] REQUIRED_PROPERTY_KEYS = {
+            GeaConfigConstants.DECODER_FUNCTION,
+            GeaConfigConstants.GENERATOR_FUNCTION,
+            GeaConfigConstants.OPTIMIZE,
+            GeaConfigConstants.POPULATION_SIZE,
+            GeaConfigConstants.TARGET_FUNCTION,
+            GeaConfigConstants.MUTATION_FUNCTION,
+            GeaConfigConstants.SELECTION_FUNCTION,
+            GeaConfigConstants.RECOMBINATION_FUNCTION
+        };
+
+        protected Builder() {
+            super(REQUIRED_PROPERTY_KEYS);
+        }
+
+        @Override
+        public GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction) {
+            getProperties().put(GeaConfigConstants.MUTATION_FUNCTION, mutationFunction);
+            return this;
+        }
+
+        @Override
+        public GeneticAlgorithmBuilder<A, T, D> setRecombinationFunction(RecombinationFunction<T> recombinationFunction) {
+            getProperties().put(GeaConfigConstants.RECOMBINATION_FUNCTION, recombinationFunction);
+            return this;
+        }
+
+        @Override
+        public GeneticAlgorithmBuilder<A, T, D> setSelectionFunction(SelectionFunction<T> selectionFunction) {
+            getProperties().put(GeaConfigConstants.SELECTION_FUNCTION, selectionFunction);
+            return this;
+        }
+
+        @Override
+        public GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction) {
+            getProperties().put(GeaConfigConstants.SELECTION_FUNCTION_FOR_PARENTS, selectionFunction);
+            return this;
+        }
+
     }
 }

@@ -22,18 +22,15 @@ package com.github.yferras.javartint.gea;
  * #L%
  */
 
-import com.github.yferras.javartint.core.AbstractAlgorithm;
-import com.github.yferras.javartint.core.IterativeAlgorithm;
-import com.github.yferras.javartint.core.OptimizationAlgorithm;
+import com.github.yferras.javartint.core.*;
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
-import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
+import com.github.yferras.javartint.gea.util.GeaConfigConstants;
 import com.github.yferras.javartint.gea.util.IndividualFilter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms
@@ -41,7 +38,7 @@ import java.util.List;
  * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
  * @param <D> Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.2
+ * @version 1.2
  */
 public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
     extends AbstractAlgorithm<T>
@@ -58,23 +55,17 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
     private double bestFitnessScore;
 
     /**
-     * Initializes this class.
+     * <p>Constructor for AbstractEvolutionaryAlgorithm.</p>
      *
-     * @param populationSize the population limit
-     * @param optimize       the optimization way
-     * @param decoder        function to decode the genome
-     * @param targetFunction function to optimize
-     * @param generator      function to generate genomes
+     * @param properties a {@link java.util.Properties} object.
      */
-    public AbstractEvolutionaryAlgorithm(int populationSize,
-                                         Optimize optimize,
-                                         DecoderFunction<D, T> decoder,
-                                         Function<Double, D> targetFunction,
-                                         GeneratorFunction<T> generator) {
-        this.populationSize = populationSize;
-        this.decoder = decoder;
-        this.targetFunction = targetFunction;
-        this.generator = generator;
+    @SuppressWarnings("unchecked")
+    protected AbstractEvolutionaryAlgorithm(Properties properties) {
+        populationSize = (int) properties.get(GeaConfigConstants.POPULATION_SIZE);
+        decoder = (DecoderFunction<D, T>) properties.get(GeaConfigConstants.DECODER_FUNCTION);
+        targetFunction = (Function<Double, D>) properties.get(GeaConfigConstants.TARGET_FUNCTION);
+        generator = (GeneratorFunction<T>) properties.get(GeaConfigConstants.GENERATOR_FUNCTION);
+        optimize = (Optimize) properties.get(GeaConfigConstants.OPTIMIZE);
         setPopulation(new ArrayList<T>(populationSize));
         setOptimize(optimize);
     }
@@ -264,5 +255,56 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D>
      */
     public Function<Double, D> getTargetFunction() {
         return targetFunction;
+    }
+
+    protected abstract static class Builder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Individual, D>
+        extends AbstractAlgorithmBuilder<A>
+        implements EvolutionaryAlgorithmBuilder<A, T, D> {
+
+        public static final String[] REQUIRED_PROPERTY_KEYS = {
+            GeaConfigConstants.DECODER_FUNCTION,
+            GeaConfigConstants.GENERATOR_FUNCTION,
+            GeaConfigConstants.OPTIMIZE,
+            GeaConfigConstants.POPULATION_SIZE,
+            GeaConfigConstants.TARGET_FUNCTION
+        };
+
+        protected Builder(String... requiredPropertyKeys) {
+            super(requiredPropertyKeys);
+        }
+
+        protected Builder() {
+            this(REQUIRED_PROPERTY_KEYS);
+        }
+
+        @Override
+        public EvolutionaryAlgorithmBuilder<A, T, D> setPopulationSize(int size) {
+            getProperties().put(GeaConfigConstants.POPULATION_SIZE, size);
+            return this;
+        }
+
+        @Override
+        public EvolutionaryAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder) {
+            getProperties().put(GeaConfigConstants.DECODER_FUNCTION, decoder);
+            return this;
+        }
+
+        @Override
+        public EvolutionaryAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction) {
+            getProperties().put(GeaConfigConstants.TARGET_FUNCTION, targetFunction);
+            return this;
+        }
+
+        @Override
+        public EvolutionaryAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction) {
+            getProperties().put(GeaConfigConstants.GENERATOR_FUNCTION, generatorFunction);
+            return this;
+        }
+
+        @Override
+        public EvolutionaryAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize) {
+            getProperties().put(GeaConfigConstants.OPTIMIZE, optimize);
+            return this;
+        }
     }
 }
