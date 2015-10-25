@@ -55,46 +55,13 @@ public class AbstractGeneticAlgorithmIT {
 
     @Test
     public void testAccept2() throws Exception {
-        final DecoderFunction<Double, BinaryGenome> genomeDecoderFunction =
-            new DecoderFunction<Double, BinaryGenome>() {
-                /**
-                 * Function to decode the binary genome to decimal number.
-                 * y(x) = x
-                 *
-                 * @param params genome to decode.
-                 * @return a decimal number between range (-64.00, 100.00)
-                 */
-                @Override
-                public Double evaluate(BinaryGenome params) {
-
-                    int sign = params.getChromosome(0).getGene(0).getAllele(0) == 0 ? -1 : 1;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (Byte b : params.getChromosome(0).getGene(1)) {
-                        stringBuilder.append(b);
-                    }
-                    int a = Integer.valueOf(stringBuilder.toString(), 2);
-                    stringBuilder = new StringBuilder();
-                    for (Byte b : params.getChromosome(0).getGene(2)) {
-                        stringBuilder.append(b);
-                    }
-                    int b = Integer.valueOf(stringBuilder.toString(), 2);
-                    return sign * (a % 100 + b % 1000 / 1000.0);
-                }
-            };
-
-        final Function<Double, Double> targetFunction = new Function<Double, Double>() {
-            @Override
-            public Double evaluate(Double x) {
-                return -x * x / 100.0 + x / 10.0 + 5.0;
-            }
-        };
 
         GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
         builder
-            .setMutationFunction(new BinaryMutationFunction<>())
-            .setRecombinationFunction(new SinglePointRecombinationFunction<BinaryGenome>())
-            .setSelectionFunction(new ElitismSelectionFunction<BinaryGenome>(2, Optimize.MAX))
-            .setGeneratorFunction(new BinaryGenomeGenFunction(new int[]{1, 7, 10}))
+            .setMutationFunction(binaryMutationFunction)
+            .setRecombinationFunction(singlePointRecombinationFunction)
+            .setSelectionFunction(elitismSelectionFunction)
+            .setGeneratorFunction(binaryGenomeGenFunction)
             .setPopulationSize(50)
             .setOptimize(Optimize.MAX)
             .setTargetFunction(targetFunction)
@@ -146,6 +113,237 @@ public class AbstractGeneticAlgorithmIT {
         thread.run();
     }
 
+    @Test
+    public void testThrowException1() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException2() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException3() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException4() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException5() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException6() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+@Test
+    public void testThrowException7() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setTargetFunction(targetFunction)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+@Test
+    public void testThrowException8() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setDecoder(genomeDecoderFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    @Test
+    public void testThrowException9() throws Exception {
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        try {
+            builder
+                .setMutationFunction(binaryMutationFunction)
+                .setRecombinationFunction(singlePointRecombinationFunction)
+                .setSelectionFunction(elitismSelectionFunction)
+                .setGeneratorFunction(binaryGenomeGenFunction)
+                .setPopulationSize(50)
+                .setOptimize(Optimize.MAX)
+                .setTargetFunction(targetFunction);
+            builder.build();
+        } catch (Exception e) {
+            if (e instanceof ValidationException) {
+                assertTrue(true);
+                return;
+            }
+        }
+        fail();
+    }
+
+    private final BinaryGenomeGenFunction binaryGenomeGenFunction = new BinaryGenomeGenFunction(new int[]{1, 7, 10});
+
+    private final BinaryMutationFunction binaryMutationFunction = new BinaryMutationFunction<>();
+
+    private final SinglePointRecombinationFunction singlePointRecombinationFunction = new SinglePointRecombinationFunction<>();
+
+    private final ElitismSelectionFunction elitismSelectionFunction = new ElitismSelectionFunction<>(2, Optimize.MAX);
+
+    private final Function<Double, Double> targetFunction = new Function<Double, Double>() {
+        @Override
+        public Double evaluate(Double x) {
+            return -x * x / 100.0 + x / 10.0 + 5.0;
+        }
+    };
+
+    private final DecoderFunction<Double, BinaryGenome> genomeDecoderFunction =
+        new DecoderFunction<Double, BinaryGenome>() {
+            /**
+             * Function to decode the binary genome to decimal number.
+             * y(x) = x
+             *
+             * @param params genome to decode.
+             * @return a decimal number between range (-64.00, 100.00)
+             */
+            @Override
+            public Double evaluate(BinaryGenome params) {
+
+                int sign = params.getChromosome(0).getGene(0).getAllele(0) == 0 ? -1 : 1;
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Byte b : params.getChromosome(0).getGene(1)) {
+                    stringBuilder.append(b);
+                }
+                int a = Integer.valueOf(stringBuilder.toString(), 2);
+                stringBuilder = new StringBuilder();
+                for (Byte b : params.getChromosome(0).getGene(2)) {
+                    stringBuilder.append(b);
+                }
+                int b = Integer.valueOf(stringBuilder.toString(), 2);
+                return sign * (a % 100 + b % 1000 / 1000.0);
+            }
+        };
 
     private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<BinaryGenome, Double>
         implements ErrorBasedAlgorithm<BinaryGenome> {
