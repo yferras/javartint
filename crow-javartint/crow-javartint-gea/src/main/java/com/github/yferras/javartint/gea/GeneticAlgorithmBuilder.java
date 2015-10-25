@@ -22,7 +22,11 @@ package com.github.yferras.javartint.gea;
  * #L%
  */
 
+import com.github.yferras.javartint.core.function.Function;
+import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
+import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
+import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
 import com.github.yferras.javartint.gea.function.mutation.MutationFunction;
 import com.github.yferras.javartint.gea.function.recombination.RecombinationFunction;
 import com.github.yferras.javartint.gea.function.selection.SelectionFunction;
@@ -38,6 +42,26 @@ import com.github.yferras.javartint.gea.genome.Genome;
  */
 public interface GeneticAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
     extends EvolutionaryAlgorithmBuilder<A, T, D> {
+
+    /** {@inheritDoc} */
+    @Override
+    GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size);
+
+    /** {@inheritDoc} */
+    @Override
+    GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
+
+    /** {@inheritDoc} */
+    @Override
+    GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
+
+    /** {@inheritDoc} */
+    @Override
+    GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
+
+    /** {@inheritDoc} */
+    @Override
+    GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
 
     /**
      * <p>Sets the mutation function.</p>
