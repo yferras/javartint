@@ -41,6 +41,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.text.MessageFormat;
+import java.util.Properties;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -88,7 +89,17 @@ public class AbstractGeneticAlgorithmIT {
             }
         };
 
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(genomeDecoderFunction, targetFunction);
+        GeneticAlgorithm.Builder builder = new GeneticAlgorithm.Builder();
+        builder
+            .setMutationFunction(new BinaryMutationFunction<>())
+            .setRecombinationFunction(new SinglePointRecombinationFunction<BinaryGenome>())
+            .setSelectionFunction(new ElitismSelectionFunction<BinaryGenome>(2, Optimize.MAX))
+            .setGeneratorFunction(new BinaryGenomeGenFunction(new int[]{1, 7, 10}))
+            .setPopulationSize(50)
+            .setOptimize(Optimize.MAX)
+            .setTargetFunction(targetFunction)
+            .setDecoder(genomeDecoderFunction);
+        GeneticAlgorithm geneticAlgorithm = builder.build();
 
         geneticAlgorithm.addConstraint(new MaxIterationsConstraint<>(ConstraintType.OPTIONAL, 5000L));
         geneticAlgorithm.addConstraint(new MinErrorConstraint<GeneticAlgorithm>(ConstraintType.OPTIONAL, .0005));
@@ -138,18 +149,9 @@ public class AbstractGeneticAlgorithmIT {
 
     private static class GeneticAlgorithm extends AbstractGeneticAlgorithm<BinaryGenome, Double>
         implements ErrorBasedAlgorithm<BinaryGenome> {
-        /**
-         * Initializes this class.
-         *
-         * @param decoder function to decode the genome
-         */
-        public GeneticAlgorithm(DecoderFunction<Double, BinaryGenome> decoder,
-                                Function<Double, Double> targetFunction)  {
-            super(50, Optimize.MAX, decoder, targetFunction,
-                new BinaryGenomeGenFunction(new int[]{1, 7, 10}),
-                new SinglePointRecombinationFunction<BinaryGenome>(),
-                new BinaryMutationFunction<>(),
-                new ElitismSelectionFunction<BinaryGenome>(2, Optimize.MAX));
+
+        private GeneticAlgorithm(Properties properties) {
+            super(properties);
         }
 
         @Override
@@ -157,5 +159,11 @@ public class AbstractGeneticAlgorithmIT {
             return Math.abs(getBestFitnessScore() - 5.25);
         }
 
+        public static final class Builder extends AbstractGeneticAlgorithm.Builder<GeneticAlgorithm, BinaryGenome, Double> {
+            @Override
+            protected GeneticAlgorithm buildObject() {
+                return new GeneticAlgorithm(getProperties());
+            }
+        }
     }
 }
