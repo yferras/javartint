@@ -23,16 +23,11 @@ package com.github.yferras.javartint.gea;
  */
 
 
-import com.github.yferras.javartint.core.function.Function;
-import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
-import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
-import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
-import com.github.yferras.javartint.gea.function.mutation.MutationFunction;
-import com.github.yferras.javartint.gea.function.recombination.RecombinationFunction;
-import com.github.yferras.javartint.gea.function.selection.SelectionFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
+
+import java.util.Properties;
 
 /**
  * Default implementation of a GA.
@@ -44,52 +39,19 @@ import com.github.yferras.javartint.gea.genome.Genome;
  */
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
     extends AbstractGeneticAlgorithm<T, D> {
-    /**
-     * Initializes this class.
-     * * By default selection function for parents is an instance of
-     * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}.
-     *
-     * @param populationSize        the population limit
-     * @param optimize              the optimization way
-     * @param decoder               function to decode the genome
-     * @param targetFunction        function to optimize
-     * @param generator             function to generate initial population of genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction      function to mutation process
-     * @param selectionFunction     function to selection process
-     */
-    public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
-                                   DecoderFunction<D, T> decoder,
-                                   Function<Double, D> targetFunction,
-                                   GeneratorFunction<T> generator,
-                                   RecombinationFunction<T> recombinationFunction,
-                                   MutationFunction<T> mutationFunction,
-                                   SelectionFunction<T> selectionFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction, selectionFunction);
+
+
+    private DefaultGeneticAlgorithm(Properties properties) {
+        super(properties);
     }
 
-    /**
-     * Initializes this class.
-     * * By default selection function for parents is an instance of
-     * {@link com.github.yferras.javartint.gea.function.selection.RandomSelectionFunction}, and
-     * selection function for new generation is <code>null</code>.
-     *
-     * @param populationSize        the population limit
-     * @param optimize              the optimization way
-     * @param decoder               function to decode the genome
-     * @param targetFunction        function to optimize
-     * @param generator             function to generate initial population of genomes
-     * @param recombinationFunction function to crossing process
-     * @param mutationFunction      function to mutation process
-     */
-    public DefaultGeneticAlgorithm(int populationSize, Optimize optimize,
-                                   DecoderFunction<D, T> decoder,
-                                   Function<Double, D> targetFunction,
-                                   GeneratorFunction<T> generator,
-                                   RecombinationFunction<T> recombinationFunction,
-                                   MutationFunction<T> mutationFunction) {
-        super(populationSize, optimize, decoder, targetFunction, generator,
-            recombinationFunction, mutationFunction);
+
+    public static final class Builder<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
+        extends AbstractGeneticAlgorithm.Builder<DefaultGeneticAlgorithm<T, D>, T, D> {
+
+        @Override
+        protected DefaultGeneticAlgorithm<T, D> buildObject() {
+            return new DefaultGeneticAlgorithm<>(getProperties());
+        }
     }
 }
