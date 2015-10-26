@@ -36,25 +36,42 @@ public interface ArtificialLayer<T extends ArtificialNeuron>
     extends Iterable<T>, Serializable {
 
     /**
-     * Gets the itemsCount of the layer.
+     * Gets the layer size.
      *
-     * @return the itemsCount of the layer.
+     * @return the an instance of {@code LayerSize}.
      */
-    int size();
+    LayerSize size();
 
     /**
-     * Retrieves an array with neurons.
+     * Gets the neurons count for the given row.
      *
+     * @param row row.
+     * @return the number of neurons.
+     */
+    int neuronsCount(int row);
+
+    /**
+     * Gets the total neurons count for layer.
+     *
+     * @return the total number of neurons.
+     */
+    int neuronsCount();
+
+    /**
+     * Retrieves an array with neurons for the given row.
+     *
+     * @param row row
      * @return an array with neurons.
      */
-    T[] getNeurons();
+    T[] getNeurons(int row);
 
     /**
-     * Gets the neuron in specified index.
+     * Retrieves a neuron for the given row and column.
      *
-     * @param index index to get the neuron.
-     * @return an instance of neuron.
+     * @param row row
+     * @param column column
+     * @return an array with neurons.
      */
-    T getNeuron(int index);
+    T getNeuron(int row, int column);
 
 }
