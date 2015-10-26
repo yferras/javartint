@@ -1,4 +1,4 @@
-package com.github.yferras.javartint.ann.neuron;
+package com.github.yferras.javartint.ann.function.generator;
 
 /*
  * #%L
@@ -22,29 +22,11 @@ package com.github.yferras.javartint.ann.neuron;
  * #L%
  */
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
+import com.github.yferras.javartint.core.function.GeneratorFunction;
 
 
-public class AbstractArtificialNeuronTest {
+public interface ArtificialNeuronGeneratorFunction<T extends ArtificialNeuron> extends GeneratorFunction<T> {
 
-    @Before
-    public void setUp() {
-        System.out.print(AbstractArtificialNeuron.class.getName().concat("."));
-    }
-
-    @Test
-    public void testIterator() throws Exception {
-        System.out.println("iterator");
-        AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, -1.0, null, null) {
-
-        };
-        int count = 0;
-        for (Double value : neuron) {
-            count++;
-        }
-        assertEquals(neuron.size(), count);
-    }
+    Class<T> getItemGeneratedClass();
 }

@@ -36,11 +36,27 @@ public interface ArtificialNeuron
     extends CompositeFunction<Double, Double[]>, Iterable<Double>, Serializable {
 
     /**
-     * Gets the weights
+     * Gets weights array.
      *
      * @return an array of weights.
      */
     Double[] getWeights();
+
+    /**
+     * Gets the weight in the given index.
+     *
+     * @param index index
+     * @return the value of weight.
+     */
+    Double getWeight(int index);
+
+    /**
+     * Sets the weight in the given index.
+     *
+     * @param index index
+     * @param weight the value weight
+     */
+    void setWeight(int index, Double weight);
 
     /**
      * Get the bias of the artificial neuron.
@@ -50,10 +66,30 @@ public interface ArtificialNeuron
     double getBias();
 
     /**
+     * Sets the value of bias.
+     *
+     * @param bias value of bias
+     */
+    void setBias(double bias);
+
+    /**
      * Gets the size of the artificial neuron. The size of the neuron will be determined by the number of inputs.
      *
      * @return the size of the neuron.
      */
     int size();
 
+    /**
+     * Sets the number of inputs of artificial neuron.
+     *
+     * @param size the number of inputs.
+     */
+    void setNumberOfInputs(int size);
+
+    /**
+     * Gets the initialization status of neuron.
+     *
+     * @return the status of neuron.
+     */
+    NeuronInitializationStatus getStatus();
 }

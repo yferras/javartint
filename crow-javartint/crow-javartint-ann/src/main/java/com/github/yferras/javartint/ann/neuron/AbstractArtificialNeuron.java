@@ -36,38 +36,31 @@ import java.util.Iterator;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public abstract class AbstractArtificialNeuron
+public class AbstractArtificialNeuron
     extends DefaultCompositeFunction<Double, Double[]>
     implements ArtificialNeuron {
 
     protected PropagationRuleFunction propagationRuleFunction;
     protected ActivationFunction activationFunction;
     private Double[] weights;
-    private double bias;
-
-
-
-    /**
-     * Constructor for AbstractArtificialNeuron.
-     *
-     * @param size                    the itemsCount of the neuron (number of weights).
-     * @param bias                    the bias value.
-     * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
-     * @param activationFunction      a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
-     */
-    public AbstractArtificialNeuron(int size, double bias, PropagationRuleFunction propagationRuleFunction,
-                                    ActivationFunction activationFunction) {
-        weights = new Double[size];
-        this.bias = bias;
-        this.propagationRuleFunction = propagationRuleFunction;
-        this.activationFunction = activationFunction;
-        this.setFunctions(propagationRuleFunction, activationFunction);
-    }
+    private double bias = -1.0;
 
     /** {@inheritDoc} */
     @Override
     public Double[] getWeights() {
         return weights;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Double getWeight(int index) {
+        return weights[index];
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setWeight(int index, Double weight) {
+        weights[index] = weight;
     }
 
     /** {@inheritDoc} */
@@ -78,8 +71,38 @@ public abstract class AbstractArtificialNeuron
 
     /** {@inheritDoc} */
     @Override
+    public void setBias(double bias) {
+        this.bias = bias;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public int size() {
         return weights.length;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setNumberOfInputs(int size) {
+        weights = new Double[size];
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public NeuronInitializationStatus getStatus() {
+        int countNull = 0;
+        for (Double weight : weights) {
+            if (weight == null){
+                countNull++;
+            }
+        }
+        if (countNull == size()){
+            return NeuronInitializationStatus.PRISTINE;
+        }
+        if (countNull == 0) {
+            return NeuronInitializationStatus.FULL;
+        }
+        return NeuronInitializationStatus.PARTIALL;
     }
 
     /** {@inheritDoc} */

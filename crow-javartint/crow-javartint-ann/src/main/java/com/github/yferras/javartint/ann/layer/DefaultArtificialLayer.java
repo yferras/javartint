@@ -22,56 +22,22 @@ package com.github.yferras.javartint.ann.layer;
  * #L%
  */
 
+import com.github.yferras.javartint.ann.function.generator.ArtificialNeuronGeneratorFunction;
 import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
 
-import java.io.Serializable;
-
 /**
- * This interface represents a generic artificial layer.
+ * This class represents a default artificial layer.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface ArtificialLayer<T extends ArtificialNeuron>
-    extends Iterable<T>, Serializable {
-
+public class DefaultArtificialLayer<T extends ArtificialNeuron> extends AbstractArtificialLayer<T> {
     /**
-     * Gets the layer size.
+     * <p>Constructor for AbstractArtificialLayer.</p>
      *
-     * @return the an instance of {@code LayerSize}.
+     * @param layerSize a {@link com.github.yferras.javartint.ann.layer.LayerSize} object.
      */
-    LayerSize size();
-
-    /**
-     * Gets the neurons count for the given row.
-     *
-     * @param row row.
-     * @return the number of neurons.
-     */
-    int neuronsCount(int row);
-
-    /**
-     * Gets the total neurons count for layer.
-     *
-     * @return the total number of neurons.
-     */
-    int neuronsCount();
-
-    /**
-     * Retrieves an array with neurons for the given row.
-     *
-     * @param row row
-     * @return an array with neurons.
-     */
-    T[] getNeurons(int row);
-
-    /**
-     * Retrieves a neuron for the given row and column.
-     *
-     * @param row row
-     * @param column column
-     * @return an array with neurons.
-     */
-    T getNeuron(int row, int column);
-
+    public DefaultArtificialLayer(LayerSize layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
+        super(layerSize, generatorFunction);
+    }
 }
