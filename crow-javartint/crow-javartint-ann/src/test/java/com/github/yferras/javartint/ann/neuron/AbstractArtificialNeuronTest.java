@@ -38,7 +38,7 @@ public class AbstractArtificialNeuronTest {
     @Test
     public void testIterator() throws Exception {
         System.out.println("iterator");
-        AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, null, null) {
+        AbstractArtificialNeuron neuron = new AbstractArtificialNeuron(5, -1.0, null, null) {
 
         };
         int count = 0;

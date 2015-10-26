@@ -45,17 +45,20 @@ public abstract class AbstractArtificialNeuron
     private Double[] weights;
     private double bias;
 
+
+
     /**
      * Constructor for AbstractArtificialNeuron.
      *
      * @param size                    the itemsCount of the neuron (number of weights).
+     * @param bias                    the bias value.
      * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
      * @param activationFunction      a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
      */
-    public AbstractArtificialNeuron(int size, PropagationRuleFunction propagationRuleFunction,
+    public AbstractArtificialNeuron(int size, double bias, PropagationRuleFunction propagationRuleFunction,
                                     ActivationFunction activationFunction) {
         weights = new Double[size];
-        bias = -1.0;
+        this.bias = bias;
         this.propagationRuleFunction = propagationRuleFunction;
         this.activationFunction = activationFunction;
         this.setFunctions(propagationRuleFunction, activationFunction);
