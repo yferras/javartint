@@ -37,25 +37,21 @@ import java.util.Iterator;
  */
 public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implements ArtificialLayer<T> {
 
-    private final ArtificialNeuronGeneratorFunction<T> generatorFunction;
-    private final T[][] neurons;
+    private final T[] neurons;
     private final LayerSize layerSize;
 
     /**
      * <p>Constructor for AbstractArtificialLayer.</p>
      *
-     * @param layerSize a {@link com.github.yferras.javartint.ann.layer.LayerSize} object.
+     * @param layerSize the number of neuron.
      */
     @SuppressWarnings("unchecked")
-    public AbstractArtificialLayer(LayerSize layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
-        this.layerSize = layerSize;
-        this.generatorFunction = generatorFunction;
+    public AbstractArtificialLayer(int layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
+        this.layerSize = new LayerSize(layerSize, 1);
         final Class<T> clazz = generatorFunction.getItemGeneratedClass();
-        this.neurons = (T[][]) Array.newInstance(clazz, this.layerSize.getHeight(), layerSize.getWidth());
+        this.neurons = (T[]) Array.newInstance(clazz, this.layerSize.getHeight());
         for (int i = 0; i < this.layerSize.getHeight(); i++) {
-            for (int j = 0; j < layerSize.getWidth(); j++) {
-                this.neurons[i][j] = generatorFunction.evaluate();
-            }
+            this.neurons[i] = generatorFunction.evaluate();
         }
     }
 
@@ -67,29 +63,12 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
         return layerSize;
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public int neuronsCount(int row) {
-        return neurons[row].length;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int neuronsCount() {
-        return layerSize.getWidth() * layerSize.getHeight();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public T[] getNeurons(int row) {
-        return neurons[row];
+    public T[] getNeurons() {
+        return neurons;
     }
 
 
@@ -97,8 +76,8 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
      * {@inheritDoc}
      */
     @Override
-    public T getNeuron(int row, int column) {
-        return neurons[row][column];
+    public T getNeuron(int index) {
+        return neurons[index];
     }
 
     /**
@@ -109,14 +88,12 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
         return new AbstractItemIterator<T>() {
             @Override
             public T getItem(int index) {
-                int row = index / layerSize.getWidth();
-                int column = index % layerSize.getWidth();
-                return getNeuron(row, column);
+                return getNeuron(index);
             }
 
             @Override
             public int itemsCount() {
-                return neuronsCount();
+                return size().count();
             }
         };
     }

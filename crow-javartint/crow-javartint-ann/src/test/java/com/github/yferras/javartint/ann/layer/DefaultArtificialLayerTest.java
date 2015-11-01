@@ -33,8 +33,8 @@ import static org.junit.Assert.*;
 public class DefaultArtificialLayerTest {
 
     private DefaultArtificialLayer<DefaultArtificialNeuron> getArtificialLayer() throws InstantiationException, IllegalAccessException {
-        return new DefaultArtificialLayer<>(new LayerSize(5, 4),
-            new RandomArtificialNeuronGeneratorFunction<DefaultArtificialNeuron>(
+        return new DefaultArtificialLayer<>(20,
+            new RandomArtificialNeuronGeneratorFunction<>(
                 10, DefaultArtificialNeuron.class,
                 new LineActivationFunction(),
                 new BalancedSumPropagationRuleFunction()));
@@ -54,19 +54,13 @@ public class DefaultArtificialLayerTest {
     public void testSize() throws Exception {
         final DefaultArtificialLayer<DefaultArtificialNeuron> layer = getArtificialLayer();
         assertNotNull(layer.size());
-        assertEquals(new LayerSize(5, 4), layer.size());
+        assertEquals(new LayerSize(20, 1), layer.size());
     }
 
     @Test
     public void testNeuronsCount() throws Exception {
         final DefaultArtificialLayer<DefaultArtificialNeuron> layer = getArtificialLayer();
-        assertEquals(20, layer.neuronsCount());
-    }
-
-    @Test
-    public void testNeuronsCount1() throws Exception {
-        final DefaultArtificialLayer<DefaultArtificialNeuron> layer = getArtificialLayer();
-        assertEquals(4, layer.neuronsCount(0));
+        assertEquals(20, layer.size().count());
     }
 
     @Test

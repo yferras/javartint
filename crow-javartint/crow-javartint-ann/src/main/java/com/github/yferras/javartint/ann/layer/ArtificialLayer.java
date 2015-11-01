@@ -43,35 +43,18 @@ public interface ArtificialLayer<T extends ArtificialNeuron>
     LayerSize size();
 
     /**
-     * Gets the neurons count for the given row.
+     * Retrieves an array with neurons.
      *
-     * @param row row.
-     * @return the number of neurons.
-     */
-    int neuronsCount(int row);
-
-    /**
-     * Gets the total neurons count for layer.
-     *
-     * @return the total number of neurons.
-     */
-    int neuronsCount();
-
-    /**
-     * Retrieves an array with neurons for the given row.
-     *
-     * @param row row
      * @return an array with neurons.
      */
-    T[] getNeurons(int row);
+    T[] getNeurons();
 
     /**
-     * Retrieves a neuron for the given row and column.
+     * Retrieves a neuron for the given index.
      *
-     * @param row row
-     * @param column column
-     * @return an array with neurons.
+     * @param index row
+     * @return an instance of neuron.
      */
-    T getNeuron(int row, int column);
+    T getNeuron(int index);
 
 }
