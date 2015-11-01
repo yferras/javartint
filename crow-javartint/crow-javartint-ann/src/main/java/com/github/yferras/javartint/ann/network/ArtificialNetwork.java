@@ -1,4 +1,4 @@
-package com.github.yferras.javartint.ann.layer;
+package com.github.yferras.javartint.ann.network;
 
 /*
  * #%L
@@ -22,40 +22,41 @@ package com.github.yferras.javartint.ann.layer;
  * #L%
  */
 
+
+import com.github.yferras.javartint.ann.layer.ArtificialLayer;
 import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
 import com.github.yferras.javartint.core.function.Function;
 
 import java.io.Serializable;
 
 /**
- * This interface represents a generic artificial layer.
+ * <p>ArtificialNetwork interface.</p>
  *
- * @author Eng. Ferrás Cecilio, Yeinier.
- * @version 0.0.1
+ * @author yferras
+ * @version 0.1
  */
-public interface ArtificialLayer<T extends ArtificialNeuron>
+public interface ArtificialNetwork<T extends ArtificialLayer<? extends ArtificialNeuron>>
     extends Function<Double[], Double[]>, Iterable<T>, Serializable {
 
     /**
-     * Gets the layer size.
+     * Gets the number of layers.
      *
-     * @return the an instance of {@code LayerSize}.
+     * @return the number of layers.
      */
-    LayerSize size();
+    int size();
 
     /**
-     * Retrieves an array with neurons.
+     * Gets an array with the layers of this network.
      *
-     * @return an array with neurons.
+     * @return an array of layers.
      */
-    T[] getNeurons();
+    T[] getLayers();
 
     /**
-     * Retrieves a neuron for the given index.
+     * Gets a particular layer from index.
      *
-     * @param index row
-     * @return an instance of neuron.
+     * @param index of layer.
+     * @return the layer.
      */
-    T getNeuron(int index);
-
+    T getLayer(int index);
 }

@@ -66,6 +66,15 @@ public class LayerSize implements Serializable{
         return width;
     }
 
+    /**
+     * Retrieves the total items.
+     *
+     * @return the total items.
+     */
+    public int count() {
+        return getWidth() * getHeight();
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {

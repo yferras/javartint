@@ -30,7 +30,7 @@ import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
 /**
  * <p>Abstract AbstractArtificialNeuronGeneratorFunction class.</p>
  *
- * @param <T> Any derived type from {@link ArtificialNeuron}
+ * @param <T> Any derived type from {@link com.github.yferras.javartint.ann.neuron.ArtificialNeuron}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version $Id: $Id
  */
@@ -46,6 +46,9 @@ public abstract class AbstractArtificialNeuronGeneratorFunction<T extends Artifi
      * <p>Constructor for AbstractArtificialNeuronGeneratorFunction.</p>
      *
      * @param size a size of artificial neuron.
+     * @param clazz a {@link java.lang.Class} object.
+     * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
+     * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
      */
     public AbstractArtificialNeuronGeneratorFunction(int size, Class<T> clazz,
                                                      ActivationFunction activationFunction,
@@ -62,6 +65,7 @@ public abstract class AbstractArtificialNeuronGeneratorFunction<T extends Artifi
         return generate(size, activationFunction, propagationRuleFunction);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Class<T> getItemGeneratedClass() {
         return clazz;
@@ -72,6 +76,8 @@ public abstract class AbstractArtificialNeuronGeneratorFunction<T extends Artifi
      *
      * @param size the size of neuron..
      * @return a instance of artificial neuron.
+     * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
+     * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
      */
     protected abstract T generate(int size, ActivationFunction activationFunction,
                                   PropagationRuleFunction propagationRuleFunction);

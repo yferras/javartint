@@ -26,7 +26,18 @@ import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
 import com.github.yferras.javartint.core.function.GeneratorFunction;
 
 
+/**
+ * <p>ArtificialNeuronGeneratorFunction interface.</p>
+ *
+ * @author yferras
+ * @version $Id: $Id
+ */
 public interface ArtificialNeuronGeneratorFunction<T extends ArtificialNeuron> extends GeneratorFunction<T> {
 
+    /**
+     * <p>getItemGeneratedClass.</p>
+     *
+     * @return a {@link java.lang.Class} object.
+     */
     Class<T> getItemGeneratedClass();
 }

@@ -35,9 +35,10 @@ public class DefaultArtificialLayer<T extends ArtificialNeuron> extends Abstract
     /**
      * <p>Constructor for AbstractArtificialLayer.</p>
      *
-     * @param layerSize a {@link com.github.yferras.javartint.ann.layer.LayerSize} object.
+     * @param layerSize the number of neuron.
+     * @param generatorFunction a {@link com.github.yferras.javartint.ann.function.generator.ArtificialNeuronGeneratorFunction} object.
      */
-    public DefaultArtificialLayer(LayerSize layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
+    public DefaultArtificialLayer(int layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
         super(layerSize, generatorFunction);
     }
 }
