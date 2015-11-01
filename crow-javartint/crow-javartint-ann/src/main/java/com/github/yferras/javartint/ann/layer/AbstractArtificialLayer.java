@@ -97,4 +97,14 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
             }
         };
     }
+
+    @Override
+    public Double[] evaluate(Double[] params) {
+        Double[] ouputs = new Double[size().getHeight()];
+        int i = 0;
+        for (T neuron : this) {
+            ouputs[i++] = neuron.evaluate(params);
+        }
+        return ouputs;
+    }
 }

@@ -23,6 +23,7 @@ package com.github.yferras.javartint.ann.layer;
  */
 
 import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
+import com.github.yferras.javartint.core.function.Function;
 
 import java.io.Serializable;
 
@@ -33,7 +34,7 @@ import java.io.Serializable;
  * @version 0.0.1
  */
 public interface ArtificialLayer<T extends ArtificialNeuron>
-    extends Iterable<T>, Serializable {
+    extends Function<Double[], Double[]>, Iterable<T>, Serializable {
 
     /**
      * Gets the layer size.
