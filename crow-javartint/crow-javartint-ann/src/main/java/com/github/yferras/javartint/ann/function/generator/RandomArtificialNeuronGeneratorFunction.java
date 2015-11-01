@@ -26,15 +26,30 @@ import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
 import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
 import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
 
+/**
+ * <p>RandomArtificialNeuronGeneratorFunction class.</p>
+ *
+ * @author yferras
+ * @version $Id: $Id
+ */
 public class RandomArtificialNeuronGeneratorFunction<T extends ArtificialNeuron> extends AbstractArtificialNeuronGeneratorFunction<T> {
 
 
+    /**
+     * <p>Constructor for RandomArtificialNeuronGeneratorFunction.</p>
+     *
+     * @param size a int.
+     * @param clazz a {@link java.lang.Class} object.
+     * @param activationFunction a {@link com.github.yferras.javartint.ann.function.activation.ActivationFunction} object.
+     * @param propagationRuleFunction a {@link com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction} object.
+     */
     public RandomArtificialNeuronGeneratorFunction(int size, Class<T> clazz,
                                                    ActivationFunction activationFunction,
                                                    PropagationRuleFunction propagationRuleFunction) {
         super(size, clazz, activationFunction, propagationRuleFunction);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected T generate(int size, ActivationFunction activationFunction, PropagationRuleFunction propagationRuleFunction) {
         try {

@@ -44,6 +44,7 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
      * <p>Constructor for AbstractArtificialLayer.</p>
      *
      * @param layerSize the number of neuron.
+     * @param generatorFunction a {@link com.github.yferras.javartint.ann.function.generator.ArtificialNeuronGeneratorFunction} object.
      */
     @SuppressWarnings("unchecked")
     public AbstractArtificialLayer(int layerSize, ArtificialNeuronGeneratorFunction<T> generatorFunction) {
@@ -55,34 +56,26 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LayerSize size() {
         return layerSize;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T[] getNeurons() {
         return neurons;
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public T getNeuron(int index) {
         return neurons[index];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new AbstractItemIterator<T>() {
@@ -98,6 +91,7 @@ public abstract class AbstractArtificialLayer<T extends ArtificialNeuron> implem
         };
     }
 
+    /** {@inheritDoc} */
     @Override
     public Double[] evaluate(Double[] params) {
         Double[] ouputs = new Double[size().getHeight()];
