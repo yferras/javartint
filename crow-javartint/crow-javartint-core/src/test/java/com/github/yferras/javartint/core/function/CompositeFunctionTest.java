@@ -34,7 +34,7 @@ import static org.junit.Assert.assertTrue;
  * @version 0.0.1
  * @since 1.0.1
  */
-public class DefaultCompositeFunctionTest {
+public class CompositeFunctionTest {
 
     final Function<Double, Double[]> meanFunc = new Function<Double, Double[]>() {
         @Override
@@ -61,12 +61,31 @@ public class DefaultCompositeFunctionTest {
         }
     };
 
+    final Double[] params = {1.0, 17.0, 4.0, 14.0, 10.0, 8.0};
+
     @Test
     public void testEvaluate() throws Exception {
-        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-        function.setFunctions(meanFunc, sqrtFunc, towTimesFunc);
+        CompositeFunction.Builder<Double, Double[]> builder = getDoubleBuilder();
+        builder.append(meanFunc).append(sqrtFunc).append(towTimesFunc);
+        CompositeFunction<Double, Double[]> function = builder.build();
 
-        Double[] params = {1.0, 17.0, 4.0, 14.0, 10.0, 8.0};
+        double expected =
+            towTimesFunc.evaluate(
+                sqrtFunc.evaluate(
+                    meanFunc.evaluate(params)
+                )
+            );
+
+        double actual = function.evaluate(params);
+
+        assertEquals(expected, actual, 0.0);
+    }
+
+    @Test
+    public void testEvaluate1() throws Exception {
+        CompositeFunction.Builder<Double, Double[]> builder = getDoubleBuilder();
+        builder.append(sqrtFunc).append(towTimesFunc).push(meanFunc);
+        CompositeFunction<Double, Double[]> function = builder.build();
 
         double expected =
             towTimesFunc.evaluate(
@@ -80,17 +99,29 @@ public class DefaultCompositeFunctionTest {
     }
 
     @Test
-    public void testGetN() throws Exception {
-        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-        function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
-        assertTrue(function.getN() == 3);
+    public void testEvaluate2() throws Exception {
+        CompositeFunction.Builder<Double, Double> builder = new CompositeFunction.Builder<>();
+        builder.push(sqrtFunc).push(towTimesFunc);
+        CompositeFunction<Double, Double> function = builder.build();
+
+        double expected =
+            sqrtFunc.evaluate(
+                towTimesFunc.evaluate(8.0)
+            );
+        double actual = function.evaluate(8.0);
+
+        assertEquals(expected, actual, 0.0);
+    }
+
+    private static CompositeFunction.Builder<Double, Double[]> getDoubleBuilder() {
+        return new CompositeFunction.Builder<>();
     }
 
     @Test
-    public void testGetFunctions() throws Exception {
-        DefaultCompositeFunction<Double, Double[]> function = new DefaultCompositeFunction<>();
-        function.setFunctions(towTimesFunc, sqrtFunc, meanFunc);
-        assertTrue(function.getFunctions() != null && !function.getFunctions().isEmpty());
+    public void testSize() throws Exception {
+        CompositeFunction.Builder<Double, Double[]> builder = getDoubleBuilder();
+        builder.append(meanFunc).append(sqrtFunc).append(towTimesFunc);
+        CompositeFunction<Double, Double[]> function = builder.build();
+        assertTrue(function.size() == 3);
     }
-
 }
