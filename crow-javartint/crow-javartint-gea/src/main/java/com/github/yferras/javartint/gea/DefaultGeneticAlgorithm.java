@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea;
 
+import java.util.Properties;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,8 +28,6 @@ package com.github.yferras.javartint.gea;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
-
-import java.util.Properties;
 
 /**
  * Default implementation of a GA.

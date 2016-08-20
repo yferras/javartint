@@ -1,5 +1,10 @@
 package com.github.yferras.javartint.gea.gene;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -24,9 +29,6 @@ package com.github.yferras.javartint.gea.gene;
 
 import com.github.yferras.javartint.core.util.AbstractItemIterator;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 /**
  * Default generic gene to represent arrays.
  *
@@ -34,10 +36,10 @@ import java.util.Iterator;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public class ArrayGene<T> extends AbstractGene<T[]> implements
-    Cloneable, Iterable<T> {
+public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterable<T> {
 
-    private static final int HASH_CODE_CONST = 7 * 23;
+	private static final long serialVersionUID = -450975978130625335L;
+	private static final int HASH_CODE_CONST = 7 * 23;
 
     /**
      * <p>Constructor for ArrayGene.</p>
@@ -115,12 +117,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("[")
-            .append(length() != 0 ? getAllele(0) : "");
-        for (int i = 1; i < getData().length; i++) {
-            stringBuilder.append(", ").append(getAllele(i));
-        }
-        stringBuilder.append("]");
-        return stringBuilder.toString();
+    	List<T> list = Arrays.asList(getData());
+        return list.stream().map(element -> element.toString()).collect(Collectors.joining(", ", "[", "]"));
     }
 }

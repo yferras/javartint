@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.generator;
 
+import java.util.Random;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -25,8 +27,6 @@ package com.github.yferras.javartint.gea.function.generator;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
 import com.github.yferras.javartint.gea.genome.BinaryGenome;
-
-import java.util.Random;
 
 /**
  * This class is a binary genome generator function.

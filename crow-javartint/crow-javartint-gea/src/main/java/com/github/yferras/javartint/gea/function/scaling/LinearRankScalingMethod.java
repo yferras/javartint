@@ -1,5 +1,8 @@
 package com.github.yferras.javartint.gea.function.scaling;
 
+import java.util.Collections;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -25,9 +28,6 @@ package com.github.yferras.javartint.gea.function.scaling;
 import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Linear rank scaling method function.

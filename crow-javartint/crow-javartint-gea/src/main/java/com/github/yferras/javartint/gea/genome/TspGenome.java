@@ -16,6 +16,10 @@
  */
 package com.github.yferras.javartint.gea.genome;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -41,10 +45,6 @@ package com.github.yferras.javartint.gea.genome;
 
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
-
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * This class represents a specialized TSP genome.

@@ -1,5 +1,11 @@
 package com.github.yferras.javartint.gea.genome;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -27,8 +33,6 @@ import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.AbstractIndividual;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
-
-import java.util.*;
 
 /**
  * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.genome.Genome}.

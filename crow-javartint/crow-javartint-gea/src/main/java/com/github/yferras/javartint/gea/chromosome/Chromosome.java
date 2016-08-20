@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.chromosome;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,10 +25,7 @@ package com.github.yferras.javartint.gea.chromosome;
  */
 
 import com.github.yferras.javartint.core.Solution;
-import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.gene.Gene;
-
-import java.io.Serializable;
 
 /**
  * This interface represents a generic chromosome.

@@ -32,7 +32,9 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class DefaultGene<T> extends AbstractGene<T> {
 
-    /**
+	private static final long serialVersionUID = 6271164334737050591L;
+
+	/**
      * Default constructor.
      *
      * @param data value to initialize this gene.

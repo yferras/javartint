@@ -29,8 +29,10 @@ package com.github.yferras.javartint.gea.gene;
  * @version 0.0.1
  */
 public class DoubleArrayGene extends NumberArrayGene<Double> {
+	
+	private static final long serialVersionUID = 5831272171656316754L;
 
-    /**
+	/**
      * <p>Constructor for DoubleArrayGene.</p>
      *
      * @param data an array of {@link java.lang.Double} objects.

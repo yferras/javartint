@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.util;
 
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -24,8 +26,6 @@ package com.github.yferras.javartint.gea.util;
 
 
 import com.github.yferras.javartint.gea.Individual;
-
-import java.util.List;
 
 /**
  * This class is a compilation of useful functions.

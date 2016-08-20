@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.generator;
 
+import java.util.Random;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,8 +28,6 @@ import com.github.yferras.javartint.core.util.Range;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
-
-import java.util.Random;
 
 
 /**

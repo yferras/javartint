@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.mutation.numeric;
 
+import java.util.Random;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -27,8 +29,6 @@ import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.mutation.AbstractMutationFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
-
-import java.util.Random;
 
 /**
  * Specific mutation function to real valued genomes.

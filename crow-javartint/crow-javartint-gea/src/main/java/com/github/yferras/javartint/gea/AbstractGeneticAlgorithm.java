@@ -1,5 +1,12 @@
 package com.github.yferras.javartint.gea;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -34,8 +41,6 @@ import com.github.yferras.javartint.gea.function.selection.SelectionFunction;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 import com.github.yferras.javartint.gea.util.GeaConfigConstants;
-
-import java.util.*;
 
 /**
  * Abstract class that provides a sets of functionalities to subclassing genetic algorithms

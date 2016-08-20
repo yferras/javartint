@@ -34,7 +34,9 @@ import java.util.Objects;
  */
 public abstract class AbstractGene<T> implements Gene<T> {
 
-    private static final int HASH_CODE_CONST = 3 * 97;
+	private static final long serialVersionUID = 1919755543077335578L;
+
+	private static final int HASH_CODE_CONST = 3 * 97;
 
     /**
      * The data.
@@ -102,7 +104,8 @@ public abstract class AbstractGene<T> implements Gene<T> {
     @SuppressWarnings("unchecked")
     @Override
     public Gene<T> clone() throws CloneNotSupportedException {
-        AbstractGene copy = (AbstractGene) super.clone();
+        @SuppressWarnings("rawtypes")
+		AbstractGene copy = (AbstractGene) super.clone();
         copy.data = copy(getData());
         return copy;
     }

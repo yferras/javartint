@@ -33,7 +33,9 @@ import com.github.yferras.javartint.gea.gene.Gene;
  */
 public class DefaultChromosome<T extends Gene<?>> extends AbstractChromosome<T> {
 
-    /**
+	private static final long serialVersionUID = 6343158327612076253L;
+
+	/**
      * Default constructor.
      */
     public DefaultChromosome() {

@@ -1,5 +1,9 @@
 package com.github.yferras.javartint.gea.function.selection;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,12 +27,7 @@ package com.github.yferras.javartint.gea.function.selection;
  */
 
 import com.github.yferras.javartint.core.util.Optimize;
-import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Elitism selection function.

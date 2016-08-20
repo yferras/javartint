@@ -1,5 +1,9 @@
 package com.github.yferras.javartint.gea.function.generator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,10 +27,6 @@ package com.github.yferras.javartint.gea.function.generator;
  */
 
 import com.github.yferras.javartint.gea.genome.TspGenome;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * This class is a genome generator function for create genomes for TSP (Traveller Sales Problem).

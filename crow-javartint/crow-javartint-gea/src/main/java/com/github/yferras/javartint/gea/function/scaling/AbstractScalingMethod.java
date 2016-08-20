@@ -1,5 +1,8 @@
 package com.github.yferras.javartint.gea.function.scaling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,9 +29,6 @@ import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Abstract class that represents scaling method function.

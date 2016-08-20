@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.selection;
 
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -24,8 +26,6 @@ package com.github.yferras.javartint.gea.function.selection;
 
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.gea.Individual;
-
-import java.util.List;
 
 /**
  * Interface that represents selection function.

@@ -1,5 +1,11 @@
 package com.github.yferras.javartint.gea.chromosome;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,11 +32,6 @@ import com.github.yferras.javartint.core.util.AbstractItemIterator;
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.gene.Gene;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * This class is an abstract implementation of {@link com.github.yferras.javartint.gea.chromosome.Chromosome}.
  *
@@ -39,7 +40,9 @@ import java.util.List;
  * @version 0.0.1
  */
 public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosome<T> {
-    /**
+
+	private static final long serialVersionUID = -5377081343491044960L;
+	/**
      * List of genes that contains the chromosome information.
      */
     protected List<T> genes;
@@ -114,9 +117,10 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
     public AbstractChromosome<T> clone() throws CloneNotSupportedException {
         AbstractChromosome<T> copy = (AbstractChromosome<T>) super.clone();
         copy.genes = new LinkedList<>();
-        for (T t : this) {
-            copy.genes.add((T) t.clone());
-        }
+        this.genes.stream()
+        	.forEach(
+        			gene -> copy.genes.add(gene)
+        			);
         return copy;
     }
 
@@ -130,7 +134,8 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
             return false;
         }
 
-        AbstractChromosome that = (AbstractChromosome) o;
+        @SuppressWarnings("rawtypes")
+		AbstractChromosome that = (AbstractChromosome) o;
 
         return genes.equals(that.genes);
     }
@@ -144,12 +149,8 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("{");
-        stringBuilder.append(" Genes: (").append(size() != 0 ? getGene(0) : "");
-        for (int i = 1; i < size(); i++) {
-            stringBuilder.append("; ").append(getGene(i));
-        }
-        return stringBuilder.append(")").append("}").toString();
+    	List<T> list = Arrays.asList(getGenes());
+        return list.stream().map(gene -> gene.toString()).collect(Collectors.joining("; ", "{Genes: (", ")}"));
     }
 
 }

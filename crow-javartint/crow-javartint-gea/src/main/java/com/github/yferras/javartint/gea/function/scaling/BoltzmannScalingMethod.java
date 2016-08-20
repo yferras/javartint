@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.scaling;
 
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -24,8 +26,6 @@ package com.github.yferras.javartint.gea.function.scaling;
 
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.util.MathUtil;
-
-import java.util.List;
 
 /**
  * Boltzmann scaling method function.

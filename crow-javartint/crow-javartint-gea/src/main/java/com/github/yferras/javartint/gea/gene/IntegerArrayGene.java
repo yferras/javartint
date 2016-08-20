@@ -30,7 +30,9 @@ package com.github.yferras.javartint.gea.gene;
  */
 public class IntegerArrayGene extends NumberArrayGene<Integer> {
 
-    /**
+	private static final long serialVersionUID = 7636010841054016255L;
+
+	/**
      * <p>Constructor for IntegerArrayGene.</p>
      *
      * @param data an array of {@link java.lang.Integer} objects.

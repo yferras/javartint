@@ -31,6 +31,11 @@ package com.github.yferras.javartint.gea.gene;
 public class CharArrayGene extends ArrayGene<Character> {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3168112007637240367L;
+
+	/**
      * <p>Constructor for CharArrayGene.</p>
      *
      * @param data an array of {@link java.lang.Character} objects.

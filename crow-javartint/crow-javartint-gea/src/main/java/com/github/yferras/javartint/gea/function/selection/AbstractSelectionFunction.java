@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.gea.function.selection;
 
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -25,8 +27,6 @@ package com.github.yferras.javartint.gea.function.selection;
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.Individual;
 import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod;
-
-import java.util.List;
 
 /**
  * Abstract class that represents selection function.

@@ -1,5 +1,9 @@
 package com.github.yferras.javartint.gea;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -21,16 +25,16 @@ package com.github.yferras.javartint.gea;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import com.github.yferras.javartint.core.*;
+import com.github.yferras.javartint.core.AbstractAlgorithm;
+import com.github.yferras.javartint.core.AbstractAlgorithmBuilder;
+import com.github.yferras.javartint.core.IterativeAlgorithm;
+import com.github.yferras.javartint.core.OptimizationAlgorithm;
 import com.github.yferras.javartint.core.function.Function;
 import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
 import com.github.yferras.javartint.gea.util.GeaConfigConstants;
 import com.github.yferras.javartint.gea.util.IndividualFilter;
-
-import java.util.*;
 
 /**
  * Abstract class that provides a sets of functionalities to subclassing evolutionary algorithms

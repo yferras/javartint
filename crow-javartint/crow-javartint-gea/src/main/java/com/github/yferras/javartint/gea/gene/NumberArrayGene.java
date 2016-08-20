@@ -29,10 +29,11 @@ package com.github.yferras.javartint.gea.gene;
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class NumberArrayGene<T extends Number>
-    extends ArrayGene<T> {
+public class NumberArrayGene<T extends Number> extends ArrayGene<T> {
 
-    /**
+	private static final long serialVersionUID = 1680349791485030604L;
+
+	/**
      * <p>Constructor for NumberArrayGene.</p>
      *
      * @param data an array of T objects.
