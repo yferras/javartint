@@ -1,3 +1,7 @@
 .idea/
-crow-javartint/**/target/
-crow-javartint/**/*.iml
+**/target/
+**/*.iml
+**/.classpath
+**/.project
+**/.settings/
+**/bin/
