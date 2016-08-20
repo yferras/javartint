@@ -34,9 +34,6 @@ import com.github.yferras.javartint.gea.Individual;
  */
 public final class MathUtil {
 
-	private MathUtil() {
-	}
-
 	/**
 	 * This method takes a list of individuals and determines the mean of their
 	 * fitness.
@@ -66,6 +63,18 @@ public final class MathUtil {
 	}
 
 	/**
+	 * This method takes a list of individuals and determines the variance of
+	 * their fitness.
+	 *
+	 * @param individuals
+	 *            list of individuals
+	 * @return the variance of fitness
+	 */
+	public static <T extends Individual> double variance(List<T> individuals) {
+		return variance(individuals, mean(individuals));
+	}
+
+	/**
 	 * This method takes a list of individuals and their mean of fitness, and
 	 * determines the variance of their fitness.
 	 *
@@ -84,16 +93,7 @@ public final class MathUtil {
 		return sum / individuals.size();
 	}
 
-	/**
-	 * This method takes a list of individuals and determines the variance of
-	 * their fitness.
-	 *
-	 * @param individuals
-	 *            list of individuals
-	 * @return the variance of fitness
-	 */
-	public static <T extends Individual> double variance(List<T> individuals) {
-		return variance(individuals, mean(individuals));
+	private MathUtil() {
 	}
 
 }

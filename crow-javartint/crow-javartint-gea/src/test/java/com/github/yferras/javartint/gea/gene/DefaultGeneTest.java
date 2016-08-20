@@ -37,15 +37,15 @@ import org.junit.Test;
  */
 public class DefaultGeneTest {
 
-	public DefaultGeneTest() {
-	}
-
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public DefaultGeneTest() {
 	}
 
 	@Before
@@ -55,31 +55,6 @@ public class DefaultGeneTest {
 
 	@After
 	public void tearDown() {
-	}
-
-	/**
-	 * Test of getData method, of class DefaultGene.
-	 */
-	@Test
-	public void testGetData() {
-		System.out.println("getData");
-		DefaultGene<Double> instance = new DefaultGene<>(1.0);
-		Object expResult = 1.0;
-		Object result = instance.getData();
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of setData method, of class DefaultGene.
-	 */
-	@Test
-	public void testSetData() {
-		System.out.println("setData");
-		Object data = 1.0;
-		DefaultGene<Object> instance = new DefaultGene<>(data);
-		instance.setData(data);
-		Object result = instance.getData();
-		assertEquals(data, result);
 	}
 
 	/**
@@ -141,6 +116,30 @@ public class DefaultGeneTest {
 	}
 
 	/**
+	 * Test of equals method, of class DefaultGene.
+	 */
+	@Test
+	public void testEquals() {
+		System.out.println("equals");
+		Object obj = new DefaultGene<>(2.0);
+		DefaultGene<Double> instance = new DefaultGene<>(2.0);
+		boolean result = instance.equals(obj);
+		assertEquals(true, result);
+	}
+
+	/**
+	 * Test of getData method, of class DefaultGene.
+	 */
+	@Test
+	public void testGetData() {
+		System.out.println("getData");
+		DefaultGene<Double> instance = new DefaultGene<>(1.0);
+		Object expResult = 1.0;
+		Object result = instance.getData();
+		assertEquals(expResult, result);
+	}
+
+	/**
 	 * Test of hashCode method, of class DefaultGene.
 	 */
 	@Test
@@ -153,15 +152,16 @@ public class DefaultGeneTest {
 	}
 
 	/**
-	 * Test of equals method, of class DefaultGene.
+	 * Test of setData method, of class DefaultGene.
 	 */
 	@Test
-	public void testEquals() {
-		System.out.println("equals");
-		Object obj = new DefaultGene<>(2.0);
-		DefaultGene<Double> instance = new DefaultGene<>(2.0);
-		boolean result = instance.equals(obj);
-		assertEquals(true, result);
+	public void testSetData() {
+		System.out.println("setData");
+		Object data = 1.0;
+		DefaultGene<Object> instance = new DefaultGene<>(data);
+		instance.setData(data);
+		Object result = instance.getData();
+		assertEquals(data, result);
 	}
 
 }

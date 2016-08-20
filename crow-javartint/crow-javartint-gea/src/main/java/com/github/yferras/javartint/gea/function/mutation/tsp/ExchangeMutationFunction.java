@@ -65,16 +65,9 @@ public class ExchangeMutationFunction<T extends TspGenome> extends AbstractMutat
 	 * <p>
 	 * Constructor for ExchangeMutationFunction.
 	 * </p>
-	 *
-	 * @param probability
-	 *            a double.
-	 * @param random
-	 *            a {@link java.util.Random} object.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public ExchangeMutationFunction(double probability, Random random) {
-		super(probability, random);
+	public ExchangeMutationFunction() {
+		super();
 	}
 
 	/**
@@ -95,9 +88,16 @@ public class ExchangeMutationFunction<T extends TspGenome> extends AbstractMutat
 	 * <p>
 	 * Constructor for ExchangeMutationFunction.
 	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @param random
+	 *            a {@link java.util.Random} object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public ExchangeMutationFunction() {
-		super();
+	public ExchangeMutationFunction(double probability, Random random) {
+		super(probability, random);
 	}
 
 	/** {@inheritDoc} */

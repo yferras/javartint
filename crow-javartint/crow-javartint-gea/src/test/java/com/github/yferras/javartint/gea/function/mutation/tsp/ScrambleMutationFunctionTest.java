@@ -36,8 +36,8 @@ public class ScrambleMutationFunctionTest {
 	public void testMutate() throws Exception {
 		ScrambleMutationFunction<TspGenome> function = new ScrambleMutationFunction<>(4);
 		function.setRandom(new Random() {
-			private int[] positions = { 3, 0, 1, 0 };
 			private int index = 0;
+			private int[] positions = { 3, 0, 1, 0 };
 
 			@Override
 			public int nextInt(int n) {

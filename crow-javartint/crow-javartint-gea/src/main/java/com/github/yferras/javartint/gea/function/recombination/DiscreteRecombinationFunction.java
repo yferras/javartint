@@ -62,16 +62,9 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
 	 * <p>
 	 * Constructor for DiscreteRecombinationFunction.
 	 * </p>
-	 *
-	 * @param probability
-	 *            a double.
-	 * @param random
-	 *            a {@link java.util.Random} object.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public DiscreteRecombinationFunction(double probability, Random random) {
-		super(probability, random);
+	public DiscreteRecombinationFunction() {
+		super();
 	}
 
 	/**
@@ -92,9 +85,16 @@ public class DiscreteRecombinationFunction<T extends Genome<? extends Chromosome
 	 * <p>
 	 * Constructor for DiscreteRecombinationFunction.
 	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @param random
+	 *            a {@link java.util.Random} object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public DiscreteRecombinationFunction() {
-		super();
+	public DiscreteRecombinationFunction(double probability, Random random) {
+		super(probability, random);
 	}
 
 	/** {@inheritDoc} */

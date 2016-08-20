@@ -43,6 +43,13 @@ public class RandomSelectionFunction<T extends Individual> extends AbstractSelec
 
 	/**
 	 * Constructor that initializes this instance.
+	 */
+	public RandomSelectionFunction() {
+		super();
+	}
+
+	/**
+	 * Constructor that initializes this instance.
 	 *
 	 * @param numToSelect
 	 *            number of elements to select
@@ -51,13 +58,6 @@ public class RandomSelectionFunction<T extends Individual> extends AbstractSelec
 	 */
 	public RandomSelectionFunction(int numToSelect) {
 		super(numToSelect);
-	}
-
-	/**
-	 * Constructor that initializes this instance.
-	 */
-	public RandomSelectionFunction() {
-		super();
 	}
 
 	/**

@@ -41,49 +41,6 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 		extends Cloneable, Individual, Iterable<T>, Serializable {
 
 	/**
-	 * Gets the array of chromosomes.
-	 *
-	 * @return The value of chromosomes.
-	 */
-	T[] getChromosomes();
-
-	/**
-	 * Sets the array of chromosomes.
-	 *
-	 * @param chromosomes
-	 *            an array of T objects.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if {@code chromosomes} argument is {@code null}.
-	 */
-	void setChromosomes(T[] chromosomes);
-
-	/**
-	 * Gets the chromosome at specific index.
-	 *
-	 * @param index
-	 *            index
-	 * @return chromosome
-	 */
-	T getChromosome(int index);
-
-	/**
-	 * Sets the chromosome at specific index.
-	 *
-	 * @param index
-	 *            index to place new chromosome
-	 * @param newChromosome
-	 *            chromosome
-	 */
-	void setChromosome(int index, T newChromosome);
-
-	/**
-	 * Gets the number of chromosomes of the genome.
-	 *
-	 * @return The number of chromosomes of the genome.
-	 */
-	int size();
-
-	/**
 	 * Adds new chromosome to genome.
 	 *
 	 * @param chromosome
@@ -103,9 +60,52 @@ public interface Genome<T extends Chromosome<? extends Gene<?>>>
 	Genome<T> clone() throws CloneNotSupportedException;
 
 	/**
+	 * Gets the chromosome at specific index.
+	 *
+	 * @param index
+	 *            index
+	 * @return chromosome
+	 */
+	T getChromosome(int index);
+
+	/**
+	 * Gets the array of chromosomes.
+	 *
+	 * @return The value of chromosomes.
+	 */
+	T[] getChromosomes();
+
+	/**
 	 * Gets the genome type by the chromosomes parity.
 	 *
 	 * @return genome type.
 	 */
 	GenomeType getGenomeType();
+
+	/**
+	 * Sets the chromosome at specific index.
+	 *
+	 * @param index
+	 *            index to place new chromosome
+	 * @param newChromosome
+	 *            chromosome
+	 */
+	void setChromosome(int index, T newChromosome);
+
+	/**
+	 * Sets the array of chromosomes.
+	 *
+	 * @param chromosomes
+	 *            an array of T objects.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if {@code chromosomes} argument is {@code null}.
+	 */
+	void setChromosomes(T[] chromosomes);
+
+	/**
+	 * Gets the number of chromosomes of the genome.
+	 *
+	 * @return The number of chromosomes of the genome.
+	 */
+	int size();
 }

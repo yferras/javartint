@@ -44,13 +44,52 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
 
 	private static final double BASE_2 = 2.0;
 
-	/** Constant <code>DEFAULT_RANGE=.1</code> */
-	public static final double DEFAULT_RANGE = .1;
 	/** Constant <code>DEFAULT_PRECISION=6</code> */
 	public static final double DEFAULT_PRECISION = 6;
+	/** Constant <code>DEFAULT_RANGE=.1</code> */
+	public static final double DEFAULT_RANGE = .1;
 
-	private double[] ranges;
 	private double precision;
+	private double[] ranges;
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            probability of recombination
+	 * @param ranges
+	 *            array with the recombination ranges, one per dimension.
+	 * @param precision
+	 *            recombination precisions.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) {
+		this(probability, new Random(), ranges, precision);
+	}
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}, and
+	 * <code>probability = 0.75</code>. This is useful when all dimensions have
+	 * the same values.
+	 *
+	 * @param range
+	 *            recombination range.
+	 * @param length
+	 *            the number of dimensions.
+	 * @param precision
+	 *            recombination precisions.
+	 */
+	public ExtendedLineRecombinationFunction(double range, int length, double precision) {
+		super();
+		ranges = new double[length];
+		this.precision = precision;
+		for (int i = 0; i < length; i++) {
+			ranges[i] = range;
+		}
+	}
 
 	/**
 	 * Constructor, initializes instances with the given parameters.
@@ -75,23 +114,6 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
 
 	/**
 	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}.
-	 *
-	 * @param probability
-	 *            probability of recombination
-	 * @param ranges
-	 *            array with the recombination ranges, one per dimension.
-	 * @param precision
-	 *            recombination precisions.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
-	 */
-	public ExtendedLineRecombinationFunction(double probability, double[] ranges, double precision) {
-		this(probability, new Random(), ranges, precision);
-	}
-
-	/**
-	 * Constructor, initializes instances with the given parameters. By default
 	 * it uses as random generator an instance of {@link java.util.Random}, and
 	 * <code>probability = 0.75</code>.
 	 *
@@ -104,28 +126,6 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
 		super();
 		this.ranges = ranges;
 		this.precision = precision;
-	}
-
-	/**
-	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}, and
-	 * <code>probability = 0.75</code>. This is useful when all dimensions have
-	 * the same values.
-	 *
-	 * @param range
-	 *            recombination range.
-	 * @param length
-	 *            the number of dimensions.
-	 * @param precision
-	 *            recombination precisions.
-	 */
-	public ExtendedLineRecombinationFunction(double range, int length, double precision) {
-		super();
-		ranges = new double[length];
-		this.precision = precision;
-		for (int i = 0; i < length; i++) {
-			ranges[i] = range;
-		}
 	}
 
 	/**

@@ -59,20 +59,6 @@ public class MultiPointsRecombinationFunctionTest {
 	public void tearDown() {
 	}
 
-	@Test
-	public void testMultiPointsCrossoverFunction1() throws Exception {
-		System.out.println("MultiPointsCrossoverFunction(probability)");
-		final Double probability = new MultiPointsRecombinationFunction<>(1.0).getProbability();
-		assertEquals(new Double(1.0), probability);
-	}
-
-	@Test
-	public void testMultiPointsCrossoverFunction2() {
-		System.out.println("MultiPointsCrossoverFunction()");
-		final Double probability = new MultiPointsRecombinationFunction<>().getProbability();
-		assertEquals(new Double(.75), probability);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testEvaluate() throws Exception {
@@ -97,5 +83,19 @@ public class MultiPointsRecombinationFunctionTest {
 		}
 		assertArrayEquals(result[0].getChromosome(0).getGenes(), expResult[0].getChromosome(0).getGenes());
 		assertArrayEquals(result[1].getChromosome(0).getGenes(), expResult[1].getChromosome(0).getGenes());
+	}
+
+	@Test
+	public void testMultiPointsCrossoverFunction1() throws Exception {
+		System.out.println("MultiPointsCrossoverFunction(probability)");
+		final Double probability = new MultiPointsRecombinationFunction<>(1.0).getProbability();
+		assertEquals(new Double(1.0), probability);
+	}
+
+	@Test
+	public void testMultiPointsCrossoverFunction2() {
+		System.out.println("MultiPointsCrossoverFunction()");
+		final Double probability = new MultiPointsRecombinationFunction<>().getProbability();
+		assertEquals(new Double(.75), probability);
 	}
 }

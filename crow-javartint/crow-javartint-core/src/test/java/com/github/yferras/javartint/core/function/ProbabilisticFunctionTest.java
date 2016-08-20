@@ -48,6 +48,26 @@ import com.github.yferras.javartint.core.util.ValidationException;
  */
 public class ProbabilisticFunctionTest {
 
+	private static class DefaultProbabilisticFunction<T extends Number>
+			extends AbstractProbabilisticFunction<Double, T[]> {
+
+		private DefaultProbabilisticFunction(double probability) {
+			super(probability);
+		}
+
+		private DefaultProbabilisticFunction(double probability, Random random) {
+			super(probability, random);
+		}
+
+		@Override
+		public Double evaluate(@SuppressWarnings("unchecked") T... params) {
+			if (getRandom().nextDouble() > getProbability()) {
+				return params[0].doubleValue() + params[1].doubleValue();
+			}
+			return params[0].doubleValue() - params[1].doubleValue();
+		}
+	}
+
 	/**
 	 * <p>
 	 * setUpClass.
@@ -230,26 +250,6 @@ public class ProbabilisticFunctionTest {
 			assertTrue(function.getRandom() instanceof Random);
 		} catch (ValidationException e) {
 			fail(e.getMessage());
-		}
-	}
-
-	private static class DefaultProbabilisticFunction<T extends Number>
-			extends AbstractProbabilisticFunction<Double, T[]> {
-
-		private DefaultProbabilisticFunction(double probability, Random random) {
-			super(probability, random);
-		}
-
-		private DefaultProbabilisticFunction(double probability) {
-			super(probability);
-		}
-
-		@Override
-		public Double evaluate(@SuppressWarnings("unchecked") T... params) {
-			if (getRandom().nextDouble() > getProbability()) {
-				return params[0].doubleValue() + params[1].doubleValue();
-			}
-			return params[0].doubleValue() - params[1].doubleValue();
 		}
 	}
 }

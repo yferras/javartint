@@ -45,20 +45,12 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
 	private int minSpanSize;
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param random
-	 *            random instance
-	 * @param minSpanSize
-	 *            min span size
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
+	 * Default constructor. By default it uses as random generator an instance
+	 * of {@link java.util.Random}, <code>probability = 0.05</code> and
+	 * <code>minSpanSize = 2</code>.
 	 */
-	public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) {
-		super(probability, random);
-		this.minSpanSize = minSpanSize;
+	public AbstractTspSpanMutationFunction() {
+		this(MIN_SPAN_SIZE);
 	}
 
 	/**
@@ -77,6 +69,23 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
 	}
 
 	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
+	 * @param minSpanSize
+	 *            min span size
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public AbstractTspSpanMutationFunction(double probability, Random random, int minSpanSize) {
+		super(probability, random);
+		this.minSpanSize = minSpanSize;
+	}
+
+	/**
 	 * Constructor, initializes instances with the given parameters. By default
 	 * it uses as random generator an instance of {@link java.util.Random}, and
 	 * <code>probability = 0.05</code>.
@@ -87,15 +96,6 @@ public abstract class AbstractTspSpanMutationFunction<T extends TspGenome> exten
 	public AbstractTspSpanMutationFunction(int minSpanSize) {
 		super();
 		this.minSpanSize = minSpanSize;
-	}
-
-	/**
-	 * Default constructor. By default it uses as random generator an instance
-	 * of {@link java.util.Random}, <code>probability = 0.05</code> and
-	 * <code>minSpanSize = 2</code>.
-	 */
-	public AbstractTspSpanMutationFunction() {
-		this(MIN_SPAN_SIZE);
 	}
 
 	/**

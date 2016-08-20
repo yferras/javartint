@@ -43,15 +43,57 @@ import com.github.yferras.javartint.gea.genome.Genome;
 public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<Double>>>>
 		extends AbstractMutationFunction<T> {
 
-	/** Constant <code>DEFAULT_MUTATION_RANGE=.1</code> */
-	public static final double DEFAULT_MUTATION_RANGE = .1;
+	private static final double BASE_2 = 2.0;
 	/** Constant <code>DEFAULT_MUTATION_PRECISION=6</code> */
 	public static final double DEFAULT_MUTATION_PRECISION = 6;
 
-	private static final double BASE_2 = 2.0;
+	/** Constant <code>DEFAULT_MUTATION_RANGE=.1</code> */
+	public static final double DEFAULT_MUTATION_RANGE = .1;
 
-	private double[] ranges;
 	private double[] precisions;
+	private double[] ranges;
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}, and
+	 * <code>probability = 0.05</code>. This is useful when all dimensions have
+	 * the same values.
+	 *
+	 * @param mutationRange
+	 *            mutation range.
+	 * @param mutationPrecision
+	 *            mutation precisions.
+	 * @param length
+	 *            the number of dimensions.
+	 */
+	public RealValuedMutationFunction(double mutationRange, double mutationPrecision, int length) {
+		super();
+		ranges = new double[length];
+		precisions = new double[length];
+		for (int i = 0; i < length; i++) {
+			ranges[i] = mutationRange;
+			precisions[i] = mutationPrecision;
+		}
+	}
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param ranges
+	 *            array with the mutation ranges, one per dimension.
+	 * @param precisions
+	 *            array with mutation precisions, one per dimension.
+	 * @throws java.lang.IllegalArgumentException
+	 *             if the length of arrays is not the same.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) {
+		this(probability, new Random(), ranges, precisions);
+	}
 
 	/**
 	 * Constructor, initializes instances with the given parameters.
@@ -82,25 +124,6 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 
 	/**
 	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}.
-	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param ranges
-	 *            array with the mutation ranges, one per dimension.
-	 * @param precisions
-	 *            array with mutation precisions, one per dimension.
-	 * @throws java.lang.IllegalArgumentException
-	 *             if the length of arrays is not the same.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
-	 */
-	public RealValuedMutationFunction(double probability, double[] ranges, double[] precisions) {
-		this(probability, new Random(), ranges, precisions);
-	}
-
-	/**
-	 * Constructor, initializes instances with the given parameters. By default
 	 * it uses as random generator an instance of {@link java.util.Random}, and
 	 * <code>probability = 0.05</code>.
 	 *
@@ -118,29 +141,6 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 	}
 
 	/**
-	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}, and
-	 * <code>probability = 0.05</code>. This is useful when all dimensions have
-	 * the same values.
-	 *
-	 * @param mutationRange
-	 *            mutation range.
-	 * @param mutationPrecision
-	 *            mutation precisions.
-	 * @param length
-	 *            the number of dimensions.
-	 */
-	public RealValuedMutationFunction(double mutationRange, double mutationPrecision, int length) {
-		super();
-		ranges = new double[length];
-		precisions = new double[length];
-		for (int i = 0; i < length; i++) {
-			ranges[i] = mutationRange;
-			precisions[i] = mutationPrecision;
-		}
-	}
-
-	/**
 	 * Constructor, initializes instances with the given parameter. By default
 	 * it uses as random generator an instance of {@link java.util.Random},
 	 * <code>probability = 0.05</code>, <code>mutationRange = 0.1</code> and
@@ -154,16 +154,25 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * Ensures that parameters are valid.
+	 * Gets the mutation precision from index.
+	 *
+	 * @param index
+	 *            index
+	 * @return mutation precision
 	 */
-	@Override
-	protected void validate(T param) {
-		super.validate(param);
-		if (param.size() != ranges.length) {
-			throw new ValidationException("the size of genome and the length of 'precisions' and 'ranges' mismatch.");
-		}
+	public double getMutationPrecision(int index) {
+		return precisions[index];
+	}
+
+	/**
+	 * Gets the mutation range from index.
+	 *
+	 * @param index
+	 *            index
+	 * @return mutation range.
+	 */
+	public double getMutationRange(int index) {
+		return ranges[index];
 	}
 
 	/** {@inheritDoc} */
@@ -184,25 +193,16 @@ public class RealValuedMutationFunction<T extends Genome<? extends Chromosome<? 
 	}
 
 	/**
-	 * Gets the mutation range from index.
-	 *
-	 * @param index
-	 *            index
-	 * @return mutation range.
+	 * {@inheritDoc}
+	 * <p/>
+	 * Ensures that parameters are valid.
 	 */
-	public double getMutationRange(int index) {
-		return ranges[index];
-	}
-
-	/**
-	 * Gets the mutation precision from index.
-	 *
-	 * @param index
-	 *            index
-	 * @return mutation precision
-	 */
-	public double getMutationPrecision(int index) {
-		return precisions[index];
+	@Override
+	protected void validate(T param) {
+		super.validate(param);
+		if (param.size() != ranges.length) {
+			throw new ValidationException("the size of genome and the length of 'precisions' and 'ranges' mismatch.");
+		}
 	}
 
 }

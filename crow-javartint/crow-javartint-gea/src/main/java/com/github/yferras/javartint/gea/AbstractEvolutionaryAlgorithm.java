@@ -51,15 +51,61 @@ import com.github.yferras.javartint.gea.util.IndividualFilter;
 public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> extends AbstractAlgorithm<T>
 		implements OptimizationAlgorithm<T>, IterativeAlgorithm<T> {
 
+	protected abstract static class Builder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Individual, D>
+			extends AbstractAlgorithmBuilder<A> implements EvolutionaryAlgorithmBuilder<A, T, D> {
+
+		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
+				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
+				GeaConfigConstants.TARGET_FUNCTION };
+
+		protected Builder() {
+			this(REQUIRED_PROPERTY_KEYS);
+		}
+
+		protected Builder(String... requiredPropertyKeys) {
+			super(requiredPropertyKeys);
+		}
+
+		@Override
+		public EvolutionaryAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder) {
+			getProperties().put(GeaConfigConstants.DECODER_FUNCTION, decoder);
+			return this;
+		}
+
+		@Override
+		public EvolutionaryAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction) {
+			getProperties().put(GeaConfigConstants.GENERATOR_FUNCTION, generatorFunction);
+			return this;
+		}
+
+		@Override
+		public EvolutionaryAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize) {
+			getProperties().put(GeaConfigConstants.OPTIMIZE, optimize);
+			return this;
+		}
+
+		@Override
+		public EvolutionaryAlgorithmBuilder<A, T, D> setPopulationSize(int size) {
+			getProperties().put(GeaConfigConstants.POPULATION_SIZE, size);
+			return this;
+		}
+
+		@Override
+		public EvolutionaryAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction) {
+			getProperties().put(GeaConfigConstants.TARGET_FUNCTION, targetFunction);
+			return this;
+		}
+	}
+	private double bestFitnessScore;
 	private final DecoderFunction<D, T> decoder;
-	private final Function<Double, D> targetFunction;
-	private final GeneratorFunction<T> generator;
 	private IndividualFilter<T> filter;
+	private long generations;
+	private final GeneratorFunction<T> generator;
+	private Optimize optimize;
 	private List<T> population;
 	private int populationSize;
-	private long generations;
-	private Optimize optimize;
-	private double bestFitnessScore;
+
+	private final Function<Double, D> targetFunction;
 
 	/**
 	 * <p>
@@ -81,6 +127,28 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 	}
 
 	/**
+	 * Used to create the start population.
+	 */
+	protected void createStartPopulation() {
+		while (getPopulationSize() > getPopulation().size()) {
+			T genome = getGenerator().evaluate();
+			if (getFilter() != null && getFilter().accept(genome)) {
+				getPopulation().add(genome);
+			} else {
+				getPopulation().add(genome);
+			}
+		}
+	}
+
+	/**
+	 * This method must be implemented to evolve one generation
+	 *
+	 * @throws java.lang.Exception
+	 *             if any error occurs.
+	 */
+	protected abstract void epoch() throws Exception;
+
+	/**
 	 * This method must be implemented by subclasses to simulate the evolution
 	 * process.
 	 *
@@ -90,12 +158,148 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 	public abstract void evolve() throws Exception;
 
 	/**
-	 * This method must be implemented to evolve one generation
+	 * Gets the value of best fitness score.
 	 *
-	 * @throws java.lang.Exception
-	 *             if any error occurs.
+	 * @return the value of best fitness score.
 	 */
-	protected abstract void epoch() throws Exception;
+	public double getBestFitnessScore() {
+		return bestFitnessScore;
+	}
+
+	/**
+	 * Gets an instance of
+	 * {@link com.github.yferras.javartint.core.function.Function} that decodes
+	 * the the genome.
+	 *
+	 * @return an instance of
+	 *         {@link com.github.yferras.javartint.core.function.Function}
+	 */
+	public Function<D, T> getDecoder() {
+		return decoder;
+	}
+
+	/**
+	 * Gets the genome filter.
+	 *
+	 * @return an instance of
+	 *         {@link com.github.yferras.javartint.gea.util.IndividualFilter}.
+	 */
+	protected IndividualFilter<T> getFilter() {
+		return filter;
+	}
+
+	/**
+	 * Retrieves the generations.
+	 *
+	 * @return generations.
+	 */
+	public long getGenerations() {
+		return generations;
+	}
+
+	/**
+	 * Gets the function that generates genome
+	 *
+	 * @return the instance of
+	 *         {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}
+	 */
+	public GeneratorFunction<T> getGenerator() {
+		return generator;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Long getIterations() {
+		return getGenerations();
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Optimize getOptimize() {
+		return optimize;
+	}
+
+	/**
+	 * Gets the population.
+	 *
+	 * @return a list with a population.
+	 */
+	protected List<T> getPopulation() {
+		return population;
+	}
+
+	/**
+	 * Gets the population size.
+	 *
+	 * @return population size.
+	 */
+	public int getPopulationSize() {
+		return populationSize;
+	}
+
+	/**
+	 * Gets the target function to optimize.
+	 *
+	 * @return function to optimize
+	 */
+	public Function<Double, D> getTargetFunction() {
+		return targetFunction;
+	}
+
+	/**
+	 * Each time that's method is invoked the {@code generations} attribute
+	 * increases its value in one.
+	 */
+	protected void increaseGenerations() {
+		generations++;
+	}
+
+	/**
+	 * Updates the value of best fitness score.
+	 *
+	 * @param bestFitnessScore
+	 *            new value of best fitness score
+	 */
+	protected void setBestFitnessScore(double bestFitnessScore) {
+		this.bestFitnessScore = bestFitnessScore;
+	}
+
+	/**
+	 * Sets the genome filter
+	 *
+	 * @param filter
+	 *            an instance of
+	 *            {@link com.github.yferras.javartint.gea.util.IndividualFilter}
+	 */
+	protected void setFilter(IndividualFilter<T> filter) {
+		this.filter = filter;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public final void setOptimize(Optimize optimize) {
+		switch (optimize) {
+		case MAX:
+			setBestFitnessScore(Double.NEGATIVE_INFINITY);
+			break;
+		case MIN:
+			setBestFitnessScore(Double.POSITIVE_INFINITY);
+			break;
+		default:
+			break;
+		}
+		this.optimize = optimize;
+	}
+
+	/**
+	 * Sets the new population.
+	 *
+	 * @param population
+	 *            new population list.
+	 */
+	protected void setPopulation(List<T> population) {
+		this.population = population;
+	}
 
 	/**
 	 * <p>
@@ -119,210 +323,6 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 					throw new RuntimeException("Cloning the solution.", e);
 				}
 			}
-		}
-	}
-
-	/**
-	 * Used to create the start population.
-	 */
-	protected void createStartPopulation() {
-		while (getPopulationSize() > getPopulation().size()) {
-			T genome = getGenerator().evaluate();
-			if (getFilter() != null && getFilter().accept(genome)) {
-				getPopulation().add(genome);
-			} else {
-				getPopulation().add(genome);
-			}
-		}
-	}
-
-	/**
-	 * Each time that's method is invoked the {@code generations} attribute
-	 * increases its value in one.
-	 */
-	protected void increaseGenerations() {
-		generations++;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Long getIterations() {
-		return getGenerations();
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Optimize getOptimize() {
-		return optimize;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public final void setOptimize(Optimize optimize) {
-		switch (optimize) {
-		case MAX:
-			setBestFitnessScore(Double.NEGATIVE_INFINITY);
-			break;
-		case MIN:
-			setBestFitnessScore(Double.POSITIVE_INFINITY);
-			break;
-		default:
-			break;
-		}
-		this.optimize = optimize;
-	}
-
-	/**
-	 * Gets an instance of
-	 * {@link com.github.yferras.javartint.core.function.Function} that decodes
-	 * the the genome.
-	 *
-	 * @return an instance of
-	 *         {@link com.github.yferras.javartint.core.function.Function}
-	 */
-	public Function<D, T> getDecoder() {
-		return decoder;
-	}
-
-	/**
-	 * Gets the value of best fitness score.
-	 *
-	 * @return the value of best fitness score.
-	 */
-	public double getBestFitnessScore() {
-		return bestFitnessScore;
-	}
-
-	/**
-	 * Updates the value of best fitness score.
-	 *
-	 * @param bestFitnessScore
-	 *            new value of best fitness score
-	 */
-	protected void setBestFitnessScore(double bestFitnessScore) {
-		this.bestFitnessScore = bestFitnessScore;
-	}
-
-	/**
-	 * Retrieves the generations.
-	 *
-	 * @return generations.
-	 */
-	public long getGenerations() {
-		return generations;
-	}
-
-	/**
-	 * Gets the population size.
-	 *
-	 * @return population size.
-	 */
-	public int getPopulationSize() {
-		return populationSize;
-	}
-
-	/**
-	 * Gets the population.
-	 *
-	 * @return a list with a population.
-	 */
-	protected List<T> getPopulation() {
-		return population;
-	}
-
-	/**
-	 * Sets the new population.
-	 *
-	 * @param population
-	 *            new population list.
-	 */
-	protected void setPopulation(List<T> population) {
-		this.population = population;
-	}
-
-	/**
-	 * Gets the genome filter.
-	 *
-	 * @return an instance of
-	 *         {@link com.github.yferras.javartint.gea.util.IndividualFilter}.
-	 */
-	protected IndividualFilter<T> getFilter() {
-		return filter;
-	}
-
-	/**
-	 * Sets the genome filter
-	 *
-	 * @param filter
-	 *            an instance of
-	 *            {@link com.github.yferras.javartint.gea.util.IndividualFilter}
-	 */
-	protected void setFilter(IndividualFilter<T> filter) {
-		this.filter = filter;
-	}
-
-	/**
-	 * Gets the function that generates genome
-	 *
-	 * @return the instance of
-	 *         {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}
-	 */
-	public GeneratorFunction<T> getGenerator() {
-		return generator;
-	}
-
-	/**
-	 * Gets the target function to optimize.
-	 *
-	 * @return function to optimize
-	 */
-	public Function<Double, D> getTargetFunction() {
-		return targetFunction;
-	}
-
-	protected abstract static class Builder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Individual, D>
-			extends AbstractAlgorithmBuilder<A> implements EvolutionaryAlgorithmBuilder<A, T, D> {
-
-		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
-				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
-				GeaConfigConstants.TARGET_FUNCTION };
-
-		protected Builder(String... requiredPropertyKeys) {
-			super(requiredPropertyKeys);
-		}
-
-		protected Builder() {
-			this(REQUIRED_PROPERTY_KEYS);
-		}
-
-		@Override
-		public EvolutionaryAlgorithmBuilder<A, T, D> setPopulationSize(int size) {
-			getProperties().put(GeaConfigConstants.POPULATION_SIZE, size);
-			return this;
-		}
-
-		@Override
-		public EvolutionaryAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder) {
-			getProperties().put(GeaConfigConstants.DECODER_FUNCTION, decoder);
-			return this;
-		}
-
-		@Override
-		public EvolutionaryAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction) {
-			getProperties().put(GeaConfigConstants.TARGET_FUNCTION, targetFunction);
-			return this;
-		}
-
-		@Override
-		public EvolutionaryAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction) {
-			getProperties().put(GeaConfigConstants.GENERATOR_FUNCTION, generatorFunction);
-			return this;
-		}
-
-		@Override
-		public EvolutionaryAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize) {
-			getProperties().put(GeaConfigConstants.OPTIMIZE, optimize);
-			return this;
 		}
 	}
 }

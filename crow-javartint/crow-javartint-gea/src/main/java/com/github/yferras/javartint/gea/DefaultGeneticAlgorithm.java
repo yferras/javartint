@@ -42,10 +42,6 @@ import com.github.yferras.javartint.gea.genome.Genome;
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 		extends AbstractGeneticAlgorithm<T, D> {
 
-	private DefaultGeneticAlgorithm(Properties properties) {
-		super(properties);
-	}
-
 	public static final class Builder<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 			extends AbstractGeneticAlgorithm.Builder<DefaultGeneticAlgorithm<T, D>, T, D> {
 
@@ -53,5 +49,9 @@ public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? ext
 		protected DefaultGeneticAlgorithm<T, D> buildObject() {
 			return new DefaultGeneticAlgorithm<>(getProperties());
 		}
+	}
+
+	private DefaultGeneticAlgorithm(Properties properties) {
+		super(properties);
 	}
 }

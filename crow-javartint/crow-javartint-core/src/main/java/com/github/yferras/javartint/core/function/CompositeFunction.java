@@ -40,28 +40,6 @@ import java.util.List;
 public interface CompositeFunction<R, P> extends Function<R, P> {
 
 	/**
-	 * Gets the numbers of functions.
-	 *
-	 * @return the numbers functions.
-	 * @since 1.1.0
-	 */
-	int size();
-
-	/**
-	 * <p>
-	 * get.
-	 * </p>
-	 *
-	 * @param index
-	 *            a int.
-	 * @return a {@link com.github.yferras.javartint.core.function.Function}
-	 *         object.
-	 * @since 1.1.0
-	 */
-	@SuppressWarnings("rawtypes")
-	Function get(int index);
-
-	/**
 	 * Builder to construct instances of {@link CompositeFunction}.
 	 *
 	 * @param <R>
@@ -96,33 +74,10 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
 			return this;
 		}
 
-		/**
-		 * Always inserts the function to the beginning.
-		 *
-		 * @param function
-		 *            function instance to add.
-		 * @return @return an instance of this builder.
-		 */
-		public Builder<R, P> push(@SuppressWarnings("rawtypes") Function function) {
-			functions.add(0, function);
-			return this;
-		}
-
 		/** {@inheritDoc} */
 		@Override
 		public CompositeFunction<R, P> build() {
 			return new CompositeFunction<R, P>() {
-				@Override
-				public int size() {
-					return functions.size();
-				}
-
-				@SuppressWarnings("rawtypes")
-				@Override
-				public Function get(int index) {
-					return functions.get(index);
-				}
-
 				@SuppressWarnings("unchecked")
 				@Override
 				public R evaluate(P params) {
@@ -137,8 +92,53 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
 					}
 					return (R) result;
 				}
+
+				@SuppressWarnings("rawtypes")
+				@Override
+				public Function get(int index) {
+					return functions.get(index);
+				}
+
+				@Override
+				public int size() {
+					return functions.size();
+				}
 			};
 		}
+
+		/**
+		 * Always inserts the function to the beginning.
+		 *
+		 * @param function
+		 *            function instance to add.
+		 * @return @return an instance of this builder.
+		 */
+		public Builder<R, P> push(@SuppressWarnings("rawtypes") Function function) {
+			functions.add(0, function);
+			return this;
+		}
 	}
+
+	/**
+	 * <p>
+	 * get.
+	 * </p>
+	 *
+	 * @param index
+	 *            a int.
+	 * @return a {@link com.github.yferras.javartint.core.function.Function}
+	 *         object.
+	 * @since 1.1.0
+	 */
+	@SuppressWarnings("rawtypes")
+	Function get(int index);
+
+	/**
+	 * Gets the numbers of functions.
+	 *
+	 * @return the numbers functions.
+	 * @since 1.1.0
+	 */
+	int size();
 
 }

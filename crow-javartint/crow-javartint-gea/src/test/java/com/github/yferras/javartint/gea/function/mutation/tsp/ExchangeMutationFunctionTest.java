@@ -36,8 +36,8 @@ public class ExchangeMutationFunctionTest {
 	public void testMutate() throws Exception {
 		ExchangeMutationFunction<TspGenome> function = new ExchangeMutationFunction<>();
 		function.setRandom(new Random() {
-			private int[] positions = { 5, 1 };
 			private int index = 0;
+			private int[] positions = { 5, 1 };
 
 			@Override
 			public int nextInt(int n) {

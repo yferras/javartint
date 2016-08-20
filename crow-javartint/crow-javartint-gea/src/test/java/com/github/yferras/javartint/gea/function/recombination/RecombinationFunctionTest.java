@@ -50,7 +50,31 @@ import com.github.yferras.javartint.gea.genome.Genome;
  */
 public class RecombinationFunctionTest {
 
-	public RecombinationFunctionTest() {
+	private static class DefaultRecombinationFunction
+			extends AbstractRecombinationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
+
+		private DefaultRecombinationFunction() {
+			this.probability = 0.75;
+			this.random = new Random() {
+				@Override
+				public double nextDouble() {
+					return 0.5;
+				}
+
+				@Override
+				public int nextInt(int n) {
+					return 0;
+				}
+			};
+		}
+
+		@Override
+		protected Genome<? extends Chromosome<? extends Gene<?>>>[] recombine(
+				Genome<? extends Chromosome<? extends Gene<?>>> parent1,
+				Genome<? extends Chromosome<? extends Gene<?>>> parent2) {
+			return null;
+		}
+
 	}
 
 	@BeforeClass
@@ -59,6 +83,9 @@ public class RecombinationFunctionTest {
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public RecombinationFunctionTest() {
 	}
 
 	@Before
@@ -71,66 +98,11 @@ public class RecombinationFunctionTest {
 	}
 
 	@Test
-	public void testGetProbability() throws Exception {
-		System.out.println("getProbability");
-		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
-		function.setProbability(.5);
-		assertEquals(new Double(.5), new Double(function.getProbability()));
-	}
-
-	@Test
-	public void testSetProbability1() {
-		System.out.println("setProbability (invalid argument)");
-		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
-		try {
-			function.setProbability(-.5);
-		} catch (ValidationException e) {
-			assertTrue(true);
-			return;
-		}
-		fail("IllegalArgumentException, not raised.");
-	}
-
-	@Test
-	public void testSetProbability2() throws Exception {
-		System.out.println("setProbability (valid argument)");
-		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
-		function.setProbability(.1);
-		final Object result = function.getProbability();
-		assertEquals(0.1, result);
-	}
-
-	@Test
 	public void testDefaultCrossoverProbability() {
 		System.out.println("DefaultCrossoverFunction");
 		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
 		final Object result = function.getProbability();
 		assertEquals(0.75, result);
-	}
-
-	@SuppressWarnings("NullArgumentToVariableArgMethod")
-	@Test
-	public void testValidate1() {
-		System.out.println("validate (params is null)");
-		try {
-			final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
-			function.evaluate(null);
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-			return;
-		}
-		fail("'IllegalArgumentException' not raised");
-	}
-
-	@Test
-	public void testValidate2() {
-		System.out.println("validate (params length is less than two)");
-		try {
-			final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
-			function.evaluate(new DefaultGenome());
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -180,37 +152,65 @@ public class RecombinationFunctionTest {
 	}
 
 	@Test
+	public void testGetProbability() throws Exception {
+		System.out.println("getProbability");
+		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
+		function.setProbability(.5);
+		assertEquals(new Double(.5), new Double(function.getProbability()));
+	}
+
+	@Test
+	public void testSetProbability1() {
+		System.out.println("setProbability (invalid argument)");
+		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
+		try {
+			function.setProbability(-.5);
+		} catch (ValidationException e) {
+			assertTrue(true);
+			return;
+		}
+		fail("IllegalArgumentException, not raised.");
+	}
+
+	@Test
+	public void testSetProbability2() throws Exception {
+		System.out.println("setProbability (valid argument)");
+		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
+		function.setProbability(.1);
+		final Object result = function.getProbability();
+		assertEquals(0.1, result);
+	}
+
+	@Test
 	public void testSetRandomGenerator() throws Exception {
 		final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
 		function.setRandom(GenomeConstants.RANDOM_GENERATOR_1);
 		assertEquals(GenomeConstants.RANDOM_GENERATOR_1, function.getRandom());
 	}
 
-	private static class DefaultRecombinationFunction
-			extends AbstractRecombinationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
-
-		private DefaultRecombinationFunction() {
-			this.probability = 0.75;
-			this.random = new Random() {
-				@Override
-				public int nextInt(int n) {
-					return 0;
-				}
-
-				@Override
-				public double nextDouble() {
-					return 0.5;
-				}
-			};
+	@SuppressWarnings("NullArgumentToVariableArgMethod")
+	@Test
+	public void testValidate1() {
+		System.out.println("validate (params is null)");
+		try {
+			final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
+			function.evaluate(null);
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+			return;
 		}
+		fail("'IllegalArgumentException' not raised");
+	}
 
-		@Override
-		protected Genome<? extends Chromosome<? extends Gene<?>>>[] recombine(
-				Genome<? extends Chromosome<? extends Gene<?>>> parent1,
-				Genome<? extends Chromosome<? extends Gene<?>>> parent2) {
-			return null;
+	@Test
+	public void testValidate2() {
+		System.out.println("validate (params length is less than two)");
+		try {
+			final DefaultRecombinationFunction function = new DefaultRecombinationFunction();
+			function.evaluate(new DefaultGenome());
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
 		}
-
 	}
 
 }

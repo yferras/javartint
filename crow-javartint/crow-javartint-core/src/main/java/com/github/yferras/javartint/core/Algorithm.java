@@ -36,13 +36,6 @@ import com.github.yferras.javartint.core.constraint.Constraint;
 public interface Algorithm<S extends Solution> extends Runnable {
 
 	/**
-	 * Gets the final solution of algorithm.
-	 *
-	 * @return the final solution.
-	 */
-	public S getSolution();
-
-	/**
 	 * Adds a new constraint.
 	 *
 	 * @param constraint
@@ -63,6 +56,13 @@ public interface Algorithm<S extends Solution> extends Runnable {
 	 * @return the elapsed time in milliseconds.
 	 */
 	Long getElapsedTime();
+
+	/**
+	 * Gets the final solution of algorithm.
+	 *
+	 * @return the final solution.
+	 */
+	public S getSolution();
 
 	/**
 	 * Retrieves <code>true</code> if the current algorithm still running,

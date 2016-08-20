@@ -36,8 +36,8 @@ public class DisplacedInversionMutationFunctionTest {
 	public void testMutate() throws Exception {
 		DisplacedInversionMutationFunction<TspGenome> function = new DisplacedInversionMutationFunction<>(4);
 		function.setRandom(new Random() {
-			private int[] positions = { 3, 4 };
 			private int index;
+			private int[] positions = { 3, 4 };
 
 			@Override
 			public int nextInt(int n) {

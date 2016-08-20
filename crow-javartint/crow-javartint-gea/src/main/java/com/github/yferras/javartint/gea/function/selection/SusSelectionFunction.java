@@ -45,18 +45,9 @@ public class SusSelectionFunction<T extends Individual> extends AbstractSelectio
 	 * <p>
 	 * Constructor for SusSelectionFunction.
 	 * </p>
-	 *
-	 * @param numToSelect
-	 *            a int.
-	 * @param scalingMethod
-	 *            a
-	 *            {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod}
-	 *            object.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
-		super(numToSelect, scalingMethod);
+	public SusSelectionFunction() {
+		super();
 	}
 
 	/**
@@ -77,9 +68,18 @@ public class SusSelectionFunction<T extends Individual> extends AbstractSelectio
 	 * <p>
 	 * Constructor for SusSelectionFunction.
 	 * </p>
+	 *
+	 * @param numToSelect
+	 *            a int.
+	 * @param scalingMethod
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod}
+	 *            object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public SusSelectionFunction() {
-		super();
+	public SusSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+		super(numToSelect, scalingMethod);
 	}
 
 	/** {@inheritDoc} */

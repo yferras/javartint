@@ -57,6 +57,16 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 	 * Constructor, initializes this instances with the given cities
 	 *
 	 * @param cities
+	 *            array of cities
+	 */
+	public TspGenome(Integer... cities) {
+		this(new LinkedHashSet<>(Arrays.asList(cities)));
+	}
+
+	/**
+	 * Constructor, initializes this instances with the given cities
+	 *
+	 * @param cities
 	 *            set with the cities
 	 */
 	public TspGenome(Set<Integer> cities) {
@@ -68,14 +78,10 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 		}
 	}
 
-	/**
-	 * Constructor, initializes this instances with the given cities
-	 *
-	 * @param cities
-	 *            array of cities
-	 */
-	public TspGenome(Integer... cities) {
-		this(new LinkedHashSet<>(Arrays.asList(cities)));
+	/** {@inheritDoc} */
+	@Override
+	public TspGenome clone() throws CloneNotSupportedException {
+		return (TspGenome) super.clone();
 	}
 
 	/**
@@ -96,11 +102,5 @@ public class TspGenome extends DefaultGenome<DefaultChromosome<DefaultGene<Integ
 	 */
 	public void setChromosome(DefaultChromosome<DefaultGene<Integer>> newChromosome) {
 		super.setChromosome(0, newChromosome);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public TspGenome clone() throws CloneNotSupportedException {
-		return (TspGenome) super.clone();
 	}
 }

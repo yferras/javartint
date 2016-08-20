@@ -39,55 +39,12 @@ import com.github.yferras.javartint.gea.gene.Gene;
 public interface Chromosome<T extends Gene<?>> extends Cloneable, Iterable<T>, Solution, Serializable {
 
 	/**
-	 * Gets the array of genes.
-	 *
-	 * @return the array of genes.
-	 */
-	T[] getGenes();
-
-	/**
-	 * Sets the array of genes.
-	 *
-	 * @param genes
-	 *            the array of genes.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if {@code genes} param is null.
-	 */
-	void setGenes(T[] genes);
-
-	/**
-	 * Gets the gene at specific <code>locus</code>.
-	 *
-	 * @param locus
-	 *            particular position on the chromosome.
-	 * @return This method returns a gene
-	 */
-	T getGene(int locus);
-
-	/**
-	 * Sets the <code>newGene</code> at specific <code>locus</code>.
-	 *
-	 * @param locus
-	 *            particular position on the chromosome.
-	 * @param newGene
-	 *            new value of gene.
-	 */
-	void setGene(int locus, T newGene);
-
-	/**
 	 * Adds a new gene to the chromosome.
 	 *
 	 * @param gene
 	 *            gene to add
 	 */
 	void addGene(T gene);
-
-	/**
-	 * Gets the number of genes of the chromosome.
-	 *
-	 * @return The number of genes of the chromosome.
-	 */
-	int size();
 
 	/**
 	 * <p>
@@ -100,4 +57,47 @@ public interface Chromosome<T extends Gene<?>> extends Cloneable, Iterable<T>, S
 	 *             if any.
 	 */
 	Chromosome<T> clone() throws CloneNotSupportedException;
+
+	/**
+	 * Gets the gene at specific <code>locus</code>.
+	 *
+	 * @param locus
+	 *            particular position on the chromosome.
+	 * @return This method returns a gene
+	 */
+	T getGene(int locus);
+
+	/**
+	 * Gets the array of genes.
+	 *
+	 * @return the array of genes.
+	 */
+	T[] getGenes();
+
+	/**
+	 * Sets the <code>newGene</code> at specific <code>locus</code>.
+	 *
+	 * @param locus
+	 *            particular position on the chromosome.
+	 * @param newGene
+	 *            new value of gene.
+	 */
+	void setGene(int locus, T newGene);
+
+	/**
+	 * Sets the array of genes.
+	 *
+	 * @param genes
+	 *            the array of genes.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if {@code genes} param is null.
+	 */
+	void setGenes(T[] genes);
+
+	/**
+	 * Gets the number of genes of the chromosome.
+	 *
+	 * @return The number of genes of the chromosome.
+	 */
+	int size();
 }

@@ -57,23 +57,6 @@ public class RangeTest {
 
 	/**
 	 * <p>
-	 * testConstructor3.
-	 * </p>
-	 */
-	@Test
-	public void testConstructor3() {
-		System.out.println("constructor " + "(raise exception)");
-		try {
-			new Range<>(0.5, 0.0, Range.Use.BOTH);
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-			return;
-		}
-		fail("'IllegalArgumentException' not raised");
-	}
-
-	/**
-	 * <p>
 	 * testAccept.
 	 * </p>
 	 *
@@ -110,16 +93,36 @@ public class RangeTest {
 
 	/**
 	 * <p>
-	 * testGetMin.
+	 * testConstructor3.
+	 * </p>
+	 */
+	@Test
+	public void testConstructor3() {
+		System.out.println("constructor " + "(raise exception)");
+		try {
+			new Range<>(0.5, 0.0, Range.Use.BOTH);
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+			return;
+		}
+		fail("'IllegalArgumentException' not raised");
+	}
+
+	/**
+	 * <p>
+	 * testEquals.
 	 * </p>
 	 *
 	 * @throws java.lang.Exception
 	 *             if any.
 	 */
 	@Test
-	public void testGetMin() throws Exception {
-		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.BOTH);
-		assertEquals(-1.0, range.getMin(), 0.0);
+	public void testEquals() throws Exception {
+		Range<Double> range1 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
+		Range<Double> range2 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
+		Range<Double> range3 = new Range<Double>(-1.0, 1.0, Range.Use.NONE);
+		assertEquals(range1, range2);
+		assertNotEquals(range1, range3);
 	}
 
 	/**
@@ -138,6 +141,20 @@ public class RangeTest {
 
 	/**
 	 * <p>
+	 * testGetMin.
+	 * </p>
+	 *
+	 * @throws java.lang.Exception
+	 *             if any.
+	 */
+	@Test
+	public void testGetMin() throws Exception {
+		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.BOTH);
+		assertEquals(-1.0, range.getMin(), 0.0);
+	}
+
+	/**
+	 * <p>
 	 * testGetUse.
 	 * </p>
 	 *
@@ -148,22 +165,5 @@ public class RangeTest {
 	public void testGetUse() throws Exception {
 		Range<Double> range = new Range<>(-1.0, 1.0, Range.Use.NONE);
 		assertEquals(Range.Use.NONE, range.getUse());
-	}
-
-	/**
-	 * <p>
-	 * testEquals.
-	 * </p>
-	 *
-	 * @throws java.lang.Exception
-	 *             if any.
-	 */
-	@Test
-	public void testEquals() throws Exception {
-		Range<Double> range1 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
-		Range<Double> range2 = new Range<Double>(-1.0, 1.0, Range.Use.BOTH);
-		Range<Double> range3 = new Range<Double>(-1.0, 1.0, Range.Use.NONE);
-		assertEquals(range1, range2);
-		assertNotEquals(range1, range3);
 	}
 }

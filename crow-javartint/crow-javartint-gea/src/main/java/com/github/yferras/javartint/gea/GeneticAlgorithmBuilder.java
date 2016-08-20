@@ -47,23 +47,11 @@ public interface GeneticAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm
 
 	/** {@inheritDoc} */
 	@Override
-	GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size);
-
-	/** {@inheritDoc} */
-	@Override
-	GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
+	GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
 
 	/** {@inheritDoc} */
 	@Override
 	GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
-
-	/** {@inheritDoc} */
-	@Override
-	GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
-
-	/** {@inheritDoc} */
-	@Override
-	GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
 
 	/**
 	 * <p>
@@ -77,6 +65,14 @@ public interface GeneticAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm
 	 * @return this instance of builder.
 	 */
 	GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction);
+
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
+
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size);
 
 	/**
 	 * <p>
@@ -116,4 +112,8 @@ public interface GeneticAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm
 	 * @return this instance of builder.
 	 */
 	GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction);
+
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
 }

@@ -36,8 +36,8 @@ public class PositionBasedRecombinationFunctionTest {
 		PositionBasedRecombinationFunction<TspGenome> function = new PositionBasedRecombinationFunction<>();
 
 		function.setRandom(new Random() {
-			private int[] positions = { 4, 3, 7 };
 			private int index = 0;
+			private int[] positions = { 4, 3, 7 };
 
 			@Override
 			public int nextInt(int n) {

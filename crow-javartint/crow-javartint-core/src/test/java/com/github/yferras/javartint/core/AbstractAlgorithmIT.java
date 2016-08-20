@@ -55,12 +55,77 @@ import com.github.yferras.javartint.core.util.SolutionChangeListener;
  */
 public class AbstractAlgorithmIT {
 
-	/**
-	 * <p>
-	 * Constructor for AbstractAlgorithmIT.
-	 * </p>
-	 */
-	public AbstractAlgorithmIT() {
+	public static class AlgorithmImpl extends AbstractAlgorithm<SolutionImpl>
+			implements ErrorBasedAlgorithm<SolutionImpl>, IterativeAlgorithm<SolutionImpl> {
+
+		private double error;
+		private long iterations = 0L;
+
+		public AlgorithmImpl() {
+			setSolution(new SolutionImpl(0));
+		}
+
+		@Override
+		public Double getCurrentError() {
+			return error;
+		}
+
+		@Override
+		public Long getIterations() {
+			return iterations;
+		}
+
+		@Override
+		public void run() {
+			beginAlgorithm();
+			while (isRunning() && !testConstraint()) {
+				iterations++;
+				int newValue = new Random().nextInt(200);
+				if (newValue > getSolution().getData()) {
+					setSolution(new SolutionImpl(newValue));
+				}
+				error = Math.abs(100 - getSolution().getData());
+			}
+			stop();
+			fireAlgorithmFinishedEvent();
+		}
+
+	}
+
+	public static class ExecutionEndListenerImpl implements ExecutionEndListener {
+
+		@Override
+		public void algorithmFinished(AlgorithmEvent event) {
+			System.out.println("Algorithm Finished");
+		}
+
+	}
+
+	public static class SolutionChangeListenerImpl implements SolutionChangeListener {
+
+		@Override
+		public void solutionUpdated(AlgorithmEvent event) {
+			System.out.println("Solution Updated");
+		}
+
+	}
+
+	public static class SolutionImpl implements Solution {
+
+		private int data;
+
+		public SolutionImpl(int data) {
+			this.data = data;
+		}
+
+		public int getData() {
+			return data;
+		}
+
+		public void setData(int data) {
+			this.data = data;
+		}
+
 	}
 
 	/**
@@ -79,6 +144,14 @@ public class AbstractAlgorithmIT {
 	 */
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	/**
+	 * <p>
+	 * Constructor for AbstractAlgorithmIT.
+	 * </p>
+	 */
+	public AbstractAlgorithmIT() {
 	}
 
 	/**
@@ -127,29 +200,39 @@ public class AbstractAlgorithmIT {
 	}
 
 	/**
-	 * Test of removeExecutionEndListener method, of class AbstractAlgorithm.
+	 * Test of fireAlgorithmFinishedEvent method, of class AbstractAlgorithm.
 	 */
 	@SuppressWarnings("rawtypes")
 	@Test
-	public void testRemoveExecutionEndListener() {
-		System.out.println("removeExecutionEndListener");
-		ExecutionEndListener listener = new ExecutionEndListenerImpl();
+	public void testFireAlgorithmFinishedEvent() {
+		System.out.println("fireAlgorithmFinishedEvent");
 		AbstractAlgorithm instance = new AlgorithmImpl();
-		boolean result = instance.removeExecutionEndListener(listener);
-		assertEquals(false, result);
+		instance.addExecutionEndListener(new ExecutionEndListener() {
+
+			@Override
+			public void algorithmFinished(AlgorithmEvent event) {
+				assertEquals(true, true);
+			}
+		});
+		instance.fireAlgorithmFinishedEvent();
 	}
 
 	/**
-	 * Test of removeSolutionChangeListener method, of class AbstractAlgorithm.
+	 * Test of fireBestSolutionUpdatedEvent method, of class AbstractAlgorithm.
 	 */
-	@Test
 	@SuppressWarnings("rawtypes")
-	public void testRemoveSolutionChangeListener() {
-		System.out.println("removeSolutionChangeListener");
-		SolutionChangeListener listener = new SolutionChangeListenerImpl();
+	@Test
+	public void testFireBestSolutionUpdatedEvent_0args() {
+		System.out.println("fireBestSolutionUpdatedEvent");
 		AbstractAlgorithm instance = new AlgorithmImpl();
-		boolean result = instance.removeSolutionChangeListener(listener);
-		assertEquals(false, result);
+		instance.addSolutionChangeListener(new SolutionChangeListener() {
+
+			@Override
+			public void solutionUpdated(AlgorithmEvent event) {
+				assertEquals(true, true);
+			}
+		});
+		instance.fireBestSolutionUpdatedEvent();
 	}
 
 	/**
@@ -218,6 +301,32 @@ public class AbstractAlgorithmIT {
 	}
 
 	/**
+	 * Test of removeExecutionEndListener method, of class AbstractAlgorithm.
+	 */
+	@SuppressWarnings("rawtypes")
+	@Test
+	public void testRemoveExecutionEndListener() {
+		System.out.println("removeExecutionEndListener");
+		ExecutionEndListener listener = new ExecutionEndListenerImpl();
+		AbstractAlgorithm instance = new AlgorithmImpl();
+		boolean result = instance.removeExecutionEndListener(listener);
+		assertEquals(false, result);
+	}
+
+	/**
+	 * Test of removeSolutionChangeListener method, of class AbstractAlgorithm.
+	 */
+	@Test
+	@SuppressWarnings("rawtypes")
+	public void testRemoveSolutionChangeListener() {
+		System.out.println("removeSolutionChangeListener");
+		SolutionChangeListener listener = new SolutionChangeListenerImpl();
+		AbstractAlgorithm instance = new AlgorithmImpl();
+		boolean result = instance.removeSolutionChangeListener(listener);
+		assertEquals(false, result);
+	}
+
+	/**
 	 * Test of stop method, of class AbstractAlgorithm.
 	 */
 	@SuppressWarnings("rawtypes")
@@ -235,114 +344,5 @@ public class AbstractAlgorithmIT {
 		instance.stop();
 		boolean result = instance.isRunning();
 		assertEquals(false, result);
-	}
-
-	/**
-	 * Test of fireAlgorithmFinishedEvent method, of class AbstractAlgorithm.
-	 */
-	@SuppressWarnings("rawtypes")
-	@Test
-	public void testFireAlgorithmFinishedEvent() {
-		System.out.println("fireAlgorithmFinishedEvent");
-		AbstractAlgorithm instance = new AlgorithmImpl();
-		instance.addExecutionEndListener(new ExecutionEndListener() {
-
-			@Override
-			public void algorithmFinished(AlgorithmEvent event) {
-				assertEquals(true, true);
-			}
-		});
-		instance.fireAlgorithmFinishedEvent();
-	}
-
-	/**
-	 * Test of fireBestSolutionUpdatedEvent method, of class AbstractAlgorithm.
-	 */
-	@SuppressWarnings("rawtypes")
-	@Test
-	public void testFireBestSolutionUpdatedEvent_0args() {
-		System.out.println("fireBestSolutionUpdatedEvent");
-		AbstractAlgorithm instance = new AlgorithmImpl();
-		instance.addSolutionChangeListener(new SolutionChangeListener() {
-
-			@Override
-			public void solutionUpdated(AlgorithmEvent event) {
-				assertEquals(true, true);
-			}
-		});
-		instance.fireBestSolutionUpdatedEvent();
-	}
-
-	public static class AlgorithmImpl extends AbstractAlgorithm<SolutionImpl>
-			implements ErrorBasedAlgorithm<SolutionImpl>, IterativeAlgorithm<SolutionImpl> {
-
-		private double error;
-		private long iterations = 0L;
-
-		public AlgorithmImpl() {
-			setSolution(new SolutionImpl(0));
-		}
-
-		@Override
-		public void run() {
-			beginAlgorithm();
-			while (isRunning() && !testConstraint()) {
-				iterations++;
-				int newValue = new Random().nextInt(200);
-				if (newValue > getSolution().getData()) {
-					setSolution(new SolutionImpl(newValue));
-				}
-				error = Math.abs(100 - getSolution().getData());
-			}
-			stop();
-			fireAlgorithmFinishedEvent();
-		}
-
-		@Override
-		public Double getCurrentError() {
-			return error;
-		}
-
-		@Override
-		public Long getIterations() {
-			return iterations;
-		}
-
-	}
-
-	public static class SolutionImpl implements Solution {
-
-		private int data;
-
-		public SolutionImpl(int data) {
-			this.data = data;
-		}
-
-		public int getData() {
-			return data;
-		}
-
-		public void setData(int data) {
-			this.data = data;
-		}
-
-	}
-
-	public static class ExecutionEndListenerImpl implements ExecutionEndListener {
-
-		@Override
-		public void algorithmFinished(AlgorithmEvent event) {
-			System.out.println("Algorithm Finished");
-		}
-
-	}
-
-	public static class SolutionChangeListenerImpl implements SolutionChangeListener {
-
-		@Override
-		public void solutionUpdated(AlgorithmEvent event) {
-			System.out.println("Solution Updated");
-		}
-
 	}
 }

@@ -38,8 +38,8 @@ public class OrderBasedRecombinationFunctionTest {
 
 				new Random() {
 
-					private int[] positions = { 1, 0, 2, 4 };
 					private int index = 0;
+					private int[] positions = { 1, 0, 2, 4 };
 
 					@Override
 					public int nextInt(int n) {

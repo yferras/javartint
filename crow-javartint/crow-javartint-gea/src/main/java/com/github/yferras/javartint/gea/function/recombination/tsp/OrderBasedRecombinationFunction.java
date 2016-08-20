@@ -44,17 +44,12 @@ import com.github.yferras.javartint.gea.genome.TspGenome;
 public class OrderBasedRecombinationFunction<T extends TspGenome> extends AbstractRecombinationFunction<T> {
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability
-	 *            probability of recombination
-	 * @param random
-	 *            random instance
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
+	 * Default constructor, initializes instances with probability of
+	 * recombination equals to {@code .75} and random generator is an instance
+	 * of {@link java.util.Random}.
 	 */
-	public OrderBasedRecombinationFunction(double probability, Random random) {
-		super(probability, random);
+	public OrderBasedRecombinationFunction() {
+		super();
 	}
 
 	/**
@@ -72,12 +67,17 @@ public class OrderBasedRecombinationFunction<T extends TspGenome> extends Abstra
 	}
 
 	/**
-	 * Default constructor, initializes instances with probability of
-	 * recombination equals to {@code .75} and random generator is an instance
-	 * of {@link java.util.Random}.
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of recombination
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public OrderBasedRecombinationFunction() {
-		super();
+	public OrderBasedRecombinationFunction(double probability, Random random) {
+		super(probability, random);
 	}
 
 	/** {@inheritDoc} */

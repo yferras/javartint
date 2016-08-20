@@ -46,18 +46,13 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
 	public static final double DEFAULT_PROBABILITY = .05;
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param random
-	 *            random instance
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             see
-	 *             {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
+	 * Default constructor, initializes instances with probability of mutation
+	 * equals to {@code .05} and random generator is an instance of
+	 * {@link java.util.Random}.
 	 */
-	protected AbstractMutationFunction(double probability, Random random) {
-		super(probability, random);
+	protected AbstractMutationFunction() {
+		super();
+		this.probability = DEFAULT_PROBABILITY;
 	}
 
 	/**
@@ -76,13 +71,39 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
 	}
 
 	/**
-	 * Default constructor, initializes instances with probability of mutation
-	 * equals to {@code .05} and random generator is an instance of
-	 * {@link java.util.Random}.
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see
+	 *             {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
 	 */
-	protected AbstractMutationFunction() {
-		super();
-		this.probability = DEFAULT_PROBABILITY;
+	protected AbstractMutationFunction(double probability, Random random) {
+		super(probability, random);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * If validation process is ok and generated random probability is in
+	 * bounds, performs the mutation process with a copy of genome and returns a
+	 * mutated genome.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T evaluate(T params) {
+		validate(params);
+		if (getRandom().nextDouble() > getProbability()) {
+			return params;
+		}
+		try {
+			return mutate((T) params.clone());
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException("Cloning params.", e);
+		}
 	}
 
 	/**
@@ -106,27 +127,6 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
 	protected void validate(T param) {
 		if (param == null) {
 			throw new ValidationException("'params' can't be null.");
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * If validation process is ok and generated random probability is in
-	 * bounds, performs the mutation process with a copy of genome and returns a
-	 * mutated genome.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public T evaluate(T params) {
-		validate(params);
-		if (getRandom().nextDouble() > getProbability()) {
-			return params;
-		}
-		try {
-			return mutate((T) params.clone());
-		} catch (CloneNotSupportedException e) {
-			throw new RuntimeException("Cloning params.", e);
 		}
 	}
 }

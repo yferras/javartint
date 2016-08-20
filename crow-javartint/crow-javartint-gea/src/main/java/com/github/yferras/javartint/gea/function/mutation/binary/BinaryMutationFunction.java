@@ -44,16 +44,9 @@ public class BinaryMutationFunction<T extends BinaryGenome> extends AbstractMuta
 	 * <p>
 	 * Constructor for BinaryMutationFunction.
 	 * </p>
-	 *
-	 * @param probability
-	 *            a double.
-	 * @param random
-	 *            a {@link java.util.Random} object.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public BinaryMutationFunction(double probability, Random random) {
-		super(probability, random);
+	public BinaryMutationFunction() {
+		super();
 	}
 
 	/**
@@ -74,9 +67,16 @@ public class BinaryMutationFunction<T extends BinaryGenome> extends AbstractMuta
 	 * <p>
 	 * Constructor for BinaryMutationFunction.
 	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @param random
+	 *            a {@link java.util.Random} object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public BinaryMutationFunction() {
-		super();
+	public BinaryMutationFunction(double probability, Random random) {
+		super(probability, random);
 	}
 
 	/** {@inheritDoc} */

@@ -64,69 +64,9 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> ex
 	}
 
 	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public T[] getChromosomes() {
-		return (T[]) chromosomes.toArray(new Chromosome<?>[size()]);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setChromosomes(T[] chromosomes) {
-		if (chromosomes == null) {
-			throw new ValidationException("'chromosomes' array can't be null.");
-		}
-		this.chromosomes.clear();
-		this.chromosomes.addAll(Arrays.asList(chromosomes));
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public T getChromosome(int index) {
-		return this.chromosomes.get(index);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setChromosome(int index, T newChromosome) {
-		this.chromosomes.set(index, newChromosome);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public int size() {
-		return chromosomes.size();
-	}
-
-	/** {@inheritDoc} */
 	@Override
 	public void addChromosome(T chromosome) {
 		chromosomes.add(chromosome);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public GenomeType getGenomeType() {
-		if (size() == 0) {
-			return null;
-		}
-		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Iterator<T> iterator() {
-		return new AbstractItemIterator<T>() {
-			@Override
-			public T getItem(int index) {
-				return getChromosome(index);
-			}
-
-			@Override
-			public int itemsCount() {
-				return size();
-			}
-		};
 	}
 
 	/** {@inheritDoc} */
@@ -158,6 +98,28 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> ex
 
 	/** {@inheritDoc} */
 	@Override
+	public T getChromosome(int index) {
+		return this.chromosomes.get(index);
+	}
+
+	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T[] getChromosomes() {
+		return (T[]) chromosomes.toArray(new Chromosome<?>[size()]);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public GenomeType getGenomeType() {
+		if (size() == 0) {
+			return null;
+		}
+		return size() % 2 == 0 ? GenomeType.DIPLOID : GenomeType.HAPLOID;
+	}
+
+	/** {@inheritDoc} */
+	@Override
 	public int hashCode() {
 		int result;
 		long temp;
@@ -165,6 +127,44 @@ public abstract class AbstractGenome<T extends Chromosome<? extends Gene<?>>> ex
 		temp = Double.doubleToLongBits(getFitness());
 		result = HASH_CODE_CONST_31 * result + (int) (temp ^ (temp >>> HASH_CODE_CONST_32));
 		return result;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Iterator<T> iterator() {
+		return new AbstractItemIterator<T>() {
+			@Override
+			public T getItem(int index) {
+				return getChromosome(index);
+			}
+
+			@Override
+			public int itemsCount() {
+				return size();
+			}
+		};
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setChromosome(int index, T newChromosome) {
+		this.chromosomes.set(index, newChromosome);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setChromosomes(T[] chromosomes) {
+		if (chromosomes == null) {
+			throw new ValidationException("'chromosomes' array can't be null.");
+		}
+		this.chromosomes.clear();
+		this.chromosomes.addAll(Arrays.asList(chromosomes));
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int size() {
+		return chromosomes.size();
 	}
 
 	/** {@inheritDoc} */

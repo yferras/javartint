@@ -33,6 +33,17 @@ import com.github.yferras.javartint.core.Solution;
 public interface Individual extends Solution, Comparable<Individual>, Cloneable {
 
 	/**
+	 * <p>
+	 * clone.
+	 * </p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.Individual} object.
+	 * @throws java.lang.CloneNotSupportedException
+	 *             if any.
+	 */
+	Individual clone() throws CloneNotSupportedException;
+
+	/**
 	 * Gets the value of fitness.
 	 *
 	 * @return The value of fitness.
@@ -46,15 +57,4 @@ public interface Individual extends Solution, Comparable<Individual>, Cloneable 
 	 *            New value of fitness.
 	 */
 	void setFitness(Double fitness);
-
-	/**
-	 * <p>
-	 * clone.
-	 * </p>
-	 *
-	 * @return a {@link com.github.yferras.javartint.gea.Individual} object.
-	 * @throws java.lang.CloneNotSupportedException
-	 *             if any.
-	 */
-	Individual clone() throws CloneNotSupportedException;
 }

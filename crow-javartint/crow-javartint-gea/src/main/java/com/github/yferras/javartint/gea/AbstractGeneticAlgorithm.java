@@ -57,9 +57,73 @@ import com.github.yferras.javartint.gea.util.GeaConfigConstants;
 public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 		extends AbstractEvolutionaryAlgorithm<T, D> {
 
-	private final RecombinationFunction<T> recombinationFunction;
+	protected abstract static class Builder<A extends AbstractGeneticAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
+			extends AbstractEvolutionaryAlgorithm.Builder<A, T, D> implements GeneticAlgorithmBuilder<A, T, D> {
+
+		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
+				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
+				GeaConfigConstants.TARGET_FUNCTION, GeaConfigConstants.MUTATION_FUNCTION,
+				GeaConfigConstants.SELECTION_FUNCTION, GeaConfigConstants.RECOMBINATION_FUNCTION };
+
+		protected Builder() {
+			super(REQUIRED_PROPERTY_KEYS);
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder) {
+			return (GeneticAlgorithmBuilder<A, T, D>) super.setDecoder(decoder);
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction) {
+			return (GeneticAlgorithmBuilder<A, T, D>) super.setGeneratorFunction(generatorFunction);
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction) {
+			getProperties().put(GeaConfigConstants.MUTATION_FUNCTION, mutationFunction);
+			return this;
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize) {
+			return (GeneticAlgorithmBuilder<A, T, D>) super.setOptimize(optimize);
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size) {
+			return (GeneticAlgorithmBuilder<A, T, D>) super.setPopulationSize(size);
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setRecombinationFunction(
+				RecombinationFunction<T> recombinationFunction) {
+			getProperties().put(GeaConfigConstants.RECOMBINATION_FUNCTION, recombinationFunction);
+			return this;
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setSelectionFunction(SelectionFunction<T> selectionFunction) {
+			getProperties().put(GeaConfigConstants.SELECTION_FUNCTION, selectionFunction);
+			return this;
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction) {
+			getProperties().put(GeaConfigConstants.SELECTION_FUNCTION_FOR_PARENTS, selectionFunction);
+			return this;
+		}
+
+		@Override
+		public GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction) {
+			return (GeneticAlgorithmBuilder<A, T, D>) super.setTargetFunction(targetFunction);
+		}
+
+	}
 
 	private final MutationFunction<T> mutationFunction;
+
+	private final RecombinationFunction<T> recombinationFunction;
 
 	private final SelectionFunction<T> selectionFunction;
 
@@ -83,44 +147,6 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 				.get(GeaConfigConstants.SELECTION_FUNCTION_FOR_PARENTS);
 		if (selectionFunctionToParents == null) {
 			selectionFunctionToParents = new RandomSelectionFunction<>();
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * This method sets {@code true} to {@code running} attribute, and calls
-	 * {@link #evolve()} method. Implemented from Runnable interface.
-	 */
-	@Override
-	public void run() {
-		try {
-			beginAlgorithm();
-			evolve();
-			fireAlgorithmFinishedEvent();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * <p>
-	 * This method is the responsible for create and evolve of the population.
-	 * </p>
-	 */
-	@Override
-	public void evolve() throws Exception {
-		createStartPopulation();
-		while (isRunning()) {
-			updateFitnessScores();
-			if (testConstraint()) {
-				stop();
-				break;
-			}
-			epoch();
-			increaseGenerations();
 		}
 	}
 
@@ -178,12 +204,24 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	}
 
 	/**
-	 * Gets the instance of recombination function.
-	 *
-	 * @return the recombination function.
+	 * {@inheritDoc}
+	 * <p/>
+	 * <p>
+	 * This method is the responsible for create and evolve of the population.
+	 * </p>
 	 */
-	public RecombinationFunction<T> getRecombinationFunction() {
-		return recombinationFunction;
+	@Override
+	public void evolve() throws Exception {
+		createStartPopulation();
+		while (isRunning()) {
+			updateFitnessScores();
+			if (testConstraint()) {
+				stop();
+				break;
+			}
+			epoch();
+			increaseGenerations();
+		}
 	}
 
 	/**
@@ -193,6 +231,15 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	 */
 	public MutationFunction<T> getMutationFunction() {
 		return mutationFunction;
+	}
+
+	/**
+	 * Gets the instance of recombination function.
+	 *
+	 * @return the recombination function.
+	 */
+	public RecombinationFunction<T> getRecombinationFunction() {
+		return recombinationFunction;
 	}
 
 	/**
@@ -217,6 +264,23 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * This method sets {@code true} to {@code running} attribute, and calls
+	 * {@link #evolve()} method. Implemented from Runnable interface.
+	 */
+	@Override
+	public void run() {
+		try {
+			beginAlgorithm();
+			evolve();
+			fireAlgorithmFinishedEvent();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
 	 * Sets the selection function used to select the parents in the crossing
 	 * process.
 	 *
@@ -225,69 +289,5 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	 */
 	public void setSelectionFunctionToParents(SelectionFunction<T> selectionFunctionToParents) {
 		this.selectionFunctionToParents = selectionFunctionToParents;
-	}
-
-	protected abstract static class Builder<A extends AbstractGeneticAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-			extends AbstractEvolutionaryAlgorithm.Builder<A, T, D> implements GeneticAlgorithmBuilder<A, T, D> {
-
-		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
-				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
-				GeaConfigConstants.TARGET_FUNCTION, GeaConfigConstants.MUTATION_FUNCTION,
-				GeaConfigConstants.SELECTION_FUNCTION, GeaConfigConstants.RECOMBINATION_FUNCTION };
-
-		protected Builder() {
-			super(REQUIRED_PROPERTY_KEYS);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder) {
-			return (GeneticAlgorithmBuilder<A, T, D>) super.setDecoder(decoder);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction) {
-			return (GeneticAlgorithmBuilder<A, T, D>) super.setGeneratorFunction(generatorFunction);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize) {
-			return (GeneticAlgorithmBuilder<A, T, D>) super.setOptimize(optimize);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size) {
-			return (GeneticAlgorithmBuilder<A, T, D>) super.setPopulationSize(size);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction) {
-			return (GeneticAlgorithmBuilder<A, T, D>) super.setTargetFunction(targetFunction);
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction) {
-			getProperties().put(GeaConfigConstants.MUTATION_FUNCTION, mutationFunction);
-			return this;
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setRecombinationFunction(
-				RecombinationFunction<T> recombinationFunction) {
-			getProperties().put(GeaConfigConstants.RECOMBINATION_FUNCTION, recombinationFunction);
-			return this;
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setSelectionFunction(SelectionFunction<T> selectionFunction) {
-			getProperties().put(GeaConfigConstants.SELECTION_FUNCTION, selectionFunction);
-			return this;
-		}
-
-		@Override
-		public GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction) {
-			getProperties().put(GeaConfigConstants.SELECTION_FUNCTION_FOR_PARENTS, selectionFunction);
-			return this;
-		}
-
 	}
 }

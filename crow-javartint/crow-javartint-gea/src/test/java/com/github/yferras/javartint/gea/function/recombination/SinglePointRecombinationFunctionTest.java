@@ -44,15 +44,15 @@ import com.github.yferras.javartint.gea.genome.Genome;
  */
 public class SinglePointRecombinationFunctionTest {
 
-	public SinglePointRecombinationFunctionTest() {
-	}
-
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public SinglePointRecombinationFunctionTest() {
 	}
 
 	@Before
@@ -62,20 +62,6 @@ public class SinglePointRecombinationFunctionTest {
 
 	@After
 	public void tearDown() {
-	}
-
-	@Test
-	public void testSinglePointCrossoverFunction1() throws Exception {
-		System.out.println("SinglePointCrossoverFunction(probability)");
-		final Double probability = new SinglePointRecombinationFunction<>(1.0).getProbability();
-		assertEquals(new Double(1.0), probability);
-	}
-
-	@Test
-	public void testSinglePointCrossoverFunction2() {
-		System.out.println("SinglePointCrossoverFunction()");
-		final Double probability = new SinglePointRecombinationFunction<>().getProbability();
-		assertEquals(new Double(.75), probability);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -101,6 +87,20 @@ public class SinglePointRecombinationFunctionTest {
 		}
 		assertArrayEquals(result[0].getChromosome(0).getGenes(), expResult[0].getChromosome(0).getGenes());
 		assertArrayEquals(result[1].getChromosome(0).getGenes(), expResult[1].getChromosome(0).getGenes());
+	}
+
+	@Test
+	public void testSinglePointCrossoverFunction1() throws Exception {
+		System.out.println("SinglePointCrossoverFunction(probability)");
+		final Double probability = new SinglePointRecombinationFunction<>(1.0).getProbability();
+		assertEquals(new Double(1.0), probability);
+	}
+
+	@Test
+	public void testSinglePointCrossoverFunction2() {
+		System.out.println("SinglePointCrossoverFunction()");
+		final Double probability = new SinglePointRecombinationFunction<>().getProbability();
+		assertEquals(new Double(.75), probability);
 	}
 
 }

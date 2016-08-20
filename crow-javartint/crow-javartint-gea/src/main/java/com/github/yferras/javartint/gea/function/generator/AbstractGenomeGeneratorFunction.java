@@ -43,8 +43,21 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 
 	/** Constant <code>DEFAULT_GENOME_SIZE=1</code> */
 	public static final int DEFAULT_GENOME_SIZE = 1;
-	private final int[] lengthsOfGenes;
 	private final int genomeSize;
+	private final int[] lengthsOfGenes;
+
+	/**
+	 * Initializes the number of genes and the length of each gene. By default
+	 * {@code genomeSize} is 1.
+	 *
+	 * @param numberOfGenes
+	 *            the number of genes.
+	 * @param lengthOfGene
+	 *            the length of each gene.
+	 */
+	public AbstractGenomeGeneratorFunction(int numberOfGenes, int lengthOfGene) {
+		this(DEFAULT_GENOME_SIZE, numberOfGenes, lengthOfGene);
+	}
 
 	/**
 	 * Initializes the number of genes and the length of each gene.
@@ -62,19 +75,6 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 		for (int i = 0; i < lengthsOfGenes.length; i++) {
 			lengthsOfGenes[i] = lengthOfGene;
 		}
-	}
-
-	/**
-	 * Initializes the number of genes and the length of each gene. By default
-	 * {@code genomeSize} is 1.
-	 *
-	 * @param numberOfGenes
-	 *            the number of genes.
-	 * @param lengthOfGene
-	 *            the length of each gene.
-	 */
-	public AbstractGenomeGeneratorFunction(int numberOfGenes, int lengthOfGene) {
-		this(DEFAULT_GENOME_SIZE, numberOfGenes, lengthOfGene);
 	}
 
 	/**
@@ -105,18 +105,11 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 		this(DEFAULT_GENOME_SIZE, lengthsOfGenes);
 	}
 
-	/**
-	 * Validates the input params.
-	 *
-	 * @param params
-	 *            params to validate.
-	 * @throws ValidationException
-	 *             if argument is {@code null}
-	 */
-	protected void validate(int[] params) {
-		if (params == null) {
-			throw new ValidationException();
-		}
+	/** {@inheritDoc} */
+	@SafeVarargs
+	@Override
+	public final T evaluate(Void... params) {
+		return generate(genomeSize, lengthsOfGenes);
 	}
 
 	/**
@@ -131,11 +124,18 @@ public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends
 	 */
 	protected abstract T generate(final int genomeSize, final int[] lengthsOfGenes);
 
-	/** {@inheritDoc} */
-	@SafeVarargs
-	@Override
-	public final T evaluate(Void... params) {
-		return generate(genomeSize, lengthsOfGenes);
+	/**
+	 * Validates the input params.
+	 *
+	 * @param params
+	 *            params to validate.
+	 * @throws ValidationException
+	 *             if argument is {@code null}
+	 */
+	protected void validate(int[] params) {
+		if (params == null) {
+			throw new ValidationException();
+		}
 	}
 
 }

@@ -44,20 +44,6 @@ public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Chro
 		implements DecoderFunction<D, T> {
 
 	/**
-	 * Validates the input params.
-	 *
-	 * @param genome
-	 *            genome to validate.
-	 * @throws ValidationException
-	 *             if argument is {@code null}
-	 */
-	protected void validate(T genome) {
-		if (genome == null) {
-			throw new ValidationException();
-		}
-	}
-
-	/**
 	 * This method must be implemented to decode the genome.
 	 *
 	 * @param genome
@@ -75,5 +61,19 @@ public abstract class AbstractDecoderFunction<D, T extends Genome<? extends Chro
 	public D evaluate(T genome) {
 		validate(genome);
 		return decode(genome);
+	}
+
+	/**
+	 * Validates the input params.
+	 *
+	 * @param genome
+	 *            genome to validate.
+	 * @throws ValidationException
+	 *             if argument is {@code null}
+	 */
+	protected void validate(T genome) {
+		if (genome == null) {
+			throw new ValidationException();
+		}
 	}
 }

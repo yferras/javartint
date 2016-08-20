@@ -53,15 +53,15 @@ public class DefaultGenomeTest {
 	private static final Gene<Integer> GENE4 = new DefaultGene<>(4);
 	private static final Gene<?>[] GENES = new Gene[] { GENE1, GENE2, GENE3, GENE4 };
 
-	public DefaultGenomeTest() {
-	}
-
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public DefaultGenomeTest() {
 	}
 
 	@Before
@@ -71,6 +71,22 @@ public class DefaultGenomeTest {
 
 	@After
 	public void tearDown() {
+	}
+
+	/**
+	 * Test of clone method, of class DefaultGenome.
+	 *
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testClone() throws Exception {
+		System.out.println("clone");
+		DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
+		instance.addChromosome(new DefaultChromosome<>());
+		instance.getChromosome(0).setGenes(GENES);
+		DefaultGenome<Chromosome<Gene<?>>> result = (DefaultGenome<Chromosome<Gene<?>>>) instance.clone();
+		assertTrue(instance.equals(result));
+		assertFalse(instance.chromosomes == result.chromosomes);
 	}
 
 	/**
@@ -216,22 +232,6 @@ public class DefaultGenomeTest {
 		instance.getChromosome(0).setGenes(GENES);
 		instance.getChromosome(0).setGene(index, newGene);
 		assertEquals(newGene, instance.getChromosome(0).getGene(index));
-	}
-
-	/**
-	 * Test of clone method, of class DefaultGenome.
-	 *
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testClone() throws Exception {
-		System.out.println("clone");
-		DefaultGenome<Chromosome<Gene<?>>> instance = new DefaultGenome<>();
-		instance.addChromosome(new DefaultChromosome<>());
-		instance.getChromosome(0).setGenes(GENES);
-		DefaultGenome<Chromosome<Gene<?>>> result = (DefaultGenome<Chromosome<Gene<?>>>) instance.clone();
-		assertTrue(instance.equals(result));
-		assertFalse(instance.chromosomes == result.chromosomes);
 	}
 
 }

@@ -33,35 +33,31 @@ package com.github.yferras.javartint.gea.util;
  */
 public final class GeaConfigConstants {
 	/**
-	 * Constant <code>POPULATION_SIZE="javartint.gea.populationSize"</code>
-	 */
-	public static final String POPULATION_SIZE = "javartint.gea.populationSize";
-	/**
 	 * Constant <code>DECODER_FUNCTION="javartint.gea.decoderFunction"</code>
 	 */
 	public static final String DECODER_FUNCTION = "javartint.gea.decoderFunction";
-	/**
-	 * Constant <code>TARGET_FUNCTION="javartint.gea.targetFunction"</code>
-	 */
-	public static final String TARGET_FUNCTION = "javartint.gea.targetFunction";
 	/**
 	 * Constant
 	 * <code>GENERATOR_FUNCTION="javartint.gea.generatorFunction"</code>
 	 */
 	public static final String GENERATOR_FUNCTION = "javartint.gea.generatorFunction";
 	/**
+	 * Constant <code>MUTATION_FUNCTION="javartint.gea.mutationFunction"</code>
+	 */
+	public static final String MUTATION_FUNCTION = "javartint.gea.mutationFunction";
+	/**
 	 * Constant <code>OPTIMIZE="javartint.gea.optimize"</code>
 	 */
 	public static final String OPTIMIZE = "javartint.gea.optimize";
+	/**
+	 * Constant <code>POPULATION_SIZE="javartint.gea.populationSize"</code>
+	 */
+	public static final String POPULATION_SIZE = "javartint.gea.populationSize";
 	/**
 	 * Constant
 	 * <code>RECOMBINATION_FUNCTION="javartint.gea.recombinationFunction"</code>
 	 */
 	public static final String RECOMBINATION_FUNCTION = "javartint.gea.recombinationFunction";
-	/**
-	 * Constant <code>MUTATION_FUNCTION="javartint.gea.mutationFunction"</code>
-	 */
-	public static final String MUTATION_FUNCTION = "javartint.gea.mutationFunction";
 	/**
 	 * Constant
 	 * <code>SELECTION_FUNCTION="javartint.gea.selectionFunction"</code>
@@ -72,6 +68,10 @@ public final class GeaConfigConstants {
 	 * <code>SELECTION_FUNCTION_FOR_PARENTS="javartint.gea.selectionFunctionForParen"{trunked}</code>
 	 */
 	public static final String SELECTION_FUNCTION_FOR_PARENTS = "javartint.gea.selectionFunctionForParents";
+	/**
+	 * Constant <code>TARGET_FUNCTION="javartint.gea.targetFunction"</code>
+	 */
+	public static final String TARGET_FUNCTION = "javartint.gea.targetFunction";
 
 	private GeaConfigConstants() {
 	}

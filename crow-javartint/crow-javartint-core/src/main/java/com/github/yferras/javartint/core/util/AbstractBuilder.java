@@ -60,6 +60,27 @@ public abstract class AbstractBuilder<T> implements Builder<T> {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * Performs the validation process and then builds the object.
+	 * </p>
+	 */
+	@Override
+	public T build() {
+		validate();
+		return buildObject();
+	}
+
+	/**
+	 * <p>
+	 * This method must be implemented by subclasses to create the object.
+	 * </p>
+	 *
+	 * @return a T object.
+	 */
+	protected abstract T buildObject();
+
+	/**
 	 * <p>
 	 * Gets the properties. The properties are used to store the configuration
 	 * required to build the object.
@@ -102,26 +123,5 @@ public abstract class AbstractBuilder<T> implements Builder<T> {
 			builder.append(auxSet.size() == 1 ? " is " : " are ").append("required.");
 			throw new ValidationException(builder.toString());
 		}
-	}
-
-	/**
-	 * <p>
-	 * This method must be implemented by subclasses to create the object.
-	 * </p>
-	 *
-	 * @return a T object.
-	 */
-	protected abstract T buildObject();
-
-	/**
-	 * {@inheritDoc}
-	 * <p>
-	 * Performs the validation process and then builds the object.
-	 * </p>
-	 */
-	@Override
-	public T build() {
-		validate();
-		return buildObject();
 	}
 }

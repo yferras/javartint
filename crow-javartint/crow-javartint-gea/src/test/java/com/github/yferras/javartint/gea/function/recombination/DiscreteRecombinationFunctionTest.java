@@ -69,8 +69,8 @@ public class DiscreteRecombinationFunctionTest {
 		parent2.getChromosome(0).setGenes(genes2);
 
 		crossoverFunction.setRandom(new Random() {
-			private final int[] values = { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 };
 			private int index = 0;
+			private final int[] values = { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0 };
 
 			@Override
 			public int nextInt(int n) {

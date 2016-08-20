@@ -47,21 +47,14 @@ public abstract class AbstractProbabilisticFunction<R, P> implements Probabilist
 	protected Random random;
 
 	/**
-	 * Constructor, initializes instances with the given parameters. Internally
-	 * calls {@link #setProbability(double)} and
-	 * {@link #setRandom(java.util.Random)}
+	 * Constructor, initializes instances with default probability (.5) and
+	 * random is an instance of {@link java.util.Random}.
 	 *
-	 * @param probability
-	 *            value of probability
-	 * @param random
-	 *            random instance
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             see {@link #setProbability(double)} and see
-	 *             {@link #setRandom(java.util.Random)}
+	 * @since 1.0.1
 	 */
-	protected AbstractProbabilisticFunction(double probability, Random random) {
-		setProbability(probability);
-		setRandom(random);
+	protected AbstractProbabilisticFunction() {
+		this.probability = DEFAULT_PROBABILITY;
+		this.random = new Random();
 	}
 
 	/**
@@ -79,14 +72,21 @@ public abstract class AbstractProbabilisticFunction<R, P> implements Probabilist
 	}
 
 	/**
-	 * Constructor, initializes instances with default probability (.5) and
-	 * random is an instance of {@link java.util.Random}.
+	 * Constructor, initializes instances with the given parameters. Internally
+	 * calls {@link #setProbability(double)} and
+	 * {@link #setRandom(java.util.Random)}
 	 *
-	 * @since 1.0.1
+	 * @param probability
+	 *            value of probability
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see {@link #setProbability(double)} and see
+	 *             {@link #setRandom(java.util.Random)}
 	 */
-	protected AbstractProbabilisticFunction() {
-		this.probability = DEFAULT_PROBABILITY;
-		this.random = new Random();
+	protected AbstractProbabilisticFunction(double probability, Random random) {
+		setProbability(probability);
+		setRandom(random);
 	}
 
 	/** {@inheritDoc} */
@@ -97,17 +97,17 @@ public abstract class AbstractProbabilisticFunction<R, P> implements Probabilist
 
 	/** {@inheritDoc} */
 	@Override
+	public Random getRandom() {
+		return random;
+	}
+
+	/** {@inheritDoc} */
+	@Override
 	public final void setProbability(final double probability) {
 		if (probability < 0 || probability > 1.0) {
 			throw new ValidationException("'probability' must between 0.0 and 1.0");
 		}
 		this.probability = probability;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Random getRandom() {
-		return random;
 	}
 
 	/** {@inheritDoc} */

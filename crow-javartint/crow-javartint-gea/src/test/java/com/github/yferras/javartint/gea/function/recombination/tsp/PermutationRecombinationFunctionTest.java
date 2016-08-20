@@ -36,8 +36,8 @@ public class PermutationRecombinationFunctionTest {
 	public void testRecombine() throws Exception {
 		PermutationRecombinationFunction<TspGenome> function = new PermutationRecombinationFunction<>();
 		function.setRandom(new Random() {
-			private int[] positions = { 4, 3, 7 };
 			private int index = 0;
+			private int[] positions = { 4, 3, 7 };
 
 			@Override
 			public int nextInt(int n) {

@@ -39,8 +39,8 @@ import com.github.yferras.javartint.core.util.AbstractItemIterator;
  */
 public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterable<T> {
 
-	private static final long serialVersionUID = -450975978130625335L;
 	private static final int HASH_CODE_CONST = 7 * 23;
+	private static final long serialVersionUID = -450975978130625335L;
 
 	/**
 	 * <p>
@@ -78,15 +78,6 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterab
 		return this.getData()[index];
 	}
 
-	/**
-	 * Returns the total elements in this gene.
-	 *
-	 * @return the length of this gene
-	 */
-	public int length() {
-		return getData().length;
-	}
-
 	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
@@ -107,6 +98,15 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterab
 				return length();
 			}
 		};
+	}
+
+	/**
+	 * Returns the total elements in this gene.
+	 *
+	 * @return the length of this gene
+	 */
+	public int length() {
+		return getData().length;
 	}
 
 	/**

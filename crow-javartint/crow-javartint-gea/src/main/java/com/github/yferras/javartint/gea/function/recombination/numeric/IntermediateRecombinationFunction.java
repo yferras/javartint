@@ -68,19 +68,24 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
 	private double distance;
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
+	 * Default constructor. By default it uses as random generator an instance
+	 * of {@link java.util.Random}, <code>probability = 0.75</code> and
+	 * <code>distance = 0.25</code>.
+	 */
+	public IntermediateRecombinationFunction() {
+		this(DEFAULT_DISTANCE);
+	}
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}, and
+	 * <code>probability = 0.75</code>.
 	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param random
-	 *            random instance
 	 * @param distance
 	 *            defines the size of the area for possible offspring.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public IntermediateRecombinationFunction(double probability, Random random, double distance) {
-		super(probability, random);
+	public IntermediateRecombinationFunction(double distance) {
+		super();
 		this.distance = distance;
 	}
 
@@ -100,25 +105,20 @@ public class IntermediateRecombinationFunction<T extends Genome<? extends Chromo
 	}
 
 	/**
-	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}, and
-	 * <code>probability = 0.75</code>.
+	 * Constructor, initializes instances with the given parameters.
 	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
 	 * @param distance
 	 *            defines the size of the area for possible offspring.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public IntermediateRecombinationFunction(double distance) {
-		super();
+	public IntermediateRecombinationFunction(double probability, Random random, double distance) {
+		super(probability, random);
 		this.distance = distance;
-	}
-
-	/**
-	 * Default constructor. By default it uses as random generator an instance
-	 * of {@link java.util.Random}, <code>probability = 0.75</code> and
-	 * <code>distance = 0.25</code>.
-	 */
-	public IntermediateRecombinationFunction() {
-		this(DEFAULT_DISTANCE);
 	}
 
 	/**

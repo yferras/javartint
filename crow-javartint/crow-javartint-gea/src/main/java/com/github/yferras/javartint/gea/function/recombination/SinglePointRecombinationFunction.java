@@ -57,16 +57,9 @@ public class SinglePointRecombinationFunction<T extends Genome<? extends Chromos
 	 * <p>
 	 * Constructor for SinglePointRecombinationFunction.
 	 * </p>
-	 *
-	 * @param probability
-	 *            a double.
-	 * @param random
-	 *            a {@link java.util.Random} object.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public SinglePointRecombinationFunction(double probability, Random random) {
-		super(probability, random);
+	public SinglePointRecombinationFunction() {
+		super();
 	}
 
 	/**
@@ -87,9 +80,16 @@ public class SinglePointRecombinationFunction<T extends Genome<? extends Chromos
 	 * <p>
 	 * Constructor for SinglePointRecombinationFunction.
 	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @param random
+	 *            a {@link java.util.Random} object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public SinglePointRecombinationFunction() {
-		super();
+	public SinglePointRecombinationFunction(double probability, Random random) {
+		super(probability, random);
 	}
 
 	/** {@inheritDoc} */

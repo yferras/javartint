@@ -60,57 +60,6 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 	}
 
 	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public T[] getGenes() {
-		return (T[]) genes.toArray(new Gene<?>[size()]);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setGenes(T[] genes) {
-		if (genes == null) {
-			throw new ValidationException("'genes' param can't be null.");
-		}
-		this.genes.clear();
-		this.genes.addAll(Arrays.asList(genes));
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public T getGene(int locus) {
-		return genes.get(locus);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public int size() {
-		return genes.size();
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Iterator<T> iterator() {
-		return new AbstractItemIterator<T>() {
-			@Override
-			public T getItem(int index) {
-				return getGene(index);
-			}
-
-			@Override
-			public int itemsCount() {
-				return size();
-			}
-		};
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setGene(int locus, T newGene) {
-		genes.set(locus, newGene);
-	}
-
-	/** {@inheritDoc} */
 	@Override
 	public void addGene(T gene) {
 		genes.add(gene);
@@ -144,8 +93,59 @@ public abstract class AbstractChromosome<T extends Gene<?>> implements Chromosom
 
 	/** {@inheritDoc} */
 	@Override
+	public T getGene(int locus) {
+		return genes.get(locus);
+	}
+
+	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T[] getGenes() {
+		return (T[]) genes.toArray(new Gene<?>[size()]);
+	}
+
+	/** {@inheritDoc} */
+	@Override
 	public int hashCode() {
 		return genes.hashCode();
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Iterator<T> iterator() {
+		return new AbstractItemIterator<T>() {
+			@Override
+			public T getItem(int index) {
+				return getGene(index);
+			}
+
+			@Override
+			public int itemsCount() {
+				return size();
+			}
+		};
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setGene(int locus, T newGene) {
+		genes.set(locus, newGene);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setGenes(T[] genes) {
+		if (genes == null) {
+			throw new ValidationException("'genes' param can't be null.");
+		}
+		this.genes.clear();
+		this.genes.addAll(Arrays.asList(genes));
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int size() {
+		return genes.size();
 	}
 
 	/** {@inheritDoc} */

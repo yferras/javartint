@@ -49,6 +49,17 @@ import com.github.yferras.javartint.gea.genome.Genome;
  */
 public class MutationFunctionTest {
 
+	private static class DefaultMutationFunction
+			extends AbstractMutationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
+
+		@Override
+		protected Genome<? extends Chromosome<? extends Gene<?>>> mutate(
+				Genome<? extends Chromosome<? extends Gene<?>>> subject) throws CloneNotSupportedException {
+			subject.getChromosome(0).getGene(0).setData(null);
+			return subject;
+		}
+	}
+
 	@BeforeClass
 	public static void setUpClass() {
 	}
@@ -64,6 +75,43 @@ public class MutationFunctionTest {
 
 	@After
 	public void tearDown() {
+	}
+
+	@Test
+	public void testDefaultCrossoverProbability() {
+		System.out.println("DefaultMutationFunction");
+		final DefaultMutationFunction function = new DefaultMutationFunction();
+		final Object result = function.getProbability();
+		assertEquals(0.05, result);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (to invoke mutation process)");
+		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+		genome.getChromosome(0).setGenes(new DefaultGene[] { new DefaultGene(1), });
+		final DefaultMutationFunction function = new DefaultMutationFunction();
+		function.setRandom(GenomeConstants.RANDOM_GENERATOR_4);
+		final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
+		assertFalse(genome == result);
+		assertNull(result.getChromosome(0).getGene(0).getData());
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testEvaluate2() throws Exception {
+		System.out.println("evaluate (probability constrain not meet)");
+		final DefaultMutationFunction function = new DefaultMutationFunction();
+		function.setProbability(0.0);
+		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
+		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
+		genome.getChromosome(0).setGenes(new DefaultGene[] { new DefaultGene(1), });
+		final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
+		assertFalse(genome == result);
+		assertEquals(genome, result);
+		assertNotNull(result.getChromosome(0).getGene(0).getData());
 	}
 
 	@Test
@@ -96,14 +144,6 @@ public class MutationFunctionTest {
 		assertEquals(0.1, result);
 	}
 
-	@Test
-	public void testDefaultCrossoverProbability() {
-		System.out.println("DefaultMutationFunction");
-		final DefaultMutationFunction function = new DefaultMutationFunction();
-		final Object result = function.getProbability();
-		assertEquals(0.05, result);
-	}
-
 	@SuppressWarnings("NullArgumentToVariableArgMethod")
 	@Test
 	public void testValidate1() {
@@ -130,45 +170,5 @@ public class MutationFunctionTest {
 			return;
 		}
 		fail("'IllegalArgumentException' not raised");
-	}
-
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testEvaluate() throws Exception {
-		System.out.println("evaluate (to invoke mutation process)");
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-		genome.getChromosome(0).setGenes(new DefaultGene[] { new DefaultGene(1), });
-		final DefaultMutationFunction function = new DefaultMutationFunction();
-		function.setRandom(GenomeConstants.RANDOM_GENERATOR_4);
-		final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
-		assertFalse(genome == result);
-		assertNull(result.getChromosome(0).getGene(0).getData());
-	}
-
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testEvaluate2() throws Exception {
-		System.out.println("evaluate (probability constrain not meet)");
-		final DefaultMutationFunction function = new DefaultMutationFunction();
-		function.setProbability(0.0);
-		DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> genome = new DefaultGenome<>();
-		genome.addChromosome(new DefaultChromosome<DefaultGene<Integer>>());
-		genome.getChromosome(0).setGenes(new DefaultGene[] { new DefaultGene(1), });
-		final Genome<? extends Chromosome<? extends Gene<?>>> result = function.evaluate(genome.clone());
-		assertFalse(genome == result);
-		assertEquals(genome, result);
-		assertNotNull(result.getChromosome(0).getGene(0).getData());
-	}
-
-	private static class DefaultMutationFunction
-			extends AbstractMutationFunction<Genome<? extends Chromosome<? extends Gene<?>>>> {
-
-		@Override
-		protected Genome<? extends Chromosome<? extends Gene<?>>> mutate(
-				Genome<? extends Chromosome<? extends Gene<?>>> subject) throws CloneNotSupportedException {
-			subject.getChromosome(0).getGene(0).setData(null);
-			return subject;
-		}
 	}
 }

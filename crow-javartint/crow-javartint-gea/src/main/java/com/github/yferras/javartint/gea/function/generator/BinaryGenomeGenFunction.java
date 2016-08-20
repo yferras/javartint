@@ -37,6 +37,19 @@ import com.github.yferras.javartint.gea.genome.BinaryGenome;
 public class BinaryGenomeGenFunction extends AbstractGenomeGeneratorFunction<BinaryGenome> {
 
 	/**
+	 * Initializes the number of genes and the length of each gene. By default
+	 * {@code genomeSize} is 1.
+	 *
+	 * @param numberOfGenes
+	 *            the number of genes.
+	 * @param lengthOfGene
+	 *            the length of each gene.
+	 */
+	public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
+		super(numberOfGenes, lengthOfGene);
+	}
+
+	/**
 	 * Initializes the number of genes and the length of each gene.
 	 *
 	 * @param genomeSize
@@ -48,19 +61,6 @@ public class BinaryGenomeGenFunction extends AbstractGenomeGeneratorFunction<Bin
 	 */
 	public BinaryGenomeGenFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
 		super(genomeSize, numberOfGenes, lengthOfGene);
-	}
-
-	/**
-	 * Initializes the number of genes and the length of each gene. By default
-	 * {@code genomeSize} is 1.
-	 *
-	 * @param numberOfGenes
-	 *            the number of genes.
-	 * @param lengthOfGene
-	 *            the length of each gene.
-	 */
-	public BinaryGenomeGenFunction(int numberOfGenes, int lengthOfGene) {
-		super(numberOfGenes, lengthOfGene);
 	}
 
 	/**

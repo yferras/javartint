@@ -43,6 +43,28 @@ import com.github.yferras.javartint.gea.util.MathUtil;
 
 public class AbstractScalingMethodTest {
 
+	private static class DefaultScalingMethod extends AbstractScalingMethod {
+
+		/**
+		 * Constructor that initializes this instance.
+		 *
+		 * @param optimize
+		 *            optimization way
+		 */
+		public DefaultScalingMethod(Optimize optimize) {
+			super(optimize);
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		protected void scale(List individuals) {
+			for (int i = 0; i < individuals.size(); i++) {
+				Double val = (Double) individuals.get(i);
+				individuals.set(i, val * 2.0);
+			}
+		}
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		System.out.print(AbstractScalingMethod.class.getName().concat("."));
@@ -50,13 +72,6 @@ public class AbstractScalingMethodTest {
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testGetOptimize() throws Exception {
-		System.out.println("getOptimize");
-		DefaultScalingMethod scalingMethod = new DefaultScalingMethod(Optimize.MAX);
-		assertEquals(Optimize.MAX, scalingMethod.getOptimize());
 	}
 
 	@Test
@@ -107,6 +122,13 @@ public class AbstractScalingMethodTest {
 	}
 
 	@Test
+	public void testGetOptimize() throws Exception {
+		System.out.println("getOptimize");
+		DefaultScalingMethod scalingMethod = new DefaultScalingMethod(Optimize.MAX);
+		assertEquals(Optimize.MAX, scalingMethod.getOptimize());
+	}
+
+	@Test
 	public void testMean() throws Exception {
 		System.out.println("mean");
 		List<Genome> list = new ArrayList<>();
@@ -119,27 +141,5 @@ public class AbstractScalingMethodTest {
 		exp /= 10;
 		double r = MathUtil.mean(list);
 		assertEquals(exp, r, 0.0);
-	}
-
-	private static class DefaultScalingMethod extends AbstractScalingMethod {
-
-		/**
-		 * Constructor that initializes this instance.
-		 *
-		 * @param optimize
-		 *            optimization way
-		 */
-		public DefaultScalingMethod(Optimize optimize) {
-			super(optimize);
-		}
-
-		@Override
-		@SuppressWarnings("unchecked")
-		protected void scale(List individuals) {
-			for (int i = 0; i < individuals.size(); i++) {
-				Double val = (Double) individuals.get(i);
-				individuals.set(i, val * 2.0);
-			}
-		}
 	}
 }

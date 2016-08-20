@@ -45,14 +45,14 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 
 	private final List<Constraint<? extends Algorithm<? extends Solution>>> constraints = new ArrayList<>();
 
-	private final List<EventListener> eventListeners = new ArrayList<>();
-
-	private long startTime = 0;
 	private long elapsedTime = 0;
 
+	private final List<EventListener> eventListeners = new ArrayList<>();
 	private boolean running = false;
 
 	private S solution;
+
+	private long startTime = 0;
 
 	private boolean addAlgorithmListener(EventListener listener) {
 		boolean contains = eventListeners.contains(listener);
@@ -60,6 +60,12 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 			eventListeners.add(listener);
 		}
 		return contains;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
+		constraints.add(constraint);
 	}
 
 	/**
@@ -84,6 +90,79 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 	 */
 	public boolean addSolutionChangeListener(SolutionChangeListener listener) {
 		return addAlgorithmListener(listener);
+	}
+
+	/**
+	 * This method sets the current time and sets true to running attribute.
+	 * Should be invoked at the beginning of run method implementation
+	 */
+	protected void beginAlgorithm() {
+		startTime = System.currentTimeMillis();
+		running = true;
+	}
+
+	/**
+	 * Used to fire algorithm end execution event. This method should be invoked
+	 * an the end of {@link #run()} implementation
+	 */
+	protected void fireAlgorithmFinishedEvent() {
+		eventListeners.parallelStream().filter(eventListener -> eventListener instanceof ExecutionEndListener)
+				.forEach(eventListener -> ((ExecutionEndListener) eventListener)
+						.algorithmFinished(new AlgorithmEvent(this, getSolution())));
+	}
+
+	/**
+	 * Used to fire solution changed event.
+	 */
+	protected void fireBestSolutionUpdatedEvent() {
+		fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
+	}
+
+	/**
+	 * Used to fire solution changed event.
+	 *
+	 * @param event
+	 *            a
+	 *            {@link com.github.yferras.javartint.core.util.AlgorithmEvent}
+	 *            object.
+	 */
+	protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
+		eventListeners.parallelStream().filter(eventListener -> eventListener instanceof SolutionChangeListener)
+				.forEach(eventListener -> ((SolutionChangeListener) eventListener).solutionUpdated(event));
+	}
+
+	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Constraint<Algorithm<Solution>>[] getConstraints() {
+		return constraints.toArray(new Constraint[constraints.size()]);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Long getElapsedTime() {
+		if (isRunning()) {
+			elapsedTime = System.currentTimeMillis() - startTime;
+		}
+		return elapsedTime;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public S getSolution() {
+		return solution;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public boolean isRunning() {
+		return running;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
+		constraints.remove(constraint);
 	}
 
 	/**
@@ -112,43 +191,6 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 		return eventListeners.remove(listener);
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public void addConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
-		constraints.add(constraint);
-	}
-
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	@Override
-	public Constraint<Algorithm<Solution>>[] getConstraints() {
-		return constraints.toArray(new Constraint[constraints.size()]);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Long getElapsedTime() {
-		if (isRunning()) {
-			elapsedTime = System.currentTimeMillis() - startTime;
-		}
-		return elapsedTime;
-	}
-
-	/**
-	 * This method sets the current time and sets true to running attribute.
-	 * Should be invoked at the beginning of run method implementation
-	 */
-	protected void beginAlgorithm() {
-		startTime = System.currentTimeMillis();
-		running = true;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public S getSolution() {
-		return solution;
-	}
-
 	/**
 	 * Sets the solution.
 	 *
@@ -158,18 +200,6 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 	protected void setSolution(S solution) {
 		this.solution = solution;
 		fireBestSolutionUpdatedEvent();
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public boolean isRunning() {
-		return running;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void removeConstraint(Constraint<? extends Algorithm<? extends Solution>> constraint) {
-		constraints.remove(constraint);
 	}
 
 	/** {@inheritDoc} */
@@ -205,35 +235,5 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
 			}
 		}
 		return countMandatory == countMandatoryTrue && (countMandatory != 0 || countOptionalsTrue != 0);
-	}
-
-	/**
-	 * Used to fire algorithm end execution event. This method should be invoked
-	 * an the end of {@link #run()} implementation
-	 */
-	protected void fireAlgorithmFinishedEvent() {
-		eventListeners.parallelStream().filter(eventListener -> eventListener instanceof ExecutionEndListener)
-				.forEach(eventListener -> ((ExecutionEndListener) eventListener)
-						.algorithmFinished(new AlgorithmEvent(this, getSolution())));
-	}
-
-	/**
-	 * Used to fire solution changed event.
-	 */
-	protected void fireBestSolutionUpdatedEvent() {
-		fireBestSolutionUpdatedEvent(new AlgorithmEvent(this, getSolution()));
-	}
-
-	/**
-	 * Used to fire solution changed event.
-	 *
-	 * @param event
-	 *            a
-	 *            {@link com.github.yferras.javartint.core.util.AlgorithmEvent}
-	 *            object.
-	 */
-	protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
-		eventListeners.parallelStream().filter(eventListener -> eventListener instanceof SolutionChangeListener)
-				.forEach(eventListener -> ((SolutionChangeListener) eventListener).solutionUpdated(event));
 	}
 }

@@ -48,15 +48,11 @@ public class RouletteWheelSelectionFunction<T extends Individual> extends Abstra
 	 *
 	 * @param numToSelect
 	 *            a int.
-	 * @param scalingMethod
-	 *            a
-	 *            {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod}
-	 *            object.
 	 * @throws com.github.yferras.javartint.core.util.ValidationException
 	 *             if any.
 	 */
-	public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
-		super(numToSelect, scalingMethod);
+	public RouletteWheelSelectionFunction(int numToSelect) {
+		this(numToSelect, null);
 	}
 
 	/**
@@ -66,11 +62,15 @@ public class RouletteWheelSelectionFunction<T extends Individual> extends Abstra
 	 *
 	 * @param numToSelect
 	 *            a int.
+	 * @param scalingMethod
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod}
+	 *            object.
 	 * @throws com.github.yferras.javartint.core.util.ValidationException
 	 *             if any.
 	 */
-	public RouletteWheelSelectionFunction(int numToSelect) {
-		this(numToSelect, null);
+	public RouletteWheelSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+		super(numToSelect, scalingMethod);
 	}
 
 	/** {@inheritDoc} */

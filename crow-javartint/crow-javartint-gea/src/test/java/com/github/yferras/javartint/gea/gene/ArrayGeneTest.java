@@ -43,15 +43,15 @@ public class ArrayGeneTest {
 
 	public static final ArrayGene<Double> INSTANCE = new ArrayGene<>(new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 });
 
-	public ArrayGeneTest() {
-	}
-
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public ArrayGeneTest() {
 	}
 
 	@Before
@@ -61,30 +61,6 @@ public class ArrayGeneTest {
 
 	@After
 	public void tearDown() {
-	}
-
-	/**
-	 * Test of getData method, of class ArrayGene.
-	 */
-	@Test
-	public void testGetData() {
-		System.out.println("getData");
-		Object[] expResult = new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 };
-		Object[] result = INSTANCE.getData();
-		assertArrayEquals(expResult, result);
-	}
-
-	/**
-	 * Test of setData method, of class ArrayGene.
-	 */
-	@Test
-	public void testSetData() {
-		System.out.println("setData");
-		Double[] data = new Double[] { 3.0, 1.0, 2.0, 5.0, 4.0 };
-		ArrayGene<Double> instance = new ArrayGene<>(null);
-		instance.setData(data.clone());
-		Double[] result = instance.getData();
-		assertArrayEquals(data, result);
 	}
 
 	/**
@@ -112,17 +88,6 @@ public class ArrayGeneTest {
 	}
 
 	/**
-	 * Test of hashCode method, of class ArrayGene.
-	 */
-	@Test
-	public void testHashCode() {
-		System.out.println("hashCode");
-		int expResult = new ArrayGene<>(new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 }).hashCode();
-		int result = INSTANCE.hashCode();
-		assertEquals(expResult, result);
-	}
-
-	/**
 	 * Test of equals method, of class ArrayGene.
 	 */
 	@Test
@@ -130,15 +95,6 @@ public class ArrayGeneTest {
 		System.out.println("equals");
 		Object obj = new ArrayGene<>(new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 });
 		assertEquals(true, INSTANCE.equals(obj));
-	}
-
-	/**
-	 * Test of length method, of class ArrayGene.
-	 */
-	@Test
-	public void testLength() {
-		System.out.println("length");
-		assertEquals(5, INSTANCE.length());
 	}
 
 	/**
@@ -151,19 +107,25 @@ public class ArrayGeneTest {
 	}
 
 	/**
-	 * Test of setAllele method, of class ArrayGene.
+	 * Test of getData method, of class ArrayGene.
 	 */
 	@Test
-	public void testSetAllele() {
-		System.out.println("setAllele");
-		try {
-			final ArrayGene<Double> gene = (ArrayGene<Double>) INSTANCE.clone();
-			gene.setAllele(2, 10.0);
-			assertEquals(new Double(10.0), gene.getAllele(2));
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-			fail("clone raised an exception");
-		}
+	public void testGetData() {
+		System.out.println("getData");
+		Object[] expResult = new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 };
+		Object[] result = INSTANCE.getData();
+		assertArrayEquals(expResult, result);
+	}
+
+	/**
+	 * Test of hashCode method, of class ArrayGene.
+	 */
+	@Test
+	public void testHashCode() {
+		System.out.println("hashCode");
+		int expResult = new ArrayGene<>(new Double[] { 1.0, 2.0, 3.0, 4.0, 5.0 }).hashCode();
+		int result = INSTANCE.hashCode();
+		assertEquals(expResult, result);
 	}
 
 	/**
@@ -206,6 +168,44 @@ public class ArrayGeneTest {
 		} catch (UnsupportedOperationException e) {
 			assertTrue(true);
 		}
+	}
+
+	/**
+	 * Test of length method, of class ArrayGene.
+	 */
+	@Test
+	public void testLength() {
+		System.out.println("length");
+		assertEquals(5, INSTANCE.length());
+	}
+
+	/**
+	 * Test of setAllele method, of class ArrayGene.
+	 */
+	@Test
+	public void testSetAllele() {
+		System.out.println("setAllele");
+		try {
+			final ArrayGene<Double> gene = (ArrayGene<Double>) INSTANCE.clone();
+			gene.setAllele(2, 10.0);
+			assertEquals(new Double(10.0), gene.getAllele(2));
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			fail("clone raised an exception");
+		}
+	}
+
+	/**
+	 * Test of setData method, of class ArrayGene.
+	 */
+	@Test
+	public void testSetData() {
+		System.out.println("setData");
+		Double[] data = new Double[] { 3.0, 1.0, 2.0, 5.0, 4.0 };
+		ArrayGene<Double> instance = new ArrayGene<>(null);
+		instance.setData(data.clone());
+		Double[] result = instance.getData();
+		assertArrayEquals(data, result);
 	}
 
 }

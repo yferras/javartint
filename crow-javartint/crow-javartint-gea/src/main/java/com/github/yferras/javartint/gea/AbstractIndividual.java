@@ -35,14 +35,8 @@ public abstract class AbstractIndividual implements Individual {
 
 	/** {@inheritDoc} */
 	@Override
-	public Double getFitness() {
-		return fitness;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setFitness(Double fitness) {
-		this.fitness = fitness;
+	public Individual clone() throws CloneNotSupportedException {
+		return (Individual) super.clone();
 	}
 
 	/** {@inheritDoc} */
@@ -53,7 +47,13 @@ public abstract class AbstractIndividual implements Individual {
 
 	/** {@inheritDoc} */
 	@Override
-	public Individual clone() throws CloneNotSupportedException {
-		return (Individual) super.clone();
+	public Double getFitness() {
+		return fitness;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setFitness(Double fitness) {
+		this.fitness = fitness;
 	}
 }

@@ -36,8 +36,8 @@ public class DisplacementMutationFunctionTest {
 		DisplacementMutationFunction<TspGenome> function = new DisplacementMutationFunction<>(4);
 		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
 		function.setRandom(new Random() {
-			private int[] positions = { 3, 4 };
 			private int index = 0;
+			private int[] positions = { 3, 4 };
 
 			@Override
 			public int nextInt(int n) {

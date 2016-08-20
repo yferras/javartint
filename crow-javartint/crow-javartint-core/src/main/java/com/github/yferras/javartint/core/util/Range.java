@@ -30,11 +30,45 @@ package com.github.yferras.javartint.core.util;
  */
 public final class Range<T extends Comparable<T>> implements Filter<T> {
 
-	private static final int MAGIC_NUMBER = 31;
+	/**
+	 * To define the use the limits in the range.
+	 */
+	public static enum Use {
+		/**
+		 * Both limits are included
+		 */
+		BOTH,
+		/**
+		 * Only max is included
+		 */
+		MAX,
+		/**
+		 * Only min is included
+		 */
+		MIN,
+		/**
+		 * None are include
+		 */
+		NONE
+	}
 
-	private final T min;
+	private static final int MAGIC_NUMBER = 31;
 	private final T max;
+	private final T min;
+
 	private final Use use;
+
+	/**
+	 * Initializes this instance.
+	 *
+	 * @param min
+	 *            lower bound
+	 * @param max
+	 *            upper bound
+	 */
+	public Range(T min, T max) {
+		this(min, max, Use.BOTH);
+	}
 
 	/**
 	 * Initializes this instance.
@@ -58,18 +92,6 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 	}
 
 	/**
-	 * Initializes this instance.
-	 *
-	 * @param min
-	 *            lower bound
-	 * @param max
-	 *            upper bound
-	 */
-	public Range(T min, T max) {
-		this(min, max, Use.BOTH);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * Test if the element is inside of the range.
@@ -88,33 +110,6 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		default:
 			return false;
 		}
-	}
-
-	/**
-	 * Gets the lower bound
-	 *
-	 * @return the min value
-	 */
-	public T getMin() {
-		return min;
-	}
-
-	/**
-	 * Gets the upper bound
-	 *
-	 * @return the max value
-	 */
-	public T getMax() {
-		return max;
-	}
-
-	/**
-	 * Gets the use of bounds
-	 *
-	 * @return use value
-	 */
-	public Use getUse() {
-		return use;
 	}
 
 	/** {@inheritDoc} */
@@ -138,6 +133,33 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		return use == range.use;
 	}
 
+	/**
+	 * Gets the upper bound
+	 *
+	 * @return the max value
+	 */
+	public T getMax() {
+		return max;
+	}
+
+	/**
+	 * Gets the lower bound
+	 *
+	 * @return the min value
+	 */
+	public T getMin() {
+		return min;
+	}
+
+	/**
+	 * Gets the use of bounds
+	 *
+	 * @return use value
+	 */
+	public Use getUse() {
+		return use;
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
@@ -145,27 +167,5 @@ public final class Range<T extends Comparable<T>> implements Filter<T> {
 		result = MAGIC_NUMBER * result + (max != null ? max.hashCode() : 0);
 		result = MAGIC_NUMBER * result + (use != null ? use.hashCode() : 0);
 		return result;
-	}
-
-	/**
-	 * To define the use the limits in the range.
-	 */
-	public static enum Use {
-		/**
-		 * Both limits are included
-		 */
-		BOTH,
-		/**
-		 * None are include
-		 */
-		NONE,
-		/**
-		 * Only min is included
-		 */
-		MIN,
-		/**
-		 * Only max is included
-		 */
-		MAX
 	}
 }

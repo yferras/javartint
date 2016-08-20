@@ -49,19 +49,11 @@ public abstract class AbstractSelectionFunction<T extends Individual> implements
 	/**
 	 * Constructor than initializes this instance.
 	 *
-	 * @param numToSelect
-	 *            number of elements to select
-	 * @param scalingMethod
-	 *            scaling method
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
+	 * @since 1.0.1
 	 */
-	public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
-		if (numToSelect < 1) {
-			throw new ValidationException("'numToSelect' can't be less than 1.");
-		}
-		this.numToSelect = numToSelect;
-		this.scalingMethod = scalingMethod;
+	public AbstractSelectionFunction() {
+		this.numToSelect = DEFAULT_TO_SELECT;
+		this.scalingMethod = null;
 	}
 
 	/**
@@ -79,11 +71,31 @@ public abstract class AbstractSelectionFunction<T extends Individual> implements
 	/**
 	 * Constructor than initializes this instance.
 	 *
-	 * @since 1.0.1
+	 * @param numToSelect
+	 *            number of elements to select
+	 * @param scalingMethod
+	 *            scaling method
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public AbstractSelectionFunction() {
-		this.numToSelect = DEFAULT_TO_SELECT;
-		this.scalingMethod = null;
+	public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+		if (numToSelect < 1) {
+			throw new ValidationException("'numToSelect' can't be less than 1.");
+		}
+		this.numToSelect = numToSelect;
+		this.scalingMethod = scalingMethod;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Performs the selection process after validating the input params
+	 * ({@link #validate})
+	 */
+	@Override
+	public List<T> evaluate(List<T> params) {
+		validate(params);
+		return select(params);
 	}
 
 	/**
@@ -105,6 +117,16 @@ public abstract class AbstractSelectionFunction<T extends Individual> implements
 	}
 
 	/**
+	 * Selects from a list the desired number of individuals and retrieves then
+	 * into list.
+	 *
+	 * @param individuals
+	 *            Source to select the number of desired individuals.
+	 * @return a list with the selected individuals.
+	 */
+	protected abstract List<T> select(List<T> individuals);
+
+	/**
 	 * Ensures that parameter are valid.
 	 *
 	 * @param params
@@ -120,28 +142,6 @@ public abstract class AbstractSelectionFunction<T extends Individual> implements
 		if (params.size() < getNumToSelect()) {
 			throw new ValidationException("'params.length' is less than getNumToSelect()");
 		}
-	}
-
-	/**
-	 * Selects from a list the desired number of individuals and retrieves then
-	 * into list.
-	 *
-	 * @param individuals
-	 *            Source to select the number of desired individuals.
-	 * @return a list with the selected individuals.
-	 */
-	protected abstract List<T> select(List<T> individuals);
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * Performs the selection process after validating the input params
-	 * ({@link #validate})
-	 */
-	@Override
-	public List<T> evaluate(List<T> params) {
-		validate(params);
-		return select(params);
 	}
 
 }

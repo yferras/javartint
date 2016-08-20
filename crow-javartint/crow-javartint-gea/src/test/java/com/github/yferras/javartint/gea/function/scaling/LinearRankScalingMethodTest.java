@@ -52,6 +52,30 @@ public class LinearRankScalingMethodTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (performed algorithm)");
+		double p = 1.5;
+		LinearRankScalingMethod<DefaultGenome> scalingMethod = new LinearRankScalingMethod(p, Optimize.MAX);
+		List<DefaultGenome> genomes = new ArrayList<>(10);
+		double[] exp = new double[10];
+		for (int i = 0; i < 10; i++) {
+			genomes.add(new DefaultGenome());
+			exp[i] = 2.0 - p + (2.0 * i * (p - 1.0)) / (9.0);
+		}
+		List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
+		for (int i = 0; i < evaluate.size(); i++) {
+			Assert.assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
+		}
+	}
+
+	@Test
+	public void testGetSelectivePressure() throws Exception {
+		LinearRankScalingMethod scalingMethod = new LinearRankScalingMethod(1.5, Optimize.MAX);
+		assertEquals(1.5, scalingMethod.getSelectivePressure(), 0.0);
+	}
+
+	@Test
 	public void testInit() throws Exception {
 		System.out.println("constructor (validate for out of bounds)");
 		boolean lower = true, upper = true;
@@ -72,30 +96,6 @@ public class LinearRankScalingMethodTest {
 		}
 		if (upper) {
 			fail("'IllegalArgumentException' not raised when the argument is out of the upper bound.");
-		}
-	}
-
-	@Test
-	public void testGetSelectivePressure() throws Exception {
-		LinearRankScalingMethod scalingMethod = new LinearRankScalingMethod(1.5, Optimize.MAX);
-		assertEquals(1.5, scalingMethod.getSelectivePressure(), 0.0);
-	}
-
-	@Test
-	@SuppressWarnings("unchecked")
-	public void testEvaluate() throws Exception {
-		System.out.println("evaluate (performed algorithm)");
-		double p = 1.5;
-		LinearRankScalingMethod<DefaultGenome> scalingMethod = new LinearRankScalingMethod(p, Optimize.MAX);
-		List<DefaultGenome> genomes = new ArrayList<>(10);
-		double[] exp = new double[10];
-		for (int i = 0; i < 10; i++) {
-			genomes.add(new DefaultGenome());
-			exp[i] = 2.0 - p + (2.0 * i * (p - 1.0)) / (9.0);
-		}
-		List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
-		for (int i = 0; i < evaluate.size(); i++) {
-			Assert.assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
 		}
 	}
 }

@@ -35,6 +35,23 @@ import com.github.yferras.javartint.gea.genome.DefaultGenome;
 
 public class GenomeFilterTest {
 
+	@SuppressWarnings("unchecked")
+	final class DefaultFilter implements GenomeFilter<DefaultGenome<?>> {
+
+		/**
+		 * Returns {@code true} if genome is not {@code null}, otherwise returns
+		 * {@code false}.
+		 *
+		 * @param genome
+		 *            genome to filter.
+		 * @return {@code true} if the passed genome is accepted.
+		 */
+		@Override
+		public boolean accept(DefaultGenome<?> genome) {
+			return genome != null;
+		}
+	}
+
 	@BeforeClass
 	public static void setUpClass() {
 	}
@@ -62,23 +79,6 @@ public class GenomeFilterTest {
 	public void testAccept2() {
 		System.out.println("accept (false)");
 		assertFalse(new DefaultFilter().accept(null));
-	}
-
-	@SuppressWarnings("unchecked")
-	final class DefaultFilter implements GenomeFilter<DefaultGenome<?>> {
-
-		/**
-		 * Returns {@code true} if genome is not {@code null}, otherwise returns
-		 * {@code false}.
-		 *
-		 * @param genome
-		 *            genome to filter.
-		 * @return {@code true} if the passed genome is accepted.
-		 */
-		@Override
-		public boolean accept(DefaultGenome<?> genome) {
-			return genome != null;
-		}
 	}
 
 }

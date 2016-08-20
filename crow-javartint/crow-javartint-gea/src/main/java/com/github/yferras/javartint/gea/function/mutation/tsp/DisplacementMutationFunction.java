@@ -72,19 +72,12 @@ import com.github.yferras.javartint.gea.genome.TspGenome;
 public class DisplacementMutationFunction<T extends TspGenome> extends AbstractTspSpanMutationFunction<T> {
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param random
-	 *            random instance
-	 * @param minSpanSize
-	 *            min span size
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
+	 * Default constructor. By default it uses as random generator an instance
+	 * of {@link java.util.Random}, <code>probability = 0.05</code> and
+	 * <code>minSpanSize = 2</code>.
 	 */
-	public DisplacementMutationFunction(double probability, Random random, int minSpanSize) {
-		super(probability, random, minSpanSize);
+	public DisplacementMutationFunction() {
+		super();
 	}
 
 	/**
@@ -103,6 +96,22 @@ public class DisplacementMutationFunction<T extends TspGenome> extends AbstractT
 	}
 
 	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
+	 * @param minSpanSize
+	 *            min span size
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public DisplacementMutationFunction(double probability, Random random, int minSpanSize) {
+		super(probability, random, minSpanSize);
+	}
+
+	/**
 	 * Constructor, initializes instances with the given parameters. By default
 	 * it uses as random generator an instance of {@link java.util.Random}, and
 	 * <code>probability = 0.05</code>.
@@ -112,15 +121,6 @@ public class DisplacementMutationFunction<T extends TspGenome> extends AbstractT
 	 */
 	public DisplacementMutationFunction(int minSpanSize) {
 		super(minSpanSize);
-	}
-
-	/**
-	 * Default constructor. By default it uses as random generator an instance
-	 * of {@link java.util.Random}, <code>probability = 0.05</code> and
-	 * <code>minSpanSize = 2</code>.
-	 */
-	public DisplacementMutationFunction() {
-		super();
 	}
 
 	/** {@inheritDoc} */

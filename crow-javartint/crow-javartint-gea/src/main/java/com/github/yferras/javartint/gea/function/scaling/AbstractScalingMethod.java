@@ -54,6 +54,19 @@ public abstract class AbstractScalingMethod<T extends Individual> implements Fun
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Validates the input parameters and performs the scaling process.
+	 */
+	@Override
+	public List<T> evaluate(List<T> params) {
+		validate(params);
+		List<T> list = new ArrayList<>(params);
+		scale(list);
+		return list;
+	}
+
+	/**
 	 * Get the value of optimize
 	 *
 	 * @return the value of optimize
@@ -83,19 +96,6 @@ public abstract class AbstractScalingMethod<T extends Individual> implements Fun
 		if (params.isEmpty()) {
 			throw new ValidationException("'params' can't be empty.");
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * Validates the input parameters and performs the scaling process.
-	 */
-	@Override
-	public List<T> evaluate(List<T> params) {
-		validate(params);
-		List<T> list = new ArrayList<>(params);
-		scale(list);
-		return list;
 	}
 
 }

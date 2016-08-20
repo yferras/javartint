@@ -45,15 +45,15 @@ import com.github.yferras.javartint.gea.genome.Genome;
 
 public class TowPointsRecombinationFunctionTest {
 
-	public TowPointsRecombinationFunctionTest() {
-	}
-
 	@BeforeClass
 	public static void setUpClass() {
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
+	}
+
+	public TowPointsRecombinationFunctionTest() {
 	}
 
 	@Before
@@ -63,20 +63,6 @@ public class TowPointsRecombinationFunctionTest {
 
 	@After
 	public void tearDown() {
-	}
-
-	@Test
-	public void testTowPointsCrossoverFunction1() throws Exception {
-		System.out.println("SinglePointCrossoverFunction(probability)");
-		final Double probability = new TowPointsRecombinationFunction<>(1.0).getProbability();
-		assertEquals(new Double(1.0), probability);
-	}
-
-	@Test
-	public void testTowPointsCrossoverFunction2() {
-		System.out.println("SinglePointCrossoverFunction()");
-		final Double probability = new TowPointsRecombinationFunction<>().getProbability();
-		assertEquals(new Double(.75), probability);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -105,6 +91,20 @@ public class TowPointsRecombinationFunctionTest {
 		assertArrayEquals(result[0].getChromosome(0).getGenes(), expResult[0].getChromosome(0).getGenes());
 		assertArrayEquals(result[1].getChromosome(0).getGenes(), expResult[1].getChromosome(0).getGenes());
 
+	}
+
+	@Test
+	public void testTowPointsCrossoverFunction1() throws Exception {
+		System.out.println("SinglePointCrossoverFunction(probability)");
+		final Double probability = new TowPointsRecombinationFunction<>(1.0).getProbability();
+		assertEquals(new Double(1.0), probability);
+	}
+
+	@Test
+	public void testTowPointsCrossoverFunction2() {
+		System.out.println("SinglePointCrossoverFunction()");
+		final Double probability = new TowPointsRecombinationFunction<>().getProbability();
+		assertEquals(new Double(.75), probability);
 	}
 
 }

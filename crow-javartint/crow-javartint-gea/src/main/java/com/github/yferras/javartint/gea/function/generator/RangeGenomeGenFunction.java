@@ -39,9 +39,9 @@ import com.github.yferras.javartint.gea.genome.DefaultGenome;
 public class RangeGenomeGenFunction
 		extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
+	private static final double BASE = 10.0;
 	/** Constant <code>DEFAULT_LENGTH_OF_GENES=1</code> */
 	public static final int DEFAULT_LENGTH_OF_GENES = 1;
-	private static final double BASE = 10.0;
 	private final int precision;
 	private Range<Double>[] ranges;
 

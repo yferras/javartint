@@ -36,26 +36,9 @@ import java.util.Objects;
  */
 public abstract class AbstractGene<T> implements Gene<T> {
 
-	private static final long serialVersionUID = 1919755543077335578L;
-
 	private static final int HASH_CODE_CONST = 3 * 97;
 
-	/**
-	 * The data.
-	 */
-	protected T data;
-
-	/**
-	 * <p>
-	 * Constructor for AbstractGene.
-	 * </p>
-	 *
-	 * @param data
-	 *            a T object.
-	 */
-	public AbstractGene(T data) {
-		this.data = data;
-	}
+	private static final long serialVersionUID = 1919755543077335578L;
 
 	private static Object copy(Object src) {
 		if (src instanceof Byte) {
@@ -93,15 +76,20 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		}
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public T getData() {
-		return data;
-	}
+	/**
+	 * The data.
+	 */
+	protected T data;
 
-	/** {@inheritDoc} */
-	@Override
-	public void setData(T data) {
+	/**
+	 * <p>
+	 * Constructor for AbstractGene.
+	 * </p>
+	 *
+	 * @param data
+	 *            a T object.
+	 */
+	public AbstractGene(T data) {
 		this.data = data;
 	}
 
@@ -117,12 +105,6 @@ public abstract class AbstractGene<T> implements Gene<T> {
 
 	/** {@inheritDoc} */
 	@Override
-	public int hashCode() {
-		return HASH_CODE_CONST + Objects.hashCode(this.data);
-	}
-
-	/** {@inheritDoc} */
-	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
@@ -132,6 +114,24 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		}
 		final DefaultGene<?> other = (DefaultGene<?>) obj;
 		return Objects.equals(other.getData(), this.data);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public T getData() {
+		return data;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int hashCode() {
+		return HASH_CODE_CONST + Objects.hashCode(this.data);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void setData(T data) {
+		this.data = data;
 	}
 
 	/** {@inheritDoc} */

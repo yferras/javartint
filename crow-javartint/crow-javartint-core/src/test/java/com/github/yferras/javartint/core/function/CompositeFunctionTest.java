@@ -38,6 +38,10 @@ import org.junit.Test;
  */
 public class CompositeFunctionTest {
 
+	private static CompositeFunction.Builder<Double, Double[]> getDoubleBuilder() {
+		return new CompositeFunction.Builder<>();
+	}
+
 	final Function<Double, Double[]> meanFunc = new Function<Double, Double[]>() {
 		@Override
 		public Double evaluate(Double[] params) {
@@ -48,6 +52,8 @@ public class CompositeFunctionTest {
 			return sum / params.length;
 		}
 	};
+
+	final Double[] params = { 1.0, 17.0, 4.0, 14.0, 10.0, 8.0 };
 
 	final Function<Double, Double> sqrtFunc = new Function<Double, Double>() {
 		@Override
@@ -62,8 +68,6 @@ public class CompositeFunctionTest {
 			return 2.0 * x;
 		}
 	};
-
-	final Double[] params = { 1.0, 17.0, 4.0, 14.0, 10.0, 8.0 };
 
 	@Test
 	public void testEvaluate() throws Exception {
@@ -100,10 +104,6 @@ public class CompositeFunctionTest {
 		double actual = function.evaluate(8.0);
 
 		assertEquals(expected, actual, 0.0);
-	}
-
-	private static CompositeFunction.Builder<Double, Double[]> getDoubleBuilder() {
-		return new CompositeFunction.Builder<>();
 	}
 
 	@Test

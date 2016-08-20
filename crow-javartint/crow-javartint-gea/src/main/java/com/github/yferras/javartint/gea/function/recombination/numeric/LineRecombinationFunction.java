@@ -45,20 +45,25 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
 	private static final double B = 2.0;
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
+	 * Default constructor. By default it uses as random generator an instance
+	 * of {@link java.util.Random}, <code>probability = 0.75</code> and
+	 * <code>distance = 0.25</code>.
+	 */
+	public LineRecombinationFunction() {
+		this(DEFAULT_DISTANCE);
+	}
+
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}, and
+	 * <code>probability = 0.75</code>.
 	 *
-	 * @param probability
-	 *            probability of mutation
-	 * @param random
-	 *            random instance
 	 * @param distance
 	 *            defines the length of the extra-segment for possible
 	 *            offspring.
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
 	 */
-	public LineRecombinationFunction(double probability, Random random, double distance) {
-		super(probability, random, distance);
+	public LineRecombinationFunction(double distance) {
+		super(distance);
 	}
 
 	/**
@@ -78,25 +83,20 @@ public class LineRecombinationFunction<T extends Genome<? extends Chromosome<? e
 	}
 
 	/**
-	 * Constructor, initializes instances with the given parameters. By default
-	 * it uses as random generator an instance of {@link java.util.Random}, and
-	 * <code>probability = 0.75</code>.
+	 * Constructor, initializes instances with the given parameters.
 	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
 	 * @param distance
 	 *            defines the length of the extra-segment for possible
 	 *            offspring.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public LineRecombinationFunction(double distance) {
-		super(distance);
-	}
-
-	/**
-	 * Default constructor. By default it uses as random generator an instance
-	 * of {@link java.util.Random}, <code>probability = 0.75</code> and
-	 * <code>distance = 0.25</code>.
-	 */
-	public LineRecombinationFunction() {
-		this(DEFAULT_DISTANCE);
+	public LineRecombinationFunction(double probability, Random random, double distance) {
+		super(probability, random, distance);
 	}
 
 	/** {@inheritDoc} */

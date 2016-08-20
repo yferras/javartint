@@ -32,20 +32,33 @@ import com.github.yferras.javartint.gea.genome.DefaultGenome;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 public class GenomeConstants {
-	public static final Random RANDOM_GENERATOR_1 = new Random() {
-		@Override
-		public int nextInt(int n) {
-			return n / 2 - 1;
-		}
+	public static final int CHROMOSOME_SIZE = 11;
 
+	public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_1 = new DefaultGenome<>();
+
+	public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_2 = new DefaultGenome<>();
+
+	public static final DefaultGenome[] GENOMES = new DefaultGenome[2];
+
+	public static final Random RANDOM_GENERATOR_1 = new Random() {
 		@Override
 		public double nextDouble() {
 			return .5;
+		}
+
+		@Override
+		public int nextInt(int n) {
+			return n / 2 - 1;
 		}
 	};
 
 	public static final Random RANDOM_GENERATOR_2 = new Random() {
 		private int aux = 0;
+
+		@Override
+		public double nextDouble() {
+			return .5;
+		}
 
 		@Override
 		public int nextInt(int n) {
@@ -57,36 +70,13 @@ public class GenomeConstants {
 				return 2 * n / 3;
 			}
 		}
-
-		@Override
-		public double nextDouble() {
-			return .5;
-		}
 	};
-
 	/**
 	 * Generates alternates constant probabilities
 	 */
 	public static final Random RANDOM_GENERATOR_3 = new Random() {
 		private int aux = -1;
 		private Integer n;
-
-		/**
-		 * In this case the method is tricked to set a different behaviour from
-		 * the original one
-		 * 
-		 * @param n
-		 *            the bound on the random number to be returned. Must be
-		 *            positive.
-		 * @return 0
-		 */
-		@Override
-		public int nextInt(int n) {
-			if (this.n == null) {
-				this.n = n;
-			}
-			return 0;
-		}
 
 		/**
 		 * Generates alternates constant probabilities alternates between 0.5
@@ -105,37 +95,47 @@ public class GenomeConstants {
 			return (aux % 2 == 0) ? .5 : .95;
 		}
 
-	};
+		/**
+		 * In this case the method is tricked to set a different behaviour from
+		 * the original one
+		 * 
+		 * @param n
+		 *            the bound on the random number to be returned. Must be
+		 *            positive.
+		 * @return 0
+		 */
+		@Override
+		public int nextInt(int n) {
+			if (this.n == null) {
+				this.n = n;
+			}
+			return 0;
+		}
 
+	};
 	/**
 	 * Used in BinaryMutationFunctionIT
 	 */
 	public static final Random RANDOM_GENERATOR_4 = new Random() {
 
 		@Override
-		public int nextInt(int n) {
-			return 0;
-		}
-
-		@Override
 		public double nextDouble() {
 			return .025;
 		}
-	};
 
+		@Override
+		public int nextInt(int n) {
+			return 0;
+		}
+	};
 	/**
 	 * Used in BinaryMutationFunctionIT
 	 */
 	public static final Random RANDOM_GENERATOR_5 = new Random() {
 
+		private int index = 0;
 		private final double[] pos = { .025, .1, .1, .2, .3, .4, .5, .6, .1, .2, .3, .4, .01, .1, .2, .3, .4, .5, .6,
 				.1, .02, .3, .04 };
-		private int index = 0;
-
-		@Override
-		public int nextInt(int n) {
-			return n / 2;
-		}
 
 		@Override
 		public double nextDouble() {
@@ -143,12 +143,12 @@ public class GenomeConstants {
 				index = 0;
 			return pos[index++];
 		}
-	};
 
-	public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_1 = new DefaultGenome<>();
-	public static final DefaultGenome<DefaultChromosome<DefaultGene<Integer>>> GENOME_2 = new DefaultGenome<>();
-	public static final DefaultGenome[] GENOMES = new DefaultGenome[2];
-	public static final int CHROMOSOME_SIZE = 11;
+		@Override
+		public int nextInt(int n) {
+			return n / 2;
+		}
+	};
 
 	static {
 

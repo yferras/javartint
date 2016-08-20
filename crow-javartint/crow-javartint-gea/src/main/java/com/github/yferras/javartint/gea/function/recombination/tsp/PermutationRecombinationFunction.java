@@ -44,17 +44,12 @@ import com.github.yferras.javartint.gea.genome.TspGenome;
 public class PermutationRecombinationFunction<T extends TspGenome> extends AbstractRecombinationFunction<T> {
 
 	/**
-	 * Constructor, initializes instances with the given parameters.
-	 *
-	 * @param probability
-	 *            probability of recombination
-	 * @param random
-	 *            random instance
-	 * @throws com.github.yferras.javartint.core.util.ValidationException
-	 *             if any.
+	 * Default constructor, initializes instances with probability of
+	 * recombination equals to {@code .75} and random generator is an instance
+	 * of {@link java.util.Random}.
 	 */
-	public PermutationRecombinationFunction(double probability, Random random) {
-		super(probability, random);
+	public PermutationRecombinationFunction() {
+		super();
 	}
 
 	/**
@@ -72,12 +67,29 @@ public class PermutationRecombinationFunction<T extends TspGenome> extends Abstr
 	}
 
 	/**
-	 * Default constructor, initializes instances with probability of
-	 * recombination equals to {@code .75} and random generator is an instance
-	 * of {@link java.util.Random}.
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of recombination
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
 	 */
-	public PermutationRecombinationFunction() {
-		super();
+	public PermutationRecombinationFunction(double probability, Random random) {
+		super(probability, random);
+	}
+
+	private int indexOf(T genome, Gene gene) {
+		final Iterator<DefaultGene<Integer>> iterator = genome.getChromosome().iterator();
+		int index = 0;
+		while (iterator.hasNext()) {
+			if (iterator.next().equals(gene)) {
+				return index;
+			}
+			index++;
+		}
+		return -1;
 	}
 
 	/** {@inheritDoc} */
@@ -110,17 +122,5 @@ public class PermutationRecombinationFunction<T extends TspGenome> extends Abstr
 		}
 
 		return (T[]) offspring;
-	}
-
-	private int indexOf(T genome, Gene gene) {
-		final Iterator<DefaultGene<Integer>> iterator = genome.getChromosome().iterator();
-		int index = 0;
-		while (iterator.hasNext()) {
-			if (iterator.next().equals(gene)) {
-				return index;
-			}
-			index++;
-		}
-		return -1;
 	}
 }
