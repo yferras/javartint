@@ -22,8 +22,6 @@ package com.github.yferras.javartint.core.function;
  * #L%
  */
 
-import com.github.yferras.javartint.core.util.AbstractBuilder;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -128,4 +126,5 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
             };
         }
     }
+
 }
