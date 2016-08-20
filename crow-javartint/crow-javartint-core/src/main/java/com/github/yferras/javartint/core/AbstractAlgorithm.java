@@ -202,13 +202,15 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * end of {@link #run()} implementation
      */
     protected void fireAlgorithmFinishedEvent() {
-        for (EventListener eventListener : eventListeners) {
-            if (eventListener instanceof ExecutionEndListener) {
-                ExecutionEndListener executionEndListener = (ExecutionEndListener) eventListener;
-                executionEndListener.algorithmFinished(new AlgorithmEvent(
-                    this, getSolution()));
-            }
-        }
+        eventListeners.parallelStream()
+        	.filter(
+        			eventListener -> 
+        			eventListener instanceof ExecutionEndListener
+        			)
+        	.forEach(
+        			eventListener -> 
+        			((ExecutionEndListener)eventListener).algorithmFinished(new AlgorithmEvent(this, getSolution()))
+        			);
     }
 
     /**
@@ -224,11 +226,14 @@ public abstract class AbstractAlgorithm<S extends Solution> implements Algorithm
      * @param event a {@link com.github.yferras.javartint.core.util.AlgorithmEvent} object.
      */
     protected void fireBestSolutionUpdatedEvent(AlgorithmEvent event) {
-        for (EventListener eventListener : eventListeners) {
-            if (eventListener instanceof SolutionChangeListener) {
-                SolutionChangeListener solutionChangeListener = (SolutionChangeListener) eventListener;
-                solutionChangeListener.solutionUpdated(event);
-            }
-        }
+        eventListeners.parallelStream()
+    	.filter(
+    			eventListener -> 
+    			eventListener instanceof SolutionChangeListener
+    			)
+    	.forEach(
+    			eventListener -> 
+    			((SolutionChangeListener)eventListener).solutionUpdated(event)
+    			);
     }
 }
