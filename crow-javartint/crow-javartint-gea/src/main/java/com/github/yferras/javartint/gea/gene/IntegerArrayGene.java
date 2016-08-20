@@ -33,12 +33,15 @@ public class IntegerArrayGene extends NumberArrayGene<Integer> {
 	private static final long serialVersionUID = 7636010841054016255L;
 
 	/**
-     * <p>Constructor for IntegerArrayGene.</p>
-     *
-     * @param data an array of {@link java.lang.Integer} objects.
-     */
-    public IntegerArrayGene(Integer[] data) {
-        super(data);
-    }
+	 * <p>
+	 * Constructor for IntegerArrayGene.
+	 * </p>
+	 *
+	 * @param data
+	 *            an array of {@link java.lang.Integer} objects.
+	 */
+	public IntegerArrayGene(Integer[] data) {
+		super(data);
+	}
 
 }

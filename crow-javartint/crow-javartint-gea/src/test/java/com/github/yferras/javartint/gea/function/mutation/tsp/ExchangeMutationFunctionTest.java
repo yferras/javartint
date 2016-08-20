@@ -31,30 +31,25 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class ExchangeMutationFunctionTest {
 
-    @Test
-    public void testMutate() throws Exception {
-        ExchangeMutationFunction<TspGenome> function = new ExchangeMutationFunction<>();
-        function.setRandom(
-            new Random() {
-                private int[] positions = {5, 1};
-                private int index = 0;
+	@Test
+	public void testMutate() throws Exception {
+		ExchangeMutationFunction<TspGenome> function = new ExchangeMutationFunction<>();
+		function.setRandom(new Random() {
+			private int[] positions = { 5, 1 };
+			private int index = 0;
 
-                @Override
-                public int nextInt(int n) {
-                    return positions[index++];
-                }
-            }
-        );
+			@Override
+			public int nextInt(int n) {
+				return positions[index++];
+			}
+		});
 
-        TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
+		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
 
-        genome = function.mutate(genome);
+		genome = function.mutate(genome);
 
-        TspGenome expected = new TspGenome(8, 3, 2, 1, 6, 5, 7, 0, 9, 4);
+		TspGenome expected = new TspGenome(8, 3, 2, 1, 6, 5, 7, 0, 9, 4);
 
-        assertArrayEquals(
-            expected.getChromosome().getGenes(),
-            genome.getChromosome().getGenes()
-        );
-    }
+		assertArrayEquals(expected.getChromosome().getGenes(), genome.getChromosome().getGenes());
+	}
 }

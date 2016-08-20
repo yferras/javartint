@@ -30,8 +30,11 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * <p>This abstract class implements {@link com.github.yferras.javartint.core.util.Builder}, and it can be used as base
- * of future builders.</p>
+ * <p>
+ * This abstract class implements
+ * {@link com.github.yferras.javartint.core.util.Builder}, and it can be used as
+ * base of future builders.
+ * </p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 1.0
@@ -39,71 +42,86 @@ import java.util.TreeSet;
  */
 public abstract class AbstractBuilder<T> implements Builder<T> {
 
-    private final Properties properties;
-    private final Set<String> requiredPropertyKeys;
+	private final Properties properties;
+	private final Set<String> requiredPropertyKeys;
 
-    /**
-     * <p>Constructor for AbstractBuilder.</p>
-     *
-     * @param requiredPropertyKeys required property keys.
-     */
-    protected AbstractBuilder(String... requiredPropertyKeys) {
-        this.properties = new Properties();
-        SortedSet<String> sortedSet = new TreeSet<>(Arrays.asList(requiredPropertyKeys));
-        this.requiredPropertyKeys = Collections.unmodifiableSortedSet(sortedSet);
-    }
+	/**
+	 * <p>
+	 * Constructor for AbstractBuilder.
+	 * </p>
+	 *
+	 * @param requiredPropertyKeys
+	 *            required property keys.
+	 */
+	protected AbstractBuilder(String... requiredPropertyKeys) {
+		this.properties = new Properties();
+		SortedSet<String> sortedSet = new TreeSet<>(Arrays.asList(requiredPropertyKeys));
+		this.requiredPropertyKeys = Collections.unmodifiableSortedSet(sortedSet);
+	}
 
-    /**
-     * <p>Gets the properties. The properties are used to store the configuration required to build the object.</p>
-     *
-     * @return a {@link java.util.Properties} object.
-     */
-    protected final Properties getProperties() {
-        return properties;
-    }
+	/**
+	 * <p>
+	 * Gets the properties. The properties are used to store the configuration
+	 * required to build the object.
+	 * </p>
+	 *
+	 * @return a {@link java.util.Properties} object.
+	 */
+	protected final Properties getProperties() {
+		return properties;
+	}
 
-    /**
-     * <p>Gets the set of required keys.</p>
-     *
-     * @return an unmodifiable sorted {@link java.util.Set} object.
-     */
-    protected final Set<String> getRequiredPropertyKeys() {
-        return requiredPropertyKeys;
-    }
+	/**
+	 * <p>
+	 * Gets the set of required keys.
+	 * </p>
+	 *
+	 * @return an unmodifiable sorted {@link java.util.Set} object.
+	 */
+	protected final Set<String> getRequiredPropertyKeys() {
+		return requiredPropertyKeys;
+	}
 
-    /**
-     * <p>Checks that all required property keys are setting up.</p>
-     *
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any required property key is not setting up.
-     */
-    protected void validate() {
-        final Set<Object> keySet = getProperties().keySet();
-        if (!keySet.containsAll(getRequiredPropertyKeys())) {
-            Set<String> auxSet = new LinkedHashSet<>(getRequiredPropertyKeys());
-            auxSet.removeAll(keySet);
-            StringBuilder builder = new StringBuilder("Parameter").append(auxSet.size() == 1 ? ": " : "s: ");
-            for (String s : auxSet) {
-                builder.append("'").append(s).append("', ");
-            }
-            builder.append(auxSet.size() == 1 ? " is " : " are ").append("required.");
-            throw new ValidationException(builder.toString());
-        }
-    }
+	/**
+	 * <p>
+	 * Checks that all required property keys are setting up.
+	 * </p>
+	 *
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any required property key is not setting up.
+	 */
+	protected void validate() {
+		final Set<Object> keySet = getProperties().keySet();
+		if (!keySet.containsAll(getRequiredPropertyKeys())) {
+			Set<String> auxSet = new LinkedHashSet<>(getRequiredPropertyKeys());
+			auxSet.removeAll(keySet);
+			StringBuilder builder = new StringBuilder("Parameter").append(auxSet.size() == 1 ? ": " : "s: ");
+			for (String s : auxSet) {
+				builder.append("'").append(s).append("', ");
+			}
+			builder.append(auxSet.size() == 1 ? " is " : " are ").append("required.");
+			throw new ValidationException(builder.toString());
+		}
+	}
 
-    /**
-     * <p>This method must be implemented by subclasses to create the object.</p>
-     *
-     * @return a T object.
-     */
-    protected abstract T buildObject();
+	/**
+	 * <p>
+	 * This method must be implemented by subclasses to create the object.
+	 * </p>
+	 *
+	 * @return a T object.
+	 */
+	protected abstract T buildObject();
 
-    /**
-     * {@inheritDoc}
-     * <p>Performs the validation process and then builds the object.</p>
-     */
-    @Override
-    public T build() {
-        validate();
-        return buildObject();
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * Performs the validation process and then builds the object.
+	 * </p>
+	 */
+	@Override
+	public T build() {
+		validate();
+		return buildObject();
+	}
 }

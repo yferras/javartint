@@ -24,7 +24,6 @@ import java.util.Properties;
  * #L%
  */
 
-
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -32,26 +31,27 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Default implementation of a GA.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
- * @param <D> Type of decoded value.
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <D>
+ *            Type of decoded value.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-    extends AbstractGeneticAlgorithm<T, D> {
+		extends AbstractGeneticAlgorithm<T, D> {
 
+	private DefaultGeneticAlgorithm(Properties properties) {
+		super(properties);
+	}
 
-    private DefaultGeneticAlgorithm(Properties properties) {
-        super(properties);
-    }
+	public static final class Builder<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
+			extends AbstractGeneticAlgorithm.Builder<DefaultGeneticAlgorithm<T, D>, T, D> {
 
-
-    public static final class Builder<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-        extends AbstractGeneticAlgorithm.Builder<DefaultGeneticAlgorithm<T, D>, T, D> {
-
-        @Override
-        protected DefaultGeneticAlgorithm<T, D> buildObject() {
-            return new DefaultGeneticAlgorithm<>(getProperties());
-        }
-    }
+		@Override
+		protected DefaultGeneticAlgorithm<T, D> buildObject() {
+			return new DefaultGeneticAlgorithm<>(getProperties());
+		}
+	}
 }

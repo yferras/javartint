@@ -30,26 +30,27 @@ import com.github.yferras.javartint.gea.util.MathUtil;
 /**
  * Sigma scaling method function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public final class SigmaScalingMethod<T extends Individual>
-    extends AbstractScalingMethod<T> {
-    /**
-     * Constructor that initializes this instance.
-     */
-    public SigmaScalingMethod() {
-        super(null);
-    }
+public final class SigmaScalingMethod<T extends Individual> extends AbstractScalingMethod<T> {
+	/**
+	 * Constructor that initializes this instance.
+	 */
+	public SigmaScalingMethod() {
+		super(null);
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    protected void scale(List<T> individuals) {
-        final Double mean = MathUtil.mean(individuals);
-        final double sigma = Math.sqrt(MathUtil.variance(individuals, mean));
-        for (T individual : individuals) {
-            individual.setFitness((individual.getFitness() - mean) / sigma);
-        }
-    }
+	/** {@inheritDoc} */
+	@Override
+	protected void scale(List<T> individuals) {
+		final Double mean = MathUtil.mean(individuals);
+		final double sigma = Math.sqrt(MathUtil.variance(individuals, mean));
+		for (T individual : individuals) {
+			individual.setFitness((individual.getFitness() - mean) / sigma);
+		}
+	}
 }

@@ -32,61 +32,57 @@ import static org.junit.Assert.*;
 
 public class DerivableFunctionTest {
 
-    final Function<Double, Double> f_3xP3 = new Function<Double, Double>() {
-        @Override
-        public Double evaluate(Double params) {
-            return 3.0 * Math.pow(params, 3.0);
-        }
-    };
+	final Function<Double, Double> f_3xP3 = new Function<Double, Double>() {
+		@Override
+		public Double evaluate(Double params) {
+			return 3.0 * Math.pow(params, 3.0);
+		}
+	};
 
-    final Function<Double, Double> f_3xP3_D1 = new Function<Double, Double>() {
-        @Override
-        public Double evaluate(Double params) {
-            return 9.0 * Math.pow(params, 2.0);
-        }
-    };
+	final Function<Double, Double> f_3xP3_D1 = new Function<Double, Double>() {
+		@Override
+		public Double evaluate(Double params) {
+			return 9.0 * Math.pow(params, 2.0);
+		}
+	};
 
-    final Function<Double, Double> f_3xP3_D2 = new Function<Double, Double>() {
-        @Override
-        public Double evaluate(Double params) {
-            return 18.0 * params;
-        }
-    };
+	final Function<Double, Double> f_3xP3_D2 = new Function<Double, Double>() {
+		@Override
+		public Double evaluate(Double params) {
+			return 18.0 * params;
+		}
+	};
 
-    final Function<Double, Double> f_3xP3_D3 = new Function<Double, Double>() {
-        @Override
-        public Double evaluate(Double params) {
-            return 18.0;
-        }
-    };
+	final Function<Double, Double> f_3xP3_D3 = new Function<Double, Double>() {
+		@Override
+		public Double evaluate(Double params) {
+			return 18.0;
+		}
+	};
 
+	@Test
+	public void testBuild() throws Exception {
+		DerivableFunction.Builder<Double, Double> builder = new DerivableFunction.Builder<>();
+		builder.setBaseFunction(f_3xP3).addDerived(f_3xP3_D1).addDerived(f_3xP3_D2).addDerived(f_3xP3_D3);
+		DerivableFunction<Double, Double> derivableFunction = builder.build();
 
-    @Test
-    public void testBuild() throws Exception {
-        DerivableFunction.Builder<Double, Double> builder = new DerivableFunction.Builder<>();
-        builder.setBaseFunction(f_3xP3)
-            .addDerived(f_3xP3_D1)
-            .addDerived(f_3xP3_D2)
-            .addDerived(f_3xP3_D3);
-        DerivableFunction<Double, Double> derivableFunction = builder.build();
-
-        List<Function<Double, Double>> list = new ArrayList<>();
-        list.add(f_3xP3);
-        list.add(f_3xP3_D1);
-        list.add(f_3xP3_D2);
-        list.add(f_3xP3_D3);
-        final Iterator<Function<Double, Double>> functionIterator = list.iterator();
-        int order = 0;
-        while (derivableFunction != null && functionIterator.hasNext()) {
-            final Function<Double, Double> function = functionIterator.next();
-            for (Double i = 0.0; i < 10.0; i++) {
-                Double actual = derivableFunction.evaluate(i);
-                Double expected = function.evaluate(i);
-                assertEquals(expected, actual, 0.0);
-            }
-            assertEquals(order, derivableFunction.getOrder());
-            order++;
-            derivableFunction = derivableFunction.derive();
-        }
-    }
+		List<Function<Double, Double>> list = new ArrayList<>();
+		list.add(f_3xP3);
+		list.add(f_3xP3_D1);
+		list.add(f_3xP3_D2);
+		list.add(f_3xP3_D3);
+		final Iterator<Function<Double, Double>> functionIterator = list.iterator();
+		int order = 0;
+		while (derivableFunction != null && functionIterator.hasNext()) {
+			final Function<Double, Double> function = functionIterator.next();
+			for (Double i = 0.0; i < 10.0; i++) {
+				Double actual = derivableFunction.evaluate(i);
+				Double expected = function.evaluate(i);
+				assertEquals(expected, actual, 0.0);
+			}
+			assertEquals(order, derivableFunction.getOrder());
+			order++;
+			derivableFunction = derivableFunction.derive();
+		}
+	}
 }

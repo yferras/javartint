@@ -32,98 +32,107 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Abstract class that represents recombination function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.3
  */
 public abstract class AbstractRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    extends AbstractProbabilisticFunction<T[], T[]>
-    implements RecombinationFunction<T> {
+		extends AbstractProbabilisticFunction<T[], T[]> implements RecombinationFunction<T> {
 
-    private static final int MAX_PARAMS = 2;
+	private static final int MAX_PARAMS = 2;
 
-    /** Constant <code>DEFAULT_PROBABILITY=.75</code> */
-    public static final double DEFAULT_PROBABILITY = .75;
+	/** Constant <code>DEFAULT_PROBABILITY=.75</code> */
+	public static final double DEFAULT_PROBABILITY = .75;
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     *
-     * @param probability probability of recombination
-     * @param random      random instance
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    protected AbstractRecombinationFunction(double probability, Random random)  {
-        super(probability, random);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of recombination
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	protected AbstractRecombinationFunction(double probability, Random random) {
+		super(probability, random);
+	}
 
-    /**
-     * Constructor, initializes instances with probability of recombination
-     * specified by {@code probability} parameter and random is an
-     * instance of {@link java.util.Random}.
-     *
-     * @param probability probability of recombination
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    protected AbstractRecombinationFunction(double probability)  {
-        super(probability);
-    }
+	/**
+	 * Constructor, initializes instances with probability of recombination
+	 * specified by {@code probability} parameter and random is an instance of
+	 * {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            probability of recombination
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	protected AbstractRecombinationFunction(double probability) {
+		super(probability);
+	}
 
-    /**
-     * Default constructor, initializes instances with probability of recombination
-     * equals to {@code .75} and random generator is an instance of {@link java.util.Random}.
-     */
-    protected AbstractRecombinationFunction() {
-        super();
-        this.probability = DEFAULT_PROBABILITY;
-    }
+	/**
+	 * Default constructor, initializes instances with probability of
+	 * recombination equals to {@code .75} and random generator is an instance
+	 * of {@link java.util.Random}.
+	 */
+	protected AbstractRecombinationFunction() {
+		super();
+		this.probability = DEFAULT_PROBABILITY;
+	}
 
-    /**
-     * Performs the specific recombination process. This method is called inside
-     * the method {@link #evaluate(Genome[])}
-     *
-     * @param parent1 first parent
-     * @param parent2 second parent
-     * @return the offspring.
-     * @throws java.lang.CloneNotSupportedException if any.
-     */
-    protected abstract T[] recombine(T parent1, T parent2)
-        throws CloneNotSupportedException;
+	/**
+	 * Performs the specific recombination process. This method is called inside
+	 * the method {@link #evaluate(Genome[])}
+	 *
+	 * @param parent1
+	 *            first parent
+	 * @param parent2
+	 *            second parent
+	 * @return the offspring.
+	 * @throws java.lang.CloneNotSupportedException
+	 *             if any.
+	 */
+	protected abstract T[] recombine(T parent1, T parent2) throws CloneNotSupportedException;
 
-    /**
-     * Ensures that parameters are valid.
-     *
-     * @param params parameters to validate.
-     * @throws java.lang.IllegalArgumentException if {@code params} is null
-     *                                            or {@code params.length} is less than 2.
-     */
-    protected void validate(T... params) throws IllegalArgumentException {
-        if (params == null) {
-            throw new IllegalArgumentException("'params' can't be null.");
-        }
-        if (params.length < MAX_PARAMS) {
-            throw new IllegalArgumentException(
-                "'params' must contain at less two elements");
-        }
-    }
+	/**
+	 * Ensures that parameters are valid.
+	 *
+	 * @param params
+	 *            parameters to validate.
+	 * @throws java.lang.IllegalArgumentException
+	 *             if {@code params} is null or {@code params.length} is less
+	 *             than 2.
+	 */
+	protected void validate(T... params) throws IllegalArgumentException {
+		if (params == null) {
+			throw new IllegalArgumentException("'params' can't be null.");
+		}
+		if (params.length < MAX_PARAMS) {
+			throw new IllegalArgumentException("'params' must contain at less two elements");
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * Accepts two genomes (parents) to perform the recombination process,
-     * and retrieves an array containing the offspring.
-     */
-    @Override
-    public T[] evaluate(T... params) {
-        validate(params);
-        double randomProbability = getRandom().nextDouble();
-        if (randomProbability > getProbability() ||
-            params[0].equals(params[1])) {
-            return params.clone();
-        }
-        try {
-            return recombine((T) params[0].clone(), (T) params[1].clone());
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cloning params.", e);
-        }
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Accepts two genomes (parents) to perform the recombination process, and
+	 * retrieves an array containing the offspring.
+	 */
+	@Override
+	public T[] evaluate(T... params) {
+		validate(params);
+		double randomProbability = getRandom().nextDouble();
+		if (randomProbability > getProbability() || params[0].equals(params[1])) {
+			return params.clone();
+		}
+		try {
+			return recombine((T) params[0].clone(), (T) params[1].clone());
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException("Cloning params.", e);
+		}
+	}
 }

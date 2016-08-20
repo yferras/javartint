@@ -22,12 +22,13 @@ package com.github.yferras.javartint.core.util;
  * #L%
  */
 
-
 import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * <p>Configurable interface.</p>
+ * <p>
+ * Configurable interface.
+ * </p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
@@ -35,11 +36,14 @@ import java.util.Properties;
  */
 public interface Configurable extends Serializable {
 
-    /**
-     * <p>Sets the properties.</p>
-     *
-     * @param properties a {@link java.util.Properties} object.
-     */
-    void setProperties(Properties properties);
+	/**
+	 * <p>
+	 * Sets the properties.
+	 * </p>
+	 *
+	 * @param properties
+	 *            a {@link java.util.Properties} object.
+	 */
+	void setProperties(Properties properties);
 
 }

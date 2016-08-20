@@ -25,15 +25,19 @@ package com.github.yferras.javartint.core;
 import com.github.yferras.javartint.core.util.Builder;
 
 /**
- * <p>Interface to create algorithm builders.</p>
+ * <p>
+ * Interface to create algorithm builders.
+ * </p>
  *
- * This interface can be used to create more complex APIs to simplified the process of create algorithms.
+ * This interface can be used to create more complex APIs to simplified the
+ * process of create algorithms.
  *
- * @param <A> Any derived type of {@link com.github.yferras.javartint.core.Algorithm} interface.
+ * @param <A>
+ *            Any derived type of
+ *            {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 1.0
  * @since 1.1.0
  */
-public interface AlgorithmBuilder<A extends Algorithm<? extends Solution>>
-    extends Builder<A> {
+public interface AlgorithmBuilder<A extends Algorithm<? extends Solution>> extends Builder<A> {
 }

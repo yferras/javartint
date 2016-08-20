@@ -31,108 +31,117 @@ import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethod;
 /**
  * Abstract class that represents selection function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
-public abstract class AbstractSelectionFunction<T extends Individual>
-    implements SelectionFunction<T> {
+public abstract class AbstractSelectionFunction<T extends Individual> implements SelectionFunction<T> {
 
-    /** Constant <code>DEFAULT_TO_SELECT=2</code> */
-    public static final int DEFAULT_TO_SELECT = 2;
+	/** Constant <code>DEFAULT_TO_SELECT=2</code> */
+	public static final int DEFAULT_TO_SELECT = 2;
 
-    private int numToSelect;
+	private int numToSelect;
 
-    private AbstractScalingMethod<T> scalingMethod;
+	private AbstractScalingMethod<T> scalingMethod;
 
-    /**
-     * Constructor than initializes this instance.
-     *
-     * @param numToSelect   number of elements to select
-     * @param scalingMethod scaling method
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod)  {
-        if (numToSelect < 1) {
-            throw new ValidationException("'numToSelect' can't be less than 1.");
-        }
-        this.numToSelect = numToSelect;
-        this.scalingMethod = scalingMethod;
-    }
+	/**
+	 * Constructor than initializes this instance.
+	 *
+	 * @param numToSelect
+	 *            number of elements to select
+	 * @param scalingMethod
+	 *            scaling method
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public AbstractSelectionFunction(int numToSelect, AbstractScalingMethod<T> scalingMethod) {
+		if (numToSelect < 1) {
+			throw new ValidationException("'numToSelect' can't be less than 1.");
+		}
+		this.numToSelect = numToSelect;
+		this.scalingMethod = scalingMethod;
+	}
 
-    /**
-     * Constructor than initializes this instance.
-     *
-     * @param numToSelect number of elements to select
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public AbstractSelectionFunction(int numToSelect)  {
-        this(numToSelect, null);
-    }
+	/**
+	 * Constructor than initializes this instance.
+	 *
+	 * @param numToSelect
+	 *            number of elements to select
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public AbstractSelectionFunction(int numToSelect) {
+		this(numToSelect, null);
+	}
 
-    /**
-     * Constructor than initializes this instance.
-     *
-     * @since 1.0.1
-     */
-    public AbstractSelectionFunction() {
-        this.numToSelect = DEFAULT_TO_SELECT;
-        this.scalingMethod = null;
-    }
+	/**
+	 * Constructor than initializes this instance.
+	 *
+	 * @since 1.0.1
+	 */
+	public AbstractSelectionFunction() {
+		this.numToSelect = DEFAULT_TO_SELECT;
+		this.scalingMethod = null;
+	}
 
-    /**
-     * Gets the number elements to select by this function
-     *
-     * @return the number elements to select
-     */
-    public int getNumToSelect() {
-        return numToSelect;
-    }
+	/**
+	 * Gets the number elements to select by this function
+	 *
+	 * @return the number elements to select
+	 */
+	public int getNumToSelect() {
+		return numToSelect;
+	}
 
-    /**
-     * Gets the scaling method
-     *
-     * @return the instance of scaling method
-     */
-    public AbstractScalingMethod<T> getScalingMethod() {
-        return scalingMethod;
-    }
+	/**
+	 * Gets the scaling method
+	 *
+	 * @return the instance of scaling method
+	 */
+	public AbstractScalingMethod<T> getScalingMethod() {
+		return scalingMethod;
+	}
 
-    /**
-     * Ensures that parameter are valid.
-     *
-     * @param params parameters to validate.
-     * @throws ValidationException If {@code params} is {@code null}.
-     *                                  Or, the length is less than the number of elements to select
-     */
-    private void validate(List<T> params) {
-        if (params == null) {
-            throw new ValidationException("'params' can't be null.");
-        }
-        if (params.size() < getNumToSelect()) {
-            throw new ValidationException("'params.length' is less than getNumToSelect()");
-        }
-    }
+	/**
+	 * Ensures that parameter are valid.
+	 *
+	 * @param params
+	 *            parameters to validate.
+	 * @throws ValidationException
+	 *             If {@code params} is {@code null}. Or, the length is less
+	 *             than the number of elements to select
+	 */
+	private void validate(List<T> params) {
+		if (params == null) {
+			throw new ValidationException("'params' can't be null.");
+		}
+		if (params.size() < getNumToSelect()) {
+			throw new ValidationException("'params.length' is less than getNumToSelect()");
+		}
+	}
 
-    /**
-     * Selects from a list the desired number of individuals and retrieves then into
-     * list.
-     *
-     * @param individuals Source to select the number of desired individuals.
-     * @return a list with the selected individuals.
-     */
-    protected abstract List<T> select(List<T> individuals);
+	/**
+	 * Selects from a list the desired number of individuals and retrieves then
+	 * into list.
+	 *
+	 * @param individuals
+	 *            Source to select the number of desired individuals.
+	 * @return a list with the selected individuals.
+	 */
+	protected abstract List<T> select(List<T> individuals);
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * Performs the selection process after validating the input params ({@link #validate})
-     */
-    @Override
-    public List<T> evaluate(List<T> params) {
-        validate(params);
-        return select(params);
-    }
-
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Performs the selection process after validating the input params
+	 * ({@link #validate})
+	 */
+	@Override
+	public List<T> evaluate(List<T> params) {
+		validate(params);
+		return select(params);
+	}
 
 }

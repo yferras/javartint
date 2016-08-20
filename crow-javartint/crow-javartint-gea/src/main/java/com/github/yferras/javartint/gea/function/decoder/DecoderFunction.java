@@ -28,11 +28,13 @@ import com.github.yferras.javartint.gea.Individual;
 /**
  * This interface is used to create a functions to decode genomes.
  *
- * @param <D> Type of decoded result.
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
+ * @param <D>
+ *            Type of decoded result.
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.3
  */
-public interface DecoderFunction<D, T extends Individual>
-    extends Function<D, T> {
+public interface DecoderFunction<D, T extends Individual> extends Function<D, T> {
 }

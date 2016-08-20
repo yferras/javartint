@@ -33,12 +33,15 @@ public class ByteArrayGene extends NumberArrayGene<Byte> {
 	private static final long serialVersionUID = 5391238096959068397L;
 
 	/**
-     * <p>Constructor for ByteArrayGene.</p>
-     *
-     * @param data an array of {@link java.lang.Byte} objects.
-     */
-    public ByteArrayGene(Byte[] data) {
-        super(data);
-    }
+	 * <p>
+	 * Constructor for ByteArrayGene.
+	 * </p>
+	 *
+	 * @param data
+	 *            an array of {@link java.lang.Byte} objects.
+	 */
+	public ByteArrayGene(Byte[] data) {
+		super(data);
+	}
 
 }

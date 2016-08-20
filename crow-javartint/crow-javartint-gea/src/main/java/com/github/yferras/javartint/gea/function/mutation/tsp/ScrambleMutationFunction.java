@@ -36,12 +36,15 @@ import com.github.yferras.javartint.gea.genome.TspGenome;
  * Specific mutation function in TSP.
  * </p>
  * <p>
- * Takes the original genome and generates a random section based on genome's size. After that, the genes inside
- * this section are scrambled, then the section is reinserted on the same position.
+ * Takes the original genome and generates a random section based on genome's
+ * size. After that, the genes inside this section are scrambled, then the
+ * section is reinserted on the same position.
  * </p>
  * <p>
- * Example, given the following setting: <code>minSpanSize = 4</code> genome:<br/>
+ * Example, given the following setting: <code>minSpanSize = 4</code>
+ * genome:<br/>
  * </p>
+ * 
  * <pre>
  *     TSPGenome:
  *     [ 8, 5, 2, 1, 6, 3, 7, 0, 9, 4 ]
@@ -60,72 +63,81 @@ import com.github.yferras.javartint.gea.genome.TspGenome;
  *     [ 8, 5, 2, 3, 7, 6, 1, 0, 9, 4 ]
  * </pre>
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.TspGenome}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.TspGenome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class ScrambleMutationFunction<T extends TspGenome>
-    extends AbstractTspSpanMutationFunction<T> {
+public class ScrambleMutationFunction<T extends TspGenome> extends AbstractTspSpanMutationFunction<T> {
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     *
-     * @param probability probability of mutation
-     * @param random      random instance
-     * @param minSpanSize min span size
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public ScrambleMutationFunction(double probability, Random random, int minSpanSize)  {
-        super(probability, random, minSpanSize);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
+	 * @param minSpanSize
+	 *            min span size
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public ScrambleMutationFunction(double probability, Random random, int minSpanSize) {
+		super(probability, random, minSpanSize);
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * By default it uses as random generator an instance of {@link java.util.Random}.
-     *
-     * @param probability probability of mutation
-     * @param minSpanSize min span size
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public ScrambleMutationFunction(double probability, int minSpanSize)  {
-        super(probability, minSpanSize);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param minSpanSize
+	 *            min span size
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public ScrambleMutationFunction(double probability, int minSpanSize) {
+		super(probability, minSpanSize);
+	}
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * By default it uses as random generator an instance of {@link java.util.Random},
-     * and <code>probability = 0.05</code>.
-     *
-     * @param minSpanSize min span size
-     */
-    public ScrambleMutationFunction(int minSpanSize) {
-        super(minSpanSize);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters. By default
+	 * it uses as random generator an instance of {@link java.util.Random}, and
+	 * <code>probability = 0.05</code>.
+	 *
+	 * @param minSpanSize
+	 *            min span size
+	 */
+	public ScrambleMutationFunction(int minSpanSize) {
+		super(minSpanSize);
+	}
 
-    /**
-     * Default constructor. By default it uses as random generator an instance of {@link java.util.Random},
-     * <code>probability = 0.05</code> and <code>minSpanSize = 2</code>.
-     */
-    public ScrambleMutationFunction() {
-        super();
-    }
+	/**
+	 * Default constructor. By default it uses as random generator an instance
+	 * of {@link java.util.Random}, <code>probability = 0.05</code> and
+	 * <code>minSpanSize = 2</code>.
+	 */
+	public ScrambleMutationFunction() {
+		super();
+	}
 
-    /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected T mutate(T subject)
-        throws CloneNotSupportedException {
-        int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
-        int end = start + getMinSpanSize();
-        List<DefaultGene<Integer>> section = new ArrayList<>(getMinSpanSize());
-        for (int i = start; i < end; i++) {
-            section.add(subject.getChromosome().getGene(i));
-        }
-        Collections.shuffle(section, getRandom());
-        final ListIterator<DefaultGene<Integer>> iterator = section.listIterator();
-        for (int i = start; i < end; i++) {
-            subject.getChromosome().setGene(i, iterator.next());
-        }
-        return subject;
-    }
+	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected T mutate(T subject) throws CloneNotSupportedException {
+		int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
+		int end = start + getMinSpanSize();
+		List<DefaultGene<Integer>> section = new ArrayList<>(getMinSpanSize());
+		for (int i = start; i < end; i++) {
+			section.add(subject.getChromosome().getGene(i));
+		}
+		Collections.shuffle(section, getRandom());
+		final ListIterator<DefaultGene<Integer>> iterator = section.listIterator();
+		for (int i = start; i < end; i++) {
+			subject.getChromosome().setGene(i, iterator.next());
+		}
+		return subject;
+	}
 }

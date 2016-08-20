@@ -28,19 +28,22 @@ import com.github.yferras.javartint.core.Solution;
 /**
  * Serves to create constraints based on thresholds.
  *
- * @param <T> Any derived class from {@link java.lang.Comparable} interface.
- * @param <A> Any derived class from {@link com.github.yferras.javartint.core.Algorithm} interface.
+ * @param <T>
+ *            Any derived class from {@link java.lang.Comparable} interface.
+ * @param <A>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.core.Algorithm} interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public interface ThresholdConstraint<T extends Comparable<T>, A extends Algorithm<? extends Solution>>
-    extends Constraint<A> {
+		extends Constraint<A> {
 
-    /**
-     * Gets the value of threshold.
-     *
-     * @return the threshold.
-     */
-    T getThreshold();
+	/**
+	 * Gets the value of threshold.
+	 *
+	 * @return the threshold.
+	 */
+	T getThreshold();
 
 }

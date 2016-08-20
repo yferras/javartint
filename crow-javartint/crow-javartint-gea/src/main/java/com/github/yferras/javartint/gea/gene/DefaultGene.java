@@ -22,11 +22,11 @@ package com.github.yferras.javartint.gea.gene;
  * #L%
  */
 
-
 /**
  * Default generic gene.
  *
- * @param <T> Any class
+ * @param <T>
+ *            Any class
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
@@ -35,12 +35,13 @@ public class DefaultGene<T> extends AbstractGene<T> {
 	private static final long serialVersionUID = 6271164334737050591L;
 
 	/**
-     * Default constructor.
-     *
-     * @param data value to initialize this gene.
-     */
-    public DefaultGene(T data) {
-        super(data);
-    }
+	 * Default constructor.
+	 *
+	 * @param data
+	 *            value to initialize this gene.
+	 */
+	public DefaultGene(T data) {
+		super(data);
+	}
 
 }

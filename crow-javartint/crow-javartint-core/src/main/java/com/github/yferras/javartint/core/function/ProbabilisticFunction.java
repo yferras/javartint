@@ -27,47 +27,52 @@ import java.util.Random;
 /**
  * Interface to create generic probabilistic functions.
  *
- * @param <R> Type of result
- * @param <P> Type of parameters
+ * @param <R>
+ *            Type of result
+ * @param <P>
+ *            Type of parameters
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public interface ProbabilisticFunction<R, P> extends Function<R, P> {
 
-    /**
-     * Gets the probability, a number between {@code 0.0} and {@code 0.0}.
-     *
-     * @return the probability
-     */
-    double getProbability();
+	/**
+	 * Gets the probability, a number between {@code 0.0} and {@code 0.0}.
+	 *
+	 * @return the probability
+	 */
+	double getProbability();
 
-    /**
-     * Sets the probability, a number that must between {@code 0.0} and
-     * {@code 1.0}.
-     *
-     * @param probability the probability
-     */
-    void setProbability(final double probability);
+	/**
+	 * Sets the probability, a number that must between {@code 0.0} and
+	 * {@code 1.0}.
+	 *
+	 * @param probability
+	 *            the probability
+	 */
+	void setProbability(final double probability);
 
-    /**
-     * Gets the random instance.
-     *
-     * @return the random instance.
-     */
-    Random getRandom();
+	/**
+	 * Gets the random instance.
+	 *
+	 * @return the random instance.
+	 */
+	Random getRandom();
 
-    /**
-     * Sets the random generator. Is used to generate random probabilities.
-     *
-     * @param random the random instance
-     */
-    void setRandom(final Random random);
+	/**
+	 * Sets the random generator. Is used to generate random probabilities.
+	 *
+	 * @param random
+	 *            the random instance
+	 */
+	void setRandom(final Random random);
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * The result is constrained by the returned value of {@link #getProbability()}.
-     */
-    @Override
-    R evaluate(P params);
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The result is constrained by the returned value of
+	 * {@link #getProbability()}.
+	 */
+	@Override
+	R evaluate(P params);
 }

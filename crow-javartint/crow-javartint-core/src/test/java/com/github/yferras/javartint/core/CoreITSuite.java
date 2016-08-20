@@ -37,30 +37,23 @@ import org.junit.runners.Suite;
  * @author Eng. Ferrás Cecilio, Yeinier
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses(
-    {
-        AbstractAlgorithmIT.class,
-        ProbabilisticFunctionTest.class,
-        RangeTest.class,
-        CompositeFunctionTest.class,
-        DerivableFunctionTest.class,
-    }
-)
+@Suite.SuiteClasses({ AbstractAlgorithmIT.class, ProbabilisticFunctionTest.class, RangeTest.class,
+		CompositeFunctionTest.class, DerivableFunctionTest.class, })
 public class CoreITSuite {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+	}
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+	@AfterClass
+	public static void tearDownClass() throws Exception {
+	}
 
-    @Before
-    public void setUp() throws Exception {
-    }
+	@Before
+	public void setUp() throws Exception {
+	}
 
-    @After
-    public void tearDown() throws Exception {
-    }
+	@After
+	public void tearDown() throws Exception {
+	}
 }

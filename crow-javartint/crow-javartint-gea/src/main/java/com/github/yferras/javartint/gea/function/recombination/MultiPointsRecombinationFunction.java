@@ -29,9 +29,9 @@ import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
- * Specific recombination function, that performs the recombination process if in each
- * iteration the random probability is in the threshold. This function can be
- * applied to any type of genome.
+ * Specific recombination function, that performs the recombination process if
+ * in each iteration the random probability is in the threshold. This function
+ * can be applied to any type of genome.
  * <p>
  * While iterates through the genes of the genomes, if the generated random
  * number is less than or equal to the probability of recombination then the
@@ -48,61 +48,70 @@ import com.github.yferras.javartint.gea.genome.Genome;
  * </code>
  * </p>
  *
- * @param <T> any derived type from {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <T>
+ *            any derived type from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public class MultiPointsRecombinationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    extends AbstractRecombinationFunction<T> {
+		extends AbstractRecombinationFunction<T> {
 
-    /**
-     * <p>Constructor for MultiPointsRecombinationFunction.</p>
-     *
-     * @param probability a double.
-     * @param random      a {@link java.util.Random} object.
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public MultiPointsRecombinationFunction(double probability, Random random)  {
-        super(probability, random);
-    }
+	/**
+	 * <p>
+	 * Constructor for MultiPointsRecombinationFunction.
+	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @param random
+	 *            a {@link java.util.Random} object.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public MultiPointsRecombinationFunction(double probability, Random random) {
+		super(probability, random);
+	}
 
-    /**
-     * <p>Constructor for MultiPointsRecombinationFunction.</p>
-     *
-     * @param probability a double.
-     * @throws com.github.yferras.javartint.core.util.ValidationException if any.
-     */
-    public MultiPointsRecombinationFunction(double probability)  {
-        super(probability);
-    }
+	/**
+	 * <p>
+	 * Constructor for MultiPointsRecombinationFunction.
+	 * </p>
+	 *
+	 * @param probability
+	 *            a double.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if any.
+	 */
+	public MultiPointsRecombinationFunction(double probability) {
+		super(probability);
+	}
 
-    /**
-     * <p>Constructor for MultiPointsRecombinationFunction.</p>
-     */
-    public MultiPointsRecombinationFunction() {
-        super();
-    }
+	/**
+	 * <p>
+	 * Constructor for MultiPointsRecombinationFunction.
+	 * </p>
+	 */
+	public MultiPointsRecombinationFunction() {
+		super();
+	}
 
-    /** {@inheritDoc} */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected T[] recombine(T parent1, T parent2)
-        throws CloneNotSupportedException {
-        Genome[] offspring = new Genome[]{
-            ((Genome) parent1).clone(),
-            ((Genome) parent2).clone()
-        };
-        int numberOfChromosomes = parent1.size();
-        for (int i = 0; i < numberOfChromosomes; i++) {
-            int numberOfGenes = offspring[0].getChromosome(i).size();
-            for (int j = 0; j < numberOfGenes; j++) {
-                if (getRandom().nextDouble() <= getProbability()) {
-                    Gene aux = offspring[0].getChromosome(i).getGene(j);
-                    offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
-                    offspring[1].getChromosome(i).setGene(j, aux);
-                }
-            }
-        }
-        return (T[]) offspring;
-    }
+	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
+		Genome[] offspring = new Genome[] { ((Genome) parent1).clone(), ((Genome) parent2).clone() };
+		int numberOfChromosomes = parent1.size();
+		for (int i = 0; i < numberOfChromosomes; i++) {
+			int numberOfGenes = offspring[0].getChromosome(i).size();
+			for (int j = 0; j < numberOfGenes; j++) {
+				if (getRandom().nextDouble() <= getProbability()) {
+					Gene aux = offspring[0].getChromosome(i).getGene(j);
+					offspring[0].getChromosome(i).setGene(j, offspring[1].getChromosome(i).getGene(j));
+					offspring[1].getChromosome(i).setGene(j, aux);
+				}
+			}
+		}
+		return (T[]) offspring;
+	}
 }

@@ -23,36 +23,37 @@ package com.github.yferras.javartint.gea;
  */
 
 /**
- * This abstract class implements partially the interface {@link com.github.yferras.javartint.gea.Individual}.
+ * This abstract class implements partially the interface
+ * {@link com.github.yferras.javartint.gea.Individual}.
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
 public abstract class AbstractIndividual implements Individual {
 
-    private Double fitness = 0.0;
+	private Double fitness = 0.0;
 
-    /** {@inheritDoc} */
-    @Override
-    public Double getFitness() {
-        return fitness;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public Double getFitness() {
+		return fitness;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void setFitness(Double fitness) {
-        this.fitness = fitness;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void setFitness(Double fitness) {
+		this.fitness = fitness;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public int compareTo(Individual o) {
-        return Double.compare(this.getFitness(), o.getFitness());
-    }
+	/** {@inheritDoc} */
+	@Override
+	public int compareTo(Individual o) {
+		return Double.compare(this.getFitness(), o.getFitness());
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public Individual clone() throws CloneNotSupportedException {
-        return (Individual) super.clone();
-    }
+	/** {@inheritDoc} */
+	@Override
+	public Individual clone() throws CloneNotSupportedException {
+		return (Individual) super.clone();
+	}
 }

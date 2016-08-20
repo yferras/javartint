@@ -22,12 +22,12 @@ package com.github.yferras.javartint.core.util;
  * #L%
  */
 
-
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 /**
- * Abstract class that implements partially {@link com.github.yferras.javartint.core.util.ItemIterator}.
+ * Abstract class that implements partially
+ * {@link com.github.yferras.javartint.core.util.ItemIterator}.
  *
  * @author yferras
  * @version 0.0.1
@@ -35,31 +35,31 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractItemIterator<E> implements ItemIterator<E> {
 
-    private int cursor = 0;
+	private int cursor = 0;
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean hasNext() {
-        return cursor < itemsCount();
-    }
+	/** {@inheritDoc} */
+	@Override
+	public boolean hasNext() {
+		return cursor < itemsCount();
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public E next() {
-        try {
-            int i = cursor;
-            E next = getItem(i);
-            cursor = i + 1;
-            return next;
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).throwing(getClass().getName(), "next", e);
-            throw new NoSuchElementException(e.getMessage());
-        }
-    }
+	/** {@inheritDoc} */
+	@Override
+	public E next() {
+		try {
+			int i = cursor;
+			E next = getItem(i);
+			cursor = i + 1;
+			return next;
+		} catch (Exception e) {
+			Logger.getLogger(getClass().getName()).throwing(getClass().getName(), "next", e);
+			throw new NoSuchElementException(e.getMessage());
+		}
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException("SIZE OF ARRAY IS FIXED");
+	}
 }

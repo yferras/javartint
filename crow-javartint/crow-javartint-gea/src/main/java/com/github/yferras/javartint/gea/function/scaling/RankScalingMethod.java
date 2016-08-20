@@ -31,29 +31,31 @@ import com.github.yferras.javartint.gea.Individual;
 /**
  * Rank scaling method function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.Individual}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.Individual}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public final class RankScalingMethod<T extends Individual>
-    extends AbstractScalingMethod<T> {
+public final class RankScalingMethod<T extends Individual> extends AbstractScalingMethod<T> {
 
-    /**
-     * Constructor that initializes this instance.
-     *
-     * @param optimize optimization way
-     */
-    public RankScalingMethod(Optimize optimize) {
-        super(optimize);
-    }
+	/**
+	 * Constructor that initializes this instance.
+	 *
+	 * @param optimize
+	 *            optimization way
+	 */
+	public RankScalingMethod(Optimize optimize) {
+		super(optimize);
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    protected void scale(List<T> individuals) {
-        // Sorts ascending
-        Collections.sort(individuals);
-        for (int i = 0; i < individuals.size(); i++) {
-            individuals.get(i).setFitness(i + 1.0);
-        }
-    }
+	/** {@inheritDoc} */
+	@Override
+	protected void scale(List<T> individuals) {
+		// Sorts ascending
+		Collections.sort(individuals);
+		for (int i = 0; i < individuals.size(); i++) {
+			individuals.get(i).setFitness(i + 1.0);
+		}
+	}
 }

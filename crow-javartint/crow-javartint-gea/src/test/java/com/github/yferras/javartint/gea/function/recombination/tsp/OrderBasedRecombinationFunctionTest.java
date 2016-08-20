@@ -30,36 +30,30 @@ import java.util.Random;
 
 public class OrderBasedRecombinationFunctionTest {
 
-    @Test
-    public void testRecombine() throws Exception {
-        OrderBasedRecombinationFunction<TspGenome> recombinationFunction =
-            new OrderBasedRecombinationFunction<>();
-        recombinationFunction.setRandom(
+	@Test
+	public void testRecombine() throws Exception {
+		OrderBasedRecombinationFunction<TspGenome> recombinationFunction = new OrderBasedRecombinationFunction<>();
+		recombinationFunction.setRandom(
 
-            new Random() {
+				new Random() {
 
-                private int[] positions = {1, 0, 2, 4};
-                private int index = 0;
+					private int[] positions = { 1, 0, 2, 4 };
+					private int index = 0;
 
-                @Override
-                public int nextInt(int n) {
-                    return positions[index++];
-                }
-            }
-        );
+					@Override
+					public int nextInt(int n) {
+						return positions[index++];
+					}
+				});
 
-        final TspGenome genome1 = new TspGenome(2, 5, 0, 3, 6, 1, 4, 7);
-        final TspGenome genome2 = new TspGenome(3, 4, 0, 7, 2, 5, 1, 6);
-        final TspGenome[] offspring = recombinationFunction.recombine(genome1, genome2);
+		final TspGenome genome1 = new TspGenome(2, 5, 0, 3, 6, 1, 4, 7);
+		final TspGenome genome2 = new TspGenome(3, 4, 0, 7, 2, 5, 1, 6);
+		final TspGenome[] offspring = recombinationFunction.recombine(genome1, genome2);
 
-        final TspGenome expected0 = new TspGenome(2, 4, 0, 3, 6, 1, 5, 7);
-        final TspGenome expected1 = new TspGenome(3, 4, 5, 7, 2, 0, 1, 6);
+		final TspGenome expected0 = new TspGenome(2, 4, 0, 3, 6, 1, 5, 7);
+		final TspGenome expected1 = new TspGenome(3, 4, 5, 7, 2, 0, 1, 6);
 
-        Assert.assertArrayEquals(
-            expected0.getChromosome().getGenes(),
-            offspring[0].getChromosome().getGenes());
-        Assert.assertArrayEquals(
-            expected1.getChromosome().getGenes(),
-            offspring[1].getChromosome().getGenes());
-    }
+		Assert.assertArrayEquals(expected0.getChromosome().getGenes(), offspring[0].getChromosome().getGenes());
+		Assert.assertArrayEquals(expected1.getChromosome().getGenes(), offspring[1].getChromosome().getGenes());
+	}
 }

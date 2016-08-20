@@ -37,42 +37,42 @@ import static org.junit.Assert.assertEquals;
 
 public class BoltzmannScalingMethodTest {
 
-    @Before
-    public void setUp() throws Exception {
-        System.out.print(BoltzmannScalingMethod.class.getName().concat("."));
-    }
+	@Before
+	public void setUp() throws Exception {
+		System.out.print(BoltzmannScalingMethod.class.getName().concat("."));
+	}
 
-    @After
-    public void tearDown() throws Exception {
-    }
+	@After
+	public void tearDown() throws Exception {
+	}
 
-    @Test
-    public void testEvaluate() throws Exception {
-        System.out.println("evaluate (performed algorithm)");
-        int numCities = 10;
-        double boltzmannTemperature = 2.0 * numCities;
-        final double deltaTemp = 0.05;
-        BoltzmannScalingMethod<DefaultGenome> scalingMethod = new BoltzmannScalingMethod<>(numCities);
-        List<DefaultGenome> genomes = new ArrayList<>(100);
-        double[] exp = new double[100];
-        Random random = new Random();
-        double sum = 0.0;
-        for (int i = 0; i < 100; i++) {
-            genomes.add(new DefaultGenome<>());
-            double f = random.nextInt(100);
-            genomes.get(i).setFitness(exp[i] = f);
-            sum += f;
-        }
-        double mean = sum / 100.0;
-        boltzmannTemperature -= deltaTemp;
-        final double divider = mean / boltzmannTemperature;
-        for (int i = 0; i < 100; i++) {
-            exp[i] = exp[i] / divider;
-        }
+	@Test
+	public void testEvaluate() throws Exception {
+		System.out.println("evaluate (performed algorithm)");
+		int numCities = 10;
+		double boltzmannTemperature = 2.0 * numCities;
+		final double deltaTemp = 0.05;
+		BoltzmannScalingMethod<DefaultGenome> scalingMethod = new BoltzmannScalingMethod<>(numCities);
+		List<DefaultGenome> genomes = new ArrayList<>(100);
+		double[] exp = new double[100];
+		Random random = new Random();
+		double sum = 0.0;
+		for (int i = 0; i < 100; i++) {
+			genomes.add(new DefaultGenome<>());
+			double f = random.nextInt(100);
+			genomes.get(i).setFitness(exp[i] = f);
+			sum += f;
+		}
+		double mean = sum / 100.0;
+		boltzmannTemperature -= deltaTemp;
+		final double divider = mean / boltzmannTemperature;
+		for (int i = 0; i < 100; i++) {
+			exp[i] = exp[i] / divider;
+		}
 
-        List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
-        for (int i = 0; i < evaluate.size(); i++) {
-            assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
-        }
-    }
+		List<DefaultGenome> evaluate = scalingMethod.evaluate(genomes);
+		for (int i = 0; i < evaluate.size(); i++) {
+			assertEquals(exp[i], evaluate.get(i).getFitness(), 0.0);
+		}
+	}
 }

@@ -32,10 +32,11 @@ import java.util.EventListener;
  */
 public interface SolutionChangeListener extends EventListener {
 
-    /**
-     * This method should be fired when the algorithm updates the solution.
-     *
-     * @param event algorithm event.
-     */
-    void solutionUpdated(AlgorithmEvent event);
+	/**
+	 * This method should be fired when the algorithm updates the solution.
+	 *
+	 * @param event
+	 *            algorithm event.
+	 */
+	void solutionUpdated(AlgorithmEvent event);
 }

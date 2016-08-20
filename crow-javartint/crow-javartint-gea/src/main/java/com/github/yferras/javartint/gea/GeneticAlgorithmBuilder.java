@@ -34,64 +34,86 @@ import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
- * <p>Interface to define genetics algorithm builders.</p>
+ * <p>
+ * Interface to define genetics algorithm builders.
+ * </p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  * @since 2.0.0
  */
 public interface GeneticAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
-    extends EvolutionaryAlgorithmBuilder<A, T, D> {
+		extends EvolutionaryAlgorithmBuilder<A, T, D> {
 
-    /** {@inheritDoc} */
-    @Override
-    GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size);
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setPopulationSize(int size);
 
-    /** {@inheritDoc} */
-    @Override
-    GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
 
-    /** {@inheritDoc} */
-    @Override
-    GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
 
-    /** {@inheritDoc} */
-    @Override
-    GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
 
-    /** {@inheritDoc} */
-    @Override
-    GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
+	/** {@inheritDoc} */
+	@Override
+	GeneticAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
 
-    /**
-     * <p>Sets the mutation function.</p>
-     *
-     * @param mutationFunction a {@link com.github.yferras.javartint.gea.function.mutation.MutationFunction} object.
-     * @return this instance of builder.
-     */
-    GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction);
+	/**
+	 * <p>
+	 * Sets the mutation function.
+	 * </p>
+	 *
+	 * @param mutationFunction
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.mutation.MutationFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	GeneticAlgorithmBuilder<A, T, D> setMutationFunction(MutationFunction<T> mutationFunction);
 
-    /**
-     * <p>Sets the recombination function.</p>
-     *
-     * @param recombinationFunction a {@link com.github.yferras.javartint.gea.function.recombination.RecombinationFunction} object.
-     * @return this instance of builder.
-     */
-    GeneticAlgorithmBuilder<A, T, D> setRecombinationFunction(RecombinationFunction<T> recombinationFunction);
+	/**
+	 * <p>
+	 * Sets the recombination function.
+	 * </p>
+	 *
+	 * @param recombinationFunction
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.recombination.RecombinationFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	GeneticAlgorithmBuilder<A, T, D> setRecombinationFunction(RecombinationFunction<T> recombinationFunction);
 
-    /**
-     * <p>Sets the selection function.</p>
-     *
-     * @param selectionFunction a {@link com.github.yferras.javartint.gea.function.selection.SelectionFunction} object.
-     * @return this instance of builder.
-     */
-    GeneticAlgorithmBuilder<A, T, D> setSelectionFunction(SelectionFunction<T> selectionFunction);
+	/**
+	 * <p>
+	 * Sets the selection function.
+	 * </p>
+	 *
+	 * @param selectionFunction
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.selection.SelectionFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	GeneticAlgorithmBuilder<A, T, D> setSelectionFunction(SelectionFunction<T> selectionFunction);
 
-    /**
-     * <p>Sets the selection function for parents.</p>
-     *
-     * @param selectionFunction a {@link com.github.yferras.javartint.gea.function.selection.SelectionFunction} object.
-     * @return this instance of builder.
-     */
-    GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction);
+	/**
+	 * <p>
+	 * Sets the selection function for parents.
+	 * </p>
+	 *
+	 * @param selectionFunction
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.selection.SelectionFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	GeneticAlgorithmBuilder<A, T, D> setSelectionFunctionForParents(SelectionFunction<T> selectionFunction);
 }

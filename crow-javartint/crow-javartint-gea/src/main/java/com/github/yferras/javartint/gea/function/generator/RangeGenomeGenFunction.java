@@ -29,78 +29,88 @@ import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
 
-
 /**
- * This class is a genome generator function for create genomes with genes in defined ranges.
+ * This class is a genome generator function for create genomes with genes in
+ * defined ranges.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public class RangeGenomeGenFunction
-    extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
+		extends AbstractGenomeGeneratorFunction<DefaultGenome<DefaultChromosome<DefaultGene<Double>>>> {
 
-    /** Constant <code>DEFAULT_LENGTH_OF_GENES=1</code> */
-    public static final int DEFAULT_LENGTH_OF_GENES = 1;
-    private static final double BASE = 10.0;
-    private final int precision;
-    private Range<Double>[] ranges;
+	/** Constant <code>DEFAULT_LENGTH_OF_GENES=1</code> */
+	public static final int DEFAULT_LENGTH_OF_GENES = 1;
+	private static final double BASE = 10.0;
+	private final int precision;
+	private Range<Double>[] ranges;
 
-    /**
-     * Initializes this instance.
-     *
-     * @param genomeSize the number of chromosomes.
-     * @param precision  decimal precision.
-     * @param ranges     Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
-     *                   is used to generate a random value inside range.
-     */
-    @SafeVarargs
+	/**
+	 * Initializes this instance.
+	 *
+	 * @param genomeSize
+	 *            the number of chromosomes.
+	 * @param precision
+	 *            decimal precision.
+	 * @param ranges
+	 *            Array of ranges. The length of this array is the size of
+	 *            genome, and each instance of
+	 *            {@link com.github.yferras.javartint.core.util.Range} is used
+	 *            to generate a random value inside range.
+	 */
+	@SafeVarargs
 	public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
-        super(genomeSize, ranges.length, DEFAULT_LENGTH_OF_GENES);
-        this.precision = precision;
-        this.ranges = ranges;
-    }
+		super(genomeSize, ranges.length, DEFAULT_LENGTH_OF_GENES);
+		this.precision = precision;
+		this.ranges = ranges;
+	}
 
-    /**
-     * Initializes this instance. By default {@code genomeSize} is 1.
-     *
-     * @param precision decimal precision.
-     * @param ranges    Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
-     *                  is used to generate a random value inside range.
-     */
-    @SafeVarargs
+	/**
+	 * Initializes this instance. By default {@code genomeSize} is 1.
+	 *
+	 * @param precision
+	 *            decimal precision.
+	 * @param ranges
+	 *            Array of ranges. The length of this array is the size of
+	 *            genome, and each instance of
+	 *            {@link com.github.yferras.javartint.core.util.Range} is used
+	 *            to generate a random value inside range.
+	 */
+	@SafeVarargs
 	public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
-        super(DEFAULT_GENOME_SIZE, ranges.length, DEFAULT_LENGTH_OF_GENES);
-        this.precision = precision;
-        this.ranges = ranges;
-    }
+		super(DEFAULT_GENOME_SIZE, ranges.length, DEFAULT_LENGTH_OF_GENES);
+		this.precision = precision;
+		this.ranges = ranges;
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * Generates a genome with default set of genes, each of these genes have a double value.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
-        Random random = new Random();
-        DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
-        for (int i = 0; i < genomeSize; i++) {
-            DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
-            for (int j = 0; j < lengthsOfGenes.length; j++) {
-                Range<Double> range = ranges[j];
-                double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
-                genes[j] = new DefaultGene<>(v);
-            }
-            genome.addChromosome(new DefaultChromosome<DefaultGene<Double>>());
-            genome.getChromosome(i).setGenes(genes);
-        }
-        return genome;
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Generates a genome with default set of genes, each of these genes have a
+	 * double value.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected DefaultGenome<DefaultChromosome<DefaultGene<Double>>> generate(int genomeSize, int[] lengthsOfGenes) {
+		Random random = new Random();
+		DefaultGenome<DefaultChromosome<DefaultGene<Double>>> genome = new DefaultGenome<>();
+		for (int i = 0; i < genomeSize; i++) {
+			DefaultGene<Double>[] genes = new DefaultGene[lengthsOfGenes.length];
+			for (int j = 0; j < lengthsOfGenes.length; j++) {
+				Range<Double> range = ranges[j];
+				double v = round(random.nextDouble() * (range.getMax() - range.getMin()) + range.getMin());
+				genes[j] = new DefaultGene<>(v);
+			}
+			genome.addChromosome(new DefaultChromosome<DefaultGene<Double>>());
+			genome.getChromosome(i).setGenes(genes);
+		}
+		return genome;
+	}
 
-    private double round(double value) {
-        double p = Math.pow(BASE, precision);
-        double k = value * p;
-        return Math.round(k) / p;
-    }
+	private double round(double value) {
+		double p = Math.pow(BASE, precision);
+		double k = value * p;
+		return Math.round(k) / p;
+	}
 
 }

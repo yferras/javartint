@@ -28,33 +28,37 @@ import com.github.yferras.javartint.core.Solution;
 /**
  * This class can be used to create constrains to algorithms based on errors.
  *
- * @param <A> Any derived class from {@link com.github.yferras.javartint.core.ErrorBasedAlgorithm} interface.
+ * @param <A>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.core.ErrorBasedAlgorithm}
+ *            interface.
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.2
  */
 public class MinErrorConstraint<A extends ErrorBasedAlgorithm<? extends Solution>>
-    extends AbstractThresholdConstraint<Double, A> {
+		extends AbstractThresholdConstraint<Double, A> {
 
-    /**
-     * Constructor.
-     *
-     * @param constraintType constrain type.
-     * @param threshold      error threshold.
-     */
-    public MinErrorConstraint(ConstraintType constraintType, double threshold) {
-        super(constraintType, threshold);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param constraintType
+	 *            constrain type.
+	 * @param threshold
+	 *            error threshold.
+	 */
+	public MinErrorConstraint(ConstraintType constraintType, double threshold) {
+		super(constraintType, threshold);
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * If the actual error of algorithm is less than the threshold, in
-     * this case returns <code>true</code>, otherwise returns
-     * <code>false</code>.
-     */
-    @Override
-    public boolean evaluate(A algorithm) {
-        return algorithm.getCurrentError().compareTo(getThreshold()) < 0;
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * If the actual error of algorithm is less than the threshold, in this case
+	 * returns <code>true</code>, otherwise returns <code>false</code>.
+	 */
+	@Override
+	public boolean evaluate(A algorithm) {
+		return algorithm.getCurrentError().compareTo(getThreshold()) < 0;
+	}
 
 }

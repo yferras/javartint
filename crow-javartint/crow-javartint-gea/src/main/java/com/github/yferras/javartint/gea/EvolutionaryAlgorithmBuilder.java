@@ -29,51 +29,74 @@ import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
 
 /**
- * <p>Interface to define evolutionary algorithm builders.</p>
+ * <p>
+ * Interface to define evolutionary algorithm builders.
+ * </p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 1.0
  * @since 2.0.0
  */
 public interface EvolutionaryAlgorithmBuilder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Individual, D>
- extends AlgorithmBuilder<A> {
-    /**
-     * <p>Sets the population size.</p>
-     *
-     * @param size population size.
-     * @return this instance of builder.
-     */
-    EvolutionaryAlgorithmBuilder<A, T, D> setPopulationSize(int size);
+		extends AlgorithmBuilder<A> {
+	/**
+	 * <p>
+	 * Sets the population size.
+	 * </p>
+	 *
+	 * @param size
+	 *            population size.
+	 * @return this instance of builder.
+	 */
+	EvolutionaryAlgorithmBuilder<A, T, D> setPopulationSize(int size);
 
-    /**
-     * <p>Sets the decoder function.</p>
-     *
-     * @param decoder a {@link com.github.yferras.javartint.gea.function.decoder.DecoderFunction} object.
-     * @return this instance of builder.
-     */
-    EvolutionaryAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
+	/**
+	 * <p>
+	 * Sets the decoder function.
+	 * </p>
+	 *
+	 * @param decoder
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.decoder.DecoderFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	EvolutionaryAlgorithmBuilder<A, T, D> setDecoder(DecoderFunction<D, T> decoder);
 
-    /**
-     * <p>Sets the target function.</p>
-     *
-     * @param targetFunction a {@link com.github.yferras.javartint.core.function.Function} object.
-     * @return this instance of builder.
-     */
-    EvolutionaryAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
+	/**
+	 * <p>
+	 * Sets the target function.
+	 * </p>
+	 *
+	 * @param targetFunction
+	 *            a {@link com.github.yferras.javartint.core.function.Function}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	EvolutionaryAlgorithmBuilder<A, T, D> setTargetFunction(Function<Double, D> targetFunction);
 
-    /**
-     * <p>Sets the generator function.</p>
-     *
-     * @param generatorFunction a {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction} object.
-     * @return this instance of builder.
-     */
-    EvolutionaryAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
+	/**
+	 * <p>
+	 * Sets the generator function.
+	 * </p>
+	 *
+	 * @param generatorFunction
+	 *            a
+	 *            {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	EvolutionaryAlgorithmBuilder<A, T, D> setGeneratorFunction(GeneratorFunction<T> generatorFunction);
 
-    /**
-     * <p>Sets the optimize direction.</p>
-     *
-     * @param optimize a {@link com.github.yferras.javartint.core.util.Optimize} object.
-     * @return this instance of builder.
-     */
-    EvolutionaryAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
+	/**
+	 * <p>
+	 * Sets the optimize direction.
+	 * </p>
+	 *
+	 * @param optimize
+	 *            a {@link com.github.yferras.javartint.core.util.Optimize}
+	 *            object.
+	 * @return this instance of builder.
+	 */
+	EvolutionaryAlgorithmBuilder<A, T, D> setOptimize(Optimize optimize);
 }

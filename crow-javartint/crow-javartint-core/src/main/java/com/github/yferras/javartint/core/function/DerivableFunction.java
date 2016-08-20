@@ -29,115 +29,124 @@ import java.util.List;
 /**
  * Interface to create generic derivable functions.
  *
- * @param <R> Type of result
- * @param <P> Type of parameters
+ * @param <R>
+ *            Type of result
+ * @param <P>
+ *            Type of parameters
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.2
  * @since 1.0.1
  */
 public interface DerivableFunction<R, P> extends Function<R, P> {
 
-    /**
-     * Gets the derived function.
-     *
-     * @return derived function. If the current function doesn't has derivative, will return {@code null}.
-     */
-    DerivableFunction<R, P> derive();
+	/**
+	 * Gets the derived function.
+	 *
+	 * @return derived function. If the current function doesn't has derivative,
+	 *         will return {@code null}.
+	 */
+	DerivableFunction<R, P> derive();
 
-    /**
-     * Gets the level of derived function. Normally a constant integer, for example for the first derived this method
-     * must return 1, for the second derived must return 2, and so on.
-     *
-     * @return an integer that represents the level of derived function.
-     * @since 1.1.0
-     */
-    int getOrder();
+	/**
+	 * Gets the level of derived function. Normally a constant integer, for
+	 * example for the first derived this method must return 1, for the second
+	 * derived must return 2, and so on.
+	 *
+	 * @return an integer that represents the level of derived function.
+	 * @since 1.1.0
+	 */
+	int getOrder();
 
-    /**
-     * Builder to construct instances of {@link DerivableFunction}.
-     *
-     * @param <R> Type of result
-     * @param <P> Type of parameters
-     * @author Eng. Ferrás Cecilio, Yeinier
-     * @version 0.1
-     * @since 1.1.0
-     */
-    class Builder<R, P> implements com.github.yferras.javartint.core.util.Builder<DerivableFunction<R, P>> {
+	/**
+	 * Builder to construct instances of {@link DerivableFunction}.
+	 *
+	 * @param <R>
+	 *            Type of result
+	 * @param <P>
+	 *            Type of parameters
+	 * @author Eng. Ferrás Cecilio, Yeinier
+	 * @version 0.1
+	 * @since 1.1.0
+	 */
+	class Builder<R, P> implements com.github.yferras.javartint.core.util.Builder<DerivableFunction<R, P>> {
 
-        private List<Function<R, P>> functions;
-        private Function<R, P> baseFunction;
+		private List<Function<R, P>> functions;
+		private Function<R, P> baseFunction;
 
-        /**
-         * Constructor for Builder.
-         */
-        public Builder() {
-            functions = new ArrayList<>();
-        }
+		/**
+		 * Constructor for Builder.
+		 */
+		public Builder() {
+			functions = new ArrayList<>();
+		}
 
-        /**
-         * Sets the base function. This method must be invoked once.
-         *
-         * @param function base function.
-         * @return an instance of this builder.
-         */
-        public Builder<R, P> setBaseFunction(Function<R, P> function) {
-            baseFunction = function;
-            return this;
-        }
+		/**
+		 * Sets the base function. This method must be invoked once.
+		 *
+		 * @param function
+		 *            base function.
+		 * @return an instance of this builder.
+		 */
+		public Builder<R, P> setBaseFunction(Function<R, P> function) {
+			baseFunction = function;
+			return this;
+		}
 
-        /**
-         * Adds new derivative function. The order corresponds with the order of this method is invoked.
-         *
-         * @param function derivative function.
-         * @return an instance of this builder.
-         */
-        public Builder<R, P> addDerived(Function<R, P> function) {
-            functions.add(function);
-            return this;
-        }
+		/**
+		 * Adds new derivative function. The order corresponds with the order of
+		 * this method is invoked.
+		 *
+		 * @param function
+		 *            derivative function.
+		 * @return an instance of this builder.
+		 */
+		public Builder<R, P> addDerived(Function<R, P> function) {
+			functions.add(function);
+			return this;
+		}
 
-        private DerivableFunction<R, P> buildRecursive(final Iterator<Function<R, P>> it, final int order) {
-            if (it.hasNext()) {
-                final Function<R, P> function = it.next();
-                return new DerivableFunction<R, P>() {
-                    @Override
-                    public DerivableFunction<R, P> derive() {
-                        return buildRecursive(it, order + 1);
-                    }
+		private DerivableFunction<R, P> buildRecursive(final Iterator<Function<R, P>> it, final int order) {
+			if (it.hasNext()) {
+				final Function<R, P> function = it.next();
+				return new DerivableFunction<R, P>() {
+					@Override
+					public DerivableFunction<R, P> derive() {
+						return buildRecursive(it, order + 1);
+					}
 
-                    @Override
-                    public int getOrder() {
-                        return order;
-                    }
+					@Override
+					public int getOrder() {
+						return order;
+					}
 
-                    @Override
-                    public R evaluate(P params) {
-                        return function.evaluate(params);
-                    }
-                };
-            }
-            return null;
-        }
+					@Override
+					public R evaluate(P params) {
+						return function.evaluate(params);
+					}
+				};
+			}
+			return null;
+		}
 
-        /** {@inheritDoc} */
-        @Override
-        public DerivableFunction<R, P> build() {
-            return new DerivableFunction<R, P>() {
-                @Override
-                public DerivableFunction<R, P> derive() {
-                    return buildRecursive(functions.iterator(), 1);
-                }
+		/** {@inheritDoc} */
+		@Override
+		public DerivableFunction<R, P> build() {
+			return new DerivableFunction<R, P>() {
+				@Override
+				public DerivableFunction<R, P> derive() {
+					return buildRecursive(functions.iterator(), 1);
+				}
 
-                @Override
-                public int getOrder() {
-                    return 0;
-                }
+				@Override
+				public int getOrder() {
+					return 0;
+				}
 
-                @Override
-                public R evaluate(P params) {
-                    return baseFunction.evaluate(params);
-                }
-            };
-        }
-    }
+				@Override
+				public R evaluate(P params) {
+					return baseFunction.evaluate(params);
+				}
+			};
+		}
+	}
 }

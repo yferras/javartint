@@ -35,27 +35,29 @@ import com.github.yferras.javartint.core.Solution;
  */
 public class AlgorithmEvent extends EventObject {
 
-    private static final long serialVersionUID = -4552301165892831022L;
-    private final Solution solution;
+	private static final long serialVersionUID = -4552301165892831022L;
+	private final Solution solution;
 
-    /**
-     * Constructor.
-     *
-     * @param source   The object on which the Event initially occurred.
-     * @param solution The solution.
-     */
-    public AlgorithmEvent(Algorithm<?> source, Solution solution) {
-        super(source);
-        this.solution = solution;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param source
+	 *            The object on which the Event initially occurred.
+	 * @param solution
+	 *            The solution.
+	 */
+	public AlgorithmEvent(Algorithm<?> source, Solution solution) {
+		super(source);
+		this.solution = solution;
+	}
 
-    /**
-     * Gets the solution.
-     *
-     * @return The solution.
-     */
-    public Solution getSolution() {
-        return solution;
-    }
+	/**
+	 * Gets the solution.
+	 *
+	 * @return The solution.
+	 */
+	public Solution getSolution() {
+		return solution;
+	}
 
 }

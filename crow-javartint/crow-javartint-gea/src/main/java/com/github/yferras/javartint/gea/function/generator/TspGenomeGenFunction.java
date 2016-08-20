@@ -29,38 +29,39 @@ import java.util.List;
 import com.github.yferras.javartint.gea.genome.TspGenome;
 
 /**
- * This class is a genome generator function for create genomes for TSP (Traveller Sales Problem).
- * The genomes generates by this, has only one chromosome.
+ * This class is a genome generator function for create genomes for TSP
+ * (Traveller Sales Problem). The genomes generates by this, has only one
+ * chromosome.
  *
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public class TspGenomeGenFunction
-    extends AbstractGenomeGeneratorFunction<TspGenome> {
+public class TspGenomeGenFunction extends AbstractGenomeGeneratorFunction<TspGenome> {
 
-    /**
-     * Initializes this instance. By default {@code genomeSize} is 1.
-     *
-     * @param numberOfGenes the number of genes.
-     */
-    public TspGenomeGenFunction(int numberOfGenes) {
-        super(numberOfGenes, 1);
-    }
+	/**
+	 * Initializes this instance. By default {@code genomeSize} is 1.
+	 *
+	 * @param numberOfGenes
+	 *            the number of genes.
+	 */
+	public TspGenomeGenFunction(int numberOfGenes) {
+		super(numberOfGenes, 1);
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * Generates genomes for TSP
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
-        List<Integer> cities = new ArrayList<>(lengthsOfGenes.length);
-        for (int i = 0; i < lengthsOfGenes.length; i++) {
-            cities.add(i);
-        }
-        Collections.shuffle(cities);
-        return new TspGenome(cities.toArray(new Integer[cities.size()]));
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * Generates genomes for TSP
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	protected TspGenome generate(int genomeSize, int[] lengthsOfGenes) {
+		List<Integer> cities = new ArrayList<>(lengthsOfGenes.length);
+		for (int i = 0; i < lengthsOfGenes.length; i++) {
+			cities.add(i);
+		}
+		Collections.shuffle(cities);
+		return new TspGenome(cities.toArray(new Integer[cities.size()]));
+	}
 
 }

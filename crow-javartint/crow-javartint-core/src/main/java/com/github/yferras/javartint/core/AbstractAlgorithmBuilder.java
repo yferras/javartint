@@ -22,26 +22,29 @@ package com.github.yferras.javartint.core;
  * #L%
  */
 
-
 import com.github.yferras.javartint.core.util.AbstractBuilder;
 
 /**
- * <p>This abstract class can be used as base of future algorithms builders.</p>
+ * <p>
+ * This abstract class can be used as base of future algorithms builders.
+ * </p>
  *
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 1.0
  * @since 1.1.0
  */
-public abstract class AbstractAlgorithmBuilder<A extends Algorithm<? extends Solution>>
-    extends AbstractBuilder<A>
-    implements AlgorithmBuilder<A> {
+public abstract class AbstractAlgorithmBuilder<A extends Algorithm<? extends Solution>> extends AbstractBuilder<A>
+		implements AlgorithmBuilder<A> {
 
-    /**
-     * <p>Constructor for AbstractAlgorithmBuilder.</p>
-     *
-     * @param requiredPropertyKeys a {@link java.lang.String} object.
-     */
-    protected AbstractAlgorithmBuilder(String... requiredPropertyKeys) {
-        super(requiredPropertyKeys);
-    }
+	/**
+	 * <p>
+	 * Constructor for AbstractAlgorithmBuilder.
+	 * </p>
+	 *
+	 * @param requiredPropertyKeys
+	 *            a {@link java.lang.String} object.
+	 */
+	protected AbstractAlgorithmBuilder(String... requiredPropertyKeys) {
+		super(requiredPropertyKeys);
+	}
 }

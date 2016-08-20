@@ -22,11 +22,12 @@ package com.github.yferras.javartint.core.util;
  * #L%
  */
 
-
 import java.util.Iterator;
 
 /**
- * <p>ItemIterator interface.</p>
+ * <p>
+ * ItemIterator interface.
+ * </p>
  *
  * @author yferras
  * @version 0.0.1
@@ -34,19 +35,20 @@ import java.util.Iterator;
  */
 public interface ItemIterator<E> extends Iterator<E> {
 
-    /**
-     * Gets the element at specified index.
-     *
-     * @param index index.
-     * @return the element.
-     */
-    E getItem(int index);
+	/**
+	 * Gets the element at specified index.
+	 *
+	 * @param index
+	 *            index.
+	 * @return the element.
+	 */
+	E getItem(int index);
 
-    /**
-     * Gets the total items.
-     *
-     * @return the total items.
-     */
-    int itemsCount();
+	/**
+	 * Gets the total items.
+	 *
+	 * @return the total items.
+	 */
+	int itemsCount();
 
 }

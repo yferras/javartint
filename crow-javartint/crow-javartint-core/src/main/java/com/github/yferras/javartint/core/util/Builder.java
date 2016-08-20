@@ -23,19 +23,24 @@ package com.github.yferras.javartint.core.util;
  */
 
 /**
- * <p>Interface to create builders.</p>
+ * <p>
+ * Interface to create builders.
+ * </p>
  *
- * @param <T> any type.
+ * @param <T>
+ *            any type.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 1.0
  * @since 1.1.0
  */
 public interface Builder<T> {
 
-    /**
-     * <p>This method is used to encapsulate the logic of build.</p>
-     *
-     * @return the built object.
-     */
-    T build();
+	/**
+	 * <p>
+	 * This method is used to encapsulate the logic of build.
+	 * </p>
+	 *
+	 * @return the built object.
+	 */
+	T build();
 }

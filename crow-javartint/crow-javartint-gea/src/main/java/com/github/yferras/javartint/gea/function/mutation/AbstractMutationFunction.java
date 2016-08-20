@@ -33,89 +33,100 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Abstract class that represents mutation function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public abstract class AbstractMutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
+		extends AbstractProbabilisticFunction<T, T> implements MutationFunction<T> {
 
-    /** Constant <code>DEFAULT_PROBABILITY=.05</code> */
-    public static final double DEFAULT_PROBABILITY = .05;
+	/** Constant <code>DEFAULT_PROBABILITY=.05</code> */
+	public static final double DEFAULT_PROBABILITY = .05;
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     *
-     * @param probability probability of mutation
-     * @param random      random instance
-     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
-     */
-    protected AbstractMutationFunction(double probability, Random random)  {
-        super(probability, random);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see
+	 *             {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double, Random)}
+	 */
+	protected AbstractMutationFunction(double probability, Random random) {
+		super(probability, random);
+	}
 
-    /**
-     * Constructor, initializes instances with probability of mutation
-     * specified by {@code probability} parameter and random  is an
-     * instance of
-     * {@link java.util.Random}.
-     *
-     * @param probability probability of mutation
-     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
-     */
-    protected AbstractMutationFunction(double probability) {
-        super(probability);
-    }
+	/**
+	 * Constructor, initializes instances with probability of mutation specified
+	 * by {@code probability} parameter and random is an instance of
+	 * {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            probability of mutation
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see
+	 *             {@link com.github.yferras.javartint.core.function.AbstractProbabilisticFunction#AbstractProbabilisticFunction(double)}
+	 */
+	protected AbstractMutationFunction(double probability) {
+		super(probability);
+	}
 
-    /**
-     * Default constructor, initializes instances with probability of mutation
-     * equals to {@code .05} and random generator is an instance of
-     * {@link java.util.Random}.
-     */
-    protected AbstractMutationFunction() {
-        super();
-        this.probability = DEFAULT_PROBABILITY;
-    }
+	/**
+	 * Default constructor, initializes instances with probability of mutation
+	 * equals to {@code .05} and random generator is an instance of
+	 * {@link java.util.Random}.
+	 */
+	protected AbstractMutationFunction() {
+		super();
+		this.probability = DEFAULT_PROBABILITY;
+	}
 
-    /**
-     * Performs the specific mutation process. This method is called inside
-     * the method {@link #evaluate(Genome)}
-     *
-     * @param subject individual which will be mutate
-     * @return mutated genome
-     * @throws java.lang.CloneNotSupportedException if any.
-     */
-    protected abstract T mutate(T subject) throws CloneNotSupportedException;
+	/**
+	 * Performs the specific mutation process. This method is called inside the
+	 * method {@link #evaluate(Genome)}
+	 *
+	 * @param subject
+	 *            individual which will be mutate
+	 * @return mutated genome
+	 * @throws java.lang.CloneNotSupportedException
+	 *             if any.
+	 */
+	protected abstract T mutate(T subject) throws CloneNotSupportedException;
 
-    /**
-     * Ensures that parameter are valid.
-     *
-     * @param param parameter to validate.
-     */
-    protected void validate(T param) {
-        if (param == null) {
-            throw new ValidationException("'params' can't be null.");
-        }
-    }
+	/**
+	 * Ensures that parameter are valid.
+	 *
+	 * @param param
+	 *            parameter to validate.
+	 */
+	protected void validate(T param) {
+		if (param == null) {
+			throw new ValidationException("'params' can't be null.");
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     * <p/>
-     * If validation process is ok and generated random probability
-     * is in bounds, performs the mutation process with a copy of
-     * genome and returns a mutated genome.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public T evaluate(T params) {
-        validate(params);
-        if (getRandom().nextDouble() > getProbability()) {
-            return params;
-        }
-        try {
-            return mutate((T) params.clone());
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cloning params.", e);
-        }
-    }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * If validation process is ok and generated random probability is in
+	 * bounds, performs the mutation process with a copy of genome and returns a
+	 * mutated genome.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T evaluate(T params) {
+		validate(params);
+		if (getRandom().nextDouble() > getProbability()) {
+			return params;
+		}
+		try {
+			return mutate((T) params.clone());
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException("Cloning params.", e);
+		}
+	}
 }

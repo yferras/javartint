@@ -28,17 +28,19 @@ import com.github.yferras.javartint.gea.gene.Gene;
 /**
  * This class represents a default genome.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
 public class DefaultGenome<T extends Chromosome<? extends Gene<?>>> extends AbstractGenome<T> {
 
-    /**
-     * Default constructor.
-     */
-    public DefaultGenome() {
-        super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public DefaultGenome() {
+		super();
+	}
 
 }

@@ -31,26 +31,21 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class InversionMutationFunctionTest {
 
-    @Test
-    public void testMutate() throws Exception {
-        InversionMutationFunction<TspGenome> function = new InversionMutationFunction<>(4);
-        function.setRandom(
-            new Random() {
-                @Override
-                public int nextInt(int n) {
-                    return 3;
-                }
-            }
-        );
-        TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
+	@Test
+	public void testMutate() throws Exception {
+		InversionMutationFunction<TspGenome> function = new InversionMutationFunction<>(4);
+		function.setRandom(new Random() {
+			@Override
+			public int nextInt(int n) {
+				return 3;
+			}
+		});
+		TspGenome genome = new TspGenome(8, 5, 2, 1, 6, 3, 7, 0, 9, 4);
 
-        genome = function.mutate(genome);
+		genome = function.mutate(genome);
 
-        TspGenome expected = new TspGenome(8, 5, 2, 7, 3, 6, 1, 0, 9, 4);
+		TspGenome expected = new TspGenome(8, 5, 2, 7, 3, 6, 1, 0, 9, 4);
 
-        assertArrayEquals(
-            expected.getChromosome().getGenes(),
-            genome.getChromosome().getGenes()
-        );
-    }
+		assertArrayEquals(expected.getChromosome().getGenes(), genome.getChromosome().getGenes());
+	}
 }

@@ -24,7 +24,6 @@ import java.util.List;
  * #L%
  */
 
-
 import com.github.yferras.javartint.gea.Individual;
 
 /**
@@ -35,58 +34,66 @@ import com.github.yferras.javartint.gea.Individual;
  */
 public final class MathUtil {
 
-    private MathUtil() {
-    }
+	private MathUtil() {
+	}
 
-    /**
-     * This method takes a list of individuals and determines the mean of their fitness.
-     *
-     * @param individuals list of individuals
-     * @return the mean of fitness
-     */
-    public static <T extends Individual> double mean(List<T> individuals) {
-        return total(individuals) / individuals.size();
-    }
+	/**
+	 * This method takes a list of individuals and determines the mean of their
+	 * fitness.
+	 *
+	 * @param individuals
+	 *            list of individuals
+	 * @return the mean of fitness
+	 */
+	public static <T extends Individual> double mean(List<T> individuals) {
+		return total(individuals) / individuals.size();
+	}
 
-    /**
-     * This method takes a list of individuals and determines the total of their fitness.
-     *
-     * @param individuals list of individuals
-     * @return the total of fitness
-     */
-    public static <T extends Individual> double total(List<T> individuals) {
-        double sum = 0.0;
-        for (T individual : individuals) {
-            sum += individual.getFitness();
-        }
-        return sum;
-    }
+	/**
+	 * This method takes a list of individuals and determines the total of their
+	 * fitness.
+	 *
+	 * @param individuals
+	 *            list of individuals
+	 * @return the total of fitness
+	 */
+	public static <T extends Individual> double total(List<T> individuals) {
+		double sum = 0.0;
+		for (T individual : individuals) {
+			sum += individual.getFitness();
+		}
+		return sum;
+	}
 
-    /**
-     * This method takes a list of individuals and their mean of fitness, and determines the variance of their fitness.
-     *
-     * @param individuals list of individuals
-     * @param mean        the mean of the fitness
-     * @return the variance of fitness
-     */
-    public static <T extends Individual> double variance(List<T> individuals, Double mean) {
-        double sum = 0.0;
-        for (T individual : individuals) {
-            double diff = individual.getFitness() - mean;
-            sum += diff * diff;
-        }
-        return sum / individuals.size();
-    }
+	/**
+	 * This method takes a list of individuals and their mean of fitness, and
+	 * determines the variance of their fitness.
+	 *
+	 * @param individuals
+	 *            list of individuals
+	 * @param mean
+	 *            the mean of the fitness
+	 * @return the variance of fitness
+	 */
+	public static <T extends Individual> double variance(List<T> individuals, Double mean) {
+		double sum = 0.0;
+		for (T individual : individuals) {
+			double diff = individual.getFitness() - mean;
+			sum += diff * diff;
+		}
+		return sum / individuals.size();
+	}
 
-    /**
-     * This method takes a list of individuals and determines the variance of their fitness.
-     *
-     * @param individuals list of individuals
-     * @return the variance of fitness
-     */
-    public static <T extends Individual> double variance(List<T> individuals) {
-        return variance(individuals, mean(individuals));
-    }
-
+	/**
+	 * This method takes a list of individuals and determines the variance of
+	 * their fitness.
+	 *
+	 * @param individuals
+	 *            list of individuals
+	 * @return the variance of fitness
+	 */
+	public static <T extends Individual> double variance(List<T> individuals) {
+		return variance(individuals, mean(individuals));
+	}
 
 }

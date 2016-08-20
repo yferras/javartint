@@ -30,10 +30,12 @@ import com.github.yferras.javartint.gea.genome.Genome;
 /**
  * Interface that represents mutation function.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
 public interface MutationFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    extends ProbabilisticFunction<T, T> {
+		extends ProbabilisticFunction<T, T> {
 }

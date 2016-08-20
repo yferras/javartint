@@ -27,88 +27,96 @@ import java.util.Random;
 import com.github.yferras.javartint.core.util.ValidationException;
 
 /**
- * Class that implements partially {@link com.github.yferras.javartint.core.function.ProbabilisticFunction} to create
- * generic probabilistic functions.
+ * Class that implements partially
+ * {@link com.github.yferras.javartint.core.function.ProbabilisticFunction} to
+ * create generic probabilistic functions.
  *
- * @param <R> Type of result
- * @param <P> Type of parameters
+ * @param <R>
+ *            Type of result
+ * @param <P>
+ *            Type of parameters
  * @author Eng. Ferrás Cecilio, Yeinier
  * @version 0.0.1
  */
-public abstract class AbstractProbabilisticFunction<R, P>
-    implements ProbabilisticFunction<R, P> {
+public abstract class AbstractProbabilisticFunction<R, P> implements ProbabilisticFunction<R, P> {
 
-    /** Constant <code>DEFAULT_PROBABILITY=.05</code> */
-    public static final double DEFAULT_PROBABILITY = .5;
+	/** Constant <code>DEFAULT_PROBABILITY=.05</code> */
+	public static final double DEFAULT_PROBABILITY = .5;
 
-    protected double probability;
-    protected Random random;
+	protected double probability;
+	protected Random random;
 
-    /**
-     * Constructor, initializes instances with the given parameters.
-     * Internally calls {@link #setProbability(double)} and
-     * {@link #setRandom(java.util.Random)}
-     *
-     * @param probability value of probability
-     * @param random      random instance
-     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability(double)} and see {@link #setRandom(java.util.Random)}
-     */
-    protected AbstractProbabilisticFunction(double probability, Random random) {
-        setProbability(probability);
-        setRandom(random);
-    }
+	/**
+	 * Constructor, initializes instances with the given parameters. Internally
+	 * calls {@link #setProbability(double)} and
+	 * {@link #setRandom(java.util.Random)}
+	 *
+	 * @param probability
+	 *            value of probability
+	 * @param random
+	 *            random instance
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see {@link #setProbability(double)} and see
+	 *             {@link #setRandom(java.util.Random)}
+	 */
+	protected AbstractProbabilisticFunction(double probability, Random random) {
+		setProbability(probability);
+		setRandom(random);
+	}
 
-    /**
-     * Constructor, initializes instances with probability specified by
-     * {@code probability} parameter and random is an instance of
-     * {@link java.util.Random}.
-     *
-     * @param probability value of probability
-     * @throws com.github.yferras.javartint.core.util.ValidationException see {@link #setProbability}
-     */
-    protected AbstractProbabilisticFunction(double probability) {
-        this(probability, new Random());
-    }
+	/**
+	 * Constructor, initializes instances with probability specified by
+	 * {@code probability} parameter and random is an instance of
+	 * {@link java.util.Random}.
+	 *
+	 * @param probability
+	 *            value of probability
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             see {@link #setProbability}
+	 */
+	protected AbstractProbabilisticFunction(double probability) {
+		this(probability, new Random());
+	}
 
-    /**
-     * Constructor, initializes instances with default probability (.5) and random is an instance of
-     * {@link java.util.Random}.
-     *
-     * @since 1.0.1
-     */
-    protected AbstractProbabilisticFunction() {
-        this.probability = DEFAULT_PROBABILITY;
-        this.random = new Random();
-    }
+	/**
+	 * Constructor, initializes instances with default probability (.5) and
+	 * random is an instance of {@link java.util.Random}.
+	 *
+	 * @since 1.0.1
+	 */
+	protected AbstractProbabilisticFunction() {
+		this.probability = DEFAULT_PROBABILITY;
+		this.random = new Random();
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public double getProbability() {
-        return probability;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public double getProbability() {
+		return probability;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public final void setProbability(final double probability) {
-        if (probability < 0 || probability > 1.0) {
-            throw new ValidationException ("'probability' must between 0.0 and 1.0");
-        }
-        this.probability = probability;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public final void setProbability(final double probability) {
+		if (probability < 0 || probability > 1.0) {
+			throw new ValidationException("'probability' must between 0.0 and 1.0");
+		}
+		this.probability = probability;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public Random getRandom() {
-        return random;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public Random getRandom() {
+		return random;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void setRandom(final Random random) {
-        if (random == null) {
-            throw new ValidationException("'random' can't be null");
-        }
-        this.random = random;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void setRandom(final Random random) {
+		if (random == null) {
+			throw new ValidationException("'random' can't be null");
+		}
+		this.random = random;
+	}
 
 }

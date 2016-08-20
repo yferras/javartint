@@ -22,103 +22,120 @@ package com.github.yferras.javartint.gea.function.generator;
  * #L%
  */
 
-
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
 
 /**
- * This class implements the interface {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}.
+ * This class implements the interface
+ * {@link com.github.yferras.javartint.gea.function.generator.GeneratorFunction}.
  * This class can be derived to create a functions to generate genomes.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.genome.Genome}
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.genome.Genome}
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
 public abstract class AbstractGenomeGeneratorFunction<T extends Genome<? extends Chromosome<? extends Gene<?>>>>
-    implements GeneratorFunction<T> {
+		implements GeneratorFunction<T> {
 
-    /** Constant <code>DEFAULT_GENOME_SIZE=1</code> */
-    public static final int DEFAULT_GENOME_SIZE = 1;
-    private final int[] lengthsOfGenes;
-    private final int genomeSize;
+	/** Constant <code>DEFAULT_GENOME_SIZE=1</code> */
+	public static final int DEFAULT_GENOME_SIZE = 1;
+	private final int[] lengthsOfGenes;
+	private final int genomeSize;
 
-    /**
-     * Initializes the number of genes and the length of each gene.
-     *
-     * @param genomeSize    the number of chromosomes.
-     * @param numberOfGenes the number of genes.
-     * @param lengthOfGene  the length of each gene.
-     */
-    public AbstractGenomeGeneratorFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
-        this.genomeSize = genomeSize;
-        this.lengthsOfGenes = new int[numberOfGenes];
-        for (int i = 0; i < lengthsOfGenes.length; i++) {
-            lengthsOfGenes[i] = lengthOfGene;
-        }
-    }
+	/**
+	 * Initializes the number of genes and the length of each gene.
+	 *
+	 * @param genomeSize
+	 *            the number of chromosomes.
+	 * @param numberOfGenes
+	 *            the number of genes.
+	 * @param lengthOfGene
+	 *            the length of each gene.
+	 */
+	public AbstractGenomeGeneratorFunction(int genomeSize, int numberOfGenes, int lengthOfGene) {
+		this.genomeSize = genomeSize;
+		this.lengthsOfGenes = new int[numberOfGenes];
+		for (int i = 0; i < lengthsOfGenes.length; i++) {
+			lengthsOfGenes[i] = lengthOfGene;
+		}
+	}
 
-    /**
-     * Initializes the number of genes and the length of each gene. By default {@code genomeSize} is 1.
-     *
-     * @param numberOfGenes the number of genes.
-     * @param lengthOfGene  the length of each gene.
-     */
-    public AbstractGenomeGeneratorFunction(int numberOfGenes, int lengthOfGene) {
-        this(DEFAULT_GENOME_SIZE, numberOfGenes, lengthOfGene);
-    }
+	/**
+	 * Initializes the number of genes and the length of each gene. By default
+	 * {@code genomeSize} is 1.
+	 *
+	 * @param numberOfGenes
+	 *            the number of genes.
+	 * @param lengthOfGene
+	 *            the length of each gene.
+	 */
+	public AbstractGenomeGeneratorFunction(int numberOfGenes, int lengthOfGene) {
+		this(DEFAULT_GENOME_SIZE, numberOfGenes, lengthOfGene);
+	}
 
-    /**
-     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
-     * if the number of genes and the value in each position is the size of each gene.
-     *
-     * @param genomeSize     the number of chromosomes.
-     * @param lengthsOfGenes array that contains the length of genes.
-     */
-    public AbstractGenomeGeneratorFunction(int genomeSize, int[] lengthsOfGenes) {
-        validate(lengthsOfGenes);
-        this.genomeSize = genomeSize;
-        this.lengthsOfGenes = lengthsOfGenes;
-    }
+	/**
+	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length} if
+	 * the number of genes and the value in each position is the size of each
+	 * gene.
+	 *
+	 * @param genomeSize
+	 *            the number of chromosomes.
+	 * @param lengthsOfGenes
+	 *            array that contains the length of genes.
+	 */
+	public AbstractGenomeGeneratorFunction(int genomeSize, int[] lengthsOfGenes) {
+		validate(lengthsOfGenes);
+		this.genomeSize = genomeSize;
+		this.lengthsOfGenes = lengthsOfGenes;
+	}
 
-    /**
-     * Initializes the lengths of genes. The {@code lengthsOfGenes.length}
-     * if the number of genes and the value in each position is the size of each gene.
-     * By default {@code genomeSize} is 1.
-     *
-     * @param lengthsOfGenes array that contains the length of genes.
-     */
-    public AbstractGenomeGeneratorFunction(int[] lengthsOfGenes) {
-        this(DEFAULT_GENOME_SIZE, lengthsOfGenes);
-    }
+	/**
+	 * Initializes the lengths of genes. The {@code lengthsOfGenes.length} if
+	 * the number of genes and the value in each position is the size of each
+	 * gene. By default {@code genomeSize} is 1.
+	 *
+	 * @param lengthsOfGenes
+	 *            array that contains the length of genes.
+	 */
+	public AbstractGenomeGeneratorFunction(int[] lengthsOfGenes) {
+		this(DEFAULT_GENOME_SIZE, lengthsOfGenes);
+	}
 
-    /**
-     * Validates the input params.
-     *
-     * @param params params to validate.
-     * @throws ValidationException if argument is {@code null}
-     */
-    protected void validate(int[] params) {
-        if (params == null) {
-            throw new ValidationException();
-        }
-    }
+	/**
+	 * Validates the input params.
+	 *
+	 * @param params
+	 *            params to validate.
+	 * @throws ValidationException
+	 *             if argument is {@code null}
+	 */
+	protected void validate(int[] params) {
+		if (params == null) {
+			throw new ValidationException();
+		}
+	}
 
-    /**
-     * This method must be implemented to generate a genome.
-     *
-     * @param genomeSize     the number of chromosomes.
-     * @param lengthsOfGenes the array that contains the length of each gene.
-     * @return an instance of {@link com.github.yferras.javartint.gea.genome.Genome}
-     */
-    protected abstract T generate(final int genomeSize, final int[] lengthsOfGenes);
+	/**
+	 * This method must be implemented to generate a genome.
+	 *
+	 * @param genomeSize
+	 *            the number of chromosomes.
+	 * @param lengthsOfGenes
+	 *            the array that contains the length of each gene.
+	 * @return an instance of
+	 *         {@link com.github.yferras.javartint.gea.genome.Genome}
+	 */
+	protected abstract T generate(final int genomeSize, final int[] lengthsOfGenes);
 
-    /** {@inheritDoc} */
-    @SafeVarargs
-    @Override
-    public final T evaluate(Void... params) {
-        return generate(genomeSize, lengthsOfGenes);
-    }
+	/** {@inheritDoc} */
+	@SafeVarargs
+	@Override
+	public final T evaluate(Void... params) {
+		return generate(genomeSize, lengthsOfGenes);
+	}
 
 }

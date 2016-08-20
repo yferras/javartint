@@ -30,63 +30,74 @@ import com.github.yferras.javartint.gea.gene.Gene;
 /**
  * This interface represents a generic chromosome.
  *
- * @param <T> Any derived class from {@link com.github.yferras.javartint.gea.gene.Gene} interface.
+ * @param <T>
+ *            Any derived class from
+ *            {@link com.github.yferras.javartint.gea.gene.Gene} interface.
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public interface Chromosome<T extends Gene<?>>
-    extends Cloneable, Iterable<T>, Solution, Serializable {
+public interface Chromosome<T extends Gene<?>> extends Cloneable, Iterable<T>, Solution, Serializable {
 
-    /**
-     * Gets the array of genes.
-     *
-     * @return the array of genes.
-     */
-    T[] getGenes();
+	/**
+	 * Gets the array of genes.
+	 *
+	 * @return the array of genes.
+	 */
+	T[] getGenes();
 
-    /**
-     * Sets the array of genes.
-     *
-     * @param genes the array of genes.
-     * @throws com.github.yferras.javartint.core.util.ValidationException if {@code genes} param is null.
-     */
-    void setGenes(T[] genes) ;
+	/**
+	 * Sets the array of genes.
+	 *
+	 * @param genes
+	 *            the array of genes.
+	 * @throws com.github.yferras.javartint.core.util.ValidationException
+	 *             if {@code genes} param is null.
+	 */
+	void setGenes(T[] genes);
 
-    /**
-     * Gets the gene at specific <code>locus</code>.
-     *
-     * @param locus particular position on the chromosome.
-     * @return This method returns a gene
-     */
-    T getGene(int locus);
+	/**
+	 * Gets the gene at specific <code>locus</code>.
+	 *
+	 * @param locus
+	 *            particular position on the chromosome.
+	 * @return This method returns a gene
+	 */
+	T getGene(int locus);
 
-    /**
-     * Sets the <code>newGene</code> at specific <code>locus</code>.
-     *
-     * @param locus   particular position on the chromosome.
-     * @param newGene new value of gene.
-     */
-    void setGene(int locus, T newGene);
+	/**
+	 * Sets the <code>newGene</code> at specific <code>locus</code>.
+	 *
+	 * @param locus
+	 *            particular position on the chromosome.
+	 * @param newGene
+	 *            new value of gene.
+	 */
+	void setGene(int locus, T newGene);
 
-    /**
-     * Adds a new gene to the chromosome.
-     *
-     * @param gene gene to add
-     */
-    void addGene(T gene);
+	/**
+	 * Adds a new gene to the chromosome.
+	 *
+	 * @param gene
+	 *            gene to add
+	 */
+	void addGene(T gene);
 
-    /**
-     * Gets the number of genes of the chromosome.
-     *
-     * @return The number of genes of the chromosome.
-     */
-    int size();
+	/**
+	 * Gets the number of genes of the chromosome.
+	 *
+	 * @return The number of genes of the chromosome.
+	 */
+	int size();
 
-    /**
-     * <p>clone.</p>
-     *
-     * @return a {@link com.github.yferras.javartint.gea.chromosome.Chromosome} object.
-     * @throws java.lang.CloneNotSupportedException if any.
-     */
-    Chromosome<T> clone() throws CloneNotSupportedException;
+	/**
+	 * <p>
+	 * clone.
+	 * </p>
+	 *
+	 * @return a {@link com.github.yferras.javartint.gea.chromosome.Chromosome}
+	 *         object.
+	 * @throws java.lang.CloneNotSupportedException
+	 *             if any.
+	 */
+	Chromosome<T> clone() throws CloneNotSupportedException;
 }
