@@ -1,5 +1,14 @@
 package com.github.yferras.javartint.gea.util;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,10 +32,6 @@ package com.github.yferras.javartint.gea.util;
  */
 
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
-import org.junit.*;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class GenomeFilterTest {
 

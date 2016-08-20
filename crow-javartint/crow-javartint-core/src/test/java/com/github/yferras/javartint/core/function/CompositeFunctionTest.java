@@ -1,5 +1,8 @@
 package com.github.yferras.javartint.core.function;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -23,9 +26,6 @@ package com.github.yferras.javartint.core.function;
  */
 
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * <p>

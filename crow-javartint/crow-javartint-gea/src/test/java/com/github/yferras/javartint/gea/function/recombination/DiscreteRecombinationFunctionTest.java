@@ -1,5 +1,13 @@
 package com.github.yferras.javartint.gea.function.recombination;
 
+import static org.junit.Assert.assertArrayEquals;
+
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -28,13 +36,6 @@ import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.genome.Genome;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Random;
-
-import static org.junit.Assert.assertArrayEquals;
 
 public class DiscreteRecombinationFunctionTest {
 

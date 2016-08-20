@@ -1,5 +1,10 @@
 package com.github.yferras.javartint.gea.function.recombination.tsp;
 
+import java.util.Random;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,10 +28,6 @@ package com.github.yferras.javartint.gea.function.recombination.tsp;
  */
 
 import com.github.yferras.javartint.gea.genome.TspGenome;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Random;
 
 public class OrderBasedRecombinationFunctionTest {
 

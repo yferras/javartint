@@ -1,5 +1,11 @@
 package com.github.yferras.javartint.gea.function.mutation.tsp;
 
+import static org.junit.Assert.assertArrayEquals;
+
+import java.util.Random;
+
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -23,11 +29,6 @@ package com.github.yferras.javartint.gea.function.mutation.tsp;
  */
 
 import com.github.yferras.javartint.gea.genome.TspGenome;
-import org.junit.Test;
-
-import java.util.Random;
-
-import static org.junit.Assert.assertArrayEquals;
 
 public class ScrambleMutationFunctionTest {
 

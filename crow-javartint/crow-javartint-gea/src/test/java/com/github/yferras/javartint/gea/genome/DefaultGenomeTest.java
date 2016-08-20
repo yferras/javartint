@@ -1,5 +1,18 @@
 package com.github.yferras.javartint.gea.genome;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Iterator;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -28,11 +41,6 @@ import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.gene.DoubleArrayGene;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.gene.IntegerArrayGene;
-import org.junit.*;
-
-import java.util.Iterator;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

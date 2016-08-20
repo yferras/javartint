@@ -1,5 +1,12 @@
 package com.github.yferras.javartint.gea;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -28,22 +35,28 @@ import com.github.yferras.javartint.gea.function.generator.TspGenomeGenFunctionT
 import com.github.yferras.javartint.gea.function.mutation.MutationFunctionTest;
 import com.github.yferras.javartint.gea.function.mutation.binary.BinaryMutationFunctionTest;
 import com.github.yferras.javartint.gea.function.mutation.numeric.RealValuedMutationFunctionTest;
-import com.github.yferras.javartint.gea.function.mutation.tsp.*;
-import com.github.yferras.javartint.gea.function.recombination.*;
+import com.github.yferras.javartint.gea.function.mutation.tsp.DisplacedInversionMutationFunctionTest;
+import com.github.yferras.javartint.gea.function.mutation.tsp.DisplacementMutationFunctionTest;
+import com.github.yferras.javartint.gea.function.mutation.tsp.ExchangeMutationFunctionTest;
+import com.github.yferras.javartint.gea.function.mutation.tsp.InversionMutationFunctionTest;
+import com.github.yferras.javartint.gea.function.mutation.tsp.ScrambleMutationFunctionTest;
+import com.github.yferras.javartint.gea.function.recombination.DiscreteRecombinationFunctionTest;
+import com.github.yferras.javartint.gea.function.recombination.MultiPointsRecombinationFunctionTest;
+import com.github.yferras.javartint.gea.function.recombination.RecombinationFunctionTest;
+import com.github.yferras.javartint.gea.function.recombination.SinglePointRecombinationFunctionTest;
+import com.github.yferras.javartint.gea.function.recombination.TowPointsRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.recombination.tsp.OrderBasedRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.recombination.tsp.PermutationRecombinationFunctionTest;
 import com.github.yferras.javartint.gea.function.recombination.tsp.PositionBasedRecombinationFunctionTest;
-import com.github.yferras.javartint.gea.function.scaling.*;
+import com.github.yferras.javartint.gea.function.scaling.AbstractScalingMethodTest;
+import com.github.yferras.javartint.gea.function.scaling.BoltzmannScalingMethodTest;
+import com.github.yferras.javartint.gea.function.scaling.LinearRankScalingMethodTest;
+import com.github.yferras.javartint.gea.function.scaling.RankScalingMethodTest;
+import com.github.yferras.javartint.gea.function.scaling.SigmaScalingMethodTest;
 import com.github.yferras.javartint.gea.gene.ArrayGeneTest;
 import com.github.yferras.javartint.gea.gene.DefaultGeneTest;
 import com.github.yferras.javartint.gea.genome.DefaultGenomeTest;
 import com.github.yferras.javartint.gea.util.GenomeFilterTest;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

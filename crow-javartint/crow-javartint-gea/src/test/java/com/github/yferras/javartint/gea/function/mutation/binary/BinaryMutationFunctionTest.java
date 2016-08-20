@@ -1,5 +1,13 @@
 package com.github.yferras.javartint.gea.function.mutation.binary;
 
+import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,9 +34,6 @@ import com.github.yferras.javartint.gea.GenomeConstants;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
 import com.github.yferras.javartint.gea.genome.BinaryGenome;
-import org.junit.*;
-
-import static org.junit.Assert.assertArrayEquals;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

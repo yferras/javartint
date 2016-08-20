@@ -1,5 +1,14 @@
 package com.github.yferras.javartint.core;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+import com.github.yferras.javartint.core.function.CompositeFunctionTest;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -23,15 +32,8 @@ package com.github.yferras.javartint.core;
  */
 
 import com.github.yferras.javartint.core.function.DerivableFunctionTest;
-import com.github.yferras.javartint.core.function.CompositeFunctionTest;
 import com.github.yferras.javartint.core.function.ProbabilisticFunctionTest;
 import com.github.yferras.javartint.core.util.RangeTest;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

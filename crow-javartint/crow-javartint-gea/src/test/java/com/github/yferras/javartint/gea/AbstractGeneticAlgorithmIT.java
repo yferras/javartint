@@ -1,5 +1,14 @@
 package com.github.yferras.javartint.gea;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.text.MessageFormat;
+import java.util.Properties;
+
+import org.junit.Before;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -27,7 +36,11 @@ import com.github.yferras.javartint.core.constraint.ConstraintType;
 import com.github.yferras.javartint.core.constraint.MaxIterationsConstraint;
 import com.github.yferras.javartint.core.constraint.MinErrorConstraint;
 import com.github.yferras.javartint.core.function.Function;
-import com.github.yferras.javartint.core.util.*;
+import com.github.yferras.javartint.core.util.AlgorithmEvent;
+import com.github.yferras.javartint.core.util.ExecutionEndListener;
+import com.github.yferras.javartint.core.util.Optimize;
+import com.github.yferras.javartint.core.util.SolutionChangeListener;
+import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.BinaryGenomeGenFunction;
@@ -37,14 +50,6 @@ import com.github.yferras.javartint.gea.function.selection.ElitismSelectionFunct
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
 import com.github.yferras.javartint.gea.genome.BinaryGenome;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.text.MessageFormat;
-import java.util.Properties;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class AbstractGeneticAlgorithmIT {
 

@@ -1,5 +1,17 @@
 package com.github.yferras.javartint.gea.function.scaling;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
 * #%L
  * * Crow JavArtInt GEA
@@ -28,14 +40,6 @@ import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.genome.Genome;
 import com.github.yferras.javartint.gea.util.MathUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class AbstractScalingMethodTest {
 

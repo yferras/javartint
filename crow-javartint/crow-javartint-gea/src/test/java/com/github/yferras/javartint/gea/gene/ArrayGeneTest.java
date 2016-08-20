@@ -1,5 +1,14 @@
 package com.github.yferras.javartint.gea.gene;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -21,13 +30,11 @@ package com.github.yferras.javartint.gea.gene;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import org.junit.*;
-
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

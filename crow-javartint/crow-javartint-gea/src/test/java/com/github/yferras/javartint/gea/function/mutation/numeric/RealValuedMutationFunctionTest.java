@@ -1,5 +1,15 @@
 package com.github.yferras.javartint.gea.function.mutation.numeric;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -26,13 +36,6 @@ import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.genome.Genome;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Random;
-
-import static org.junit.Assert.*;
 
 public class RealValuedMutationFunctionTest {
 

@@ -1,5 +1,12 @@
 package com.github.yferras.javartint.gea.function.generator;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -25,12 +32,6 @@ package com.github.yferras.javartint.gea.function.generator;
 import com.github.yferras.javartint.gea.chromosome.DefaultChromosome;
 import com.github.yferras.javartint.gea.gene.ByteArrayGene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class BinaryGenomeGenFunctionTest {
 

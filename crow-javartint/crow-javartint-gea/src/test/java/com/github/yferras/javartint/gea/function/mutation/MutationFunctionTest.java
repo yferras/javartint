@@ -1,5 +1,18 @@
 package com.github.yferras.javartint.gea.function.mutation;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt GEA
@@ -30,9 +43,6 @@ import com.github.yferras.javartint.gea.gene.DefaultGene;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
 import com.github.yferras.javartint.gea.genome.Genome;
-import org.junit.*;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Eng. Ferrás Cecilio, Yeinier

@@ -1,5 +1,19 @@
 package com.github.yferras.javartint.core;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -29,13 +43,6 @@ import com.github.yferras.javartint.core.constraint.MinErrorConstraint;
 import com.github.yferras.javartint.core.util.AlgorithmEvent;
 import com.github.yferras.javartint.core.util.ExecutionEndListener;
 import com.github.yferras.javartint.core.util.SolutionChangeListener;
-import org.junit.*;
-
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import static org.junit.Assert.*;
 
 /**
  * <p>

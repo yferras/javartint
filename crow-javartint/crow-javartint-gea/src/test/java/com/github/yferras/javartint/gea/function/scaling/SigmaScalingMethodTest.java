@@ -1,5 +1,15 @@
 package com.github.yferras.javartint.gea.function.scaling;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 /*
 * #%L
  * * Crow JavArtInt GEA
@@ -25,15 +35,6 @@ package com.github.yferras.javartint.gea.function.scaling;
 */
 
 import com.github.yferras.javartint.gea.genome.DefaultGenome;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import static org.junit.Assert.assertEquals;
 
 public class SigmaScalingMethodTest {
 
