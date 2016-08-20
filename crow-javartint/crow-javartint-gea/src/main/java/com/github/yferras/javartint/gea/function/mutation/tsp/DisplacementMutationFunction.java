@@ -117,7 +117,8 @@ public class DisplacementMutationFunction<T extends TspGenome>
         throws CloneNotSupportedException {
         int start = getRandom().nextInt(subject.getChromosome().size() - getMinSpanSize());
         int end = start + getMinSpanSize();
-        List genes = new ArrayList(Arrays.asList(subject.getChromosome().getGenes()));
+        @SuppressWarnings("rawtypes")
+		List genes = new ArrayList(Arrays.asList(subject.getChromosome().getGenes()));
         List<DefaultGene<Integer>> section = new ArrayList<>(genes.subList(start, end));
         genes.removeAll(section);
         int curPos = getRandom().nextInt(genes.size());
