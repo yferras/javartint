@@ -21,8 +21,13 @@ package com.github.yferras.javartint.core.util;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Properties;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * <p>This abstract class implements {@link com.github.yferras.javartint.core.util.Builder}, and it can be used as base

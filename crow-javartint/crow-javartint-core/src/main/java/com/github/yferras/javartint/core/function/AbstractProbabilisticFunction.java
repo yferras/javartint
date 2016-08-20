@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.core.function;
 
+import java.util.Random;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -23,8 +25,6 @@ package com.github.yferras.javartint.core.function;
  */
 
 import com.github.yferras.javartint.core.util.ValidationException;
-
-import java.util.Random;
 
 /**
  * Class that implements partially {@link com.github.yferras.javartint.core.function.ProbabilisticFunction} to create

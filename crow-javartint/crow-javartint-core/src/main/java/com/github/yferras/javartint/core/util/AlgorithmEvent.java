@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.core.util;
 
+import java.util.EventObject;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -24,8 +26,6 @@ package com.github.yferras.javartint.core.util;
 
 import com.github.yferras.javartint.core.Algorithm;
 import com.github.yferras.javartint.core.Solution;
-
-import java.util.EventObject;
 
 /**
  * Algorithm event object.

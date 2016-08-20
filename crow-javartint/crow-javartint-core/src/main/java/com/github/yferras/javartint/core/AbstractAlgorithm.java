@@ -1,5 +1,9 @@
 package com.github.yferras.javartint.core;
 
+import java.util.ArrayList;
+import java.util.EventListener;
+import java.util.List;
+
 /*
  * #%L
  * Crow JavArtInt Core
@@ -26,10 +30,6 @@ import com.github.yferras.javartint.core.constraint.Constraint;
 import com.github.yferras.javartint.core.util.AlgorithmEvent;
 import com.github.yferras.javartint.core.util.ExecutionEndListener;
 import com.github.yferras.javartint.core.util.SolutionChangeListener;
-
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.List;
 
 /**
  * Abstract class that implements a general methods from {@link com.github.yferras.javartint.core.Algorithm}.
