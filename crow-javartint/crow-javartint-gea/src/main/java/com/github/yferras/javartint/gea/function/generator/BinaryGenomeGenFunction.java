@@ -85,7 +85,6 @@ public class BinaryGenomeGenFunction
      * <p/>
      * Generates binary genomes.
      */
-    @SuppressWarnings("unchecked")
     @Override
     protected BinaryGenome generate(int genomeSize, int[] lengthsOfGenes) {
         Random random = new Random();

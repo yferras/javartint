@@ -53,7 +53,8 @@ public class RangeGenomeGenFunction
      * @param ranges     Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
      *                   is used to generate a random value inside range.
      */
-    public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
+    @SafeVarargs
+	public RangeGenomeGenFunction(int genomeSize, int precision, Range<Double>... ranges) {
         super(genomeSize, ranges.length, DEFAULT_LENGTH_OF_GENES);
         this.precision = precision;
         this.ranges = ranges;
@@ -66,7 +67,8 @@ public class RangeGenomeGenFunction
      * @param ranges    Array of ranges. The length of this array is the size of genome, and each instance of {@link com.github.yferras.javartint.core.util.Range}
      *                  is used to generate a random value inside range.
      */
-    public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
+    @SafeVarargs
+	public RangeGenomeGenFunction(int precision, Range<Double>... ranges) {
         super(DEFAULT_GENOME_SIZE, ranges.length, DEFAULT_LENGTH_OF_GENES);
         this.precision = precision;
         this.ranges = ranges;
