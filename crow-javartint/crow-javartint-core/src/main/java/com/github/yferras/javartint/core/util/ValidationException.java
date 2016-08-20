@@ -31,7 +31,10 @@ package com.github.yferras.javartint.core.util;
  * @since 1.0.1
  */
 public class ValidationException extends IllegalArgumentException {
-    /**
+
+	private static final long serialVersionUID = 1412437301407912931L;
+
+	/**
      * <p>Constructor for ValidationException.</p>
      */
     public ValidationException() {

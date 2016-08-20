@@ -71,7 +71,6 @@ public abstract class AbstractBuilder<T> implements Builder<T> {
      *
      * @throws com.github.yferras.javartint.core.util.ValidationException if any required property key is not setting up.
      */
-    @SuppressWarnings("SuspiciousMethodCalls")
     protected void validate() {
         final Set<Object> keySet = getProperties().keySet();
         if (!keySet.containsAll(getRequiredPropertyKeys())) {

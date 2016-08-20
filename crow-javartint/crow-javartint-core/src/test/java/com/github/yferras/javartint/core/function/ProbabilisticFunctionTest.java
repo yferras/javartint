@@ -220,7 +220,7 @@ public class ProbabilisticFunctionTest {
         }
 
         @Override
-        public Double evaluate(T... params) {
+        public Double evaluate(@SuppressWarnings("unchecked") T... params) {
             if (getRandom().nextDouble() > getProbability()) {
                 return params[0].doubleValue() + params[1].doubleValue();
             }

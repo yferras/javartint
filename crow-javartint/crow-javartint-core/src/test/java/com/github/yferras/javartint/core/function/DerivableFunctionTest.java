@@ -42,21 +42,21 @@ public class DerivableFunctionTest {
     final Function<Double, Double> f_3xP3_D1 = new Function<Double, Double>() {
         @Override
         public Double evaluate(Double params) {
-            return 6.0 * Math.pow(params, 2.0);
+            return 9.0 * Math.pow(params, 2.0);
         }
     };
 
     final Function<Double, Double> f_3xP3_D2 = new Function<Double, Double>() {
         @Override
         public Double evaluate(Double params) {
-            return 12.0 * params;
+            return 18.0 * params;
         }
     };
 
     final Function<Double, Double> f_3xP3_D3 = new Function<Double, Double>() {
         @Override
         public Double evaluate(Double params) {
-            return 12.0;
+            return 18.0;
         }
     };
 

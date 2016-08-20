@@ -52,7 +52,8 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
      * @return a {@link com.github.yferras.javartint.core.function.Function} object.
      * @since 1.1.0
      */
-    Function get(int index);
+    @SuppressWarnings("rawtypes")
+	Function get(int index);
 
     /**
      * Builder to construct instances of {@link CompositeFunction}.
@@ -65,7 +66,8 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
      */
     class Builder<R, P> implements com.github.yferras.javartint.core.util.Builder<CompositeFunction<R, P>> {
 
-        private List<Function> functions;
+        @SuppressWarnings("rawtypes")
+		private List<Function> functions;
 
         /**
          * Constructor for Builder.
@@ -80,7 +82,7 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
          * @param function function instance to add.
          * @return @return an instance of this builder.
          */
-        public Builder<R, P> append(Function function) {
+        public Builder<R, P> append(@SuppressWarnings("rawtypes") Function function) {
             functions.add(function);
             return this;
         }
@@ -91,7 +93,7 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
          * @param function function instance to add.
          * @return @return an instance of this builder.
          */
-        public Builder<R, P> push(Function function) {
+        public Builder<R, P> push(@SuppressWarnings("rawtypes") Function function) {
             functions.add(0, function);
             return this;
         }
@@ -105,7 +107,8 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
                     return functions.size();
                 }
 
-                @Override
+                @SuppressWarnings("rawtypes")
+				@Override
                 public Function get(int index) {
                     return functions.get(index);
                 }
@@ -116,7 +119,8 @@ public interface CompositeFunction<R, P> extends Function<R, P> {
                     if (functions.isEmpty()) {
                         return null;
                     }
-                    final Iterator<Function> iterator = functions.iterator();
+                    @SuppressWarnings("rawtypes")
+					final Iterator<Function> iterator = functions.iterator();
                     Object result = iterator.next().evaluate(params);
                     while (iterator.hasNext()) {
                         result = iterator.next().evaluate(result);

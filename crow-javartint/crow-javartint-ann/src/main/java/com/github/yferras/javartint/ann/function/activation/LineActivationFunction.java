@@ -39,7 +39,6 @@ package com.github.yferras.javartint.ann.function.activation;
  * #L%
  */
 
-import com.github.yferras.javartint.core.function.AbstractDerivableFunction;
 import com.github.yferras.javartint.core.function.DerivableFunction;
 
 /**
@@ -48,20 +47,21 @@ import com.github.yferras.javartint.core.function.DerivableFunction;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.1
  */
-public class LineActivationFunction extends AbstractDerivableFunction<Double, Double>
-    implements ActivationFunction {
+public class LineActivationFunction implements DerivableFunction<Double, Double>, ActivationFunction {
 
-    /**
+	private static final long serialVersionUID = -241622991375510051L;
+
+	/**
      * <p>Constructor for LineActivationFunction.</p>
      */
     public LineActivationFunction() {
-        super(null);
+        super();
     }
 
     /** {@inheritDoc} */
     @Override
     public DerivableFunction<Double, Double> derive() {
-        return new AbstractDerivableFunction<Double, Double>(this) {
+        return new DerivableFunction<Double, Double>() {
             @Override
             public DerivableFunction<Double, Double> derive() {
                 return null;
@@ -71,6 +71,11 @@ public class LineActivationFunction extends AbstractDerivableFunction<Double, Do
             public Double evaluate(Double params) {
                 return 1.0;
             }
+
+			@Override
+			public int getOrder() {
+				return 1;
+			}
         };
     }
 
@@ -83,4 +88,9 @@ public class LineActivationFunction extends AbstractDerivableFunction<Double, Do
     public Double evaluate(Double x) {
         return x;
     }
+
+	@Override
+	public int getOrder() {
+		return 1;
+	}
 }
