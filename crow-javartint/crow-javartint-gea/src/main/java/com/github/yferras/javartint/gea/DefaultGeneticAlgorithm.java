@@ -44,9 +44,21 @@ import com.github.yferras.javartint.gea.genome.Genome;
 public class DefaultGeneticAlgorithm<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 		extends AbstractGeneticAlgorithm<T, D> {
 
+	/**
+	 * 
+	 * @author Eng. Ferrás Cecilio, Yeinier.
+	 *
+	 * @param <T>
+	 *            Any class that implements {@link Genome}
+	 * @param <D>
+	 *            Type of decoded value.
+	 */
 	public static final class Builder<T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 			extends AbstractGeneticAlgorithm.Builder<DefaultGeneticAlgorithm<T, D>, T, D> {
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		protected DefaultGeneticAlgorithm<T, D> buildObject() {
 			return new DefaultGeneticAlgorithm<>(getProperties());
