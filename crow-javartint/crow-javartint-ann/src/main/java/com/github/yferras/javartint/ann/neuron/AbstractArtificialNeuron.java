@@ -1,5 +1,7 @@
 package com.github.yferras.javartint.ann.neuron;
 
+import java.util.Iterator;
+
 /*
  * #%L
  * Crow JavArtInt ANN
@@ -24,10 +26,7 @@ package com.github.yferras.javartint.ann.neuron;
 
 import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
 import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
-import com.github.yferras.javartint.core.function.DefaultCompositeFunction;
 import com.github.yferras.javartint.core.util.AbstractItemIterator;
-
-import java.util.Iterator;
 
 /**
  * Class that implements partially {@link com.github.yferras.javartint.ann.neuron.ArtificialNeuron} to create
@@ -36,11 +35,10 @@ import java.util.Iterator;
  * @author Eng. Ferrás Cecilio, Yeinier.
  * @version 0.0.2
  */
-public class AbstractArtificialNeuron
-    extends DefaultCompositeFunction<Double, Double[]>
-    implements ArtificialNeuron {
+public abstract class AbstractArtificialNeuron implements ArtificialNeuron {
 
-    protected PropagationRuleFunction propagationRuleFunction;
+	private static final long serialVersionUID = -7024158065216020664L;
+	protected PropagationRuleFunction propagationRuleFunction;
     protected ActivationFunction activationFunction;
     private Double[] weights;
     private double bias = -1.0;
@@ -121,5 +119,6 @@ public class AbstractArtificialNeuron
             }
         };
     }
+
 
 }

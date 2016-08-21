@@ -84,9 +84,9 @@ public class LineActivationFunctionTest extends TestCase {
         System.out.println("getN");
         LineActivationFunction function = new LineActivationFunction();
         int expected = 0;
-        assertEquals(expected, function.getN());
+        assertEquals(expected, function.getOrder());
         expected = 1;
-        assertEquals(expected, function.derive().getN());
+        assertEquals(expected, function.derive().getOrder());
     }
 
     public void testEvaluate() throws Exception {

@@ -25,9 +25,8 @@ package com.github.yferras.javartint.ann;
 import com.github.yferras.javartint.ann.function.activation.LineActivationFunctionTest;
 import com.github.yferras.javartint.ann.function.propagationrule.BalancedSumPropagationRuleFunctionTest;
 import com.github.yferras.javartint.ann.function.propagationrule.EuclideanDistancePropagationRuleFunctionTest;
-import com.github.yferras.javartint.ann.layer.DefaultArtificialLayerTest;
-import com.github.yferras.javartint.ann.neuron.DefaultArtificialNeuron;
-import com.github.yferras.javartint.ann.neuron.DefaultArtificialNeuronTest;
+//import com.github.yferras.javartint.ann.layer.DefaultArtificialLayerTest;
+//import com.github.yferras.javartint.ann.neuron.DefaultArtificialNeuronTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -37,8 +36,8 @@ import org.junit.runners.Suite;
         LineActivationFunctionTest.class,
         BalancedSumPropagationRuleFunctionTest.class,
         EuclideanDistancePropagationRuleFunctionTest.class,
-        DefaultArtificialNeuronTest.class,
-        DefaultArtificialLayerTest.class,
+        //DefaultArtificialNeuronTest.class,
+        //DefaultArtificialLayerTest.class,
     }
 )
 public class AnnITSuite {

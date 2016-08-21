@@ -1,5 +1,8 @@
 package com.github.yferras.javartint.ann.neuron;
 
+import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
+import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
+
 /*
  * #%L
  * Crow JavArtInt ANN
@@ -23,8 +26,12 @@ package com.github.yferras.javartint.ann.neuron;
  */
 
 import com.github.yferras.javartint.core.function.CompositeFunction;
+import com.github.yferras.javartint.core.function.Function;
+import com.github.yferras.javartint.core.util.Range;
+import com.github.yferras.javartint.core.util.ValidationException;
 
 import java.io.Serializable;
+
 
 /**
  * This interface represents a generic artificial neuron.
@@ -33,7 +40,7 @@ import java.io.Serializable;
  * @version 0.0.2
  */
 public interface ArtificialNeuron
-    extends CompositeFunction<Double, Double[]>, Iterable<Double>, Serializable {
+    extends Function<Double, Double[]>, Iterable<Double>, Serializable {
 
     /**
      * Gets weights array.
@@ -92,4 +99,87 @@ public interface ArtificialNeuron
      * @return the status of neuron.
      */
     NeuronInitializationStatus getStatus();
+    
+    class Builder implements com.github.yferras.javartint.core.util.Builder<ArtificialNeuron> {
+    	
+    	private Integer size;
+    	private PropagationRuleFunction propagationRuleFunction;
+    	private ActivationFunction activationFunction;
+    	private Range<Double> range;
+    	private Double fixedWeight;
+    	private CompositeFunction.Builder<Double, Double[]> compositeFunctionBuilder = new CompositeFunction.Builder<>();
+
+		@Override
+		public ArtificialNeuron build() {
+			
+			validateIsNotNull(activationFunction, "'activationFunction' is null");
+			validateIsNotNull(propagationRuleFunction, "'propagationRuleFunction' is null");
+			validateIsNotNull(size, "'activationFunction' is null");
+			
+			CompositeFunction<Double,Double[]> compositeFunction = compositeFunctionBuilder
+					.append(activationFunction)
+					.append(propagationRuleFunction)
+					.build();
+			
+			AbstractArtificialNeuron abstractArtificialNeuron = new AbstractArtificialNeuron() {
+				
+				private static final long serialVersionUID = 6796527443078664894L;
+
+				@Override
+				public Double evaluate(Double[] params) {
+					return compositeFunction.evaluate(params);
+				}
+			};
+			
+			abstractArtificialNeuron.setBias(-1.0);
+			abstractArtificialNeuron.setNumberOfInputs(size);
+			for (int i = 0; i < size; i++) {
+				if (range != null) {					
+					abstractArtificialNeuron.setWeight(i, Math.random() * (range.getMax() - range.getMin()) + range.getMin());
+				} else if (fixedWeight != null) {
+					abstractArtificialNeuron.setWeight(i, fixedWeight);
+				} else {					
+					abstractArtificialNeuron.setWeight(i, Math.random());
+				}
+            }
+			
+			return abstractArtificialNeuron;
+		}
+		
+		private void validateIsNotNull(Object obj, String message) {
+			if (obj == null) {
+				throw new ValidationException(message);
+			}
+		}
+		
+		Builder setNumberOfInputs(int size) {
+			this.size = size;
+			return this;
+		}
+		
+		Builder setActivationFunction(ActivationFunction activationFunction) {
+			this.activationFunction = activationFunction;
+			return this;
+		}
+		
+		Builder setPropagationRuleFunction(PropagationRuleFunction propagationRuleFunction) {
+			this.propagationRuleFunction = propagationRuleFunction;
+			return this;
+		}
+		
+		Builder setRange(Range<Double> range) {
+			this.fixedWeight = null;
+			this.range = range;
+			return this;
+		}
+		
+		Builder setFixedWeight(Double fixedWeight) {
+			this.fixedWeight = fixedWeight;
+			this.range = null;
+			return this;
+		}
+		
+    	
+		
+    }
 }
