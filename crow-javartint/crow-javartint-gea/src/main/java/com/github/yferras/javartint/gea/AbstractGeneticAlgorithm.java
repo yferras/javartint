@@ -30,6 +30,7 @@ import java.util.Set;
  */
 
 import com.github.yferras.javartint.core.function.Function;
+import com.github.yferras.javartint.core.util.AlgorithmRuntimeException;
 import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
@@ -60,7 +61,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 	protected abstract static class Builder<A extends AbstractGeneticAlgorithm<T, D>, T extends Genome<? extends Chromosome<? extends Gene<?>>>, D>
 			extends AbstractEvolutionaryAlgorithm.Builder<A, T, D> implements GeneticAlgorithmBuilder<A, T, D> {
 
-		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
+		protected static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
 				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
 				GeaConfigConstants.TARGET_FUNCTION, GeaConfigConstants.MUTATION_FUNCTION,
 				GeaConfigConstants.SELECTION_FUNCTION, GeaConfigConstants.RECOMBINATION_FUNCTION };
@@ -190,17 +191,21 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 			for (T genome : offspring) {
 				getMutationFunction().evaluate(genome);
 			}
-			if (getFilter() != null) {
-				for (T genome : offspring) {
-					if (getFilter().accept(genome)) {
-						newGeneration.add(genome);
-					}
-				}
-			} else {
-				Collections.addAll(newGeneration, offspring);
-			}
+			fillNewGeneration(newGeneration, offspring);
 		}
 		setPopulation(new ArrayList<>(newGeneration));
+	}
+
+	private void fillNewGeneration(Set<T> newGeneration, T[] offspring) {
+		if (getFilter() != null) {
+			for (T genome : offspring) {
+				if (getFilter().accept(genome)) {
+					newGeneration.add(genome);
+				}
+			}
+		} else {
+			Collections.addAll(newGeneration, offspring);
+		}
 	}
 
 	/**
@@ -276,7 +281,7 @@ public abstract class AbstractGeneticAlgorithm<T extends Genome<? extends Chromo
 			evolve();
 			fireAlgorithmFinishedEvent();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new AlgorithmRuntimeException(e);
 		}
 	}
 

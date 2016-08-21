@@ -25,6 +25,7 @@ import java.util.Random;
  */
 
 import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
+import com.github.yferras.javartint.core.util.AlgorithmRuntimeException;
 import com.github.yferras.javartint.core.util.ValidationException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
@@ -102,7 +103,7 @@ public abstract class AbstractMutationFunction<T extends Genome<? extends Chromo
 		try {
 			return mutate((T) params.clone());
 		} catch (CloneNotSupportedException e) {
-			throw new RuntimeException("Cloning params.", e);
+			throw new AlgorithmRuntimeException("Cloning params.", e);
 		}
 	}
 

@@ -60,8 +60,9 @@ public abstract class AbstractArtificialNeuronGeneratorFunction<T extends Artifi
     }
 
     /** {@inheritDoc} */
+    @SafeVarargs
     @Override
-    public T evaluate(Void... params) {
+    public final T evaluate(Void... params) {
         return generate(size, activationFunction, propagationRuleFunction);
     }
 

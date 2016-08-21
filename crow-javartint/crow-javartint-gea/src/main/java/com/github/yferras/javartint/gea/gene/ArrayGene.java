@@ -127,4 +127,10 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterab
 		List<T> list = Arrays.asList(getData());
 		return list.stream().map(element -> element.toString()).collect(Collectors.joining(", ", "[", "]"));
 	}
+	
+	@Override
+	public Gene<T[]> clone() throws CloneNotSupportedException {
+		ArrayGene<T> copy = new ArrayGene<>(getData());
+		return copy;
+	}
 }

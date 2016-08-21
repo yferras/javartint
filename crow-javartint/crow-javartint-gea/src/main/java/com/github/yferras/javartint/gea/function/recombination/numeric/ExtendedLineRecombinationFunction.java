@@ -142,7 +142,7 @@ public class ExtendedLineRecombinationFunction<T extends Genome<? extends Chromo
 	}
 
 	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected T[] recombine(T parent1, T parent2) throws CloneNotSupportedException {
 		int numberOfGenes = parent1.size();

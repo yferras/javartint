@@ -41,23 +41,27 @@ public abstract class AbstractPropagationRuleFunction implements PropagationRule
      */
     @Override
     public Double evaluate(Double[][] params)  {
-        if (params == null) {
-            throw new ValidationException("'params' can't be null.");
-        }
-        if (params.length != NUMBER_OF_PARAMS) {
-            throw new ValidationException("'params' must contains exactly two arrays");
-        }
-        if (params[0] == null) {
-            throw new ValidationException("'params[0]' can't be null.");
-        }
-        if (params[1] == null) {
-            throw new ValidationException("'params[1]' can't be null.");
-        }
+        validateIsNotNull(params, "'params' can't be null.");
+        validateForCorrectLength(params);
+        validateIsNotNull(params[0], "'params[0]' can't be null.");
+        validateIsNotNull(params[1], "'params[1]' can't be null.");
         if (params[0].length != params[1].length) {
             throw new ValidationException("the length between two arrays must be the same.");
         }
         return evaluate(params[0], params[1]);
     }
+
+	private void validateForCorrectLength(Double[][] params) {
+		if (params.length != NUMBER_OF_PARAMS) {
+            throw new ValidationException("'params' must contains exactly two arrays");
+        }
+	}
+
+	private void validateIsNotNull(Object params, String message) {
+		if (params == null) {
+            throw new ValidationException(message);
+        }
+	}
 
     /**
      * Evaluates the arguments and returns a result.

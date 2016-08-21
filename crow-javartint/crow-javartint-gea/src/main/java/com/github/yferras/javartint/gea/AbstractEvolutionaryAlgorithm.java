@@ -30,6 +30,7 @@ import com.github.yferras.javartint.core.AbstractAlgorithmBuilder;
 import com.github.yferras.javartint.core.IterativeAlgorithm;
 import com.github.yferras.javartint.core.OptimizationAlgorithm;
 import com.github.yferras.javartint.core.function.Function;
+import com.github.yferras.javartint.core.util.AlgorithmRuntimeException;
 import com.github.yferras.javartint.core.util.Optimize;
 import com.github.yferras.javartint.gea.function.decoder.DecoderFunction;
 import com.github.yferras.javartint.gea.function.generator.GeneratorFunction;
@@ -54,7 +55,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 	protected abstract static class Builder<A extends AbstractEvolutionaryAlgorithm<T, D>, T extends Individual, D>
 			extends AbstractAlgorithmBuilder<A> implements EvolutionaryAlgorithmBuilder<A, T, D> {
 
-		public static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
+		protected static final String[] REQUIRED_PROPERTY_KEYS = { GeaConfigConstants.DECODER_FUNCTION,
 				GeaConfigConstants.GENERATOR_FUNCTION, GeaConfigConstants.OPTIMIZE, GeaConfigConstants.POPULATION_SIZE,
 				GeaConfigConstants.TARGET_FUNCTION };
 
@@ -96,6 +97,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 			return this;
 		}
 	}
+
 	private double bestFitnessScore;
 	private final DecoderFunction<D, T> decoder;
 	private IndividualFilter<T> filter;
@@ -130,14 +132,19 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 	 * Used to create the start population.
 	 */
 	protected void createStartPopulation() {
-		while (getPopulationSize() > getPopulation().size()) {
-			T genome = getGenerator().evaluate();
-			if (getFilter() != null && getFilter().accept(genome)) {
-				getPopulation().add(genome);
-			} else {
-				getPopulation().add(genome);
+		if (getFilter() != null) {
+			while (getPopulationSize() > getPopulation().size()) {
+				T genome = getGenerator().evaluate();
+				if (getFilter().accept(genome)) {
+					getPopulation().add(genome);
+				}
+			}
+		} else {
+			while (getPopulationSize() > getPopulation().size()) {
+				getPopulation().add(getGenerator().evaluate());
 			}
 		}
+
 	}
 
 	/**
@@ -320,7 +327,7 @@ public abstract class AbstractEvolutionaryAlgorithm<T extends Individual, D> ext
 					setSolution((T) individual.clone());
 				} catch (CloneNotSupportedException e) {
 					setSolution(null);
-					throw new RuntimeException("Cloning the solution.", e);
+					throw new AlgorithmRuntimeException("Cloning the solution.", e);
 				}
 			}
 		}

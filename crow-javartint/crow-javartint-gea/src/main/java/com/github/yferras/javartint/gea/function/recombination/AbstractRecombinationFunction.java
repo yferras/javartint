@@ -25,6 +25,7 @@ import java.util.Random;
  */
 
 import com.github.yferras.javartint.core.function.AbstractProbabilisticFunction;
+import com.github.yferras.javartint.core.util.AlgorithmRuntimeException;
 import com.github.yferras.javartint.gea.chromosome.Chromosome;
 import com.github.yferras.javartint.gea.gene.Gene;
 import com.github.yferras.javartint.gea.genome.Genome;
@@ -100,7 +101,7 @@ public abstract class AbstractRecombinationFunction<T extends Genome<? extends C
 		try {
 			return recombine((T) params[0].clone(), (T) params[1].clone());
 		} catch (CloneNotSupportedException e) {
-			throw new RuntimeException("Cloning params.", e);
+			throw new AlgorithmRuntimeException("Cloning params.", e);
 		}
 	}
 

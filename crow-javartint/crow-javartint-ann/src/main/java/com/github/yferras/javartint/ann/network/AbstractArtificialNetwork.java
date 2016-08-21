@@ -46,7 +46,8 @@ public class AbstractArtificialNetwork<T extends ArtificialLayer<? extends Artif
      * @param layers an array of T objects.
      */
     public AbstractArtificialNetwork(T[] layers) {
-        super.setFunctions(this.layers = layers);
+    	this.layers = layers;
+        super.setFunctions(layers);
     }
 
     /** {@inheritDoc} */

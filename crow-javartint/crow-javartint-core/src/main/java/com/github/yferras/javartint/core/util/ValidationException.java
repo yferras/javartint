@@ -34,14 +34,6 @@ public class ValidationException extends IllegalArgumentException {
 	private static final long serialVersionUID = 1412437301407912931L;
 
 	/**
-	 * <p>
-	 * Constructor for ValidationException.
-	 * </p>
-	 */
-	public ValidationException() {
-	}
-
-	/**
 	 * Constructs a new exception with the specified detail message. The cause
 	 * is not initialized, and may subsequently be initialized by a call to
 	 * {@link #initCause}.

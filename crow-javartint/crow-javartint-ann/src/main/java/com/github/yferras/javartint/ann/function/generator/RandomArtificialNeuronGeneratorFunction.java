@@ -25,10 +25,12 @@ package com.github.yferras.javartint.ann.function.generator;
 import com.github.yferras.javartint.ann.function.activation.ActivationFunction;
 import com.github.yferras.javartint.ann.function.propagationrule.PropagationRuleFunction;
 import com.github.yferras.javartint.ann.neuron.ArtificialNeuron;
+import com.github.yferras.javartint.core.util.AlgorithmRuntimeException;
 
 /**
  * <p>RandomArtificialNeuronGeneratorFunction class.</p>
- *
+ * 
+ * @param <T> Any class derived from {@link ArtificialNeuron}
  * @author yferras
  * @version $Id: $Id
  */
@@ -62,7 +64,7 @@ public class RandomArtificialNeuronGeneratorFunction<T extends ArtificialNeuron>
             neuron.setFunctions(activationFunction, propagationRuleFunction);
             return neuron;
         } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            throw new AlgorithmRuntimeException(e); 
         }
         return null;
     }

@@ -40,7 +40,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
 
 	private static final long serialVersionUID = 1919755543077335578L;
 
-	private static Object copy(Object src) {
+	protected static Object copy(Object src) {
 		if (src instanceof Byte) {
 			return new Byte((byte) src);
 		} else if (src instanceof Character) {
@@ -69,7 +69,7 @@ public abstract class AbstractGene<T> implements Gene<T> {
 		}
 	}
 
-	private static void copyArrays(Object[] src, Object[] dst) {
+	protected static void copyArrays(Object[] src, Object[] dst) {
 		final int length = src.length;
 		for (int i = 0; i < length; i++) {
 			dst[i] = copy(src[i]);
