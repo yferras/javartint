@@ -100,6 +100,11 @@ public interface ArtificialNeuron
      */
     NeuronInitializationStatus getStatus();
     
+    /**
+     * 
+     * @author Eng. Ferrás Cecilio, Yeinier.
+     *
+     */
     class Builder implements com.github.yferras.javartint.core.util.Builder<ArtificialNeuron> {
     	
     	private Integer size;
@@ -109,6 +114,9 @@ public interface ArtificialNeuron
     	private Double fixedWeight;
     	private CompositeFunction.Builder<Double, Double[]> compositeFunctionBuilder = new CompositeFunction.Builder<>();
 
+    	/**
+    	 * {@inheritDoc}
+    	 */
 		@Override
 		public ArtificialNeuron build() {
 			
