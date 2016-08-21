@@ -132,7 +132,7 @@ public class ArrayGene<T> extends AbstractGene<T[]> implements Cloneable, Iterab
 	
 	@Override
 	public Gene<T[]> clone() throws CloneNotSupportedException {
-		ArrayGene<T> copy = new ArrayGene<>(getData());
+		ArrayGene<T> copy = new ArrayGene<>(getData().clone());
 		return copy;
 	}
 }
